@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="04106b25-d125-4841-8a9e-f42b0a07435c" solutionId="04106b25-d125-4841-8a9e-f42b0a07435c" resetWebServer="false" name="masterleasing.Workflows.KontraktSMW" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="bc757e4e-c34e-4faa-9123-b192198788c6" />
+  </features>
+</package>

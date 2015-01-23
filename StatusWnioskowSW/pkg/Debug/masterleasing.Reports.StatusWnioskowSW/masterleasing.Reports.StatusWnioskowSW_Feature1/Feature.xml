@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="masterleasing.Reports.StatusWnioskowSW Feature1" Description="My SharePoint Workflow Feature" Id="25645795-46a9-4ca4-8284-b202e03fcf84" Scope="Site">
+  <Properties>
+    <Property Key="GloballyAvailable" Value="true" />
+  </Properties>
+  <ElementManifests>
+    <ElementManifest Location="Workflow2\Elements.xml" />
+  </ElementManifests>
+</Feature>

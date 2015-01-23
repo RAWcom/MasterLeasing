@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" Id="49839aaa-9a7a-4db2-9589-660cf5374415" solutionId="49839aaa-9a7a-4db2-9589-660cf5374415" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" name="masterleasing.Reports.RozliczenieAgentowSW">
+    <features>
+        <featureReference itemId="b98a9c92-9124-4ee7-86df-162307acb585" />
+    </features>
+</package>

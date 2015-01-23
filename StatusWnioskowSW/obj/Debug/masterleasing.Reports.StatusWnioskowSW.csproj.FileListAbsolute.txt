@@ -1,0 +1,4 @@
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Reports.StatusWnioskowSW\bin\Debug\masterleasing.Reports.StatusWnioskowSW.dll
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Reports.StatusWnioskowSW\bin\Debug\masterleasing.Reports.StatusWnioskowSW.pdb
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Reports.StatusWnioskowSW\obj\Debug\masterleasing.Reports.StatusWnioskowSW.dll
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Reports.StatusWnioskowSW\obj\Debug\masterleasing.Reports.StatusWnioskowSW.pdb

@@ -1,0 +1,8 @@
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Reports.StatusWnioskowSW\bin\Release\masterleasing.Reports.StatusWnioskowSW.dll
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Reports.StatusWnioskowSW\bin\Release\masterleasing.Reports.StatusWnioskowSW.pdb
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Reports.StatusWnioskowSW\obj\Release\masterleasing.Reports.StatusWnioskowSW.dll
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Reports.StatusWnioskowSW\obj\Release\masterleasing.Reports.StatusWnioskowSW.pdb
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Workflows\StatusWnioskowSW\bin\Release\masterleasing.Reports.StatusWnioskowSW.dll
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Workflows\StatusWnioskowSW\bin\Release\masterleasing.Reports.StatusWnioskowSW.pdb
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Workflows\StatusWnioskowSW\obj\Release\masterleasing.Reports.StatusWnioskowSW.dll
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Workflows\StatusWnioskowSW\obj\Release\masterleasing.Reports.StatusWnioskowSW.pdb

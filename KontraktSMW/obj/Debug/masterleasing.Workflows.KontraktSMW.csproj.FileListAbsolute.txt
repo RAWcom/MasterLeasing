@@ -1,0 +1,8 @@
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\Stafix.MasterLeasing\CustomWorkflows\KontraktSMW\bin\Debug\masterleasing.Workflows.KontraktSMW.dll
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\Stafix.MasterLeasing\CustomWorkflows\KontraktSMW\bin\Debug\masterleasing.Workflows.KontraktSMW.pdb
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\Stafix.MasterLeasing\CustomWorkflows\KontraktSMW\obj\Debug\masterleasing.Workflows.KontraktSMW.dll
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\Stafix.MasterLeasing\CustomWorkflows\KontraktSMW\obj\Debug\masterleasing.Workflows.KontraktSMW.pdb
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Workflows\KontraktSMW\bin\Debug\masterleasing.Workflows.KontraktSMW.dll
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Workflows\KontraktSMW\bin\Debug\masterleasing.Workflows.KontraktSMW.pdb
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Workflows\KontraktSMW\obj\Debug\masterleasing.Workflows.KontraktSMW.dll
+C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\masterleasing.Workflows\KontraktSMW\obj\Debug\masterleasing.Workflows.KontraktSMW.pdb

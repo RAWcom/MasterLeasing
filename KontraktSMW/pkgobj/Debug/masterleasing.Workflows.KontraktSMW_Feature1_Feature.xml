@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="Obsługa Kontraktu" Description="Obsługa leadów leasingowych" Id="bc757e4e-c34e-4faa-9123-b192198788c6" Scope="Site">
+  <Properties>
+    <Property Key="GloballyAvailable" Value="true" />
+  </Properties>
+  <ElementManifests>
+    <ElementManifest Location="Workflow1\Elements.xml" />
+  </ElementManifests>
+</Feature>

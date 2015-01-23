@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SharePointSiteUrl>http://spf2010dev/sites/ml/</SharePointSiteUrl>
+    <ProjectView>ShowAllFiles</ProjectView>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{BB1F664B-9266-4fd6-B973-E1E44974B511}">
+        <ProjectStore>
+          <SharePointStartupItem>Workflow1</SharePointStartupItem>
+        </ProjectStore>
+        <ProjectItemStore Id="{46ede7de-4e44-4de0-9fe6-32eae30eaf1b}">
+          <DisplayName>KontraktSMW</DisplayName>
+          <HistoryList>Workflow History</HistoryList>
+          <HistoryListGuid>{6de47e63-8a82-4f88-a577-fbc338bf0515}</HistoryListGuid>
+          <TaskList>Zadania</TaskList>
+          <TaskListGuid>{9a7ce622-ef97-4f28-9340-1fd3e3b0546f}</TaskListGuid>
+          <AutoAssociate>true</AutoAssociate>
+          <ManualStart>true</ManualStart>
+          <ListURL>http://spf2010dev/sites/dev/ml2/Lists/tabKontrakty/Kartoteka.aspx</ListURL>
+          <TargetList>tabKontrakty</TargetList>
+          <TargetListGuid>{efb2e4db-aae8-4fdc-88ce-bfc77a99e571}</TargetListGuid>
+          <StartOnCreate>true</StartOnCreate>
+          <StartOnChange>false</StartOnChange>
+        </ProjectItemStore>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
