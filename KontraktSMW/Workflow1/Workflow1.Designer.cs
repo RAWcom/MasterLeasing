@@ -95,6 +95,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             System.Workflow.Activities.CodeCondition codecondition32 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition33 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition34 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition35 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.ComponentModel.ActivityBind activitybind31 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.Runtime.CorrelationToken correlationtoken6 = new System.Workflow.Runtime.CorrelationToken();
             System.Workflow.Runtime.CorrelationToken correlationtoken7 = new System.Workflow.Runtime.CorrelationToken();
@@ -184,6 +185,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.StatusRozmowa_Oferta = new System.Workflow.Activities.CodeActivity();
             this.logERROR_NavigatorInit = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.setStateActivity27 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity23 = new System.Workflow.Activities.SetStateActivity();
             this.Navigator_Stracony = new System.Workflow.Activities.SetStateActivity();
             this.Navigator_Uruchomienie = new System.Workflow.Activities.SetStateActivity();
             this.Navigator_Umowa = new System.Workflow.Activities.SetStateActivity();
@@ -219,6 +221,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Weryfikacja_Oferta = new System.Workflow.Activities.IfElseBranchActivity();
             this.faultHandlerActivity3 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.Status_Lead_Else = new System.Workflow.Activities.IfElseBranchActivity();
+            this.StatusLeadu_Rozliczenie = new System.Workflow.Activities.IfElseBranchActivity();
             this.faultHandlersActivity7 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.StatusLeadu_Stracony = new System.Workflow.Activities.IfElseBranchActivity();
             this.StatusLeadu_Uruchomiony = new System.Workflow.Activities.IfElseBranchActivity();
@@ -265,6 +268,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity7 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.ifElseActivity6 = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged6 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.codeDodajDoRozliczen = new System.Workflow.Activities.CodeActivity();
             this.SetCT_Wniosek = new System.Workflow.Activities.CodeActivity();
             this.setState_Wniosek = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity6 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -859,6 +863,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.setStateActivity27.Name = "setStateActivity27";
             this.setStateActivity27.TargetStateName = "Weryfikacja";
             // 
+            // setStateActivity23
+            // 
+            this.setStateActivity23.Name = "setStateActivity23";
+            this.setStateActivity23.TargetStateName = "Rozliczenie";
+            // 
             // Navigator_Stracony
             // 
             this.Navigator_Stracony.Name = "Navigator_Stracony";
@@ -1113,6 +1122,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Status_Lead_Else.Condition = codecondition28;
             this.Status_Lead_Else.Name = "Status_Lead_Else";
             // 
+            // StatusLeadu_Rozliczenie
+            // 
+            this.StatusLeadu_Rozliczenie.Activities.Add(this.setStateActivity23);
+            codecondition29.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Rozliczenie);
+            this.StatusLeadu_Rozliczenie.Condition = codecondition29;
+            this.StatusLeadu_Rozliczenie.Name = "StatusLeadu_Rozliczenie";
+            // 
             // faultHandlersActivity7
             // 
             this.faultHandlersActivity7.Name = "faultHandlersActivity7";
@@ -1120,43 +1136,43 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // StatusLeadu_Stracony
             // 
             this.StatusLeadu_Stracony.Activities.Add(this.Navigator_Stracony);
-            codecondition29.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Stracony);
-            this.StatusLeadu_Stracony.Condition = codecondition29;
+            codecondition30.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Stracony);
+            this.StatusLeadu_Stracony.Condition = codecondition30;
             this.StatusLeadu_Stracony.Name = "StatusLeadu_Stracony";
             // 
             // StatusLeadu_Uruchomiony
             // 
             this.StatusLeadu_Uruchomiony.Activities.Add(this.Navigator_Uruchomienie);
-            codecondition30.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Uruchomiony);
-            this.StatusLeadu_Uruchomiony.Condition = codecondition30;
+            codecondition31.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Uruchomiony);
+            this.StatusLeadu_Uruchomiony.Condition = codecondition31;
             this.StatusLeadu_Uruchomiony.Name = "StatusLeadu_Uruchomiony";
             // 
             // StatusLeadu_Umowa
             // 
             this.StatusLeadu_Umowa.Activities.Add(this.Navigator_Umowa);
-            codecondition31.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Umowa);
-            this.StatusLeadu_Umowa.Condition = codecondition31;
+            codecondition32.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Umowa);
+            this.StatusLeadu_Umowa.Condition = codecondition32;
             this.StatusLeadu_Umowa.Name = "StatusLeadu_Umowa";
             // 
             // StatusLeadu_Wniosek
             // 
             this.StatusLeadu_Wniosek.Activities.Add(this.Navigator_Wniosek);
-            codecondition32.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Wniosek);
-            this.StatusLeadu_Wniosek.Condition = codecondition32;
+            codecondition33.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Wniosek);
+            this.StatusLeadu_Wniosek.Condition = codecondition33;
             this.StatusLeadu_Wniosek.Name = "StatusLeadu_Wniosek";
             // 
             // StatusLeadu_Oferta
             // 
             this.StatusLeadu_Oferta.Activities.Add(this.Navigator_Oferta);
-            codecondition33.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Oferta);
-            this.StatusLeadu_Oferta.Condition = codecondition33;
+            codecondition34.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Oferta);
+            this.StatusLeadu_Oferta.Condition = codecondition34;
             this.StatusLeadu_Oferta.Name = "StatusLeadu_Oferta";
             // 
             // StatusLeadu_Telefon
             // 
             this.StatusLeadu_Telefon.Activities.Add(this.Navigator_Telemarketing);
-            codecondition34.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Telefon);
-            this.StatusLeadu_Telefon.Condition = codecondition34;
+            codecondition35.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Telefon);
+            this.StatusLeadu_Telefon.Condition = codecondition35;
             this.StatusLeadu_Telefon.Name = "StatusLeadu_Telefon";
             // 
             // faultHandlersActivity2
@@ -1184,7 +1200,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // nRozliczenie_DodajDoRozliczen
             // 
-            this.nRozliczenie_DodajDoRozliczen.Enabled = false;
             this.nRozliczenie_DodajDoRozliczen.Name = "nRozliczenie_DodajDoRozliczen";
             this.nRozliczenie_DodajDoRozliczen.ExecuteCode += new System.EventHandler(this.nRozliczenie_DodajDoRozliczen_ExecuteCode);
             // 
@@ -1444,6 +1459,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             correlationtoken16.OwnerActivityName = "Workflow1";
             this.onWorkflowItemChanged6.CorrelationToken = correlationtoken16;
             this.onWorkflowItemChanged6.Name = "onWorkflowItemChanged6";
+            // 
+            // codeDodajDoRozliczen
+            // 
+            this.codeDodajDoRozliczen.Name = "codeDodajDoRozliczen";
+            this.codeDodajDoRozliczen.ExecuteCode += new System.EventHandler(this.codeDodajDoRozliczen_ExecuteCode);
             // 
             // SetCT_Wniosek
             // 
@@ -1713,6 +1733,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Navigator_Routing.Activities.Add(this.StatusLeadu_Uruchomiony);
             this.Navigator_Routing.Activities.Add(this.StatusLeadu_Stracony);
             this.Navigator_Routing.Activities.Add(this.faultHandlersActivity7);
+            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Rozliczenie);
             this.Navigator_Routing.Activities.Add(this.Status_Lead_Else);
             this.Navigator_Routing.Name = "Navigator_Routing";
             // 
@@ -1866,6 +1887,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity7.Activities.Add(this.logToHistoryListActivity6);
             this.stateInitializationActivity7.Activities.Add(this.setState_Wniosek);
             this.stateInitializationActivity7.Activities.Add(this.SetCT_Wniosek);
+            this.stateInitializationActivity7.Activities.Add(this.codeDodajDoRozliczen);
             this.stateInitializationActivity7.Name = "stateInitializationActivity7";
             // 
             // KorektaOferty_OnChange
@@ -2085,6 +2107,12 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         }
 
         #endregion
+
+        private CodeActivity codeDodajDoRozliczen;
+
+        private SetStateActivity setStateActivity23;
+
+        private IfElseBranchActivity StatusLeadu_Rozliczenie;
 
         private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity20;
 
@@ -2555,6 +2583,15 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         private StateActivity Navigator;
 
         private StateActivity Start;
+
+
+
+
+
+
+
+
+
 
 
 

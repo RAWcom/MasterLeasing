@@ -31,6 +31,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         const string _TELEFON_ = "Telefon";
         const string _STRACONY_ = "Stracony";
         const string _URUCHOMIONY_ = "Uruchomiony";
+        const string _ROZLICZENIE_ = "Rozliczenie";
 
         const string _DEFAULT_EMAIL_SENDER_ = "Master Leasing<noreply@stafix24.pl>";
 
@@ -86,6 +87,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         private void IsStatusLeadu_Stracony(object sender, ConditionalEventArgs e)
         {
             e.Result = NavigatorCodeConditionResult("colStatusLeadu", "Stracony");
+        }
+
+        private void IsStatusLeadu_Rozliczenie(object sender, ConditionalEventArgs e)
+        {
+            e.Result = NavigatorCodeConditionResult("colStatusLeadu", "Rozliczenie");
         }
 
         private void IsStatusLeadu_ElseIf(object sender, ConditionalEventArgs e)
@@ -481,6 +487,12 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private void nRozliczenie_DodajDoRozliczen_ExecuteCode(object sender, EventArgs e)
         {
+            //podnieś uprawnienia dla procedury
+            SPSecurity.RunWithElevatedPrivileges(delegate() { DodajDoRozliczen(); });
+        }
+
+        private void DodajDoRozliczen()
+        {
             int kontraktID = workflowProperties.ItemId;
 
             using (SPSite site = new SPSite(workflowProperties.SiteId))
@@ -506,7 +518,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
                             SPListItem item = list.AddItem();
                             item["colLinkDoKontraktu"] = kontraktID;
                             item["colWartoscKontraktuPLN"] = workflowProperties.Item["colWartoscKontraktuPLN"];
-                            item["colProwizja"] = workflowProperties.Item["colProwizja"];
+                            //item["colProwizja"] = workflowProperties.Item["colProwizja"];
                             item["colNumerUmowy_Kontrakt"] = workflowProperties.Item["colNumerUmowy_Kontrakt"];
                             item["colDataUruchomienia_Kontrakt"] = workflowProperties.Item["colDataUruchomienia_Kontrakt"];
                             item["colDataZakonczenia_Kontrakt"] = workflowProperties.Item["colDataZakonczenia_Kontrakt"];
@@ -515,16 +527,28 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
                             logRozliczenie_DodajDoRozliczen = "Dodano nowy rekord w kartotece rozliczeń prowizji";
                         }
-                        catch (Exception exp)
-                        {
-                            throw;
-                        }
-
-
+                        catch (Exception)
+                        {}
                     }
                     else
                     {
-                        logRozliczenie_DodajDoRozliczen = "Nie dodano nowego rekordu - rekord już istnieje w kartotece rozliczeń prowizji";
+                        try
+                        {
+                            SPListItem item = items[0];
+                            
+                            item["colLinkDoKontraktu"] = kontraktID;
+                            item["colWartoscKontraktuPLN"] = workflowProperties.Item["colWartoscKontraktuPLN"];
+                            //item["colProwizja"] = workflowProperties.Item["colProwizja"];
+                            item["colNumerUmowy_Kontrakt"] = workflowProperties.Item["colNumerUmowy_Kontrakt"];
+                            item["colDataUruchomienia_Kontrakt"] = workflowProperties.Item["colDataUruchomienia_Kontrakt"];
+                            item["colDataZakonczenia_Kontrakt"] = workflowProperties.Item["colDataZakonczenia_Kontrakt"];
+                            item["colUstalenia"] = workflowProperties.Item["colUstalenia"];
+                            item.Update();
+
+                            logRozliczenie_DodajDoRozliczen = "Zaktualizowano rekord w kartotece rozliczeń prowizji";
+                        }
+                        catch (Exception)
+                        {}
                     }
 
                 }
@@ -954,6 +978,18 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         }
 
         #endregion
+
+        private void codeDodajDoRozliczen_ExecuteCode(object sender, EventArgs e)
+        {
+            //podnieś uprawnienia dla procedury
+            SPSecurity.RunWithElevatedPrivileges(delegate() { DodajDoRozliczen(); });
+        }
+
+
+
+
+
+
 
     }
 

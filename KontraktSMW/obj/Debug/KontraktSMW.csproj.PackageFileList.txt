@@ -1,1 +1,1 @@
-bin\Debug\KontraktSMW.wsp
+bin\Debug\masterleasing.Workflows.KontraktSMW.wsp

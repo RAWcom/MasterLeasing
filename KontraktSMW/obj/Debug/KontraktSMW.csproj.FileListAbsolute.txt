@@ -7,3 +7,8 @@ C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\Stafix.MasterLeasing
 C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\Stafix.MasterLeasing\CustomWorkflows\KontraktSMW\obj\Debug\KontraktSMW.csprojResolveAssemblyReference.cache
 C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\Stafix.MasterLeasing\CustomWorkflows\KontraktSMW\obj\Debug\KontraktSMW.dll
 C:\Users\admin3324\Documents\GitHub\masterleasing.Workflows\Stafix.MasterLeasing\CustomWorkflows\KontraktSMW\obj\Debug\KontraktSMW.pdb
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\KontraktSMW\bin\Debug\masterleasing.Workflows.KontraktSMW.dll
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\KontraktSMW\bin\Debug\masterleasing.Workflows.KontraktSMW.pdb
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\KontraktSMW\obj\Debug\KontraktSMW.csprojResolveAssemblyReference.cache
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\KontraktSMW\obj\Debug\masterleasing.Workflows.KontraktSMW.dll
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\KontraktSMW\obj\Debug\masterleasing.Workflows.KontraktSMW.pdb

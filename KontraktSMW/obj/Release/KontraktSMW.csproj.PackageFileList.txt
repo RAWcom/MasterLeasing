@@ -1,1 +1,1 @@
-bin\Release\KontraktSMW.wsp
+bin\Release\masterleasing.Workflows.KontraktSMW.wsp
