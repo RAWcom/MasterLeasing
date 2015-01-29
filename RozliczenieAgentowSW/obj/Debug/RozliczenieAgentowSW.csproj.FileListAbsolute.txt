@@ -1,0 +1,5 @@
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\RozliczenieAgentowSW\obj\Debug\RozliczenieAgentowSW.csprojResolveAssemblyReference.cache
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\RozliczenieAgentowSW\bin\Debug\masterleasing.Reports.RozliczenieAgentowSW.dll
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\RozliczenieAgentowSW\bin\Debug\masterleasing.Reports.RozliczenieAgentowSW.pdb
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\RozliczenieAgentowSW\obj\Debug\masterleasing.Reports.RozliczenieAgentowSW.dll
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\RozliczenieAgentowSW\obj\Debug\masterleasing.Reports.RozliczenieAgentowSW.pdb

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Receivers ListTemplateId="100">
+
+  <Receiver>
+<Name>EventReceiver1ItemAdded</Name>
+<Type>ItemAdded</Type>
+<Assembly>masterleasing.RozliczenieKontraktu.OnUpdate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=10ddd3ce5cc6f688</Assembly>
+<Class>masterleasing.RozliczenieKontraktu.OnUpdate.EventReceiver1.EventReceiver1</Class>
+<SequenceNumber>1000</SequenceNumber>
+</Receiver>
+<Receiver>
+<Name>EventReceiver1ItemUpdated</Name>
+<Type>ItemUpdated</Type>
+<Assembly>masterleasing.RozliczenieKontraktu.OnUpdate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=10ddd3ce5cc6f688</Assembly>
+<Class>masterleasing.RozliczenieKontraktu.OnUpdate.EventReceiver1.EventReceiver1</Class>
+<SequenceNumber>1000</SequenceNumber>
+</Receiver>
+<Receiver>
+<Name>EventReceiver1ItemAdding</Name>
+<Type>ItemAdding</Type>
+<Assembly>masterleasing.RozliczenieKontraktu.OnUpdate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=10ddd3ce5cc6f688</Assembly>
+<Class>masterleasing.RozliczenieKontraktu.OnUpdate.EventReceiver1.EventReceiver1</Class>
+<SequenceNumber>1000</SequenceNumber>
+</Receiver>
+<Receiver>
+<Name>EventReceiver1ItemUpdating</Name>
+<Type>ItemUpdating</Type>
+<Assembly>masterleasing.RozliczenieKontraktu.OnUpdate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=10ddd3ce5cc6f688</Assembly>
+<Class>masterleasing.RozliczenieKontraktu.OnUpdate.EventReceiver1.EventReceiver1</Class>
+<SequenceNumber>1000</SequenceNumber>
+</Receiver>
+</Receivers>
+</Elements>

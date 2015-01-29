@@ -1,0 +1,4 @@
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\masterleasing.RozliczenieKontraktu.OnUpdate\bin\Debug\masterleasing.RozliczenieKontraktu.OnUpdate.dll
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\masterleasing.RozliczenieKontraktu.OnUpdate\bin\Debug\masterleasing.RozliczenieKontraktu.OnUpdate.pdb
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\masterleasing.RozliczenieKontraktu.OnUpdate\obj\Debug\masterleasing.RozliczenieKontraktu.OnUpdate.dll
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\masterleasing.RozliczenieKontraktu.OnUpdate\obj\Debug\masterleasing.RozliczenieKontraktu.OnUpdate.pdb

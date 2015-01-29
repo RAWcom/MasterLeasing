@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="eb92051f-cfa0-449d-b479-fb813286b19c" SharePointProductVersion="14.0">
+  <Assemblies>
+    <Assembly Location="masterleasing.RozliczenieKontraktu.OnUpdate.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="RozliczenieKontraktu.OnUpdate_Feature1\Feature.xml" />
+  </FeatureManifests>
+</Solution>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Description="My SharePoint Workflow Feature" Id="b98a9c92-9124-4ee7-86df-162307acb585" Scope="Site" Title="masterleasing.Reports.RozliczenieAgentowSW Feature1">
+  <Properties>
+    <Property Key="GloballyAvailable" Value="true" />
+  </Properties>
+  <ElementManifests>
+    <ElementManifest Location="Module1\Elements.xml" />
+    <ElementFile Location="Module1\Sample.txt" />
+  </ElementManifests>
+</Feature>

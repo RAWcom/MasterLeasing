@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" Id="eb92051f-cfa0-449d-b479-fb813286b19c" solutionId="eb92051f-cfa0-449d-b479-fb813286b19c" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" name="masterleasing.RozliczenieKontraktu.OnUpdate">
+    <features>
+        <featureReference itemId="fcf1ac5e-5b32-4b95-a489-6460f5756f11" />
+    </features>
+</package>

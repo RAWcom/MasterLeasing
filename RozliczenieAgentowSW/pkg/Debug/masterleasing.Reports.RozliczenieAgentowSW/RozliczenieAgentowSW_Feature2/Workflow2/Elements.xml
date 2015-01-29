@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <!-- Customize the text in square brackets. 
 Remove brackets when filling in, e.g.
@@ -6,11 +6,11 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
 
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Workflow
-     Name="Raport Rozliczenie Agentów"
-     Description="My SharePoint Workflow"
-     Id="f8c5e3f4-ae72-4d1b-a091-ff4bd2d28701"
-     CodeBesideClass="masterleasing.Reports.RozliczenieAgentowSW.Workflow1.Workflow1"
-     CodeBesideAssembly="$assemblyname$">
+     Name="Reports-Status wnioskow"
+     Description="Generuje serię wiadomości eMail do agentów z aktywną subskrybcją a bieżącym statusie wniosków. Aby Agent otrzymał maila powinien mieć ustawioną flagę aktywny, ustawioną flagę subskrybcji i dodatkowo powinien być przypisany do linii produktowej Leasing."
+     Id="3e96abc2-6757-4b18-a7ed-2c305b52b754"
+     CodeBesideClass="masterleasing.Reports.RozliczenieAgentowSW.Workflow2.Workflow2"
+     CodeBesideAssembly="masterleasing.Reports.RozliczenieAgentowSW, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7e5d935ff9017b0b">
     <Categories/>
     <MetaData>
       <AssociationCategories>List</AssociationCategories>

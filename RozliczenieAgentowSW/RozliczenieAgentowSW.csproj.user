@@ -6,13 +6,10 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{BB1F664B-9266-4fd6-B973-E1E44974B511}">
-        <ProjectStore>
-          <SharePointStartupItem>Workflow1</SharePointStartupItem>
-        </ProjectStore>
-        <ProjectItemStore Id="{fa1460a8-4498-4059-8df1-3c34f8521110}">
-          <DisplayName>Raport Rozliczenie Agentów</DisplayName>
-          <HistoryList>Workflow History</HistoryList>
-          <HistoryListGuid>{3364ca1a-5d67-46f4-9639-9c9484103963}</HistoryListGuid>
+        <ProjectItemStore Id="{b483bdd1-dfdd-47c3-85f0-8182889feb74}">
+          <DisplayName>Rozliczenie agentów</DisplayName>
+          <HistoryList>Historia przepływu pracy</HistoryList>
+          <HistoryListGuid>{fbf25e1b-86b5-4b95-927d-e631cb5a3d7c}</HistoryListGuid>
           <TaskList>Zadania</TaskList>
           <TaskListGuid>{c51093ef-3e7e-402a-bc53-b4810a30fe65}</TaskListGuid>
           <AutoAssociate>true</AutoAssociate>
