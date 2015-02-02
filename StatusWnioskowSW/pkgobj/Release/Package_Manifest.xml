@@ -4,6 +4,6 @@
     <Assembly Location="masterleasing.Reports.StatusWnioskowSW.dll" DeploymentTarget="GlobalAssemblyCache" />
   </Assemblies>
   <FeatureManifests>
-    <FeatureManifest Location="masterleasing.Reports.StatusWnioskowSW_Feature1\Feature.xml" />
+    <FeatureManifest Location="StatusWnioskowSW_Feature1\Feature.xml" />
   </FeatureManifests>
 </Solution>

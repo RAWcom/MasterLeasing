@@ -34,6 +34,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
 
         public String sendTo = default(System.String);
         public String sendCC = default(System.String);
+        public string sendBCC = default(System.String);
         public String sendSubject = default(System.String);
         public String sendBody = default(System.String);
 
@@ -41,6 +42,8 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
         public String logHistoryOutcome = default(System.String);
 
         public bool bRaportTestowy = true;
+        public bool bZnalezioneKontrakty = false;
+        public bool bRaportUtworzony = false;
 
         public int partnerIdx = -1;
 
@@ -54,7 +57,6 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                 {
                     SPList list = web.Lists[@"tabPartnerzy"];
                     SPQuery query = new SPQuery();
-                    query.ViewFields = @"<FieldRef Name='ID' /><FieldRef Name='colOsobaKontaktowa' /><FieldRef Name='colTelefonOsobyKontakowej' /><FieldRef Name='colEmailOsobyKontaktowej' /><FieldRef Name='colAktywny' /><FieldRef Name='colWysylkaRaportuTygodniowego' />";
                     query.Query = @"<OrderBy><FieldRef Name='ID' /></OrderBy><Where><And><And><Eq><FieldRef Name='colAktywny' /><Value Type='Boolean'>1</Value></Eq><Eq><FieldRef Name='colLinie' /><Value Type='Text'>Leasing</Value></Eq></And><Eq><FieldRef Name='colWysylkaRaportuTygodniowego' /><Value Type='Boolean'>1</Value></Eq></And></Where>";
 
                     SPListItemCollection items = list.GetItems(query);
@@ -85,6 +87,8 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             SPListItem partner = (SPListItem)aPartnerzy[partnerIdx];
 
             bool result = CreateMailReport(partner);
+
+            bRaportUtworzony = result;
 
             string strPartnerName = string.Empty;
             if (partner["colOsobaKontaktowa"] != null)
@@ -119,6 +123,8 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
 
         private bool CreateMailReport(SPListItem partner)
         {
+            bool result = false;
+
             try
             {
                 using (SPSite site = new SPSite(workflowProperties.SiteId))
@@ -143,6 +149,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                             if (CreateMail(partner, items))
                             {
                                 logHistoryDescription = "Raport wygenerowany i wysłany";
+                                result = true;
                             }
                             else
                             {
@@ -163,11 +170,13 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                 return false;
             }
 
-            return true;
+            return result;
         }
 
         private bool CreateMail(SPListItem partner, SPListItemCollection items)
         {
+            bZnalezioneKontrakty = false;
+
             DateTime datDataZgloszenia = new DateTime();
             string strKlient = string.Empty;
             string strWartoscPLN = string.Empty;
@@ -183,17 +192,71 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             try
             {
                 sendTo = partner["colEmailOsobyKontaktowej"].ToString();
+                WriteToHistoryLog("To:" + sendTo, "");
+                sendCC = GetManagerEmail(partner);
+                sendBCC = GetManagingPartnersEmails();
                 sendSubject = String.Format(":: Status kontraków : {0} : {1}",
                     DateTime.Now.ToShortDateString(),
                     partner["colOsobaKontaktowa"].ToString());
 
                 StringBuilder sb = new StringBuilder();
 
-                sb.AppendFormat("<body>");
-                sb.AppendFormat("<h3>Zestawienie bieżących kontraktów:<h3>");
-                sb.AppendFormat("<div>");
-                sb.AppendFormat("<table>");
-                sb.AppendFormat("<tr><td>#</td><td>Klient</td><td>Data zgł.</td><td>Wartość PLN</td><td>Cel finansowania</td><td>Status</td><td>Ustalenia</td></tr>");
+                sb.Append(@"
+<head>
+<style type=""text/css"">
+.style1 {
+	border-style: solid;
+	border-width: 0px;
+}
+.style2 {
+	border-style: solid;
+	border-width: 1px;
+}
+</style>
+</head>
+
+<body style=""font-family: Arial, Helvetica, sans-serif"">
+
+<table style=""width: 800px"">
+	<tr>
+		<td>
+		<table style=""width: 100%"">
+			<tr>
+				<td valign=""middle"" align=""center"">
+				<h3>Zestawienie bieżących kontraktów</h3>
+				</td>
+				<td align=""right"">
+				<img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110""></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<table style=""width: 100%; font-size: small"" class=""style1"">
+			<thead style=""background: silver"">
+				<tr>
+					<td class=""style2"">#</td>
+					<td class=""style2"">Klient</td>
+					<td class=""style2"">Data zgłoszenia</td>
+					<td class=""style2"">Wartość PLN</td>
+					<td class=""style2"">Cel finansowania</td>
+					<td class=""style2"">Status</td>
+					<td class=""style2"">Ustalenia z klientem</td>
+				</tr>
+			</thead>
+			***rows***
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+
+</body>
+");
+                StringBuilder sb2 = new StringBuilder();
 
                 foreach (SPListItem item in items)
                 {
@@ -227,12 +290,12 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                         {
                             strCelFinansowania = (string)item["colCelFinansowania"];
                         }
-
-
                         if (item["colUstalenia"] != null)
                         {
                             strUstalenia = item["colUstalenia"].ToString();
                         }
+
+
 
 
                         if (item["colStatusLeadu"] != null)
@@ -247,31 +310,109 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                         return false;
                     }
 
-                    sb.AppendFormat(String.Format(@"<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td></tr>",
+                    sb2.Append(String.Format(@"
+             <tr>
+				<td class=""style2"">{0}</td>
+				<td class=""style2"">{1}</td>
+				<td class=""style2"">{2}</td>
+				<td class=""style2"">{3}</td>
+				<td class=""style2"">{4}</td>
+				<td class=""style2"">{5}</td>
+				<td class=""style2"">{6}</td>
+			</tr>",
                         item["ID"].ToString(),
                         strKlient,
                         datDataZgloszenia.ToShortDateString(),
-                        strWartoscPLN,
+                        strWartoscPLN.ToString(),
                         strCelFinansowania,
                         strStatusLeadu,
                         strUstalenia));
                 }
 
-                sb.AppendFormat("</table>");
-                sb.AppendFormat("</div>");
-                sb.AppendFormat("</body>");
+                sb.Replace(@"***rows***", sb2.ToString());
 
                 sendBody = sb.ToString();
 
+                bZnalezioneKontrakty = true;
+
             }
-            catch (Exception)
+            catch (Exception exp)
             {
+                WriteToHistoryLog(exp.Message, "ERR");
                 return false;
             }
 
             return true;
 
         }
+
+        private string GetManagerEmail(SPListItem partner)
+        {
+            WriteToHistoryLog("Pobiera dane managera", "");
+
+            string result = String.Empty;
+
+            if (partner["colManager"] != null)
+            {
+                string manager = partner["colManager"].ToString();
+
+                if (!String.IsNullOrEmpty(manager))
+                {
+                    int foundId = GetLookupIndex(manager);
+                    if (foundId > 0)
+                    {
+                        result = GetEmailAgenta(foundId);
+                        WriteToHistoryLog("Manager:" + result, "");
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private int GetLookupIndex(string lookupString)
+        {
+            int result = 0;
+
+            string idValue = lookupString;
+            int partial = idValue.LastIndexOf(";");
+            string idPure = idValue.Substring(0, partial);
+
+            result = Convert.ToInt32(idPure);
+
+            return result;
+        }
+
+        private string GetManagingPartnersEmails()
+        {
+            WriteToHistoryLog("Pobiera listę dystrybucyjną BCC", "");
+
+            string result = string.Empty;
+
+            using (SPSite site = new SPSite(workflowProperties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[workflowProperties.WebId])
+                {
+                    SPList list = web.Lists[@"admSetup"];
+
+                    foreach (SPListItem item in list.Items)
+                    {
+                        string key = item["colKEY"].ToString();
+
+                        if (key == @"RAPORT_OKRESOWY_BCC_COPY")
+                        {
+                            result = item["colVALUE"].ToString();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            WriteToHistoryLog("BCC:" + result, "");
+
+            return result;
+        }
+
 
         #endregion
 
@@ -368,6 +509,37 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             }
         }
 
+        private string GetEmailAgenta(int partnerID)
+        {
+            using (SPSite site = new SPSite(workflowProperties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[workflowProperties.WebId])
+                {
+                    System.Text.StringBuilder sb = new System.Text.StringBuilder(@"<Where><Eq><FieldRef Name='ID'/><Value Type='Counter'>{__partnerID__}</Value></Eq></Where>");
+                    sb.Replace("{__partnerID__}", partnerID.ToString());
+                    string camlQuery = sb.ToString();
+
+                    SPList list = web.Lists[@"tabPartnerzy"];
+                    SPQuery query = new SPQuery();
+                    query.ViewFields = @"";
+                    query.Query = camlQuery;
+
+                    SPListItemCollection items = list.GetItems(query);
+                    if (items.Count == 1)
+                    {
+                        SPListItem item = items[0];
+
+                        if (item["colEmailOsobyKontaktowej"] != null)
+                        {
+                            return item["colEmailOsobyKontaktowej"].ToString();
+                        }
+                    }
+                }
+
+                return String.Empty;
+            }
+        }
+
         #endregion
 
         private void IsAgenciDoObslugi(object sender, ConditionalEventArgs e)
@@ -407,10 +579,13 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                 //podmień dane do wysyłki
                 sendTo = workflowProperties.OriginatorEmail.ToString();
                 sendSubject = ":: TESTOWY " + sendSubject;
+                sendCC = String.Empty;
+                sendBCC = String.Empty;
             }
             else
             {
-                sendCC = workflowProperties.OriginatorEmail.ToString();
+                //dodaj w kopii osobę generującą raport
+                sendCC = sendCC + ";" + workflowProperties.OriginatorEmail.ToString();
             }
         }
 
@@ -442,6 +617,18 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                 bRaportTestowy = false;
             }
         }
+
+        private void hasZnalezioneKontrakty(object sender, ConditionalEventArgs e)
+        {
+            e.Result = (bZnalezioneKontrakty && bRaportUtworzony);
+        }
+
+        private void codeResetFlags_ExecuteCode(object sender, EventArgs e)
+        {
+            bZnalezioneKontrakty = false;
+            bRaportUtworzony = false;
+        }
+
 
 
 

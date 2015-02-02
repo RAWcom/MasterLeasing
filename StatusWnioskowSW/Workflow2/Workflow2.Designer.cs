@@ -30,16 +30,21 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             System.Workflow.ComponentModel.ActivityBind activitybind2 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.ComponentModel.ActivityBind activitybind3 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.ComponentModel.ActivityBind activitybind4 = new System.Workflow.ComponentModel.ActivityBind();
-            System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
             System.Workflow.ComponentModel.ActivityBind activitybind5 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
             System.Workflow.ComponentModel.ActivityBind activitybind6 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind7 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.Activities.CodeCondition codecondition1 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition2 = new System.Workflow.Activities.CodeCondition();
-            System.Workflow.ComponentModel.ActivityBind activitybind7 = new System.Workflow.ComponentModel.ActivityBind();
-            this.codeIncrementAgent = new System.Workflow.Activities.CodeActivity();
+            System.Workflow.Activities.CodeCondition codecondition3 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.ComponentModel.ActivityBind activitybind8 = new System.Workflow.ComponentModel.ActivityBind();
             this.logRaportWyslany = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.sendRaportDlaAgenta = new Microsoft.SharePoint.WorkflowActions.SendEmail();
+            this.ifZnalezioneKontrakty = new System.Workflow.Activities.IfElseBranchActivity();
+            this.codeIncrementAgent = new System.Workflow.Activities.CodeActivity();
+            this.ifElseActivity2 = new System.Workflow.Activities.IfElseActivity();
             this.codeCreateReports = new System.Workflow.Activities.CodeActivity();
+            this.codeResetFlags = new System.Workflow.Activities.CodeActivity();
             this.sequencePrzygotujRaport = new System.Workflow.Activities.SequenceActivity();
             this.whileAgentAvailable = new System.Workflow.Activities.WhileActivity();
             this.AgenciDoObslugi = new System.Workflow.Activities.IfElseBranchActivity();
@@ -48,11 +53,6 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             this.codeGetTrybRaportu = new System.Workflow.Activities.CodeActivity();
             this.codeGetAgentDetails = new System.Workflow.Activities.CodeActivity();
             this.onWorkflowActivated1 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
-            // 
-            // codeIncrementAgent
-            // 
-            this.codeIncrementAgent.Name = "codeIncrementAgent";
-            this.codeIncrementAgent.ExecuteCode += new System.EventHandler(this.codeIncrementAgent_ExecuteCode);
             // 
             // logRaportWyslany
             // 
@@ -70,11 +70,12 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             // 
             // sendRaportDlaAgenta
             // 
-            this.sendRaportDlaAgenta.BCC = null;
             activitybind3.Name = "Workflow2";
-            activitybind3.Path = "sendBody";
+            activitybind3.Path = "sendBCC";
             activitybind4.Name = "Workflow2";
-            activitybind4.Path = "sendCC";
+            activitybind4.Path = "sendBody";
+            activitybind5.Name = "Workflow2";
+            activitybind5.Path = "sendCC";
             correlationtoken1.Name = "workflowToken";
             correlationtoken1.OwnerActivityName = "Workflow2";
             this.sendRaportDlaAgenta.CorrelationToken = correlationtoken1;
@@ -82,41 +83,65 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             this.sendRaportDlaAgenta.Headers = null;
             this.sendRaportDlaAgenta.IncludeStatus = false;
             this.sendRaportDlaAgenta.Name = "sendRaportDlaAgenta";
-            activitybind5.Name = "Workflow2";
-            activitybind5.Path = "sendSubject";
             activitybind6.Name = "Workflow2";
-            activitybind6.Path = "sendTo";
+            activitybind6.Path = "sendSubject";
+            activitybind7.Name = "Workflow2";
+            activitybind7.Path = "sendTo";
             this.sendRaportDlaAgenta.MethodInvoking += new System.EventHandler(this.sendRaportDlaAgenta_MethodInvoking);
-            this.sendRaportDlaAgenta.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.CCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind4)));
-            this.sendRaportDlaAgenta.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.SubjectProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
-            this.sendRaportDlaAgenta.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.ToProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind6)));
-            this.sendRaportDlaAgenta.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BodyProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind3)));
+            this.sendRaportDlaAgenta.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.CCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
+            this.sendRaportDlaAgenta.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.SubjectProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind6)));
+            this.sendRaportDlaAgenta.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.ToProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind7)));
+            this.sendRaportDlaAgenta.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BodyProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind4)));
+            this.sendRaportDlaAgenta.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BCCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind3)));
+            // 
+            // ifZnalezioneKontrakty
+            // 
+            this.ifZnalezioneKontrakty.Activities.Add(this.sendRaportDlaAgenta);
+            this.ifZnalezioneKontrakty.Activities.Add(this.logRaportWyslany);
+            codecondition1.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.hasZnalezioneKontrakty);
+            this.ifZnalezioneKontrakty.Condition = codecondition1;
+            this.ifZnalezioneKontrakty.Name = "ifZnalezioneKontrakty";
+            // 
+            // codeIncrementAgent
+            // 
+            this.codeIncrementAgent.Name = "codeIncrementAgent";
+            this.codeIncrementAgent.ExecuteCode += new System.EventHandler(this.codeIncrementAgent_ExecuteCode);
+            // 
+            // ifElseActivity2
+            // 
+            this.ifElseActivity2.Activities.Add(this.ifZnalezioneKontrakty);
+            this.ifElseActivity2.Name = "ifElseActivity2";
             // 
             // codeCreateReports
             // 
             this.codeCreateReports.Name = "codeCreateReports";
             this.codeCreateReports.ExecuteCode += new System.EventHandler(this.codeCreateReports_ExecuteCode);
             // 
+            // codeResetFlags
+            // 
+            this.codeResetFlags.Name = "codeResetFlags";
+            this.codeResetFlags.ExecuteCode += new System.EventHandler(this.codeResetFlags_ExecuteCode);
+            // 
             // sequencePrzygotujRaport
             // 
+            this.sequencePrzygotujRaport.Activities.Add(this.codeResetFlags);
             this.sequencePrzygotujRaport.Activities.Add(this.codeCreateReports);
-            this.sequencePrzygotujRaport.Activities.Add(this.sendRaportDlaAgenta);
-            this.sequencePrzygotujRaport.Activities.Add(this.logRaportWyslany);
+            this.sequencePrzygotujRaport.Activities.Add(this.ifElseActivity2);
             this.sequencePrzygotujRaport.Activities.Add(this.codeIncrementAgent);
             this.sequencePrzygotujRaport.Name = "sequencePrzygotujRaport";
             // 
             // whileAgentAvailable
             // 
             this.whileAgentAvailable.Activities.Add(this.sequencePrzygotujRaport);
-            codecondition1.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAgentAvailable);
-            this.whileAgentAvailable.Condition = codecondition1;
+            codecondition2.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAgentAvailable);
+            this.whileAgentAvailable.Condition = codecondition2;
             this.whileAgentAvailable.Name = "whileAgentAvailable";
             // 
             // AgenciDoObslugi
             // 
             this.AgenciDoObslugi.Activities.Add(this.whileAgentAvailable);
-            codecondition2.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAgenciDoObslugi);
-            this.AgenciDoObslugi.Condition = codecondition2;
+            codecondition3.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAgenciDoObslugi);
+            this.AgenciDoObslugi.Condition = codecondition3;
             this.AgenciDoObslugi.Name = "AgenciDoObslugi";
             // 
             // codeRemoveItem
@@ -144,9 +169,9 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             this.onWorkflowActivated1.CorrelationToken = correlationtoken1;
             this.onWorkflowActivated1.EventName = "OnWorkflowActivated";
             this.onWorkflowActivated1.Name = "onWorkflowActivated1";
-            activitybind7.Name = "Workflow2";
-            activitybind7.Path = "workflowProperties";
-            this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind7)));
+            activitybind8.Name = "Workflow2";
+            activitybind8.Path = "workflowProperties";
+            this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind8)));
             // 
             // Workflow2
             // 
@@ -161,6 +186,12 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
         }
 
         #endregion
+
+        private CodeActivity codeResetFlags;
+
+        private IfElseBranchActivity ifZnalezioneKontrakty;
+
+        private IfElseActivity ifElseActivity2;
 
         private CodeActivity codeIncrementAgent;
 
@@ -185,6 +216,10 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
         private CodeActivity codeGetAgentDetails;
 
         private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated1;
+
+
+
+
 
 
 

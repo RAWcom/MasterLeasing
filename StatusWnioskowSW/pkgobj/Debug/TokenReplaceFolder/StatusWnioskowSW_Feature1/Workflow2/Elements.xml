@@ -6,8 +6,8 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
 
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Workflow
-     Name="masterleasing.Reports.StatusWnioskowSW - Workflow2"
-     Description="My SharePoint Workflow"
+     Name="Reports-Status wnioskow"
+     Description="Generuje serię wiadomości eMail do agentów z aktywną subskrybcją a bieżącym statusie wniosków. Aby Agent otrzymał maila powinien mieć ustawioną flagę aktywny, ustawioną flagę subskrybcji i dodatkowo powinien być przypisany do linii produktowej Leasing."
      Id="3e96abc2-6757-4b18-a7ed-2c305b52b754"
      CodeBesideClass="masterleasing.Reports.StatusWnioskowSW.Workflow2.Workflow2"
      CodeBesideAssembly="masterleasing.Reports.StatusWnioskowSW, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3c8fc4f0348da7e6">

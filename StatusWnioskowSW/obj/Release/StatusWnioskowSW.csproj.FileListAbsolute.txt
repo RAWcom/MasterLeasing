@@ -1,0 +1,4 @@
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\StatusWnioskowSW\bin\Release\masterleasing.Reports.StatusWnioskowSW.dll
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\StatusWnioskowSW\bin\Release\masterleasing.Reports.StatusWnioskowSW.pdb
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\StatusWnioskowSW\obj\Release\masterleasing.Reports.StatusWnioskowSW.dll
+C:\Users\admin3324\Documents\GitHub\MasterLeasing\StatusWnioskowSW\obj\Release\masterleasing.Reports.StatusWnioskowSW.pdb
