@@ -215,9 +215,9 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
 </style>
 </head>
 
-<body style=""font-family: Arial, Helvetica, sans-serif"">
+<body style=""font-family: Arial"">
 
-<table style=""width: 800px"">
+<table style=""width: 680px"">
 	<tr>
 		<td>
 		<table style=""width: 100%"">
@@ -233,7 +233,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
 	</tr>
 	<tr>
 		<td>
-		<table style=""width: 100%; font-size: small"" class=""style1"">
+		<table style=""width: 100%; font-size: x-small"" class=""style1"">
 			<thead style=""background: silver"">
 				<tr>
 					<td class=""style2"">#</td>
@@ -273,6 +273,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                         {
                             strKlient = item["colKlient"].ToString();
                         }
+                        else strKlient = String.Empty;
 
 
                         try
@@ -281,6 +282,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                             {
                                 strWartoscPLN = item["colWartoscKontraktuPLN"].ToString();
                             }
+                            else strWartoscPLN = String.Empty;
                         }
                         catch (Exception)
                         { }
@@ -290,18 +292,19 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                         {
                             strCelFinansowania = (string)item["colCelFinansowania"];
                         }
+                        else strCelFinansowania = String.Empty;
+
                         if (item["colUstalenia"] != null)
                         {
                             strUstalenia = item["colUstalenia"].ToString();
                         }
-
-
-
+                        else strUstalenia = String.Empty;
 
                         if (item["colStatusLeadu"] != null)
                         {
                             strStatusLeadu = item["colStatusLeadu"].ToString();
                         }
+                        else strStatusLeadu = String.Empty;
 
                     }
                     catch (Exception exp)

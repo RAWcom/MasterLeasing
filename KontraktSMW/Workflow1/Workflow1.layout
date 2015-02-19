@@ -1,4 +1,4 @@
-﻿<StateMachineWorkflowDesigner xmlns:ns0="clr-namespace:System.Drawing;Assembly=System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Size="861; 1932" AutoSizeMargin="16; 24" AutoSize="False" Location="30; 30" Name="Workflow1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+﻿<StateMachineWorkflowDesigner xmlns:ns0="clr-namespace:System.Drawing;Assembly=System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Size="828; 1932" AutoSizeMargin="16; 24" AutoSize="False" Location="30; 30" Name="Workflow1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
 	<StateMachineWorkflowDesigner.DesignerConnectors>
 		<StateDesignerConnector TargetActivity="Navigator" TargetConnectionEdge="Top" SetStateName="setStateActivity1" SourceActivity="Start" TargetConnectionIndex="0" SourceStateName="Start" SourceConnectionEdge="Right" EventHandlerName="eventDrivenActivity1" SourceConnectionIndex="0" TargetStateName="Navigator">
 			<StateDesignerConnector.Segments>
@@ -30,10 +30,10 @@
 		<StateDesignerConnector TargetActivity="Wniosek" TargetConnectionEdge="Top" SetStateName="Navigator_Wniosek" SourceActivity="Navigator" TargetConnectionIndex="0" SourceStateName="Navigator" SourceConnectionEdge="Right" EventHandlerName="stateInitializationActivity15" SourceConnectionIndex="0" TargetStateName="Wniosek">
 			<StateDesignerConnector.Segments>
 				<ns0:Point X="236" Y="1793" />
-				<ns0:Point X="268" Y="1793" />
-				<ns0:Point X="268" Y="954" />
-				<ns0:Point X="140" Y="954" />
-				<ns0:Point X="140" Y="959" />
+				<ns0:Point X="650" Y="1793" />
+				<ns0:Point X="650" Y="973" />
+				<ns0:Point X="546" Y="973" />
+				<ns0:Point X="546" Y="981" />
 			</StateDesignerConnector.Segments>
 		</StateDesignerConnector>
 		<StateDesignerConnector TargetActivity="Umowa" TargetConnectionEdge="Top" SetStateName="Navigator_Umowa" SourceActivity="Navigator" TargetConnectionIndex="0" SourceStateName="Navigator" SourceConnectionEdge="Right" EventHandlerName="stateInitializationActivity15" SourceConnectionIndex="0" TargetStateName="Umowa">
@@ -148,9 +148,9 @@
 			<StateDesignerConnector.Segments>
 				<ns0:Point X="252" Y="1261" />
 				<ns0:Point X="268" Y="1261" />
-				<ns0:Point X="268" Y="954" />
-				<ns0:Point X="140" Y="954" />
-				<ns0:Point X="140" Y="959" />
+				<ns0:Point X="268" Y="973" />
+				<ns0:Point X="546" Y="973" />
+				<ns0:Point X="546" Y="981" />
 			</StateDesignerConnector.Segments>
 		</StateDesignerConnector>
 		<StateDesignerConnector TargetActivity="Odrzucenie" TargetConnectionEdge="Top" SetStateName="setStateActivity12" SourceActivity="AkceptacjaOferty" TargetConnectionIndex="0" SourceStateName="AkceptacjaOferty" SourceConnectionEdge="Right" EventHandlerName="AkceptacjaOferty_OnChange" SourceConnectionIndex="1" TargetStateName="Odrzucenie">
@@ -191,35 +191,53 @@
 		</StateDesignerConnector>
 		<StateDesignerConnector TargetActivity="AkceptacjaWniosku" TargetConnectionEdge="Top" SetStateName="setStateActivity13" SourceActivity="Wniosek" TargetConnectionIndex="0" SourceStateName="Wniosek" SourceConnectionEdge="Right" EventHandlerName="Wniosek_OnChange" SourceConnectionIndex="1" TargetStateName="AkceptacjaWniosku">
 			<StateDesignerConnector.Segments>
-				<ns0:Point X="200" Y="1029" />
-				<ns0:Point X="272" Y="1029" />
-				<ns0:Point X="272" Y="837" />
-				<ns0:Point X="155" Y="837" />
-				<ns0:Point X="155" Y="843" />
+				<ns0:Point X="606" Y="1051" />
+				<ns0:Point X="645" Y="1051" />
+				<ns0:Point X="645" Y="837" />
+				<ns0:Point X="157" Y="837" />
+				<ns0:Point X="157" Y="845" />
+			</StateDesignerConnector.Segments>
+		</StateDesignerConnector>
+		<StateDesignerConnector TargetActivity="Odrzucenie" TargetConnectionEdge="Top" SetStateName="setStateActivity28" SourceActivity="Wniosek" TargetConnectionIndex="0" SourceStateName="Wniosek" SourceConnectionEdge="Right" EventHandlerName="Wniosek_OnChange" SourceConnectionIndex="1" TargetStateName="Odrzucenie">
+			<StateDesignerConnector.Segments>
+				<ns0:Point X="606" Y="1051" />
+				<ns0:Point X="648" Y="1051" />
+				<ns0:Point X="648" Y="1297" />
+				<ns0:Point X="140" Y="1297" />
+				<ns0:Point X="140" Y="1305" />
+			</StateDesignerConnector.Segments>
+		</StateDesignerConnector>
+		<StateDesignerConnector TargetActivity="Telemarketing" TargetConnectionEdge="Top" SetStateName="setStateActivity29" SourceActivity="Wniosek" TargetConnectionIndex="0" SourceStateName="Wniosek" SourceConnectionEdge="Right" EventHandlerName="Wniosek_OnChange" SourceConnectionIndex="1" TargetStateName="Telemarketing">
+			<StateDesignerConnector.Segments>
+				<ns0:Point X="606" Y="1051" />
+				<ns0:Point X="646" Y="1051" />
+				<ns0:Point X="646" Y="1510" />
+				<ns0:Point X="140" Y="1510" />
+				<ns0:Point X="140" Y="1517" />
 			</StateDesignerConnector.Segments>
 		</StateDesignerConnector>
 		<StateDesignerConnector TargetActivity="Umowa" TargetConnectionEdge="Top" SetStateName="setStateActivity14" SourceActivity="AkceptacjaWniosku" TargetConnectionIndex="0" SourceStateName="AkceptacjaWniosku" SourceConnectionEdge="Right" EventHandlerName="AkceptacjaWniosku_OnChange" SourceConnectionIndex="1" TargetStateName="Umowa">
 			<StateDesignerConnector.Segments>
-				<ns0:Point X="260" Y="913" />
-				<ns0:Point X="276" Y="913" />
-				<ns0:Point X="276" Y="606" />
+				<ns0:Point X="262" Y="915" />
+				<ns0:Point X="278" Y="915" />
+				<ns0:Point X="278" Y="606" />
 				<ns0:Point X="140" Y="606" />
 				<ns0:Point X="140" Y="611" />
 			</StateDesignerConnector.Segments>
 		</StateDesignerConnector>
 		<StateDesignerConnector TargetActivity="KorektaWniosku" TargetConnectionEdge="Top" SetStateName="setStateActivity15" SourceActivity="AkceptacjaWniosku" TargetConnectionIndex="0" SourceStateName="AkceptacjaWniosku" SourceConnectionEdge="Right" EventHandlerName="AkceptacjaWniosku_OnChange" SourceConnectionIndex="1" TargetStateName="KorektaWniosku">
 			<StateDesignerConnector.Segments>
-				<ns0:Point X="260" Y="913" />
-				<ns0:Point X="276" Y="913" />
-				<ns0:Point X="276" Y="721" />
-				<ns0:Point X="146" Y="721" />
+				<ns0:Point X="262" Y="915" />
+				<ns0:Point X="278" Y="915" />
+				<ns0:Point X="278" Y="718" />
+				<ns0:Point X="146" Y="718" />
 				<ns0:Point X="146" Y="727" />
 			</StateDesignerConnector.Segments>
 		</StateDesignerConnector>
 		<StateDesignerConnector TargetActivity="Odrzucenie" TargetConnectionEdge="Top" SetStateName="setStateActivity16" SourceActivity="AkceptacjaWniosku" TargetConnectionIndex="0" SourceStateName="AkceptacjaWniosku" SourceConnectionEdge="Right" EventHandlerName="AkceptacjaWniosku_OnChange" SourceConnectionIndex="1" TargetStateName="Odrzucenie">
 			<StateDesignerConnector.Segments>
-				<ns0:Point X="260" Y="913" />
-				<ns0:Point X="272" Y="913" />
+				<ns0:Point X="262" Y="915" />
+				<ns0:Point X="272" Y="915" />
 				<ns0:Point X="272" Y="1297" />
 				<ns0:Point X="140" Y="1297" />
 				<ns0:Point X="140" Y="1305" />
@@ -228,10 +246,10 @@
 		<StateDesignerConnector TargetActivity="AkceptacjaWniosku" TargetConnectionEdge="Top" SetStateName="setStateActivity17" SourceActivity="KorektaWniosku" TargetConnectionIndex="0" SourceStateName="KorektaWniosku" SourceConnectionEdge="Right" EventHandlerName="KorektaWniosku_OnChange" SourceConnectionIndex="1" TargetStateName="AkceptacjaWniosku">
 			<StateDesignerConnector.Segments>
 				<ns0:Point X="243" Y="797" />
-				<ns0:Point X="259" Y="797" />
-				<ns0:Point X="259" Y="834" />
-				<ns0:Point X="155" Y="834" />
-				<ns0:Point X="155" Y="843" />
+				<ns0:Point X="253" Y="797" />
+				<ns0:Point X="253" Y="833" />
+				<ns0:Point X="157" Y="833" />
+				<ns0:Point X="157" Y="845" />
 			</StateDesignerConnector.Segments>
 		</StateDesignerConnector>
 		<StateDesignerConnector TargetActivity="AkceptacjaUmowy" TargetConnectionEdge="Top" SetStateName="setStateActivity19" SourceActivity="Umowa" TargetConnectionIndex="0" SourceStateName="Umowa" SourceConnectionEdge="Right" EventHandlerName="Umowa_OnChange" SourceConnectionIndex="1" TargetStateName="AkceptacjaUmowy">
@@ -592,24 +610,24 @@
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
 		</StateDesigner>
-		<StateDesigner Size="188; 100" AutoSizeMargin="16; 24" AutoSize="False" Location="46; 959" Name="Wniosek">
+		<StateDesigner Size="188; 100" AutoSizeMargin="16; 24" AutoSize="False" Location="452; 981" Name="Wniosek">
 			<StateDesigner.Designers>
-				<StateInitializationDesigner Name="stateInitializationActivity7" Size="150; 314" Location="385; 154">
+				<StateInitializationDesigner Name="stateInitializationActivity7" Size="150; 314" Location="332; 141">
 					<StateInitializationDesigner.Designers>
-						<ActivityDesigner Name="logToHistoryListActivity6" Size="130; 44" Location="395; 219" />
-						<CallExternalMethodActivityDesigner Name="setState_Wniosek" Size="130; 44" Location="395; 282" />
-						<CodeDesigner Name="SetCT_Wniosek" Size="130; 41" Location="395; 345" />
-						<CodeDesigner Name="codeDodajDoRozliczen" Size="130; 44" Location="395; 405" />
+						<ActivityDesigner Name="logToHistoryListActivity6" Size="130; 44" Location="342; 206" />
+						<CallExternalMethodActivityDesigner Name="setState_Wniosek" Size="130; 44" Location="342; 269" />
+						<CodeDesigner Name="SetCT_Wniosek" Size="130; 41" Location="342; 332" />
+						<CodeDesigner Name="codeDodajDoRozliczen" Size="130; 44" Location="342; 392" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="Wniosek_OnChange" Size="208; 396" Location="377; 167">
+				<EventDrivenDesigner Name="Wniosek_OnChange" Size="208; 396" Location="340; 154">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged6" Size="130; 44" Location="416; 232" />
-						<IfElseDesigner Name="ifElseActivity6" Size="188; 249" Location="387; 295">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged6" Size="130; 44" Location="379; 219" />
+						<IfElseDesigner Name="ifElseActivity6" Size="188; 249" Location="350; 282">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="Wniosek_AkceptacjaWniosku" Size="150; 146" Location="406; 369">
+								<IfElseBranchDesigner Name="Wniosek_AkceptacjaWniosku" Size="150; 146" Location="369; 356">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity13" Size="130; 62" Location="416; 434" />
+										<SetStateDesigner Name="setStateActivity13" Size="130; 62" Location="379; 421" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
@@ -618,47 +636,47 @@
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
 		</StateDesigner>
-		<StateDesigner Size="218; 100" AutoSizeMargin="16; 24" Location="46; 843" Name="AkceptacjaWniosku">
+		<StateDesigner Size="218; 100" AutoSizeMargin="16; 24" Location="48; 845" Name="AkceptacjaWniosku">
 			<StateDesigner.Designers>
-				<StateInitializationDesigner Name="stateInitializationActivity8" Size="150; 254" Location="54; 876">
+				<StateInitializationDesigner Name="stateInitializationActivity8" Size="150; 254" Location="56; 878">
 					<StateInitializationDesigner.Designers>
-						<ActivityDesigner Name="logToHistoryListActivity7" Size="130; 44" Location="64; 941" />
-						<CallExternalMethodActivityDesigner Name="setState_AkceptacjaWniosku" Size="130; 44" Location="64; 1004" />
-						<CodeDesigner Name="SetCT_AkceptacjaWniosku" Size="130; 44" Location="64; 1067" />
+						<ActivityDesigner Name="logToHistoryListActivity7" Size="130; 44" Location="66; 943" />
+						<CallExternalMethodActivityDesigner Name="setState_AkceptacjaWniosku" Size="130; 44" Location="66; 1006" />
+						<CodeDesigner Name="SetCT_AkceptacjaWniosku" Size="130; 44" Location="66; 1069" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="AkceptacjaWniosku_OnChange" Size="612; 835" Location="54; 902">
+				<EventDrivenDesigner Name="AkceptacjaWniosku_OnChange" Size="612; 835" Location="56; 904">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged7" Size="130; 44" Location="295; 967" />
-						<IfElseDesigner Name="ifElseActivity7" Size="592; 688" Location="64; 1030">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged7" Size="130; 44" Location="297; 969" />
+						<IfElseDesigner Name="ifElseActivity7" Size="592; 688" Location="66; 1032">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="AkceptacjaWniosku_Umowa" Size="208; 585" Location="83; 1104">
+								<IfElseBranchDesigner Name="AkceptacjaWniosku_Umowa" Size="208; 585" Location="85; 1106">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="Komunikat_AkceptacjaWniosku" Size="130; 44" Location="122; 1169" />
-										<IfElseDesigner Name="ifElseActivity3" Size="188; 294" Location="93; 1232">
+										<CodeDesigner Name="Komunikat_AkceptacjaWniosku" Size="130; 44" Location="124; 1171" />
+										<IfElseDesigner Name="ifElseActivity3" Size="188; 294" Location="95; 1234">
 											<IfElseDesigner.Designers>
-												<IfElseBranchDesigner Name="AkceptacjaWniosku_SendMailAllowed" Size="150; 191" Location="112; 1306">
+												<IfElseBranchDesigner Name="AkceptacjaWniosku_SendMailAllowed" Size="150; 191" Location="114; 1308">
 													<IfElseBranchDesigner.Designers>
-														<CallExternalMethodActivityDesigner Name="sendEmail_WniosekZaakceptowany" Size="130; 44" Location="122; 1371" />
-														<ActivityDesigner Name="logToHistoryListActivity18" Size="130; 44" Location="122; 1434" />
+														<CallExternalMethodActivityDesigner Name="sendEmail_WniosekZaakceptowany" Size="130; 44" Location="124; 1373" />
+														<ActivityDesigner Name="logToHistoryListActivity18" Size="130; 44" Location="124; 1436" />
 													</IfElseBranchDesigner.Designers>
 												</IfElseBranchDesigner>
 											</IfElseDesigner.Designers>
 										</IfElseDesigner>
-										<CodeDesigner Name="StatusWniosek_Umowa" Size="130; 44" Location="122; 1545" />
-										<SetStateDesigner Name="setStateActivity14" Size="130; 62" Location="122; 1608" />
+										<CodeDesigner Name="StatusWniosek_Umowa" Size="130; 44" Location="124; 1547" />
+										<SetStateDesigner Name="setStateActivity14" Size="130; 62" Location="124; 1610" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="AkceptacjaWniosku_KorektaWniosku" Size="150; 585" Location="314; 1104">
+								<IfElseBranchDesigner Name="AkceptacjaWniosku_KorektaWniosku" Size="150; 585" Location="316; 1106">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity15" Size="130; 62" Location="324; 1388" />
+										<SetStateDesigner Name="setStateActivity15" Size="130; 62" Location="326; 1390" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="AkceptacjaWniosku_Odrzucenie" Size="150; 585" Location="487; 1104">
+								<IfElseBranchDesigner Name="AkceptacjaWniosku_Odrzucenie" Size="150; 585" Location="489; 1106">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="Komunikat_WniosekOdrzucony" Size="130; 44" Location="497; 1169" />
-										<CodeDesigner Name="StatusWniosek_Stracony" Size="130; 44" Location="497; 1232" />
-										<SetStateDesigner Name="setStateActivity16" Size="130; 62" Location="497; 1295" />
+										<CodeDesigner Name="Komunikat_WniosekOdrzucony" Size="130; 44" Location="499; 1171" />
+										<CodeDesigner Name="StatusWniosek_Stracony" Size="130; 44" Location="499; 1234" />
+										<SetStateDesigner Name="setStateActivity16" Size="130; 62" Location="499; 1297" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>

@@ -466,6 +466,16 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             StatusChangeUpdate(_WNIOSEK_, _STRACONY_);
         }
 
+        private void Status_Wniosek_Telemarketing_ExecuteCode(object sender, EventArgs e)
+        {
+            StatusChangeUpdate(_WNIOSEK_, _TELEFON_);
+        }
+
+        private void Status_Wniosek_Odrzucony_ExecuteCode(object sender, EventArgs e)
+        {
+            StatusChangeUpdate(_WNIOSEK_, _STRACONY_);
+        }
+
         private void StatusUmowa_Uruchomienie_ExecuteCode(object sender, EventArgs e)
         {
             StatusChangeUpdate(_UMOWA_, _URUCHOMIONY_);
@@ -528,14 +538,14 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
                             logRozliczenie_DodajDoRozliczen = "Dodano nowy rekord w kartotece rozliczeń prowizji";
                         }
                         catch (Exception)
-                        {}
+                        { }
                     }
                     else
                     {
                         try
                         {
                             SPListItem item = items[0];
-                            
+
                             item["colLinkDoKontraktu"] = kontraktID;
                             item["colWartoscKontraktuPLN"] = workflowProperties.Item["colWartoscKontraktuPLN"];
                             //item["colProwizja"] = workflowProperties.Item["colProwizja"];
@@ -548,7 +558,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
                             logRozliczenie_DodajDoRozliczen = "Zaktualizowano rekord w kartotece rozliczeń prowizji";
                         }
                         catch (Exception)
-                        {}
+                        { }
                     }
 
                 }
@@ -984,6 +994,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             //podnieś uprawnienia dla procedury
             SPSecurity.RunWithElevatedPrivileges(delegate() { DodajDoRozliczen(); });
         }
+
+
+
+
 
 
 

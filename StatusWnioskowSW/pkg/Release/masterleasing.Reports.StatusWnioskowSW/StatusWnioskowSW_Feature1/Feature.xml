@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Description="Generuje maile do Agentów z infomacjami o bieżącym statusie wniosków." Id="25645795-46a9-4ca4-8284-b202e03fcf84" Scope="Site" Title="masterleasing.Reports-Status wniosków">
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="masterleasing.Reports-Status wniosków" Description="Generuje maile do Agentów z infomacjami o bieżącym statusie wniosków." Id="25645795-46a9-4ca4-8284-b202e03fcf84" Scope="Site">
   <Properties>
     <Property Key="GloballyAvailable" Value="true" />
   </Properties>
