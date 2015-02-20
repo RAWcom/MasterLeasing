@@ -65,6 +65,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="key.snk" />
     <None Include="Workflow2\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4506fd56-2920-40ad-8c3b-6405537dae94}</SharePointProjectItemId>

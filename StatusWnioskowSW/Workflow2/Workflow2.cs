@@ -16,6 +16,7 @@ using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.WorkflowActions;
 using System.Net.Mail;
 using System.Text;
+using System.Diagnostics;
 
 namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
 {
@@ -183,6 +184,9 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             string strCelFinansowania = string.Empty;
             string strUstalenia = string.Empty;
             string strStatusLeadu = string.Empty;
+            DateTime datDataNastepnegoKontaktu = new DateTime();
+            string strDataNastepnegoKontaktu = string.Empty;
+            DateTime datModified = new DateTime();
 
             string strSubject = string.Empty;
             string strBody = string.Empty;
@@ -233,7 +237,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
 	</tr>
 	<tr>
 		<td>
-		<table style=""width: 100%; font-size: x-small"" class=""style1"">
+		<table style=""width: 100%; font-size: x-small"" class=""style1"" cellpadding=""2"" cellspacing=""1"">
 			<thead style=""background: silver"">
 				<tr>
 					<td class=""style2"">#</td>
@@ -243,6 +247,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
 					<td class=""style2"">Cel finansowania</td>
 					<td class=""style2"">Status</td>
 					<td class=""style2"">Ustalenia z klientem</td>
+                    <td class=""style2"">Data następnego kontaktu</td>
 				</tr>
 			</thead>
 			***rows***
@@ -264,6 +269,11 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
 
                     try
                     {
+                        if (item["Modified"] != null)
+                        {
+                            datModified = Convert.ToDateTime(item["Modified"]);
+                        }
+                        
                         if (item["colDataZgloszenia"] != null)
                         {
                             datDataZgloszenia = Convert.ToDateTime(item["colDataZgloszenia"]);
@@ -306,6 +316,26 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                         }
                         else strStatusLeadu = String.Empty;
 
+                        if (item["colDataNastepnegoKontaktu"] != null)
+                        {
+
+                            if (strStatusLeadu == "Stracony" || strStatusLeadu == "Rozliczenie")
+                            {
+                                datDataNastepnegoKontaktu = new DateTime();
+                                strDataNastepnegoKontaktu = String.Empty;
+                            }
+                            else
+                            {
+                                datDataNastepnegoKontaktu = Convert.ToDateTime(item["colDataNastepnegoKontaktu"]);
+                                strDataNastepnegoKontaktu = datDataNastepnegoKontaktu.ToShortDateString();
+                            }
+                        }
+                        else
+                        {
+                            datDataNastepnegoKontaktu = new DateTime();
+                            strDataNastepnegoKontaktu = String.Empty;
+                        }
+
                     }
                     catch (Exception exp)
                     {
@@ -313,8 +343,19 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                         return false;
                     }
 
-                    sb2.Append(String.Format(@"
-             <tr>
+                    
+                    if (strStatusLeadu == "Stracony" && datModified < DateTime.Now.AddDays(-60))
+                    {
+                        //ignoruj rekordy o statusie stracony, których status został nadany więcej niż 60 dni temu (ostatnia aktulizacja rekordu)
+                    }
+                    else 
+                    {
+                        string backgroundColor = string.Empty;
+                        if (strStatusLeadu == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
+                        if (strStatusLeadu == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //szary
+
+                        sb2.Append(String.Format(@"
+             <tr {8}>
 				<td class=""style2"">{0}</td>
 				<td class=""style2"">{1}</td>
 				<td class=""style2"">{2}</td>
@@ -322,17 +363,67 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
 				<td class=""style2"">{4}</td>
 				<td class=""style2"">{5}</td>
 				<td class=""style2"">{6}</td>
+                <td class=""style2"">{7}</td>
 			</tr>",
-                        item["ID"].ToString(),
-                        strKlient,
-                        datDataZgloszenia.ToShortDateString(),
-                        strWartoscPLN.ToString(),
-                        strCelFinansowania,
-                        strStatusLeadu,
-                        strUstalenia));
+                            item["ID"].ToString(),
+                            strKlient,
+                            datDataZgloszenia.ToShortDateString(),
+                            strWartoscPLN.ToString(),
+                            strCelFinansowania,
+                            strStatusLeadu,
+                            strUstalenia,
+                            strDataNastepnegoKontaktu.ToString(),
+                            backgroundColor));
+
+                    }
                 }
 
                 sb.Replace(@"***rows***", sb2.ToString());
+
+                sb.Append(@"
+<table style=""width: 680px"">
+	<tbody>
+	<tr>
+		<td colspan=""2"" style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">
+		<strong>Legenda</strong></td>
+	</tr>
+	<tr valign=""top"">
+		<td style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><ul>	
+	<li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozmowa 
+	- wniosek w trakcie weryfikacji telefonicznej</li>	
+	<li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Oferta 
+	- przygotwanie i decyzja Klienta w sprawie oferty</li>
+	<li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Wniosek 
+	- oferta zaakceptowana, przygotowanie i decyzja Banku w sprawie przyznania 
+	środków</li>
+	<li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Umowa 
+	- wniosek zaaprobowany przez Bank, przygotowanie i akceptacja umowy przez 
+	Klienta</li>
+	<li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Uruchomienie 
+	- umowa zaakceptowana, uruchomienie środków</li>
+	<li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozliczenie 
+	- środki uruchomione, kontrakt do rozliczenie prowizji</li>
+	
+	
+	
+	
+</ul>
+</td>
+		<td>
+		<ul>
+				<li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Stracony 
+				- wniosek stracony, klient nie zaakceptował oferty lub odstąpił 
+				od kontraktu z innych przyczyn</li>
+	<li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Telefon 
+	- zaplanowany kontakt z Klientem w późniejszym terminie</li>
+
+		</ul>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+");
 
                 sendBody = sb.ToString();
 
