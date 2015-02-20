@@ -352,7 +352,8 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                     {
                         string backgroundColor = string.Empty;
                         if (strStatusLeadu == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
-                        if (strStatusLeadu == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //szary
+                        if (strStatusLeadu == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                        if (strStatusLeadu == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
 
                         sb2.Append(String.Format(@"
              <tr {8}>
