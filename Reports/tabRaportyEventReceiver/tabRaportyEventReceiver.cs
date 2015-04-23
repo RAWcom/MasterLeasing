@@ -44,30 +44,33 @@ namespace Reports.tabRaportyEventReceiver
         {
             this.EventFiringEnabled = false;
 
-            //określ rodzaj raportu
-            string ct = properties.ListItem["ContentType"].ToString();
-            switch (ct)
+            SPSecurity.RunWithElevatedPrivileges(delegate()
             {
-                case "RaportVIP":
-                    Create_RaportVIP(properties);
-                    break;
-                case "Raport1Sprawa":
-                    Create_Raport1Sprawa(properties);
-                    break;
-                case "RaportDlaGrupy":
-                    Create_RaportDlaGrupy(properties);
-                    break;
-                case "RaportOpoznione":
-                    Create_RaportOpoznione(properties);
-                    break;
-                case "RaportHandlowca":
-                    Create_RaportHandlowca(properties);
-                    break;
-                default:
-                    properties.ListItem["colStatus"] = STATUS_ANULOWANY;
-                    properties.ListItem.Update();
-                    break;
-            }
+                //określ rodzaj raportu
+                string ct = properties.ListItem["ContentType"].ToString();
+                switch (ct)
+                {
+                    case "RaportVIP":
+                        Create_RaportVIP(properties);
+                        break;
+                    case "Raport1Sprawa":
+                        Create_Raport1Sprawa(properties);
+                        break;
+                    case "RaportDlaGrupy":
+                        Create_RaportDlaGrupy(properties);
+                        break;
+                    case "RaportOpoznione":
+                        Create_RaportOpoznione(properties);
+                        break;
+                    case "RaportHandlowca":
+                        Create_RaportHandlowca(properties);
+                        break;
+                    default:
+                        properties.ListItem["colStatus"] = STATUS_ANULOWANY;
+                        properties.ListItem.Update();
+                        break;
+                }
+            });
 
             this.EventFiringEnabled = true;
         }
@@ -584,7 +587,6 @@ niż 14 dni temu</li>
 
             msg.Body = sb.ToString();
 
-
             //wyślij raport mailem
 
             SendMail(properties, msg);
@@ -792,12 +794,795 @@ niż 14 dni temu</li>
 
         #endregion
 
+        #region RaportDlaGrupy
+
         private void Create_RaportDlaGrupy(SPItemEventProperties properties)
         {
+            try
+            {
+                properties.ListItem["colStatus"] = STATUS_AKTYWNY;
+                properties.ListItem.Update();
+
+                //get parameters
+                bool isRaportTestowy = true;
+                DateTime beginDate = DateTime.MinValue;
+                DateTime endDate = DateTime.MinValue;
+                SPFieldMultiChoiceValue groupsCollection = new SPFieldMultiChoiceValue();
+
+                if (properties.ListItem["colTrybUruchomienia"] != null)
+                {
+                    if (properties.ListItem["colTrybUruchomienia"].ToString() == "Produkcyjny")
+                    {
+                        isRaportTestowy = false;
+                    }
+                }
+
+                if (properties.ListItem["colOdDatyZgloszenia"] != null)
+                {
+                    DateTime.TryParse(properties.ListItem["colOdDatyZgloszenia"].ToString(), out beginDate);
+                }
+
+                if (properties.ListItem["colDoDatyZgloszenia"] != null)
+                {
+                    DateTime.TryParse(properties.ListItem["colDoDatyZgloszenia"].ToString(), out endDate);
+                }
+
+                if (properties.ListItem["colGrupa"] != null)
+                {
+                    groupsCollection = new SPFieldMultiChoiceValue(properties.ListItem["colGrupa"].ToString());
+                }
+
+                //validacja danych
+                string errorMessage = string.Empty;
+                if (endDate<beginDate)
+                {
+                    errorMessage = String.Format(@"{0}<li>{1}</li>",
+                        errorMessage,
+                        "Nieprawidłowy zakres dat");
+                }
+                if (groupsCollection.Count == 0)
+                {
+                    errorMessage = String.Format(@"{0}<li>{1}</li>",
+                        errorMessage,
+                        "Nie wybrano grup do raportowania");
+                }
+
+                if (errorMessage.Length > 0)
+                {
+                    properties.ListItem["colMEMO"] = errorMessage.ToString();
+                    properties.ListItem["colStatus"] = STATUS_ANULOWANY;
+                    properties.ListItem.Update();
+                }
+                else
+                {
+                    //ArrayList recordsAL = SelectContracts_DlaGrupy(properties, beginDate, endDate, groupsCollection);
+                    //CreateReportDlaGrupy(properties, recordsAL, isRaportTestowy, beginDate, endDate, groupsCollection);
+
+                    ArrayList totalsAL = SelectTotals_DlaGrupy(properties, beginDate, endDate, groupsCollection);
+                    CreateReportDlaGrupy_Summary(properties, totalsAL, isRaportTestowy, beginDate, endDate, groupsCollection);
+
+                    properties.ListItem["colStatus"] = STATUS_ZAKONCZONY;
+                    properties.ListItem.Update();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                properties.ListItem["colMEMO"] = ex.ToString();
+                properties.ListItem["colStatus"] = STATUS_ANULOWANY;
+                properties.ListItem.Update();
+            }
+        }
+
+        private ArrayList SelectTotals_DlaGrupy(SPItemEventProperties properties, DateTime beginDate, DateTime endDate, SPFieldMultiChoiceValue groupsCollection)
+        {
+            ArrayList agentsAL = SelectAgents_DlaGrupy(properties,groupsCollection);
+
+            string mGroup = string.Empty ;
+            string mManager = string.Empty;
+            string mAgent = string.Empty ;
+            int mLiczbaNowychSpraw = 0;
+            int mLiczbaSpraw_Wniosek = 0;
+            int mLiczbaSpraw_Uruchomienie = 0;
+
+            ArrayList result = new ArrayList();
+
+            if (agentsAL.Count > 0)
+            {
+                //otwórz bazę kontraktów
+                using (SPSite site = new SPSite(properties.SiteId))
+                {
+                    using (SPWeb web = site.AllWebs[properties.Web.ID])
+                    {
+                        
+                        //wybierze kontrakty zgłoszone w zadanym przedziale dat
+                        StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""ID"" /><FieldRef Name=""colDataZgloszenia"" /></OrderBy><Where><And><Geq><FieldRef Name=""colDataZgloszenia"" /><Value Type=""DateTime"">***beginDate***</Value></Geq><Leq><FieldRef Name=""colDataZgloszenia"" /><Value Type=""DateTime"">***endDate***</Value></Leq></And></Where>");
+                        sb.Replace("***beginDate***", beginDate.ToShortDateString());
+                        sb.Replace("***endDate***", endDate.ToShortDateString());
+                        SPQuery query = new SPQuery();
+                        query.Query = sb.ToString();
+
+                        SPList list = web.Lists[@"tabKontrakty"];
+                        SPListItemCollection kontrakty = list.GetItems(query);
+
+                        list = web.Lists[@"tabKontrakty_Aktywnosci"];
+                        SPListItemCollection kontrakty_aktywnosci = list.GetItems();
+
+
+
+                        Reset_gti(ref mLiczbaNowychSpraw, ref mLiczbaSpraw_Wniosek, ref mLiczbaSpraw_Uruchomienie);
+                        Agent o = (Agent)agentsAL[0];
+
+                        foreach (Agent r in agentsAL)
+                        {
+                            int counterLiczbaNowychSpraw = 0;
+                            int counterLiczbaSpraw_Wniosek = 0;
+                            int counterLiczbaSpraw_Uruchomienie = 0;
+
+                            if (r.Grupa == mGroup && r.ManagerName == mManager && r.AgentName == mAgent)
+                            {
+                                //
+                            }
+                            else
+                            {
+                                //dodaj nowy rekord
+                                GroupTotalsItem gti = new GroupTotalsItem();
+                                gti.Grupa = r.Grupa;
+                                gti.ManagerName = r.ManagerName;
+                                gti.AgentName = r.AgentName;
+
+                                //policz nowe sprawy
+                                foreach (SPListItem item in kontrakty)
+                                {
+                                    if (item["colPartner_x002e_OsobaKontaktowa"] != null)
+                                    {
+                                        SPFieldLookupValue temp = new SPFieldLookupValue(item["colPartner_x002e_OsobaKontaktowa"].ToString());
+                                        int agentId = temp.LookupId;
+                                        
+                                        if (agentId == r.AgentId)
+                                        {
+                                            counterLiczbaNowychSpraw += 1;
+
+                                            if (item["colStatusLeadu"] != null)
+                                            {
+                                                string status = item["colStatusLeadu"].ToString();
+                                                switch (status)
+                                                {
+                                                    case "Wniosek":
+                                                        counterLiczbaSpraw_Wniosek += 1;
+                                                        break;
+                                                    case "Umowa":
+                                                        counterLiczbaSpraw_Wniosek += 1;
+                                                        break;
+                                                    case "Uruchomienie":
+                                                        counterLiczbaSpraw_Wniosek += 1;
+                                                        counterLiczbaSpraw_Uruchomienie += 1;
+                                                        break;
+                                                    case "Rozliczenie":
+                                                        counterLiczbaSpraw_Wniosek += 1;
+                                                        counterLiczbaSpraw_Uruchomienie += 1;
+                                                        break;
+                                                    case "Stracony":
+                                                        if (CheckStatusOccurence("Wniosek", item.ID, kontrakty_aktywnosci))
+                                                        {
+                                                            counterLiczbaSpraw_Wniosek += 1;
+                                                        }
+                                                        break;
+                                                    case "Oferta":
+                                                        if (CheckStatusOccurence("Wniosek", item.ID, kontrakty_aktywnosci))
+                                                        {
+                                                            counterLiczbaSpraw_Wniosek += 1;
+                                                        }
+                                                        break;
+                                                    case "Telefon":
+                                                        if (CheckStatusOccurence("Wniosek", item.ID, kontrakty_aktywnosci))
+                                                        {
+                                                            counterLiczbaSpraw_Wniosek += 1;
+                                                        }
+                                                        break;
+
+                                                    default:
+                                                        break;
+                                                }
+
+                                            }
+                                        }
+
+                                    }
+                                }
+                                gti.LiczbaNowychSpraw = counterLiczbaNowychSpraw;
+                                gti.LiczbaSpraw_Wniosek = counterLiczbaSpraw_Wniosek;
+                                gti.LiczbaSpraw_Uruchmienie = counterLiczbaSpraw_Uruchomienie;
+                                
+
+                                result.Add(gti);
+                                Reset_gti(ref mLiczbaNowychSpraw, ref mLiczbaSpraw_Wniosek, ref mLiczbaSpraw_Uruchomienie);
+                                mGroup = gti.Grupa;
+                                mManager = gti.ManagerName;
+                                mAgent = gti.AgentName;
+                            }
+
+                        }
+                    }
+                }
+
+            }
+            return result;
+        }
+
+        private bool CheckStatusOccurence(string status, int p, SPListItemCollection kontrakty_aktywnosci)
+        {
+            bool statusFound = false;
+
+            foreach (SPListItem item in kontrakty_aktywnosci)
+            {
+                if (item["colLinkDoKontraktu"] != null)
+                {
+                    SPFieldLookupValue temp = new SPFieldLookupValue(item["colLinkDoKontraktu"].ToString());
+                    int kontraktId = temp.LookupId;
+
+                    if (item["colStatusKoncowy"] != null)
+                    {
+                        if (item["colStatusKoncowy"]==status)
+                        {
+                            statusFound = true;
+                            break;
+                        }
+                    }
+
+                    if (item["colStatusPoczatkowy"] != null)
+                    {
+                        if (item["colStatusPoczatkowy"] == status)
+                        {
+                            statusFound = true;
+                            break;
+                        }
+
+                    }
+                }
+            }
+
+            return statusFound;
+        }
+
+        private static void Reset_gti(ref int mLiczbaNowychSpraw, ref int mLiczbaSpraw_Wniosek, ref int mLiczbaSpraw_Uruchomienie)
+        {
+            mLiczbaNowychSpraw = 0;
+            mLiczbaSpraw_Wniosek = 0;
+            mLiczbaSpraw_Uruchomienie = 0;
+        }
+
+        private void CreateReportDlaGrupy(SPItemEventProperties properties, ArrayList recordsAL, bool isRaportTestowy, DateTime beginDate, DateTime endDate, SPFieldMultiChoiceValue groupsCollection)
+        {
+
+            MailMsg msg = new MailMsg();
+            SPListItem item = properties.ListItem;
+
+            string groupList = string.Empty;
+            for (int i = 0; i < groupsCollection.Count; i++)
+			{
+			    if (i>0)
+	            {
+		             groupList = groupList + ",";
+	            }
+                groupList = groupList+groupsCollection[i].ToString();
+                
+			}
+            string s = String.Format("Raport dla Grupy [{0}] za okres {1}..{2}",
+                groupList,
+                beginDate.ToShortDateString(),
+                endDate.ToShortDateString());
+
+            //To = bieżący użytkownik
+            if (item["Author"] != null)
+            {
+                SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["Author"].ToString());
+                msg.To = op.User.Email;
+            }
+            //SPUser currentUser = properties.Web.SiteUsers.GetByID(properties.CurrentUserId);
+            //msg.To = currentUser.Email;
+
+            //Cc, Subject
+            if (!s.StartsWith(":: "))
+            {
+                s = ":: " + s;
+            }
+
+            if (isRaportTestowy)
+            {
+                msg.Cc = string.Empty;
+                msg.Subject = ":: TESTOWY " + s;
+
+            }
+            else
+            {
+                //msg.Cc = GetManagingPartnersEmails(properties);
+                msg.Cc = "biuro@rawcom24.pl";
+                msg.Subject = s;
+            }
+
+
+            //Body
+
+            StringBuilder sb = new StringBuilder(@"<head><style type=""text/css"">
+.style1 {
+	border-style: solid;
+	border-width: 0px;
+}
+.style2 {
+	border-style: solid;
+	border-width: 1px;
+}
+.auto-style2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	text-align: left;
+}
+</style>
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>
+	Raport dla Grupy</h3>
+<ul><li class=""auto-style2"">Dla aktywnych agentów wyświetla informacje o 
+	pierwszej sprawie</li>
+</ul>
+	</td>
+	<td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">#</td><td class=""style2"">Grupa</td><td class=""style2"">Menedżer</td><td class=""style2"">Agent</td><td class=""style2"">Klient</td><td class=""style2"">Data zgłoszenia</td><td class=""style2"">Wartość PLN</td><td class=""style2"">Cel finansowania</td><td class=""style2"">Status</td><td class=""style2"">Ustalenia z klientem</td><td class=""style2"">Data następnego kontaktu</td><td class=""style2"">Operator</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+</table></body>");
+
+            //TBody
+
+            StringBuilder sb0 = new StringBuilder(@"<tbody>");
+
+            if (recordsAL.Count > 0)
+            {
+                string groupHeader = string.Empty;
+
+                string groupHeaderBackgroundColor = @"style=""background:#CCCCCC"""; //szary
+
+                foreach (Kontrakt r in recordsAL)
+                {
+
+                    string newGroupHeader = r.Grupa;
+                    if (newGroupHeader != groupHeader)
+                    {
+                        sb0.Append(String.Format(@"<tr {0}><td class=""style2"" colspan=""12"">{1}</td></tr>",
+                            groupHeaderBackgroundColor,
+                            newGroupHeader));
+                        groupHeader = newGroupHeader;
+                    }
+
+                    string backgroundColor = string.Empty;
+                    if (r.Status == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
+                    if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                    if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                    if (r.DataZgloszenia == DateTime.MinValue) backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
+
+                    sb0.Append(String.Format(@"
+                     <tr {0} valign=""top"">
+        				<td class=""style2"">{1}</td>
+        				<td class=""style2"">{2}</td>
+        				<td class=""style2"">{3}</td>
+        				<td class=""style2"">{4}</td>
+        				<td class=""style2"">{5}</td>
+        				<td class=""style2"">{6}</td>
+                        <td class=""style2"" align=""right"">{7}</td>
+        				<td class=""style2"">{8}</td>
+        				<td class=""style2"">{9}</td>
+                        <td class=""style2"">{10}</td>
+                        <td class=""style2"">{11}</td>
+                        <td class=""style2"">{12}</td>
+        			</tr>",
+                           backgroundColor,
+                           r.ID,
+                           r.Grupa,
+                           r.ManagerName,
+                           r.AgentName,
+                           r.Klient,
+                           r.DataZgloszeniaDisplay,
+                           r.WartoscPLNDisplay,
+                           r.CelFinansowania,
+                           r.Status,
+                           r.Ustalenia,
+                           r.PlanowanyKontaktDisplay,
+                           r.Operator));
+
+                }
+
+
+            }
+
+            sb0.Append("</tbody>");
+
+            sb.Replace(@"***TBody***", sb0.ToString());
+
+            //legenda
+            //sb.Append(@"<table style=""width: 680px""><tbody><tr><td colspan=""2"" style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><strong>Legenda</strong></td></tr><tr valign=""top""><td style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozmowa - wniosek w trakcie weryfikacji telefonicznej</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Oferta - przygotwanie i decyzja Klienta w sprawie oferty</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Wniosek - oferta zaakceptowana, przygotowanie i decyzja Banku w sprawie przyznania środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Umowa - wniosek zaaprobowany przez Bank, przygotowanie i akceptacja umowy przez Klienta</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Uruchomienie - umowa zaakceptowana, uruchomienie środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozliczenie - środki uruchomione, kontrakt do rozliczenie prowizji</li></ul></td><td><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Stracony - wniosek stracony, klient nie zaakceptował oferty lub odstąpił od kontraktu z innych przyczyn</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Telefon - zaplanowany kontakt z Klientem w późniejszym terminie</li></ul></td></tr></tbody></table>");
+
+            msg.Body = sb.ToString();
+
+            //wyślij raport mailem
+
+            SendMail(properties, msg);
+        }
+        private void CreateReportDlaGrupy_Summary(SPItemEventProperties properties, ArrayList recordsAL, bool isRaportTestowy, DateTime beginDate, DateTime endDate, SPFieldMultiChoiceValue groupsCollection)
+        {
+
+            MailMsg msg = new MailMsg();
+            SPListItem item = properties.ListItem;
+
+            string groupList = string.Empty;
+            for (int i = 0; i < groupsCollection.Count; i++)
+            {
+                if (i > 0)
+                {
+                    groupList = groupList + ",";
+                }
+                groupList = groupList + groupsCollection[i].ToString();
+
+            }
+            string s = String.Format("Raport dla Grupy [{0}] za okres {1}..{2}",
+                groupList,
+                beginDate.ToShortDateString(),
+                endDate.ToShortDateString());
+
+            //To = bieżący użytkownik
+            if (item["Author"] != null)
+            {
+                SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["Author"].ToString());
+                msg.To = op.User.Email;
+            }
+            //SPUser currentUser = properties.Web.SiteUsers.GetByID(properties.CurrentUserId);
+            //msg.To = currentUser.Email;
+
+            //Cc, Subject
+            if (!s.StartsWith(":: "))
+            {
+                s = ":: " + s;
+            }
+
+            if (isRaportTestowy)
+            {
+                msg.Cc = string.Empty;
+                msg.Subject = ":: TESTOWY " + s;
+
+            }
+            else
+            {
+                //msg.Cc = GetManagingPartnersEmails(properties);
+                msg.Cc = "biuro@rawcom24.pl";
+                msg.Subject = s;
+            }
+
+
+            //Body
+
+            StringBuilder sb = new StringBuilder(@"<head><style type=""text/css"">
+.style1 {
+	border-style: solid;
+	border-width: 0px;
+}
+.style2 {
+	border-style: solid;
+	border-width: 1px;
+}
+.auto-style2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	text-align: left;
+}
+</style>
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport dla Grupy</h3><ul><li class=""auto-style2"">Dla wybranych grup i zakresu dat wyświetla statystyki spraw</li></ul></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">Grupa</td><td class=""style2"">Menedżer</td><td class=""style2"">Agent</td><td class=""style2"">Liczba nowych spraw</td><td class=""style2"">Liczba spraw które osiągnęły status <strong>Wniosek</strong></td><td class=""style2"">Liczba spraw które osiągnęły status <strong>Uruchomienie</strong></td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+</table></body>");
+
+            //TBody
+
+            StringBuilder sb0 = new StringBuilder(@"<tbody>");
+            StringBuilder sb0footer = new StringBuilder();
+
+            if (recordsAL.Count > 0)
+            {
+                string groupHeader = string.Empty;
+                int totalLiczbaNowychSpraw = 0;
+                int totalLiczbaSpraw_Wniosek = 0;
+                int totalLiczbaSpraw_Uruchomienie = 0;
+
+                string groupHeaderBackgroundColor = @"style=""background:#CCCCCC"""; //szary
+
+                bool isActiveGroupFooter = false;
+                string newGroupHeader = string.Empty;
+
+                foreach (GroupTotalsItem r in recordsAL)
+                {
+
+                    newGroupHeader = r.Grupa;
+                    if (newGroupHeader != groupHeader)
+                    {
+                        if (isActiveGroupFooter)
+                        {
+                            AppendGroupFooter(sb0, totalLiczbaNowychSpraw, totalLiczbaSpraw_Wniosek, totalLiczbaSpraw_Uruchomienie, groupHeaderBackgroundColor, groupHeader);
+                        }
+
+                        sb0.Append(String.Format(@"<tr {0}><td class=""style2"" colspan=""6"">{1}</td></tr>",
+                            groupHeaderBackgroundColor,
+                            newGroupHeader));
+
+
+                        groupHeader = newGroupHeader;
+                        totalLiczbaNowychSpraw = 0;
+                        totalLiczbaSpraw_Wniosek = 0;
+                        totalLiczbaSpraw_Uruchomienie = 0;
+
+                        isActiveGroupFooter = true;
+                    }
+
+                    string backgroundColor = string.Empty;
+                    //if (r.LiczbaNowychSpraw == 0) backgroundColor = @"style=""background:#CCCCCC"""; //szary
+
+                    sb0.Append(String.Format(@"
+                     <tr {0} valign=""top"">
+        				<td class=""style2"">{1}</td>
+        				<td class=""style2"">{2}</td>
+        				<td class=""style2"">{3}</td>
+        				<td class=""style2"" align=""center"">{4}</td>
+        				<td class=""style2"" align=""center"">{5}</td>
+        				<td class=""style2"" align=""center"">{6}</td>
+        			</tr>",
+                           backgroundColor,
+                           r.Grupa,
+                           r.ManagerName,
+                           r.AgentName,
+                           r.LiczbaNowychSpraw.ToString(),
+                           r.LiczbaSpraw_Wniosek.ToString(),
+                           r.LiczbaSpraw_Uruchmienie.ToString()));
+
+                    totalLiczbaNowychSpraw = totalLiczbaNowychSpraw + r.LiczbaNowychSpraw;
+                    totalLiczbaSpraw_Wniosek = totalLiczbaSpraw_Wniosek + r.LiczbaSpraw_Wniosek;
+                    totalLiczbaSpraw_Uruchomienie = totalLiczbaSpraw_Uruchomienie + r.LiczbaSpraw_Uruchmienie;
+
+                }
+                if (isActiveGroupFooter)
+                {
+                    AppendGroupFooter(sb0, totalLiczbaNowychSpraw, totalLiczbaSpraw_Wniosek, totalLiczbaSpraw_Uruchomienie, groupHeaderBackgroundColor, groupHeader);
+                }
+            }
+
+            sb0.Append("</tbody>");
+
+            sb.Replace(@"***TBody***", sb0.ToString());
+
+            //legenda
+            //sb.Append(@"<table style=""width: 680px""><tbody><tr><td colspan=""2"" style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><strong>Legenda</strong></td></tr><tr valign=""top""><td style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozmowa - wniosek w trakcie weryfikacji telefonicznej</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Oferta - przygotwanie i decyzja Klienta w sprawie oferty</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Wniosek - oferta zaakceptowana, przygotowanie i decyzja Banku w sprawie przyznania środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Umowa - wniosek zaaprobowany przez Bank, przygotowanie i akceptacja umowy przez Klienta</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Uruchomienie - umowa zaakceptowana, uruchomienie środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozliczenie - środki uruchomione, kontrakt do rozliczenie prowizji</li></ul></td><td><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Stracony - wniosek stracony, klient nie zaakceptował oferty lub odstąpił od kontraktu z innych przyczyn</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Telefon - zaplanowany kontakt z Klientem w późniejszym terminie</li></ul></td></tr></tbody></table>");
+
+            msg.Body = sb.ToString();
+
+            //wyślij raport mailem
+
+            SendMail(properties, msg);
+        }
+
+        private static void AppendGroupFooter(StringBuilder sb0, int totalLiczbaNowychSpraw, int totalLiczbaSpraw_Wniosek, int totalLiczbaSpraw_Uruchomienie, string groupHeaderBackgroundColor, string newGroupHeader)
+        {
+            sb0.Append(String.Format(@"<tr {0}>
+                            <td class=""style2"" colspan=""3"">{1} RAZEM:</td>
+                            <td class=""style2"" align=""center"">{2}</td>
+                            <td class=""style2"" align=""center"">{3}</td>
+                            <td class=""style2"" align=""center"">{4}</td>
+                            </tr>",
+            groupHeaderBackgroundColor,
+            newGroupHeader,
+            totalLiczbaNowychSpraw.ToString(),
+            totalLiczbaSpraw_Wniosek.ToString(),
+            totalLiczbaSpraw_Uruchomienie.ToString()));
+        }
+
+        private ArrayList SelectContracts_DlaGrupy(SPItemEventProperties properties, DateTime beginDate, DateTime endDate, SPFieldMultiChoiceValue groupsCollection)
+        {
+            ArrayList agentsAL = SelectAgents_DlaGrupy(properties, groupsCollection);
+
+            //wybierze kontrakty zgłoszone w zadanym przedziale dat
+            StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""ID"" /><FieldRef Name=""colDataZgloszenia"" /></OrderBy><Where><And><Geq><FieldRef Name=""colDataZgloszenia"" /><Value Type=""DateTime"">***beginDate***</Value></Geq><Leq><FieldRef Name=""colDataZgloszenia"" /><Value Type=""DateTime"">***endDate***</Value></Leq></And></Where>");
+            sb.Replace("***beginDate***", beginDate.ToShortDateString());
+            sb.Replace("***endDate***", endDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            ArrayList result = new ArrayList();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabKontrakty"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    //dla wybranej listy agentów
+                    foreach (Agent oAgent in agentsAL)
+                    {
+
+                        //wyszukaj pierwszego kontraktu
+                        bool isContractFound = false;
+                        foreach (SPListItem item in items)
+                        {
+                            int agentId = 0;
+
+                            if (item["colPartner_x002e_OsobaKontaktowa"] != null)
+                            {
+                                SPFieldLookupValue temp = new SPFieldLookupValue(item["colPartner_x002e_OsobaKontaktowa"].ToString());
+                                agentId = temp.LookupId;
+                            }
+
+                            if (oAgent.AgentId == agentId)
+                            {
+                                AddKontrakt_1Sprawa(properties, result, item, oAgent);
+                                isContractFound = true;
+                            }
+                        }
+                        if (!isContractFound)
+                        {
+                            AddKontrakt_1Sprawa(properties, result, null, oAgent);
+                        }
+                    }
+                }
+            }
+
+            return result;
 
         }
 
+        private ArrayList SelectAgents_DlaGrupy(SPItemEventProperties properties, SPFieldMultiChoiceValue groupsCollection)
+        {
+            //wybierz tylko aktywnych handlowców posortowanych w/g grupy, managera i agenta gdzie grupa nie jest pusta
+            StringBuilder sb = new StringBuilder(@"<GroupBy Collapse=""FALSE"" GroupLimit=""30000""><FieldRef Name=""colGrupa"" /><FieldRef Name=""colManager"" /></GroupBy><OrderBy><FieldRef Name=""colOsobaKontaktowa"" Ascending=""FALSE"" /></OrderBy><Where><IsNotNull><FieldRef Name=""colGrupa"" /></IsNotNull></Where>");
 
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            ArrayList result = new ArrayList();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabPartnerzy"];
+
+                    SPListItemCollection items = list.GetItems(query);
+                    foreach (SPListItem item in items)
+                    {
+                        //wybierze tylko agentów z linii leasing
+                        if (item["colLinie"] != null)
+                        {
+                            string s = item["colLinie"].ToString();
+                            if (s.Contains("#Leasing"))
+                            {
+
+                                Agent r = new Agent();
+
+                                r.AgentId = item.ID;
+
+                                if (item["colEmailOsobyKontaktowej"] != null)
+                                {
+                                    r.AgentEmail = item["colEmailOsobyKontaktowej"].ToString();
+                                }
+                                if (item["colOsobaKontaktowa"] != null)
+                                {
+                                    r.AgentName = item["colOsobaKontaktowa"].ToString();
+                                }
+
+                                if (item["colManager"] != null)
+                                {
+                                    SPFieldLookupValue value = new SPFieldLookupValue(item["colManager"].ToString());
+                                    if (value.LookupId > 0)
+                                    {
+                                        //pobierz dane managera
+                                        SPListItem itemManager = list.GetItemById(value.LookupId);
+                                        if (itemManager["colEmailOsobyKontaktowej"] != null)
+                                        {
+                                            r.ManagerEmail = itemManager["colEmailOsobyKontaktowej"].ToString();
+                                        }
+                                        if (itemManager["colOsobaKontaktowa"] != null)
+                                        {
+                                            r.ManagerName = itemManager["colOsobaKontaktowa"].ToString();
+                                        }
+                                    }
+                                }
+
+                                if (item["colGrupa"] != null)
+                                {
+                                    r.Grupa = item["colGrupa"].ToString();
+                                }
+
+                                //dodaj wyłącznie agentów spełniających kryteria grupy
+
+                                if (!String.IsNullOrEmpty(r.Grupa))
+                                {
+                                    for (int i = 0; i < groupsCollection.Count; i++)
+			                        {
+                                        if (r.Grupa == groupsCollection[i].ToString())
+                                        {
+                                            //dodaj agenta do listy
+                                            result.Add(r);
+                                            break;
+                                        }
+			                        }
+                                    
+                                }  
+
+                                
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+
+        }
+
+        private void AddKontrakt_DlaGrupy(SPItemEventProperties properties, ArrayList result, SPListItem item)
+        {
+            Kontrakt r = new Kontrakt();
+
+            r.IsValid = true;
+
+            if (item != null)
+            {
+                if (item["colDataZgloszenia"] != null)
+                {
+                    r.DataZgloszenia = DateTime.Parse(item["colDataZgloszenia"].ToString());
+                }
+                if (item["colPartner_x002e_OsobaKontaktowa"] != null)
+                {
+                    SPFieldLookupValue temp = new SPFieldLookupValue(item["colPartner_x002e_OsobaKontaktowa"].ToString());
+                    r.AgentId = temp.LookupId;
+                }
+                if (item["colKlient"] != null)
+                {
+                    r.Klient = (String)item["colKlient"];
+                }
+                if (item["colWartoscKontraktuPLN"] != null)
+                {
+                    double temp = (double)item["colWartoscKontraktuPLN"];
+                    r.WartoscPLN = temp;
+                }
+                if (item["colCelFinansowania"] != null)
+                {
+                    r.CelFinansowania = (String)item["colCelFinansowania"];
+                }
+                if (item["colDataNastepnegoKontaktu"] != null)
+                {
+                    r.PlanowanyKontakt = (DateTime)item["colDataNastepnegoKontaktu"];
+                }
+                if (item["colUstalenia"] != null)
+                {
+                    r.Ustalenia = (String)item["colUstalenia"];
+                }
+                if (item["colOperator"] != null)
+                {
+                    SPFieldUserValue temp = new SPFieldUserValue(properties.Web, item["colOperator"].ToString());
+                    r.Operator = temp.LookupValue;
+                }
+
+                if (item["Last_x0020_Modified"] != null)
+                {
+                    r.DataModyfikacji = DateTime.Parse(item["Last_x0020_Modified"].ToString());
+                }
+
+                if (item["colStatusLeadu"] != null)
+                {
+                    r.Status = item["colStatusLeadu"].ToString();
+                }
+                if (item["ID"] != null)
+                {
+                    r.ID = item["ID"].ToString();
+                }
+            }
+
+            result.Add(r);
+
+        }
+
+        #endregion
 
         #region RaportOpoznione
 
@@ -893,6 +1678,8 @@ niż 14 dni temu</li>
 
             //TBody
 
+            int totalCounter = 0;
+
             //StringBuilder sb0 = new StringBuilder(@"<tbody>");
             StringBuilder sb0 = new StringBuilder();
 
@@ -946,6 +1733,8 @@ niż 14 dni temu</li>
                            r.PlanowanyKontaktDisplay,
                            r.Operator,
                            r.IloscDniOpoznienia));
+
+                    totalCounter += 1;
                 }
             }
             else
@@ -965,6 +1754,13 @@ niż 14 dni temu</li>
 
             msg.Body = sb.ToString();
 
+            if (totalCounter > 0)
+            {
+                msg.Subject = String.Format("{0} [{1}]",
+                    msg.Subject,
+                    totalCounter.ToString());
+            }
+
 
             //wyślij raport mailem
 
@@ -975,7 +1771,7 @@ niż 14 dni temu</li>
         {
             //wybierz sprawy w statusie oferta, telefon, wniosek lub umowa przypisane do operatorów z przekroczoną datą planowanego kontaktu
             //agregacja w/g statusu i operatora
-            StringBuilder sb = new StringBuilder(@"<GroupBy Collapse=""TRUE"" GroupLimit=""30""><FieldRef Name=""colStatusLeadu"" /><FieldRef Name=""colOperator"" /></GroupBy><Where><And><And><Or><Or><Or><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Oferta</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Telefon</Value></Eq></Or><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Umowa</Value></Eq></Or><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Wniosek</Value></Eq></Or><Lt><FieldRef Name=""colDataNastepnegoKontaktu"" /><Value Type=""DateTime""><Today /></Value></Lt></And><IsNotNull><FieldRef Name=""colOperator"" /></IsNotNull></And></Where>");
+            StringBuilder sb = new StringBuilder(@"<GroupBy Collapse=""TRUE"" GroupLimit=""30""><FieldRef Name=""colStatusLeadu"" /><FieldRef Name=""colOperator"" /></GroupBy><OrderBy><FieldRef Name=""colOperator"" Ascending=""FALSE"" /><FieldRef Name=""colDataNastepnegoKontaktu""  /></OrderBy><Where><And><And><Or><Or><Or><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Oferta</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Telefon</Value></Eq></Or><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Umowa</Value></Eq></Or><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Wniosek</Value></Eq></Or><Lt><FieldRef Name=""colDataNastepnegoKontaktu"" /><Value Type=""DateTime""><Today /></Value></Lt></And><IsNotNull><FieldRef Name=""colOperator"" /></IsNotNull></And></Where>");
             SPQuery query = new SPQuery();
             query.Query = sb.ToString();
 
@@ -1285,6 +2081,14 @@ niż 14 dni temu</li>
         public String Bcc { get; set; }
         public String Subject { get; set; }
         public String Body { get; set; }
+    }
+
+    public class GroupTotalsItem : Agent
+    {
+        public int LiczbaNowychSpraw { get; set; }
+        public int LiczbaSpraw_Wniosek { get; set; }
+        public int LiczbaSpraw_Uruchmienie { get; set; }
+
     }
     
 
