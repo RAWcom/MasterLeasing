@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="f59ceadf-eefd-4817-a004-afc61eaac1bf" SharePointProductVersion="14.0">
   <Assemblies>
-    <Assembly Location="Reports.dll" DeploymentTarget="GlobalAssemblyCache" />
+    <Assembly Location="masterleasing.Reports.dll" DeploymentTarget="GlobalAssemblyCache" />
   </Assemblies>
   <FeatureManifests>
     <FeatureManifest Location="Reports_Feature1\Feature.xml" />

@@ -17,6 +17,11 @@ namespace Reports.tabRaportyEventReceiver
     /// </summary>
     public class tabRaportyEventReceiver : SPItemEventReceiver
     {
+        public const string STATUS_AKTYWNY = "W trakcie obsługi";
+        public const string STATUS_ZAKONCZONY = "Zakończony";
+        public const string STATUS_ANULOWANY = "Anulowany";
+
+
         /// <summary>
         /// An item was added.
         /// </summary>
@@ -37,11 +42,13 @@ namespace Reports.tabRaportyEventReceiver
 
         private void Execute(SPItemEventProperties properties)
         {
+            this.EventFiringEnabled = false;
+
             //określ rodzaj raportu
             string ct = properties.ListItem["ContentType"].ToString();
             switch (ct)
             {
-                case "ctRaportVIP":
+                case "RaportVIP":
                     Create_RaportVIP(properties);
                     break;
                 case "Raport1Sprawa":
@@ -57,8 +64,12 @@ namespace Reports.tabRaportyEventReceiver
                     Create_RaportHandlowca(properties);
                     break;
                 default:
+                    properties.ListItem["colStatus"] = STATUS_ANULOWANY;
+                    properties.ListItem.Update();
                     break;
             }
+
+            this.EventFiringEnabled = true;
         }
 
         #region RaportVIP
@@ -72,42 +83,96 @@ namespace Reports.tabRaportyEventReceiver
         /// <param name="properties"></param>
         private void Create_RaportVIP(SPItemEventProperties properties)
         {
-            //przygotuj listę rekordów spełniających kryteria
-            SPQuery query = new SPQuery();
-            query.Query = @"<OrderBy><FieldRef Name='colWartoscKontraktuPLN' /></OrderBy><Where><Geq><FieldRef Name='colWartoscKontraktuPLN' /><Value Type='Currency'>200000</Value></Geq></Where>";
+            try
+            {
+                properties.ListItem["colStatus"] = STATUS_AKTYWNY;
+                properties.ListItem.Update();
 
-            ArrayList recordsAL = SelectContracts(properties, query);
 
-            //uzupełnij dane partnera
-            UpdatePartnerDetails(properties, recordsAL);
+                //get parameters
+                bool isRaportTestowy = true;
 
-            //przygotuj raport
-            CreateReportVIP(properties, recordsAL, true);
+                if (properties.ListItem["colTrybUruchomienia"] != null)
+                {
+                    if (properties.ListItem["colTrybUruchomienia"].ToString() == "Produkcyjny")
+                    {
+                        isRaportTestowy = false;
+                    }
+                }
+
+                //przygotuj listę rekordów spełniających kryteria
+                StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colDataZgloszenia"" Ascending=""FALSE"" /></OrderBy><Where><Geq><FieldRef Name=""colWartoscKontraktuPLN"" /><Value Type=""Currency"">200000</Value></Geq></Where>");
+                SPQuery query = new SPQuery();
+                query.Query = sb.ToString();
+
+                ArrayList recordsAL = SelectContracts_VIP(properties, query);
+
+                //validate contracts
+
+                DateTime targetDate = DateTime.Now.AddDays(-14);
+
+                foreach (Kontrakt r in recordsAL)
+                {
+                    r.IsValid = true;
+
+                    if (r.Status == "Stracony" || r.Status == "Rozliczenie")
+                    {
+                        if (r.DataModyfikacji < targetDate)
+                        {
+                            r.IsValid = false;
+                        }
+                    }
+                }
+
+                for (int i = recordsAL.Count - 1; i <= 0; i--)
+                {
+                    Kontrakt r = (Kontrakt)recordsAL[i];
+                    if (!r.IsValid)
+                    {
+                        recordsAL.RemoveAt(i);
+                    }
+                }
+
+                //uzupełnij dane partnera
+                UpdatePartnerDetails(properties, recordsAL);
+
+                //przygotuj raport
+                CreateReportVIP(properties, recordsAL, isRaportTestowy);
+
+                properties.ListItem["colStatus"] = STATUS_ZAKONCZONY;
+                properties.ListItem.Update();
+
+            }
+            catch (Exception ex)
+            {
+                properties.ListItem["colMEMO"] = ex.ToString();
+                properties.ListItem["colStatus"] = STATUS_ANULOWANY;
+                properties.ListItem.Update();
+            }
 
         }
-
         private void CreateReportVIP(SPItemEventProperties properties, ArrayList recordsAL, bool isTestowy)
         {
-            MailMessage msg = new MailMessage();
+            MailMsg msg = new MailMsg();
             SPListItem item = properties.ListItem;
 
             string s = "Raport VIP";
 
             //To = bieżący użytkownik
-            //if (item["Author"] != null)
-            //{
-            //    SPFieldUserValue temp = (SPFieldUserValue)item["Author"];
-            //    msg.To = temp.User.Email; 
-            //}
-            SPUser currentUser = properties.Web.SiteUsers.GetByID(properties.CurrentUserId);
-            msg.To = currentUser.Email;
+            if (item["Author"] != null)
+            {
+                SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["Author"].ToString());
+                msg.To = op.User.Email;
+            }
+            //SPUser currentUser = properties.Web.SiteUsers.GetByID(properties.CurrentUserId);
+            //msg.To = currentUser.Email;
 
             //Cc, Subject
             if (!s.StartsWith(":: "))
             {
-                s = ":: " + s ;
+                s = ":: " + s;
             }
-            
+
             if (isTestowy)
             {
                 msg.Cc = string.Empty;
@@ -116,12 +181,12 @@ namespace Reports.tabRaportyEventReceiver
             }
             else
             {
-                msg.Cc = GetManagingPartnersEmails(properties);
+                //msg.Cc = GetManagingPartnersEmails(properties);
                 msg.Cc = "biuro@rawcom24.pl";
                 msg.Subject = s;
             }
 
-                
+
             //Body
 
             StringBuilder sb = new StringBuilder(@"<head><style type=""text/css"">
@@ -133,8 +198,23 @@ namespace Reports.tabRaportyEventReceiver
 	border-style: solid;
 	border-width: 1px;
 }
+.auto-style2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	text-align: left;
+}
 </style>
-</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport VIP</h3></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">#</td><td class=""style2"">Grupa</td><td class=""style2"">Menedżer</td><td class=""style2"">Agent</td><td class=""style2"">Klient</td><td class=""style2"">Data zgłoszenia</td><td class=""style2"">Wartość PLN</td><td class=""style2"">Cel finansowania</td><td class=""style2"">Status</td><td class=""style2"">Ustalenia z klientem</td><td class=""style2"">Data następnego kontaktu</td><td class=""style2"">Operator</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr></table></body>");
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport VIP</h3>
+<ul><li class=""auto-style2"">Uwzględnia wyłącznie rekordy o wartości 
+kontraktu &gt; 200000 PLN</li>
+<li class=""auto-style2"">Nie wyświetla rekordów o statusie <strong>
+Stracony</strong> i <strong>Rozliczenie</strong> modyfikowanych dawniej 
+niż 14 dni temu</li>
+	<li class=""auto-style2"">Sortowanie w/g Daty zgłoszenia - malejąco</li>
+</ul>
+<p>&nbsp;</p></td>
+	<td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">#</td><td class=""style2"">Grupa</td><td class=""style2"">Menedżer</td><td class=""style2"">Agent</td><td class=""style2"">Klient</td><td class=""style2"">Data zgłoszenia</td><td class=""style2"">Wartość PLN</td><td class=""style2"">Cel finansowania</td><td class=""style2"">Status</td><td class=""style2"">Ustalenia z klientem</td><td class=""style2"">Data następnego kontaktu</td><td class=""style2"">Operator</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+</table></body>");
 
             //TBody
 
@@ -169,12 +249,12 @@ namespace Reports.tabRaportyEventReceiver
                        r.ManagerName,
                        r.AgentName,
                        r.Klient,
-                       r.DataZgloszenia.ToShortDateString(),
-                       r.WartoscPLN.ToString(),
+                       r.DataZgloszeniaDisplay,
+                       r.WartoscPLNDisplay,
                        r.CelFinansowania,
                        r.Status,
                        r.Ustalenia,
-                       r.PlanowanyKontakt.ToShortDateString(),
+                       r.PlanowanyKontaktDisplay,
                        r.Operator));
             }
 
@@ -190,47 +270,8 @@ namespace Reports.tabRaportyEventReceiver
 
             //wyślij raport mailem
 
-            string url = properties.WebUrl;
-
-            SPSecurity.RunWithElevatedPrivileges(delegate()
-            {
-                using (SPSite site = new SPSite(url))
-                {
-                    using (SPWeb web = site.OpenWeb())
-                    {
-                        // myemail@test.com is obviously replaced with a real working email
-                        SendMail(properties.Web, "noreply@stafix24.pl", msg.To, msg.Subject, msg.Body, msg.Cc, msg.Bcc);
-                    }
-                }
-            });
+            SendMail(properties, msg);
         }
-
-
-
-        #endregion
-
-        private void Create_Raport1Sprawa(SPItemEventProperties properties)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Create_RaportDlaGrupy(SPItemEventProperties properties)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Create_RaportOpoznione(SPItemEventProperties properties)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Create_RaportHandlowca(SPItemEventProperties properties)
-        {
-            throw new NotImplementedException();
-        }
-
-        #region Helpers
-
         /// <summary>
         /// Aktualizuje tablicę wyselekcjonowanych kontraktów informacjami z tablicy Partnerów
         /// Dane o Agencie, Managerze i Grupie
@@ -287,7 +328,6 @@ namespace Reports.tabRaportyEventReceiver
                 }
             }
         }
-
         /// <summary>
         /// fitr: wartość PLN >= 200000,
         /// usuń Status Leadu=Stracony|Rozliczenie starsze niż 60 dni (w/g daty modyfikacji)
@@ -296,7 +336,7 @@ namespace Reports.tabRaportyEventReceiver
         /// </summary>
         /// <param name="properties"></param>
         /// <returns></returns>
-        private ArrayList SelectContracts(SPItemEventProperties properties, SPQuery query)
+        private ArrayList SelectContracts_VIP(SPItemEventProperties properties, SPQuery query)
         {
             ArrayList result = new ArrayList();
 
@@ -343,7 +383,7 @@ namespace Reports.tabRaportyEventReceiver
                         }
                         if (item["colOperator"] != null)
                         {
-                            SPFieldUserValue temp = new SPFieldUserValue(properties.Web, item["colOperator"].ToString()) ;
+                            SPFieldUserValue temp = new SPFieldUserValue(properties.Web, item["colOperator"].ToString());
                             r.Operator = temp.LookupValue;
                         }
 
@@ -371,6 +411,689 @@ namespace Reports.tabRaportyEventReceiver
 
             return result;
         }
+
+        #endregion
+
+        #region Raport1Sprawa
+
+        private void Create_Raport1Sprawa(SPItemEventProperties properties)
+        {
+            try
+            {
+                properties.ListItem["colStatus"] = STATUS_AKTYWNY;
+                properties.ListItem.Update();
+
+                //get parameters
+                bool isRaportTestowy = true;
+
+                if (properties.ListItem["colTrybUruchomienia"] != null)
+                {
+                    if (properties.ListItem["colTrybUruchomienia"].ToString() == "Produkcyjny")
+                    {
+                        isRaportTestowy = false;
+                    }
+                }
+
+                ArrayList agentsAL = SelectAgents_1Sprawa(properties);
+                ArrayList recordsAL = SelectContracts_1Sprawa(properties, agentsAL);
+
+                //przygotuj raport
+                CreateReport1Sprawa(properties, recordsAL, isRaportTestowy);
+
+                properties.ListItem["colStatus"] = STATUS_ZAKONCZONY;
+                properties.ListItem.Update();
+
+            }
+            catch (Exception ex)
+            {
+                properties.ListItem["colMEMO"] = ex.ToString();
+                properties.ListItem["colStatus"] = STATUS_ANULOWANY;
+                properties.ListItem.Update();
+            }
+        }
+        private void CreateReport1Sprawa(SPItemEventProperties properties, ArrayList recordsAL, bool isRaportTestowy)
+        {
+            MailMsg msg = new MailMsg();
+            SPListItem item = properties.ListItem;
+
+            string s = "Raport - Pierwsza Sprawa";
+
+            //To = bieżący użytkownik
+            if (item["Author"] != null)
+            {
+                SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["Author"].ToString());
+                msg.To = op.User.Email;
+            }
+            //SPUser currentUser = properties.Web.SiteUsers.GetByID(properties.CurrentUserId);
+            //msg.To = currentUser.Email;
+
+            //Cc, Subject
+            if (!s.StartsWith(":: "))
+            {
+                s = ":: " + s;
+            }
+
+            if (isRaportTestowy)
+            {
+                msg.Cc = string.Empty;
+                msg.Subject = ":: TESTOWY " + s;
+
+            }
+            else
+            {
+                //msg.Cc = GetManagingPartnersEmails(properties);
+                msg.Cc = "biuro@rawcom24.pl";
+                msg.Subject = s;
+            }
+
+
+            //Body
+
+            StringBuilder sb = new StringBuilder(@"<head><style type=""text/css"">
+.style1 {
+	border-style: solid;
+	border-width: 0px;
+}
+.style2 {
+	border-style: solid;
+	border-width: 1px;
+}
+.auto-style2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	text-align: left;
+}
+</style>
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>
+	Raport - Pierwsza Sprawa</h3>
+<ul><li class=""auto-style2"">Dla aktywnych agentów wyświetla informacje o 
+	pierwszej sprawie</li>
+</ul>
+	</td>
+	<td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">#</td><td class=""style2"">Grupa</td><td class=""style2"">Menedżer</td><td class=""style2"">Agent</td><td class=""style2"">Klient</td><td class=""style2"">Data zgłoszenia</td><td class=""style2"">Wartość PLN</td><td class=""style2"">Cel finansowania</td><td class=""style2"">Status</td><td class=""style2"">Ustalenia z klientem</td><td class=""style2"">Data następnego kontaktu</td><td class=""style2"">Operator</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+</table></body>");
+
+            //TBody
+
+            StringBuilder sb0 = new StringBuilder(@"<tbody>");
+
+            if (recordsAL.Count > 0)
+            {
+                string groupHeader = string.Empty;
+
+                string groupHeaderBackgroundColor = @"style=""background:#CCCCCC"""; //szary
+
+
+
+                foreach (Kontrakt r in recordsAL)
+                {
+
+                    string newGroupHeader = r.AgentName;
+                    if (newGroupHeader != groupHeader)
+                    {
+                        sb0.Append(String.Format(@"<tr {0}><td class=""style2"" colspan=""12"">{1}</td></tr>",
+                            groupHeaderBackgroundColor,
+                            newGroupHeader));
+                        groupHeader = newGroupHeader;
+                    }
+
+                    string backgroundColor = string.Empty;
+                    if (r.Status == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
+                    if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                    if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                    if (r.DataZgloszenia == DateTime.MinValue) backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
+
+                    sb0.Append(String.Format(@"
+                     <tr {0} valign=""top"">
+        				<td class=""style2"">{1}</td>
+        				<td class=""style2"">{2}</td>
+        				<td class=""style2"">{3}</td>
+        				<td class=""style2"">{4}</td>
+        				<td class=""style2"">{5}</td>
+        				<td class=""style2"">{6}</td>
+                        <td class=""style2"" align=""right"">{7}</td>
+        				<td class=""style2"">{8}</td>
+        				<td class=""style2"">{9}</td>
+                        <td class=""style2"">{10}</td>
+                        <td class=""style2"">{11}</td>
+                        <td class=""style2"">{12}</td>
+        			</tr>",
+                           backgroundColor,
+                           r.ID,
+                           r.Grupa,
+                           r.ManagerName,
+                           r.AgentName,
+                           r.Klient,
+                           r.DataZgloszeniaDisplay,
+                           r.WartoscPLNDisplay,
+                           r.CelFinansowania,
+                           r.Status,
+                           r.Ustalenia,
+                           r.PlanowanyKontaktDisplay,
+                           r.Operator));
+
+                }
+            }
+
+            sb0.Append("</tbody>");
+
+            sb.Replace(@"***TBody***", sb0.ToString());
+
+            //legenda
+            //sb.Append(@"<table style=""width: 680px""><tbody><tr><td colspan=""2"" style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><strong>Legenda</strong></td></tr><tr valign=""top""><td style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozmowa - wniosek w trakcie weryfikacji telefonicznej</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Oferta - przygotwanie i decyzja Klienta w sprawie oferty</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Wniosek - oferta zaakceptowana, przygotowanie i decyzja Banku w sprawie przyznania środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Umowa - wniosek zaaprobowany przez Bank, przygotowanie i akceptacja umowy przez Klienta</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Uruchomienie - umowa zaakceptowana, uruchomienie środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozliczenie - środki uruchomione, kontrakt do rozliczenie prowizji</li></ul></td><td><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Stracony - wniosek stracony, klient nie zaakceptował oferty lub odstąpił od kontraktu z innych przyczyn</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Telefon - zaplanowany kontakt z Klientem w późniejszym terminie</li></ul></td></tr></tbody></table>");
+
+            msg.Body = sb.ToString();
+
+
+            //wyślij raport mailem
+
+            SendMail(properties, msg);
+
+        }
+        private ArrayList SelectContracts_1Sprawa(SPItemEventProperties properties, ArrayList agentsAL)
+        {
+            //wybierz posortowane kontrakty w/g daty agenta i daty zgłoszenia
+            StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colPartner_x002e_OsobaKontaktowa"" /><FieldRef Name=""colDataZgloszenia"" /></OrderBy>");
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            ArrayList result = new ArrayList();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabKontrakty"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    //dla wybranej listy agentów
+                    foreach (Agent oAgent in agentsAL)
+                    {
+                        int caseCounter = 0;
+
+                        //wyszukaj pierwszego kontraktu
+                        bool isContractFound = false;
+                        foreach (SPListItem item in items)
+                        {
+                            int agentId = 0;
+
+                            if (item["colPartner_x002e_OsobaKontaktowa"] != null)
+                            {
+                                SPFieldLookupValue temp = new SPFieldLookupValue(item["colPartner_x002e_OsobaKontaktowa"].ToString());
+                                agentId = temp.LookupId;
+                            }
+
+                            if (oAgent.AgentId == agentId)
+                            {
+                                AddKontrakt_1Sprawa(properties, result, item, oAgent);
+                                isContractFound = true;
+                                caseCounter += 1;
+                                if (caseCounter >= 3)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isContractFound)
+                        {
+                            AddKontrakt_1Sprawa(properties, result, null, oAgent);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+        private void AddKontrakt_1Sprawa(SPItemEventProperties properties, ArrayList result, SPListItem item, Agent oAgent)
+        {
+            Kontrakt r = new Kontrakt();
+
+            r.AgentId = oAgent.AgentId;
+            r.AgentName = oAgent.AgentName;
+            r.AgentEmail = oAgent.AgentEmail;
+            r.ManagerName = oAgent.ManagerName;
+            r.ManagerEmail = oAgent.ManagerEmail;
+            r.Grupa = oAgent.Grupa;
+            r.IsValid = true;
+
+            if (item != null)
+            {
+                if (item["colDataZgloszenia"] != null)
+                {
+                    r.DataZgloszenia = DateTime.Parse(item["colDataZgloszenia"].ToString());
+                }
+                if (item["colPartner_x002e_OsobaKontaktowa"] != null)
+                {
+                    SPFieldLookupValue temp = new SPFieldLookupValue(item["colPartner_x002e_OsobaKontaktowa"].ToString());
+                    r.AgentId = temp.LookupId;
+                }
+                if (item["colKlient"] != null)
+                {
+                    r.Klient = (String)item["colKlient"];
+                }
+                if (item["colWartoscKontraktuPLN"] != null)
+                {
+                    double temp = (double)item["colWartoscKontraktuPLN"];
+                    r.WartoscPLN = temp;
+                }
+                if (item["colCelFinansowania"] != null)
+                {
+                    r.CelFinansowania = (String)item["colCelFinansowania"];
+                }
+                if (item["colDataNastepnegoKontaktu"] != null)
+                {
+                    r.PlanowanyKontakt = (DateTime)item["colDataNastepnegoKontaktu"];
+                }
+                if (item["colUstalenia"] != null)
+                {
+                    r.Ustalenia = (String)item["colUstalenia"];
+                }
+                if (item["colOperator"] != null)
+                {
+                    SPFieldUserValue temp = new SPFieldUserValue(properties.Web, item["colOperator"].ToString());
+                    r.Operator = temp.LookupValue;
+                }
+
+                if (item["Last_x0020_Modified"] != null)
+                {
+                    r.DataModyfikacji = DateTime.Parse(item["Last_x0020_Modified"].ToString());
+                }
+
+                if (item["colStatusLeadu"] != null)
+                {
+                    r.Status = item["colStatusLeadu"].ToString();
+                }
+                if (item["ID"] != null)
+                {
+                    r.ID = item["ID"].ToString();
+                }
+            }
+
+
+            result.Add(r);
+        }
+        private ArrayList SelectAgents_1Sprawa(SPItemEventProperties properties)
+        {
+            //wybierz tylko aktywnych handlowców posortowanych w/g grupy, managera i agenta
+            //StringBuilder sb = new StringBuilder(@"<GroupBy Collapse=""FALSE"" GroupLimit=""10000""><FieldRef Name=""colGrupa"" /><FieldRef Name=""colManager"" /></GroupBy><OrderBy><FieldRef Name=""colOsobaKontaktowa"" /></OrderBy><Where><Eq><FieldRef Name=""colAktywny"" /><Value Type=""Boolean"">1</Value></Eq></Where>");
+
+            //wybierz tylko aktywnych handlowców posortowanych w/g grupy, managera i agenta z grupy Księgowi
+            StringBuilder sb = new StringBuilder(@"<GroupBy Collapse=""FALSE"" GroupLimit=""10000""><FieldRef Name=""colGrupa"" /><FieldRef Name=""colManager"" /></GroupBy><OrderBy><FieldRef Name=""colOsobaKontaktowa"" /></OrderBy><Where><And><Eq><FieldRef Name=""colAktywny"" /><Value Type=""Boolean"">1</Value></Eq><Eq><FieldRef Name=""colGrupa"" /><Value Type=""Text"">Księgowi</Value></Eq></And></Where>");
+
+
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            ArrayList result = new ArrayList();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabPartnerzy"];
+
+                    SPListItemCollection items = list.GetItems(query);
+                    foreach (SPListItem item in items)
+                    {
+                        //wybierze tylko agentów z linii leasing
+                        if (item["colLinie"] != null)
+                        {
+                            string s = item["colLinie"].ToString();
+                            if (s.Contains("#Leasing"))
+                            {
+
+                                Agent r = new Agent();
+
+                                r.AgentId = item.ID;
+
+                                if (item["colEmailOsobyKontaktowej"] != null)
+                                {
+                                    r.AgentEmail = item["colEmailOsobyKontaktowej"].ToString();
+                                }
+                                if (item["colOsobaKontaktowa"] != null)
+                                {
+                                    r.AgentName = item["colOsobaKontaktowa"].ToString();
+                                }
+
+                                if (item["colManager"] != null)
+                                {
+                                    SPFieldLookupValue value = new SPFieldLookupValue(item["colManager"].ToString());
+                                    if (value.LookupId > 0)
+                                    {
+                                        //pobierz dane managera
+                                        SPListItem itemManager = list.GetItemById(value.LookupId);
+                                        if (itemManager["colEmailOsobyKontaktowej"] != null)
+                                        {
+                                            r.ManagerEmail = itemManager["colEmailOsobyKontaktowej"].ToString();
+                                        }
+                                        if (itemManager["colOsobaKontaktowa"] != null)
+                                        {
+                                            r.ManagerName = itemManager["colOsobaKontaktowa"].ToString();
+                                        }
+                                    }
+                                }
+
+                                if (item["colGrupa"] != null)
+                                {
+                                    r.Grupa = item["colGrupa"].ToString();
+                                }
+
+                                result.Add(r);
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        private void Create_RaportDlaGrupy(SPItemEventProperties properties)
+        {
+
+        }
+
+
+
+        #region RaportOpoznione
+
+        private void Create_RaportOpoznione(SPItemEventProperties properties)
+        {
+            try
+            {
+                properties.ListItem["colStatus"] = STATUS_AKTYWNY;
+                properties.ListItem.Update();
+
+                //get parameters
+                bool isRaportTestowy = true;
+
+                if (properties.ListItem["colTrybUruchomienia"] != null)
+                {
+                    if (properties.ListItem["colTrybUruchomienia"].ToString() == "Produkcyjny")
+                    {
+                        isRaportTestowy = false;
+                    }
+                }
+
+                ArrayList recordsAL = SelectContracts_Opoznione(properties);
+
+                //przygotuj raport
+                CreateReportOpoznione(properties, recordsAL, isRaportTestowy);
+
+                properties.ListItem["colStatus"] = STATUS_ZAKONCZONY;
+                properties.ListItem.Update();
+
+            }
+            catch (Exception ex)
+            {
+                properties.ListItem["colMEMO"] = ex.ToString();
+                properties.ListItem["colStatus"] = STATUS_ANULOWANY;
+                properties.ListItem.Update();
+            }
+        }
+
+        private void CreateReportOpoznione(SPItemEventProperties properties, ArrayList recordsAL, bool isRaportTestowy)
+        {
+            MailMsg msg = new MailMsg();
+            SPListItem item = properties.ListItem;
+
+            string s = "Sprawy Opóźnione";
+
+            //To = bieżący użytkownik
+            if (item["Author"] != null)
+            {
+                SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["Author"].ToString());
+                msg.To = op.User.Email;
+            }
+            //SPUser currentUser = properties.Web.SiteUsers.GetByID(properties.CurrentUserId);
+            //msg.To = currentUser.Email;
+
+            //Cc, Subject
+            if (!s.StartsWith(":: "))
+            {
+                s = ":: " + s;
+            }
+
+            if (isRaportTestowy)
+            {
+                msg.Cc = string.Empty;
+                msg.Subject = ":: TESTOWY " + s;
+
+            }
+            else
+            {
+                //msg.Cc = GetManagingPartnersEmails(properties);
+                msg.Cc = "biuro@rawcom24.pl";
+                msg.Subject = s;
+            }
+
+
+            //Body
+
+            StringBuilder sb = new StringBuilder(@"<head><style type=""text/css"">
+.style1 {
+	border-style: solid;
+	border-width: 0px;
+}
+.style2 {
+	border-style: solid;
+	border-width: 1px;
+}
+.auto-style2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	text-align: left;
+}
+</style>
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport - Sprawy opóźnione</h3><ul><li class=""auto-style2"">Dla spraw w statusie: Oferta, Telefon, Wniosek, Umowa wyświetla sprawy przypisane do operatorów z przekroczonym terminem następnego kontaktu</li></ul></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">#</td><td class=""style2"">Menedżer</td><td class=""style2"">Agent</td><td class=""style2"">Klient</td><td class=""style2"">Data zgłoszenia</td><td class=""style2"">Wartość PLN</td><td class=""style2"">Cel finansowania</td><td class=""style2"">Status</td><td class=""style2"">Ustalenia z klientem</td><td class=""style2"">Data następnego kontaktu</td><td class=""style2"">Operator</td><td class=""style2"">Ilość dni opóźnienia</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr></table></body>");
+
+            //TBody
+
+            //StringBuilder sb0 = new StringBuilder(@"<tbody>");
+            StringBuilder sb0 = new StringBuilder();
+
+            if (recordsAL.Count > 0)
+            {
+                string groupHeader = string.Empty;
+
+                foreach (Kontrakt r in recordsAL)
+                {
+                    string groupHeaderBackgroundColor = @"style=""background:#CCCCCC"""; //szary
+
+                    string newGroupHeader = r.Operator;
+                    if (newGroupHeader != groupHeader)
+                    {
+                        sb0.Append(String.Format(@"<tr {0}><td class=""style2"" colspan=""12"">{1}</td></tr>",
+                            groupHeaderBackgroundColor,
+                            newGroupHeader));
+                        groupHeader = newGroupHeader;
+                    }
+
+                    string backgroundColor = string.Empty;
+                    //if (r.Status == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
+                    //if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                    //if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+
+                    sb0.Append(String.Format(@"
+                     <tr {0} valign=""top"">
+        				<td class=""style2"">{1}</td>
+        				<td class=""style2"">{2}</td>
+        				<td class=""style2"">{3}</td>
+        				<td class=""style2"">{4}</td>
+        				<td class=""style2"">{5}</td>
+        				<td class=""style2"" align=""right"">{6}</td>
+                        <td class=""style2"">{7}</td>
+        				<td class=""style2"">{8}</td>
+        				<td class=""style2"">{9}</td>
+                        <td class=""style2"">{10}</td>
+                        <td class=""style2"">{11}</td>
+                        <td class=""style2"" align=""center"">{12}</td>
+        			</tr>",
+                           backgroundColor,
+                           r.ID,
+                           r.ManagerName,
+                           r.AgentName,
+                           r.Klient,
+                           r.DataZgloszeniaDisplay,
+                           r.WartoscPLNDisplay,
+                           r.CelFinansowania,
+                           r.Status,
+                           r.Ustalenia,
+                           r.PlanowanyKontaktDisplay,
+                           r.Operator,
+                           r.IloscDniOpoznienia));
+                }
+            }
+            else
+            {
+                sb0.Append(String.Format(@"<tr {0}><td class=""style2"" colspan=""12"">{1}</td></tr>",
+                            String.Empty,
+                            "Brak rekordów spełniających kryteria"));
+            }
+            //sb0.Append("</tbody>");
+
+            sb.Replace(@"***TBody***", sb0.ToString());
+
+            //legenda
+            //sb.Append(@"<table style=""width: 680px""><tbody><tr><td colspan=""2"" style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><strong>Legenda</strong></td></tr><tr valign=""top""><td style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozmowa - wniosek w trakcie weryfikacji telefonicznej</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Oferta - przygotwanie i decyzja Klienta w sprawie oferty</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Wniosek - oferta zaakceptowana, przygotowanie i decyzja Banku w sprawie przyznania środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Umowa - wniosek zaaprobowany przez Bank, przygotowanie i akceptacja umowy przez Klienta</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Uruchomienie - umowa zaakceptowana, uruchomienie środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozliczenie - środki uruchomione, kontrakt do rozliczenie prowizji</li></ul></td><td><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Stracony - wniosek stracony, klient nie zaakceptował oferty lub odstąpił od kontraktu z innych przyczyn</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Telefon - zaplanowany kontakt z Klientem w późniejszym terminie</li></ul></td></tr></tbody></table>");
+
+
+
+            msg.Body = sb.ToString();
+
+
+            //wyślij raport mailem
+
+            SendMail(properties, msg);
+        }
+
+        private ArrayList SelectContracts_Opoznione(SPItemEventProperties properties)
+        {
+            //wybierz sprawy w statusie oferta, telefon, wniosek lub umowa przypisane do operatorów z przekroczoną datą planowanego kontaktu
+            //agregacja w/g statusu i operatora
+            StringBuilder sb = new StringBuilder(@"<GroupBy Collapse=""TRUE"" GroupLimit=""30""><FieldRef Name=""colStatusLeadu"" /><FieldRef Name=""colOperator"" /></GroupBy><Where><And><And><Or><Or><Or><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Oferta</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Telefon</Value></Eq></Or><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Umowa</Value></Eq></Or><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Wniosek</Value></Eq></Or><Lt><FieldRef Name=""colDataNastepnegoKontaktu"" /><Value Type=""DateTime""><Today /></Value></Lt></And><IsNotNull><FieldRef Name=""colOperator"" /></IsNotNull></And></Where>");
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            ArrayList result = new ArrayList();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabKontrakty"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    foreach (SPListItem item in items)
+                    {
+                        if (item["colOperator"] != null)
+                        {
+
+                            SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["colOperator"].ToString());
+                            string opName = op.LookupValue;
+                            opName = op.User.Name;
+
+                            AddKontrakt_Opoznione(properties, result, item, op);
+
+                        }
+                        else
+                        {
+                            AddKontrakt_Opoznione(properties, result, item, null);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private void AddKontrakt_Opoznione(SPItemEventProperties properties, ArrayList result, SPListItem item, SPFieldUserValue op)
+        {
+            Kontrakt r = new Kontrakt();
+
+            if (op != null)
+            {
+                r.Operator = op.User.Name;
+            }
+            else
+            {
+                r.Operator = string.Empty;
+            }
+
+            r.IsValid = true;
+
+            if (item != null)
+            {
+                if (item["colDataZgloszenia"] != null)
+                {
+                    r.DataZgloszenia = DateTime.Parse(item["colDataZgloszenia"].ToString());
+                }
+                if (item["colPartner_x002e_OsobaKontaktowa"] != null)
+                {
+                    SPFieldLookupValue temp = new SPFieldLookupValue(item["colPartner_x002e_OsobaKontaktowa"].ToString());
+                    r.AgentId = temp.LookupId;
+                }
+                if (item["colKlient"] != null)
+                {
+                    r.Klient = (String)item["colKlient"];
+                }
+                if (item["colWartoscKontraktuPLN"] != null)
+                {
+                    double temp = (double)item["colWartoscKontraktuPLN"];
+                    r.WartoscPLN = temp;
+                }
+                if (item["colCelFinansowania"] != null)
+                {
+                    r.CelFinansowania = (String)item["colCelFinansowania"];
+                }
+                if (item["colDataNastepnegoKontaktu"] != null)
+                {
+                    r.PlanowanyKontakt = (DateTime)item["colDataNastepnegoKontaktu"];
+                }
+                if (item["colUstalenia"] != null)
+                {
+                    r.Ustalenia = (String)item["colUstalenia"];
+                }
+                if (item["colOperator"] != null)
+                {
+                    SPFieldUserValue temp = new SPFieldUserValue(properties.Web, item["colOperator"].ToString());
+                    r.Operator = temp.LookupValue;
+                }
+
+                if (item["Last_x0020_Modified"] != null)
+                {
+                    r.DataModyfikacji = DateTime.Parse(item["Last_x0020_Modified"].ToString());
+                }
+
+                if (item["colStatusLeadu"] != null)
+                {
+                    r.Status = item["colStatusLeadu"].ToString();
+                }
+                if (item["ID"] != null)
+                {
+                    r.ID = item["ID"].ToString();
+                }
+            }
+
+
+            result.Add(r);
+        }
+
+        #endregion
+
+        private void Create_RaportHandlowca(SPItemEventProperties properties)
+        {
+            throw new NotImplementedException();
+        }
+
+        #region Helpers
+
+
 
         private string GetManagingPartnersEmails(SPItemEventProperties properties)
         {
@@ -433,9 +1156,27 @@ namespace Reports.tabRaportyEventReceiver
             }
         }
 
+        private void SendMail(SPItemEventProperties properties, MailMsg msg)
+        {
+            string url = properties.WebUrl;
+
+            SPSecurity.RunWithElevatedPrivileges(delegate()
+            {
+                using (SPSite site = new SPSite(url))
+                {
+                    using (SPWeb web = site.OpenWeb())
+                    {
+                        // myemail@test.com is obviously replaced with a real working email
+                        SendMail(properties.Web, "Master Leasing<noreply@stafix24.pl>", msg.To, msg.Subject, msg.Body, msg.Cc, msg.Bcc);
+                    }
+                }
+            });
+        }
+
         #endregion
 
     }
+
 
     #region Classes
 
@@ -475,9 +1216,69 @@ namespace Reports.tabRaportyEventReceiver
         public String Operator { get; set; }
         public DateTime DataModyfikacji { get; set; }
         public String Status { get; set; }
+        public bool IsValid { get; set; }
+
+        public String PlanowanyKontaktDisplay
+        {
+            get
+            {
+                if (PlanowanyKontakt == DateTime.MinValue)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return PlanowanyKontakt.ToShortDateString();
+                }
+            }
+        }
+        public String DataZgloszeniaDisplay
+        {
+            get
+            {
+                if (DataZgloszenia == DateTime.MinValue)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return DataZgloszenia.ToShortDateString();
+                }
+            }
+        }
+
+        public String WartoscPLNDisplay
+        {
+            get
+            {
+                if (WartoscPLN == 0)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return WartoscPLN.ToString();
+                }
+            }
+        }
+
+        public String IloscDniOpoznienia
+        {
+            get
+            {
+                if (PlanowanyKontakt <= DateTime.Today)
+                {
+                    return (DateTime.Today - PlanowanyKontakt).Days.ToString();
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
     }
 
-    public class MailMessage
+    public class MailMsg
     {
         public String To { get; set; }
         public String Cc { get; set; }
@@ -485,6 +1286,10 @@ namespace Reports.tabRaportyEventReceiver
         public String Subject { get; set; }
         public String Body { get; set; }
     }
+    
 
     #endregion
+
 }
+    
+

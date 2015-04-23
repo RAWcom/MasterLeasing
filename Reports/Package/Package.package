@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="f59ceadf-eefd-4817-a004-afc61eaac1bf" solutionId="f59ceadf-eefd-4817-a004-afc61eaac1bf" resetWebServer="false" name="Reports" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="f59ceadf-eefd-4817-a004-afc61eaac1bf" solutionId="f59ceadf-eefd-4817-a004-afc61eaac1bf" resetWebServer="false" name="masterleasing.Reports" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="2e19b97f-32ec-4b1f-b209-937710cdd85c" />
   </features>

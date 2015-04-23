@@ -37,6 +37,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             System.Workflow.Activities.CodeCondition codecondition1 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition2 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition3 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition4 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.ComponentModel.ActivityBind activitybind8 = new System.Workflow.ComponentModel.ActivityBind();
             this.logRaportWyslany = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.sendRaportDlaAgenta = new Microsoft.SharePoint.WorkflowActions.SendEmail();
@@ -52,6 +53,8 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             this.ifElseActivity1 = new System.Workflow.Activities.IfElseActivity();
             this.codeGetTrybRaportu = new System.Workflow.Activities.CodeActivity();
             this.codeGetAgentDetails = new System.Workflow.Activities.CodeActivity();
+            this.ifCTStatusWnioskow = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifElseActivity3 = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowActivated1 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
             // 
             // logRaportWyslany
@@ -164,6 +167,21 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             this.codeGetAgentDetails.Name = "codeGetAgentDetails";
             this.codeGetAgentDetails.ExecuteCode += new System.EventHandler(this.codeGetAgentDetails_ExecuteCode);
             // 
+            // ifCTStatusWnioskow
+            // 
+            this.ifCTStatusWnioskow.Activities.Add(this.codeGetAgentDetails);
+            this.ifCTStatusWnioskow.Activities.Add(this.codeGetTrybRaportu);
+            this.ifCTStatusWnioskow.Activities.Add(this.ifElseActivity1);
+            this.ifCTStatusWnioskow.Activities.Add(this.codeRemoveItem);
+            codecondition4.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isCTStatusWnioskow);
+            this.ifCTStatusWnioskow.Condition = codecondition4;
+            this.ifCTStatusWnioskow.Name = "ifCTStatusWnioskow";
+            // 
+            // ifElseActivity3
+            // 
+            this.ifElseActivity3.Activities.Add(this.ifCTStatusWnioskow);
+            this.ifElseActivity3.Name = "ifElseActivity3";
+            // 
             // onWorkflowActivated1
             // 
             this.onWorkflowActivated1.CorrelationToken = correlationtoken1;
@@ -176,16 +194,17 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             // Workflow2
             // 
             this.Activities.Add(this.onWorkflowActivated1);
-            this.Activities.Add(this.codeGetAgentDetails);
-            this.Activities.Add(this.codeGetTrybRaportu);
-            this.Activities.Add(this.ifElseActivity1);
-            this.Activities.Add(this.codeRemoveItem);
+            this.Activities.Add(this.ifElseActivity3);
             this.Name = "Workflow2";
             this.CanModifyActivities = false;
 
         }
 
         #endregion
+
+        private IfElseBranchActivity ifCTStatusWnioskow;
+
+        private IfElseActivity ifElseActivity3;
 
         private CodeActivity codeResetFlags;
 
@@ -216,6 +235,13 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
         private CodeActivity codeGetAgentDetails;
 
         private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated1;
+
+
+
+
+
+
+
 
 
 

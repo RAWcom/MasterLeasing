@@ -273,7 +273,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                         {
                             datModified = Convert.ToDateTime(item["Modified"]);
                         }
-                        
+
                         if (item["colDataZgloszenia"] != null)
                         {
                             datDataZgloszenia = Convert.ToDateTime(item["colDataZgloszenia"]);
@@ -343,12 +343,12 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                         return false;
                     }
 
-                    
+
                     if (strStatusLeadu == "Stracony" && datModified < DateTime.Now.AddDays(-60))
                     {
                         //ignoruj rekordy o statusie stracony, których status został nadany więcej niż 60 dni temu (ostatnia aktulizacja rekordu)
                     }
-                    else 
+                    else
                     {
                         string backgroundColor = string.Empty;
                         if (strStatusLeadu == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
@@ -724,11 +724,17 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             bRaportUtworzony = false;
         }
 
-
-
-
-
-
+        private void isCTStatusWnioskow(object sender, ConditionalEventArgs e)
+        {
+            if (workflowProperties.Item.ContentType.Name == "Raport_Status Wniosków")
+            {
+                e.Result = true;
+            }
+            else
+            {
+                e.Result = false;
+            }
+        }
 
     }
 }

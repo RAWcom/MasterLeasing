@@ -1,1 +1,1 @@
-bin\Release\Reports.wsp
+bin\Release\masterleasing.Reports.wsp
