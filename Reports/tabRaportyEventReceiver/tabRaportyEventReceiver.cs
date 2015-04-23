@@ -1315,7 +1315,7 @@ niż 14 dni temu</li>
                     }
 
                     string backgroundColor = string.Empty;
-                    //if (r.LiczbaNowychSpraw == 0) backgroundColor = @"style=""background:#CCCCCC"""; //szary
+                    if (r.AgentIsActive) backgroundColor = @"style=""background:#CCCC00"""; //szary jaśniejszy
 
                     sb0.Append(String.Format(@"
                      <tr {0} valign=""top"">
@@ -1458,6 +1458,11 @@ niż 14 dni temu</li>
                                 Agent r = new Agent();
 
                                 r.AgentId = item.ID;
+
+                                if (item["colAktywny"] != null)
+                                {
+                                    r.AgentIsActive = (bool)item["colAktywny"];
+                                }
 
                                 if (item["colEmailOsobyKontaktowej"] != null)
                                 {
@@ -1997,6 +2002,7 @@ niż 14 dni temu</li>
         public String ManagerName { get; set; }
         public String ManagerEmail { get; set; }
         public String Grupa { get; set; }
+        public bool AgentIsActive { get; set; }
 
     }
 
