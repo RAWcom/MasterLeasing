@@ -184,8 +184,8 @@ namespace Reports.tabRaportyEventReceiver
             }
             else
             {
-                //msg.Cc = GetManagingPartnersEmails(properties);
-                msg.Cc = "biuro@rawcom24.pl";
+                msg.Cc = GetManagingPartnersEmails(properties);
+                //msg.Cc = "biuro@rawcom24.pl";
                 msg.Subject = s;
             }
 
@@ -459,7 +459,7 @@ niż 14 dni temu</li>
             MailMsg msg = new MailMsg();
             SPListItem item = properties.ListItem;
 
-            string s = "Raport - Pierwsza Sprawa";
+            string s = "Raport - 3 Pierwsze Sprawy";
 
             //To = bieżący użytkownik
             if (item["Author"] != null)
@@ -484,8 +484,8 @@ niż 14 dni temu</li>
             }
             else
             {
-                //msg.Cc = GetManagingPartnersEmails(properties);
-                msg.Cc = "biuro@rawcom24.pl";
+                msg.Cc = GetManagingPartnersEmails(properties);
+                //msg.Cc = "biuro@rawcom24.pl";
                 msg.Subject = s;
             }
 
@@ -508,9 +508,9 @@ niż 14 dni temu</li>
 }
 </style>
 </head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>
-	Raport - Pierwsza Sprawa</h3>
+	Raport - 3 Pierwsze Sprawy</h3>
 <ul><li class=""auto-style2"">Dla aktywnych agentów wyświetla informacje o 
-	pierwszej sprawie</li>
+	3 pierwszych sprawach</li>
 </ul>
 	</td>
 	<td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">#</td><td class=""style2"">Grupa</td><td class=""style2"">Menedżer</td><td class=""style2"">Agent</td><td class=""style2"">Klient</td><td class=""style2"">Data zgłoszenia</td><td class=""style2"">Wartość PLN</td><td class=""style2"">Cel finansowania</td><td class=""style2"">Status</td><td class=""style2"">Ustalenia z klientem</td><td class=""style2"">Data następnego kontaktu</td><td class=""style2"">Operator</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
@@ -1096,8 +1096,8 @@ niż 14 dni temu</li>
             }
             else
             {
-                //msg.Cc = GetManagingPartnersEmails(properties);
-                msg.Cc = "biuro@rawcom24.pl";
+                msg.Cc = GetManagingPartnersEmails(properties);
+                //msg.Cc = "biuro@rawcom24.pl";
                 msg.Subject = s;
             }
 
@@ -1247,8 +1247,8 @@ niż 14 dni temu</li>
             }
             else
             {
-                //msg.Cc = GetManagingPartnersEmails(properties);
-                msg.Cc = "biuro@rawcom24.pl";
+                msg.Cc = GetManagingPartnersEmails(properties);
+                //msg.Cc = "biuro@rawcom24.pl";
                 msg.Subject = s;
             }
 
@@ -1656,8 +1656,8 @@ niż 14 dni temu</li>
             }
             else
             {
-                //msg.Cc = GetManagingPartnersEmails(properties);
-                msg.Cc = "biuro@rawcom24.pl";
+                msg.Cc = GetManagingPartnersEmails(properties);
+                //msg.Cc = "biuro@rawcom24.pl";
                 msg.Subject = s;
             }
 
