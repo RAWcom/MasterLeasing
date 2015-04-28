@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Receivers ListUrl="Lists/tabRaporty">
+      <Receiver>
+        <Name>tabRaportyEventReceiverItemAdded</Name>
+        <Type>ItemAdded</Type>
+        <Assembly>masterleasing.Reports, Version=1.0.0.0, Culture=neutral, PublicKeyToken=41e3499113954b4a</Assembly>
+        <Class>Reports.tabRaportyEventReceiver.tabRaportyEventReceiver</Class>
+        <SequenceNumber>10000</SequenceNumber>
+      </Receiver>
+      <Receiver>
+        <Name>tabRaportyEventReceiverItemUpdated</Name>
+        <Type>ItemUpdated</Type>
+        <Assembly>masterleasing.Reports, Version=1.0.0.0, Culture=neutral, PublicKeyToken=41e3499113954b4a</Assembly>
+        <Class>Reports.tabRaportyEventReceiver.tabRaportyEventReceiver</Class>
+        <SequenceNumber>10000</SequenceNumber>
+      </Receiver>
+
+  </Receivers>
+</Elements>
