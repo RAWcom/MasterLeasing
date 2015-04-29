@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="49839aaa-9a7a-4db2-9589-660cf5374415" SharePointProductVersion="14.0">
+  <Assemblies>
+    <Assembly Location="masterleasing.Reports.RozliczenieAgentowSW.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="RozliczenieAgentowSW_Feature1\Feature.xml" />
+    <FeatureManifest Location="RozliczenieAgentowSW_Feature2\Feature.xml" />
+  </FeatureManifests>
+</Solution>

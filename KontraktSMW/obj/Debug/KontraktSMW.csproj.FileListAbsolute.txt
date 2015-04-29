@@ -12,3 +12,8 @@ C:\Users\admin3324\Documents\GitHub\MasterLeasing\KontraktSMW\bin\Debug\masterle
 C:\Users\admin3324\Documents\GitHub\MasterLeasing\KontraktSMW\obj\Debug\KontraktSMW.csprojResolveAssemblyReference.cache
 C:\Users\admin3324\Documents\GitHub\MasterLeasing\KontraktSMW\obj\Debug\masterleasing.Workflows.KontraktSMW.dll
 C:\Users\admin3324\Documents\GitHub\MasterLeasing\KontraktSMW\obj\Debug\masterleasing.Workflows.KontraktSMW.pdb
+C:\_GitHub\MasterLeasing\KontraktSMW\bin\Debug\masterleasing.Workflows.KontraktSMW.dll
+C:\_GitHub\MasterLeasing\KontraktSMW\bin\Debug\masterleasing.Workflows.KontraktSMW.pdb
+C:\_GitHub\MasterLeasing\KontraktSMW\obj\Debug\KontraktSMW.csprojResolveAssemblyReference.cache
+C:\_GitHub\MasterLeasing\KontraktSMW\obj\Debug\masterleasing.Workflows.KontraktSMW.dll
+C:\_GitHub\MasterLeasing\KontraktSMW\obj\Debug\masterleasing.Workflows.KontraktSMW.pdb

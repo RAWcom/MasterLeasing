@@ -5,6 +5,7 @@ using Microsoft.SharePoint.Security;
 using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.Workflow;
 using System.Text;
+using System.Diagnostics;
 
 namespace masterleasing.Reports.tabKontraktyEventReceiver
 {
@@ -26,26 +27,40 @@ namespace masterleasing.Reports.tabKontraktyEventReceiver
        {
            this.EventFiringEnabled = false;
 
-           string status = GetText(properties.ListItem, "colStatusLeadu");
-           int kontraktId = properties.ListItemId;
-           //SPFieldUser user = (SPFieldUser)properties.ListItem["Editor"];
-
-           SPSecurity.RunWithElevatedPrivileges(delegate()
+           try
            {
-               Update_tabStatusTracking(properties, kontraktId, status, DateTime.Today);
-           });
+               SPSecurity.RunWithElevatedPrivileges(delegate()
+               {
+                   
+                   SPListItem item = properties.ListItem;
+                   string status = GetText(item, "colStatusLeadu");
+                   int kontraktId = properties.ListItemId;
+                   SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["Editor"].ToString());
+                   int opertorId = op.LookupId;
+
+                   //SPFieldWorkflowStatus wstat = new SPFieldWorkflowStatus(item.Fields, "WorkflowStatus", "Obsługa Kontraktu");                  
+                   //Debug.WriteLine(wstat.ToString());
+
+                   Update_tabStatusTracking(properties, kontraktId, status, DateTime.Today, opertorId);
+
+               });
+           }
+           catch (Exception ex)
+           {
+               string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERROR: tabKontraktyEventReceiver", ex.ToString());
+           }       
 
            this.EventFiringEnabled = true;
        }
 
-private void Update_tabStatusTracking(SPItemEventProperties properties,int kontraktId,string status,DateTime targetDate)
+private void Update_tabStatusTracking(SPItemEventProperties properties,int kontraktId,string status,DateTime targetDate, int operatorId)
 {
 
            //sprawdź czy istnieje
-            StringBuilder sb = new StringBuilder(@"<Where><And><And><Eq><FieldRef Name=""colKontraktId"" /><Value Type=""Number"">___KontraktId___</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">___Status___</Value></Eq></And><Eq><FieldRef Name=""Modified"" /><Value Type=""DateTime"">___TargetDate___</Value></Eq></And></Where>");
+            StringBuilder sb = new StringBuilder(@"<Where><And><And><Eq><FieldRef Name=""colKontraktId"" /><Value Type=""Number"">___KontraktId___</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">___Status___</Value></Eq></And><Eq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___TargetDate___</Value></Eq></And></Where>");
             sb.Replace("___KontraktId___",kontraktId.ToString());
-           sb.Replace("___Status___",status.ToString());
-           sb.Replace("___TargetDate___", targetDate.ToShortDateString());
+            sb.Replace("___Status___",status.ToString());
+            sb.Replace("___TargetDate___", targetDate.ToShortDateString());
 
             SPQuery query = new SPQuery();
             query.Query = sb.ToString();
@@ -62,9 +77,11 @@ private void Update_tabStatusTracking(SPItemEventProperties properties,int kontr
                         SPListItem li = list.AddItem();
                         li["colKontraktId"] = kontraktId;
                         li["colStatusLeadu"]= status.ToString();
-                        li["Modified"] = targetDate.ToShortDateString();
+                        li["colData"] = targetDate.ToShortDateString();
+                        li["colOperator"] = operatorId;
 
                         li.Update();
+                        //li.SystemUpdate();
                     }
                 }
             }

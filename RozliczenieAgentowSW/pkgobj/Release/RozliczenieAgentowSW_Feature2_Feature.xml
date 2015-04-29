@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="RozliczenieAgentowSW Feature2" Id="8d7dba69-7ce8-415b-af22-d5049bd8e743" Scope="Site">
+  <ElementManifests>
+    <ElementManifest Location="Workflow2\Elements.xml" />
+  </ElementManifests>
+</Feature>
