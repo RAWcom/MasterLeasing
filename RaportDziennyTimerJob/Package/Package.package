@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="c20072e2-3765-4eaa-8fd9-5e8c8c69e0f3" solutionId="c20072e2-3765-4eaa-8fd9-5e8c8c69e0f3" resetWebServer="false" name="masterleasing.RaportDziennyTimerJob" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="293d56cb-35e8-4082-b5a5-7cfc09618f68" />
+  </features>
+</package>

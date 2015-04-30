@@ -1,0 +1,1 @@
+bin\Debug\masterleasing.RaportDziennyTimerJob.wsp

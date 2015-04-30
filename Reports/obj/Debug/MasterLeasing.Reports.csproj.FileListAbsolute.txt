@@ -1,0 +1,5 @@
+C:\_GitHub\MasterLeasing\Reports\bin\Debug\masterleasing.Reports.dll
+C:\_GitHub\MasterLeasing\Reports\bin\Debug\masterleasing.Reports.pdb
+C:\_GitHub\MasterLeasing\Reports\obj\Debug\masterleasing.Reports.dll
+C:\_GitHub\MasterLeasing\Reports\obj\Debug\masterleasing.Reports.pdb
+C:\_GitHub\MasterLeasing\Reports\obj\Debug\MasterLeasing.Reports.csprojResolveAssemblyReference.cache

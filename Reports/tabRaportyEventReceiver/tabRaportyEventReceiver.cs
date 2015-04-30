@@ -84,26 +84,51 @@ namespace Reports.tabRaportyEventReceiver
         {
             try
             {
-                properties.ListItem["colStatus"] = STATUS_AKTYWNY;
-                properties.ListItem.Update();
+                SPListItem item = properties.ListItem;
+                
+                item["colStatus"] = STATUS_AKTYWNY;
+                item.Update();
 
                 //get parameters
                 bool isRaportTestowy = true;
 
-                if (properties.ListItem["colTrybUruchomienia"] != null)
+                if (item["colTrybUruchomienia"] != null)
                 {
-                    if (properties.ListItem["colTrybUruchomienia"].ToString() == "Produkcyjny")
+                    if (item["colTrybUruchomienia"].ToString() == "Produkcyjny")
                     {
                         isRaportTestowy = false;
                     }
                 }
 
+                DateTime targetDate = DateTime.Today;
+
+                if (item["colTargetDate"] != null)
+                {
+                    targetDate = DateTime.Parse(item["colTargetDate"].ToString());
+                }
+
+                string targetEmail = string.Empty ;
+                if (item["colTargetRecepient"]!=null)
+                {
+                    SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["colTargetRecepient"].ToString());
+                    targetEmail = op.User.Email;
+                }
+                if (string.IsNullOrEmpty(targetEmail))
+                {
+                    targetEmail = "jacek.rawiak@hotmail.com";
+                }
+
                 //ArrayList agentsAL = SelectAgents_RaportDzienny(properties);
                 //ArrayList recordsAL = SelectContracts_1Sprawa(properties, agentsAL);
-                ArrayList recordsAL = SelectContracts_RaportDzienny(properties, DateTime.Now.AddDays(-7));
+                ArrayList recordsAL = GetData_RaportDzienny(properties, targetDate);
+                
+                //update tabRaportDzienny
+                Update_tabRaportDzienny(properties, targetDate, recordsAL);
 
                 //przygotuj raport
                 //CreateReport1Sprawa(properties, recordsAL, isRaportTestowy);
+                ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("Raport Dzienny", String.Format("ilość razem: {0}",
+                    recordsAL.Count.ToString()));
 
                 properties.ListItem["colStatus"] = STATUS_ZAKONCZONY;
                 properties.ListItem.Update();
@@ -118,15 +143,356 @@ namespace Reports.tabRaportyEventReceiver
             }
         }
 
-        private ArrayList SelectContracts_RaportDzienny(SPItemEventProperties properties, DateTime targetDate)
+        private void Update_tabRaportDzienny(SPItemEventProperties properties, DateTime targetDate, ArrayList recordsAL)
         {
-            //wybierz posortowane kontrakty w/g daty agenta i daty zgłoszenia
-            StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""Agent_x002e__x003a__Grupa"" /></OrderBy><Where><Eq><FieldRef Name=""Created"" /><Value Type=""DateTime"">___TargetDate___</Value></Eq></Where>");
+            ArrayList totals = new ArrayList();
+
+            //wybierz rekordy dla zadanej daty
+            StringBuilder sb = new StringBuilder(@"<Where><Eq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___TargetDate___</Value></Eq></Where>");
             sb.Replace("___TargetDate___", targetDate.ToShortDateString());
             SPQuery query = new SPQuery();
             query.Query = sb.ToString();
 
-            ArrayList result = new ArrayList();
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabRaportDzienny"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    //usuń istniejące rekordy
+                    if (items.Count>0)
+                    {
+                        for (int i = items.Count-1; i >= 0; i--)
+                        {
+                            items[i].Delete();
+                        }
+                        list.Update();
+
+                    }
+
+                    //dodaj nowe rekordy 
+                    if (recordsAL.Count>0)
+                    {
+                        foreach (var item in recordsAL)
+                        {
+                            SPListItem li = items.Add();
+                            li["colData"] = targetDate.ToShortDateString();
+
+                            string className = item.GetType().Name;
+                            string ct = string.Empty;
+                            switch (className)
+                            {
+                                case "Rekord_RaportDzienny":
+                                    ct = "RaportDzienny";
+                                    Rekord_RaportDzienny o = (Rekord_RaportDzienny)item;
+                                    li["ContentType"]=ct;
+
+                                    li["colNoweWnioski"]=o.NoweWnioski;
+                                    li["colKoszyk"]=o.Koszyk;
+                                    li["colWnioskiZlozoneDanegoDnia"]=o.WnioskiZlozoneDanegoDnia;
+                                    li["colWnioskiWObrobce"] = o.WnioskiWObrobce;
+                                    li["colDecyzjePozytywneDanegoDnia"]=o.DecyzjePozytywneDanegoDnia;
+                                    li["colDecyzjePozytywneWObrobce"]=o.DecyzjePozytywneWObrobce;
+                                    li["colUruchomienia"]=o.Uruchomienia;
+                                    li["colStracone"]=o.Stracone;
+                                    li["colOpoznioneNaEtapieTelemarketin"]=o.OpoznioneNaEtapieTelemarketing;
+                                    li["colOpozioneNaEtapieAkceptacjaOfe"]=o.OpoznioneNaEtapieAkceptacjaOferty;
+                                    break;
+                                case "Rekord_RaportDzienny_Grupa":
+                                    ct = "RaportDzienny.Grupa";
+                                    Rekord_RaportDzienny_Grupa og = (Rekord_RaportDzienny_Grupa)item;
+                                    li["ContentType"]=ct;
+                                    li["colGrupa"] = og.Grupa;
+
+                                    li["colNoweWnioski"]=og.NoweWnioski;
+                                    li["colKoszyk"]=og.Koszyk;
+                                    li["colWnioskiZlozoneDanegoDnia"]=og.WnioskiZlozoneDanegoDnia;
+                                    li["colWnioskiWObrobce"] = og.WnioskiWObrobce;
+                                    li["colDecyzjePozytywneDanegoDnia"]=og.DecyzjePozytywneDanegoDnia;
+                                    li["colDecyzjePozytywneWObrobce"]=og.DecyzjePozytywneWObrobce;
+                                    li["colUruchomienia"]=og.Uruchomienia;
+                                    li["colStracone"]=og.Stracone;
+                                    li["colOpoznioneNaEtapieTelemarketin"]=og.OpoznioneNaEtapieTelemarketing;
+                                    li["colOpozioneNaEtapieAkceptacjaOfe"]=og.OpoznioneNaEtapieAkceptacjaOferty;
+                                    break;
+                                case "Rekord_RaportDzienny_Operator":
+                                    ct = "RaportDzienny.Operator";
+                                    Rekord_RaportDzienny_Operator oo = (Rekord_RaportDzienny_Operator)item;
+                                    li["ContentType"]=ct;
+                                    if (oo.Operator.LookupId>0)
+                                    {
+                                        li["colOperator"] = oo.Operator;
+                                    }
+                                    li["colNoweWnioski"]=oo.NoweWnioski;
+                                    li["colKoszyk"]=oo.Koszyk;
+                                    li["colWnioskiZlozoneDanegoDnia"]=oo.WnioskiZlozoneDanegoDnia;
+                                    li["colWnioskiWObrobce"] = oo.WnioskiWObrobce;
+                                    li["colDecyzjePozytywneDanegoDnia"]=oo.DecyzjePozytywneDanegoDnia;
+                                    li["colDecyzjePozytywneWObrobce"]=oo.DecyzjePozytywneWObrobce;
+                                    li["colUruchomienia"]=oo.Uruchomienia;
+                                    li["colStracone"]=oo.Stracone;
+                                    li["colOpoznioneNaEtapieTelemarketin"]=oo.OpoznioneNaEtapieTelemarketing;
+                                    li["colOpozioneNaEtapieAkceptacjaOfe"]=oo.OpoznioneNaEtapieAkceptacjaOferty;
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            li.Update();
+                        }
+                    }
+
+                }
+            }
+
+   
+        }
+
+        private ArrayList GetData_RaportDzienny(SPItemEventProperties properties, DateTime targetDate)
+        {
+            ArrayList records = new ArrayList();
+            //poniższe raporty korzystają z tabKontrakty
+            Count_RaportDzienny_Nowe(properties, records, targetDate);
+            Count_RaportDzienny_Koszyk(properties, records, targetDate);
+            Count_RaportDzienny_WnioskiAktywne(properties, records, targetDate);
+            Count_RaportDzienny_DecyzjeAktywne(properties, records, targetDate);
+            Count_RaportDzienny_Opoznione_Telemarketing(properties, records, targetDate);
+            Count_RaportDzienny_Opoznione_AkceptacjaOferty(properties, records, targetDate);
+            
+            //Count_RaportDzienny_Netto(properties, records, targetDate);
+
+            //poniższe raporty korzystają z tabZmianyStatusu
+            Count_RaportDzienny_WnioskiZlozone(properties, records, targetDate);//
+            Count_RaportDzienny_DecyzjePozytywne(properties, records, targetDate);
+            Count_RaportDzienny_Uruchomienia(properties, records, targetDate);
+            Count_RaportDzienny_Stracone(properties, records, targetDate);
+
+            return records;
+
+        }
+
+        private void Count_RaportDzienny_Netto(SPItemEventProperties properties, ArrayList records, DateTime targetDate)
+        {
+            ArrayList totals = Select_RaportDzienny_Netto(properties, targetDate);
+
+            foreach (var t in totals)
+            {
+                string className = t.GetType().Name;
+                bool isFound = false;
+
+                switch (className)
+                {
+                    case "Sum_RaportDzienny":
+
+                        Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+                                Rekord_RaportDzienny rr = (Rekord_RaportDzienny)r;
+
+                                if (tt.Data == rr.Data)
+                                {
+                                    rr.UruchomieniaNetto += tt.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny rr = new Rekord_RaportDzienny();
+                            rr.UruchomieniaNetto += tt.LiczbaRekordow;
+                            rr.Data = tt.Data;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Grupa":
+
+                        Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+
+                                Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
+
+                                if (ttg.Data == rr.Data && ttg.Grupa == rr.Grupa)
+                                {
+                                    rr.UruchomieniaNetto += ttg.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Grupa rr = new Rekord_RaportDzienny_Grupa();
+                            rr.UruchomieniaNetto += ttg.LiczbaRekordow;
+                            rr.Data = ttg.Data;
+                            rr.Grupa = ttg.Grupa;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Operator":
+
+                        Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+
+                                Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
+
+                                if (tto.Data == rr.Data && tto.Operator.LookupId == rr.Operator.LookupId)
+                                {
+                                    rr.UruchomieniaNetto += tto.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Operator rr = new Rekord_RaportDzienny_Operator();
+                            rr.UruchomieniaNetto += tto.LiczbaRekordow;
+                            rr.Data = tto.Data;
+                            rr.Operator = tto.Operator;
+                            records.Add(rr);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private ArrayList Select_RaportDzienny_Netto(SPItemEventProperties properties, DateTime targetDate)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Count_RaportDzienny_Opoznione_AkceptacjaOferty(SPItemEventProperties properties, ArrayList records, DateTime targetDate)
+        {
+            ArrayList totals = Select_RaportDzienny_Opoznione_AkceptacjaOferty(properties, targetDate);
+
+            foreach (var t in totals)
+            {
+                string className = t.GetType().Name;
+                bool isFound = false;
+
+                switch (className)
+                {
+                    case "Sum_RaportDzienny":
+
+                        Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+                                Rekord_RaportDzienny rr = (Rekord_RaportDzienny)r;
+
+                                if (tt.Data == rr.Data)
+                                {
+                                    rr.OpoznioneNaEtapieAkceptacjaOferty += tt.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny rr = new Rekord_RaportDzienny();
+                            rr.OpoznioneNaEtapieAkceptacjaOferty += tt.LiczbaRekordow;
+                            rr.Data = tt.Data;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Grupa":
+
+                        Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Grupa")
+                            {
+
+                                Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
+
+                                if (ttg.Data == rr.Data && ttg.Grupa == rr.Grupa)
+                                {
+                                    rr.OpoznioneNaEtapieAkceptacjaOferty += ttg.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Grupa rr = new Rekord_RaportDzienny_Grupa();
+                            rr.OpoznioneNaEtapieAkceptacjaOferty += ttg.LiczbaRekordow;
+                            rr.Data = ttg.Data;
+                            rr.Grupa = ttg.Grupa;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Operator":
+
+                        Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Operator")
+                            {
+
+                                Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
+
+                                if (tto.Data == rr.Data && tto.Operator.LookupId == rr.Operator.LookupId)
+                                {
+                                    rr.OpoznioneNaEtapieAkceptacjaOferty += tto.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Operator rr = new Rekord_RaportDzienny_Operator();
+                            rr.OpoznioneNaEtapieAkceptacjaOferty += tto.LiczbaRekordow;
+                            rr.Data = tto.Data;
+                            rr.Operator = tto.Operator;
+                            records.Add(rr);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private ArrayList Select_RaportDzienny_Opoznione_AkceptacjaOferty(SPItemEventProperties properties, DateTime targetDate)
+        {
+            ArrayList totals = new ArrayList();
+            
+            //status=Oferta, planowany kontakt > "", liczba dni opóźnienia > 0
+            //StringBuilder sb = new StringBuilder(@"<GroupBy Collapse=""TRUE"" GroupLimit=""30""><FieldRef Name=""colStatusLeadu"" /><FieldRef Name=""colOperator"" /></GroupBy><OrderBy><FieldRef Name=""colPartner_x002e_OsobaKontaktowa"" Ascending=""FALSE"" /><FieldRef Name=""colDataNastepnegoKontaktu"" Ascending=""FALSE"" /></OrderBy><Where><And><And><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Oferta</Value></Eq><Gt><FieldRef Name=""colDataNastepnegoKontaktu"" /><Value Type=""DateTime"">1900-01-01T00:00:00Z</Value></Gt></And><Gt><FieldRef Name=""colIloscDniOpoznienia"" /><Value Type=""Number"">0</Value></Gt></And></Where>");
+            
+            //obsługa kontaktu=Akceptacja oferty (kod 19) i ustawiona data kontaktu i opóźnienie > 0
+            StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""ID"" /></OrderBy><Where><And><And><Eq><FieldRef Name=""Obs_x0142_ugaK"" /><Value Type=""WorkflowStatus"">19</Value></Eq><IsNotNull><FieldRef Name=""colDataNastepnegoKontaktu"" /></IsNotNull></And><Gt><FieldRef Name=""colIloscDniOpoznienia"" /><Value Type=""Number"">0</Value></Gt></And></Where>");
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
 
             using (SPSite site = new SPSite(properties.SiteId))
             {
@@ -136,40 +502,1337 @@ namespace Reports.tabRaportyEventReceiver
 
                     SPListItemCollection items = list.GetItems(query);
 
-                    if (items.Count > 0)
-                    {
+                    totals = CountSelected_RaportDzienny(properties, targetDate, items);
 
-                        //wypełnij listę grup
-                        ArrayList grList = new ArrayList();
+                }
+            }
 
-                        foreach (SPListItem item in items)
+            return totals;
+        }
+
+        private void Count_RaportDzienny_Opoznione_Telemarketing(SPItemEventProperties properties, ArrayList records, DateTime targetDate)
+        {
+            ArrayList totals = Select_RaportDzienny_Opoznione_Telemarketing(properties, targetDate);
+
+            foreach (var t in totals)
+            {
+                string className = t.GetType().Name;
+                bool isFound = false;
+
+                switch (className)
+                {
+                    case "Sum_RaportDzienny":
+
+                        Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
+
+                        isFound = false;
+                        foreach (var r in records)
                         {
-                            string gr = string.Empty;
-
-                            if (item["Agent_x002e__x003a__Grupa"] != null)
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
                             {
-                                gr = new SPFieldLookupValue(item["Agent_x002e__x003a__Grupa"] as string).LookupValue;
-                            }
+                                Rekord_RaportDzienny rr = (Rekord_RaportDzienny)r;
 
-                            bool isFound = false;
-                            foreach (string g in grList)
-                            {
-                                if (g == gr)
+                                if (tt.Data == rr.Data)
                                 {
+                                    rr.OpoznioneNaEtapieTelemarketing += tt.LiczbaRekordow;
                                     isFound = true;
                                     break;
                                 }
                             }
-                            if (!isFound)
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny rr = new Rekord_RaportDzienny();
+                            rr.OpoznioneNaEtapieTelemarketing += tt.LiczbaRekordow;
+                            rr.Data = tt.Data;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Grupa":
+
+                        Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Grupa")
                             {
-                                grList.Add(gr);
+
+                                Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
+
+                                if (ttg.Data == rr.Data && ttg.Grupa == rr.Grupa)
+                                {
+                                    rr.OpoznioneNaEtapieTelemarketing += ttg.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Grupa rr = new Rekord_RaportDzienny_Grupa();
+                            rr.OpoznioneNaEtapieTelemarketing += ttg.LiczbaRekordow;
+                            rr.Data = ttg.Data;
+                            rr.Grupa = ttg.Grupa;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Operator":
+
+                        Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Operator")
+                            {
+
+                                Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
+
+                                if (tto.Data == rr.Data && tto.Operator.LookupId == rr.Operator.LookupId)
+                                {
+                                    rr.OpoznioneNaEtapieTelemarketing += tto.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Operator rr = new Rekord_RaportDzienny_Operator();
+                            rr.OpoznioneNaEtapieTelemarketing += tto.LiczbaRekordow;
+                            rr.Data = tto.Data;
+                            rr.Operator = tto.Operator;
+                            records.Add(rr);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private ArrayList Select_RaportDzienny_Opoznione_Telemarketing(SPItemEventProperties properties, DateTime targetDate)
+        {
+            ArrayList totals = new ArrayList();
+
+            //sprawy w statusie telemarketing, niepusta data następnego kontaktu, liczba dni opóźnienia >0
+            StringBuilder sb = new StringBuilder(@"<GroupBy Collapse=""TRUE"" GroupLimit=""30""><FieldRef Name=""colStatusLeadu"" /><FieldRef Name=""colOperator"" /></GroupBy><OrderBy><FieldRef Name=""colPartner_x002e_OsobaKontaktowa"" Ascending=""FALSE"" /><FieldRef Name=""colDataNastepnegoKontaktu"" Ascending=""FALSE"" /></OrderBy><Where><And><And><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Telefon</Value></Eq><Gt><FieldRef Name=""colDataNastepnegoKontaktu"" /><Value Type=""DateTime"">1900-01-01T00:00:00Z</Value></Gt></And><Gt><FieldRef Name=""colIloscDniOpoznienia"" /><Value Type=""Number"">0</Value></Gt></And></Where>");
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabKontrakty"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    totals = CountSelected_RaportDzienny(properties, targetDate, items);
+
+                }
+            }
+
+            return totals;
+        }
+
+        private void Count_RaportDzienny_Stracone(SPItemEventProperties properties, ArrayList records, DateTime targetDate)
+        {
+            ArrayList totals = Select_RaportDzienny_Stracone(properties, targetDate);
+
+            foreach (var t in totals)
+            {
+                string className = t.GetType().Name;
+                bool isFound = false;
+
+                switch (className)
+                {
+                    case "Sum_RaportDzienny":
+
+                        Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+                                Rekord_RaportDzienny rr = (Rekord_RaportDzienny)r;
+
+                                if (tt.Data == rr.Data)
+                                {
+                                    rr.Stracone += tt.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny rr = new Rekord_RaportDzienny();
+                            rr.Stracone += tt.LiczbaRekordow;
+                            rr.Data = tt.Data;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Grupa":
+
+                        Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Grupa")
+                            {
+
+                                Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
+
+                                if (ttg.Data == rr.Data && ttg.Grupa == rr.Grupa)
+                                {
+                                    rr.Stracone += ttg.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Grupa rr = new Rekord_RaportDzienny_Grupa();
+                            rr.Stracone += ttg.LiczbaRekordow;
+                            rr.Data = ttg.Data;
+                            rr.Grupa = ttg.Grupa;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Operator":
+
+                        Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Operator")
+                            {
+
+                                Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
+
+                                if (tto.Data == rr.Data && tto.Operator.LookupId == rr.Operator.LookupId)
+                                {
+                                    rr.Stracone += tto.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Operator rr = new Rekord_RaportDzienny_Operator();
+                            rr.Stracone += tto.LiczbaRekordow;
+                            rr.Data = tto.Data;
+                            rr.Operator = tto.Operator;
+                            records.Add(rr);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private ArrayList Select_RaportDzienny_Stracone(SPItemEventProperties properties, DateTime targetDate)
+        {
+            ArrayList totals = new ArrayList();
+
+            //sprawy aktualnie w statusie wniosek
+            StringBuilder sb = new StringBuilder(@"<Where><And><Eq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___TargetDate___</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Stracony</Value></Eq></And></Where>");
+            sb.Replace("___TargetDate___", targetDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabStatusTracking"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    if (items.Count > 0)
+                    {
+                        ArrayList validKontraktIds = new ArrayList();
+
+                        foreach (SPListItem item in items)
+                        {
+                            Int32 kontraktId = -1;
+                            Int32.TryParse(item["colKontraktId"].ToString(), out kontraktId);
+                            validKontraktIds.Add(kontraktId);
+                        }
+
+                        totals = CountSelected_RaportDzienny(properties, targetDate, validKontraktIds, web.Lists[@"tabKontrakty"].GetItems());
+                    }
+                }
+            }
+
+            return totals;
+        }
+
+        private void Count_RaportDzienny_Uruchomienia(SPItemEventProperties properties, ArrayList records, DateTime targetDate)
+        {
+            ArrayList totals = Select_RaportDzienny_Uruchomienia(properties, targetDate);
+
+            foreach (var t in totals)
+            {
+                string className = t.GetType().Name;
+                bool isFound = false;
+
+                switch (className)
+                {
+                    case "Sum_RaportDzienny":
+
+                        Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+                                Rekord_RaportDzienny rr = (Rekord_RaportDzienny)r;
+
+                                if (tt.Data == rr.Data)
+                                {
+                                    rr.Uruchomienia += tt.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny rr = new Rekord_RaportDzienny();
+                            rr.Uruchomienia += tt.LiczbaRekordow;
+                            rr.Data = tt.Data;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Grupa":
+
+                        Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Grupa")
+                            {
+
+                                Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
+
+                                if (ttg.Data == rr.Data && ttg.Grupa == rr.Grupa)
+                                {
+                                    rr.Uruchomienia += ttg.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Grupa rr = new Rekord_RaportDzienny_Grupa();
+                            rr.Uruchomienia += ttg.LiczbaRekordow;
+                            rr.Data = ttg.Data;
+                            rr.Grupa = ttg.Grupa;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Operator":
+
+                        Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Operator")
+                            {
+
+                                Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
+
+                                if (tto.Data == rr.Data && tto.Operator.LookupId == rr.Operator.LookupId)
+                                {
+                                    rr.Uruchomienia += tto.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Operator rr = new Rekord_RaportDzienny_Operator();
+                            rr.Uruchomienia += tto.LiczbaRekordow;
+                            rr.Data = tto.Data;
+                            rr.Operator = tto.Operator;
+                            records.Add(rr);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private ArrayList Select_RaportDzienny_Uruchomienia(SPItemEventProperties properties, DateTime targetDate)
+        {
+            ArrayList totals = new ArrayList();
+
+            //sprawy aktualnie w statusie wniosek
+            StringBuilder sb = new StringBuilder(@"<Where><And><Eq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___TargetDate___</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Uruchomienie</Value></Eq></And></Where>");
+            sb.Replace("___TargetDate___", targetDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabStatusTracking"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    if (items.Count > 0)
+                    {
+                        ArrayList validKontraktIds = new ArrayList();
+
+                        foreach (SPListItem item in items)
+                        {
+                            Int32 kontraktId = -1;
+                            Int32.TryParse(item["colKontraktId"].ToString(), out kontraktId);
+                            validKontraktIds.Add(kontraktId);
+                        }
+
+                        totals = CountSelected_RaportDzienny(properties, targetDate, validKontraktIds, web.Lists[@"tabKontrakty"].GetItems());
+                    }
+                }
+            }
+
+            return totals;
+        }
+
+        private void Count_RaportDzienny_DecyzjeAktywne(SPItemEventProperties properties, ArrayList records, DateTime targetDate)
+        {
+            ArrayList totals = Select_RaportDzienny_DecyzjeAktywne(properties, targetDate);
+
+            foreach (var t in totals)
+            {
+                string className = t.GetType().Name;
+                bool isFound = false;
+
+                switch (className)
+                {
+                    case "Sum_RaportDzienny":
+
+                        Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+                                Rekord_RaportDzienny rr = (Rekord_RaportDzienny)r;
+
+                                if (tt.Data == rr.Data)
+                                {
+                                    rr.DecyzjePozytywneWObrobce += tt.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny rr = new Rekord_RaportDzienny();
+                            rr.DecyzjePozytywneWObrobce += tt.LiczbaRekordow;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Grupa":
+
+                        Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Grupa")
+                            {
+
+                                Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
+
+                                if (ttg.Data == rr.Data && ttg.Grupa == rr.Grupa)
+                                {
+                                    rr.DecyzjePozytywneWObrobce += ttg.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Grupa rr = new Rekord_RaportDzienny_Grupa();
+                            rr.DecyzjePozytywneWObrobce += ttg.LiczbaRekordow;
+                            rr.Data = ttg.Data;
+                            rr.Grupa = ttg.Grupa;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Operator":
+
+                        Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Operator")
+                            {
+
+                                Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
+
+                                if (tto.Data == rr.Data && tto.Operator.LookupId == rr.Operator.LookupId)
+                                {
+                                    rr.DecyzjePozytywneWObrobce += tto.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Operator rr = new Rekord_RaportDzienny_Operator();
+                            rr.DecyzjePozytywneWObrobce += tto.LiczbaRekordow;
+                            rr.Data = tto.Data;
+                            rr.Operator = tto.Operator;
+                            records.Add(rr);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private ArrayList Select_RaportDzienny_DecyzjeAktywne(SPItemEventProperties properties, DateTime targetDate)
+        {
+            ArrayList totals = new ArrayList();
+
+            //liczba spraw w statusie umowa
+            StringBuilder sb = new StringBuilder(@"<Where><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Umowa</Value></Eq></Where>");
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabKontrakty"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    totals = CountSelected_RaportDzienny(properties, targetDate, items);
+
+                }
+            }
+
+            return totals;
+        }
+
+        private void Count_RaportDzienny_DecyzjePozytywne(SPItemEventProperties properties, ArrayList records, DateTime targetDate)
+        {
+            ArrayList totals = Select_RaportDzienny_DecyzjePozytywne(properties, targetDate);
+
+            foreach (var t in totals)
+            {
+                string className = t.GetType().Name;
+                bool isFound = false;
+
+                switch (className)
+                {
+                    case "Sum_RaportDzienny":
+
+                        Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+                                Rekord_RaportDzienny rr = (Rekord_RaportDzienny)r;
+
+                                if (tt.Data == rr.Data)
+                                {
+                                    rr.DecyzjePozytywneDanegoDnia += tt.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny rr = new Rekord_RaportDzienny();
+                            rr.DecyzjePozytywneDanegoDnia += tt.LiczbaRekordow;
+                            rr.Data = tt.Data;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Grupa":
+
+                        Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Grupa")
+                            {
+
+                                Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
+
+                                if (ttg.Data == rr.Data && ttg.Grupa == rr.Grupa)
+                                {
+                                    rr.DecyzjePozytywneDanegoDnia += ttg.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Grupa rr = new Rekord_RaportDzienny_Grupa();
+                            rr.DecyzjePozytywneDanegoDnia += ttg.LiczbaRekordow;
+                            rr.Data = ttg.Data;
+                            rr.Grupa = ttg.Grupa;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Operator":
+
+                        Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Operator")
+                            {
+
+                                Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
+
+                                if (tto.Data == rr.Data && tto.Operator.LookupId == rr.Operator.LookupId)
+                                {
+                                    rr.DecyzjePozytywneDanegoDnia += tto.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Operator rr = new Rekord_RaportDzienny_Operator();
+                            rr.DecyzjePozytywneDanegoDnia += tto.LiczbaRekordow;
+                            rr.Data = tto.Data;
+                            rr.Operator = tto.Operator;
+                            records.Add(rr);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private ArrayList Select_RaportDzienny_DecyzjePozytywne(SPItemEventProperties properties, DateTime targetDate)
+        {
+            ArrayList totals = new ArrayList();
+
+            //sprawy aktualnie w statusie wniosek
+            StringBuilder sb = new StringBuilder(@"<Where><And><Eq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___TargetDate___</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Umowa</Value></Eq></And></Where>");
+            sb.Replace("___TargetDate___", targetDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabStatusTracking"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    if (items.Count > 0)
+                    {
+                        ArrayList validKontraktIds = new ArrayList();
+
+                        foreach (SPListItem item in items)
+                        {
+                            Int32 kontraktId = -1;
+                            Int32.TryParse(item["colKontraktId"].ToString(), out kontraktId);
+                            validKontraktIds.Add(kontraktId);
+                        }
+
+                        totals = CountSelected_RaportDzienny(properties, targetDate, validKontraktIds, web.Lists[@"tabKontrakty"].GetItems());
+                    }
+                }
+            }
+
+            return totals;
+        }
+
+        private void Count_RaportDzienny_WnioskiAktywne(SPItemEventProperties properties, ArrayList records, DateTime targetDate)
+        {
+            ArrayList totals = Select_RaportDzienny_WnioskiAktywne(properties, targetDate);
+
+            foreach (var t in totals)
+            {
+                string className = t.GetType().Name;
+                bool isFound = false;
+
+                switch (className)
+                {
+                    case "Sum_RaportDzienny":
+
+                        Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+                                Rekord_RaportDzienny rr = (Rekord_RaportDzienny)r;
+
+                                if (tt.Data == rr.Data)
+                                {
+                                    rr.WnioskiWObrobce += tt.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny rr = new Rekord_RaportDzienny();
+                            rr.WnioskiWObrobce += tt.LiczbaRekordow;
+                            rr.Data = tt.Data;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Grupa":
+
+                        Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Grupa")
+                            {
+
+                                Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
+
+                                if (ttg.Data == rr.Data && ttg.Grupa == rr.Grupa)
+                                {
+                                    rr.WnioskiWObrobce += ttg.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Grupa rr = new Rekord_RaportDzienny_Grupa();
+                            rr.WnioskiWObrobce += ttg.LiczbaRekordow;
+                            rr.Data = ttg.Data;
+                            rr.Grupa = ttg.Grupa;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Operator":
+
+                        Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Operator")
+                            {
+
+                                Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
+
+                                if (tto.Data == rr.Data && tto.Operator.LookupId == rr.Operator.LookupId)
+                                {
+                                    rr.WnioskiWObrobce += tto.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Operator rr = new Rekord_RaportDzienny_Operator();
+                            rr.WnioskiWObrobce += tto.LiczbaRekordow;
+                            rr.Data = tto.Data;
+                            rr.Operator = tto.Operator;
+                            records.Add(rr);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private ArrayList Select_RaportDzienny_WnioskiAktywne(SPItemEventProperties properties, DateTime targetDate)
+        {
+            ArrayList totals = new ArrayList();
+
+            //sprawy aktualnie w statusie wniosek
+            StringBuilder sb = new StringBuilder(@"<Where><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Wniosek</Value></Eq></Where>");
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabKontrakty"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    totals = CountSelected_RaportDzienny(properties, targetDate, items);
+
+                }
+            }
+
+            return totals;
+        }
+
+        private void Count_RaportDzienny_WnioskiZlozone(SPItemEventProperties properties, ArrayList records, DateTime targetDate)
+        {
+            ArrayList totals = Select_RaportDzienny_WnioskiZlozone(properties, targetDate);
+
+            foreach (var t in totals)
+            {
+                string className = t.GetType().Name;
+                bool isFound = false;
+
+                switch (className)
+                {
+                    case "Sum_RaportDzienny":
+
+                        Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+                                Rekord_RaportDzienny rr = (Rekord_RaportDzienny)r;
+
+                                if (tt.Data == rr.Data)
+                                {
+                                    rr.WnioskiZlozoneDanegoDnia += tt.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny rr = new Rekord_RaportDzienny();
+                            rr.WnioskiZlozoneDanegoDnia += tt.LiczbaRekordow;
+                            rr.Data = tt.Data;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Grupa":
+
+                        Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Grupa")
+                            {
+
+                                Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
+
+                                if (ttg.Data == rr.Data && ttg.Grupa == rr.Grupa)
+                                {
+                                    rr.WnioskiZlozoneDanegoDnia += ttg.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Grupa rr = new Rekord_RaportDzienny_Grupa();
+                            rr.WnioskiZlozoneDanegoDnia += ttg.LiczbaRekordow;
+                            rr.Data = ttg.Data;
+                            rr.Grupa = ttg.Grupa;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Operator":
+
+                        Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Operator")
+                            {
+
+                                Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
+
+                                if (tto.Data == rr.Data && tto.Operator.LookupId == rr.Operator.LookupId)
+                                {
+                                    rr.WnioskiZlozoneDanegoDnia += tto.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Operator rr = new Rekord_RaportDzienny_Operator();
+                            rr.WnioskiZlozoneDanegoDnia += tto.LiczbaRekordow;
+                            rr.Data = tto.Data;
+                            rr.Operator = tto.Operator;
+                            records.Add(rr);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private ArrayList Select_RaportDzienny_WnioskiZlozone(SPItemEventProperties properties, DateTime targetDate)
+        {
+            ArrayList totals = new ArrayList();
+
+            //sprawy aktualnie w statusie wniosek
+            StringBuilder sb = new StringBuilder(@"<Where><And><Eq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___TargetDate___</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Wniosek</Value></Eq></And></Where>");
+            sb.Replace("___TargetDate___", targetDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabStatusTracking"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    if (items.Count > 0)
+                    {
+                        ArrayList validKontraktIds = new ArrayList();
+
+                        foreach (SPListItem item in items)
+                        {
+                            Int32 kontraktId = -1;
+                            Int32.TryParse(item["colKontraktId"].ToString(), out kontraktId);
+                            validKontraktIds.Add(kontraktId);
+                        }
+
+                        totals = CountSelected_RaportDzienny(properties, targetDate, validKontraktIds, web.Lists[@"tabKontrakty"].GetItems());
+                    }
+                }
+            }
+
+            return totals;
+        }
+
+        
+
+        private SPListItemCollection Select_tabKontrakty_byItemIds(SPWeb web, ArrayList kontraktIdAL)
+        {
+            
+            SPListItemCollection result = null;
+
+            if (kontraktIdAL.Count>0)
+	        {
+                    SPList list = web.Lists[@"tabKontrakty"];
+                    SPListItemCollection items = list.GetItems();
+
+                    for (int i = items.Count-1; i >= 0; i--)
+                    {
+                        bool isFound = false;
+                        foreach (Int32 k in kontraktIdAL)
+                        {
+                            if (items[i].ID==k)
+                            {
+                                isFound = true;
+                                break;
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            items[i].Delete();
+                        }
+                    }
+
+                    result = items;
+                   
+            }
+            
+            return result;
+        }
+
+
+        private void Count_RaportDzienny_Koszyk(SPItemEventProperties properties, ArrayList records, DateTime targetDate)
+        {
+            ArrayList totals = Select_RaportDzienny_Koszyk(properties, targetDate);
+
+            foreach (var t in totals)
+            {
+                string className = t.GetType().Name;
+                bool isFound = false;
+
+                switch (className)
+                {
+                    case "Sum_RaportDzienny":
+
+                        Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+                                Rekord_RaportDzienny rr = (Rekord_RaportDzienny)r;
+
+                                if (tt.Data == rr.Data)
+                                {
+                                    rr.Koszyk += tt.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny rr = new Rekord_RaportDzienny();
+                            rr.Koszyk += tt.LiczbaRekordow;
+                            rr.Data = tt.Data;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Grupa":
+
+                        Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Grupa")
+                            {
+
+                                Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
+
+                                if (ttg.Data == rr.Data && ttg.Grupa == rr.Grupa)
+                                {
+                                    rr.Koszyk += ttg.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Grupa rr = new Rekord_RaportDzienny_Grupa();
+                            rr.Koszyk += ttg.LiczbaRekordow;
+                            rr.Data = ttg.Data;
+                            rr.Grupa = ttg.Grupa;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Operator":
+
+                        Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Operator")
+                            {
+
+                                Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
+
+                                if (tto.Data == rr.Data && tto.Operator.LookupId == rr.Operator.LookupId)
+                                {
+                                    rr.Koszyk += tto.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Operator rr = new Rekord_RaportDzienny_Operator();
+                            rr.Koszyk += tto.LiczbaRekordow;
+                            rr.Data = tto.Data;
+                            rr.Operator = tto.Operator;
+                            records.Add(rr);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private ArrayList Select_RaportDzienny_Koszyk(SPItemEventProperties properties, DateTime targetDate)
+        {
+            ArrayList totals = new ArrayList();
+
+            //sprawy aktualnie w statusie oferta, rozmowa lub telefon
+            StringBuilder sb = new StringBuilder(@"<Where><Or><Or><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Oferta</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Rozmowa</Value></Eq></Or><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Telefon</Value></Eq></Or></Where>");
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabKontrakty"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    totals = CountSelected_RaportDzienny(properties, targetDate, items);
+
+                }
+            }
+
+            return totals;
+        }
+
+        private void Count_RaportDzienny_Nowe(SPItemEventProperties properties, ArrayList records, DateTime targetDate)
+        {
+            ArrayList totals = Select_RaportDzienny_Nowe(properties, targetDate);
+
+            foreach (var t in totals)
+            {
+                string className = t.GetType().Name;
+                bool isFound = false;
+
+                switch (className)
+                {
+                    case "Sum_RaportDzienny":
+                        
+                        Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny")
+                            {
+                                Rekord_RaportDzienny rr = (Rekord_RaportDzienny)r;
+
+                                if (tt.Data == rr.Data)
+                                {
+                                    rr.NoweWnioski += tt.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny rr = new Rekord_RaportDzienny();
+                            rr.NoweWnioski += tt.LiczbaRekordow;
+                            rr.Data = tt.Data;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Grupa":
+                        
+                        Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Grupa")
+                            {
+                                
+                                Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
+
+                                if (ttg.Data == rr.Data && ttg.Grupa==rr.Grupa)
+                                {
+                                    rr.NoweWnioski += ttg.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }                           
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Grupa rr = new Rekord_RaportDzienny_Grupa();
+                            rr.NoweWnioski += ttg.LiczbaRekordow;
+                            rr.Data = ttg.Data;
+                            rr.Grupa = ttg.Grupa;
+                            records.Add(rr);
+                        }
+                        break;
+                    case "Sum_RaportDzienny_Operator":
+                        
+                        Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
+
+                        isFound = false;
+                        foreach (var r in records)
+                        {
+                            if (r.GetType().Name == "Rekord_RaportDzienny_Operator")
+                            {
+                                
+                                Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
+
+                                if (tto.Data == rr.Data && tto.Operator==rr.Operator)
+                                {
+                                    rr.NoweWnioski += tto.LiczbaRekordow;
+                                    isFound = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            Rekord_RaportDzienny_Operator rr = new Rekord_RaportDzienny_Operator();
+                            rr.NoweWnioski += tto.LiczbaRekordow;
+                            rr.Data = tto.Data;
+                            rr.Operator = tto.Operator;
+                            records.Add(rr);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        }
+
+        private static ArrayList Select_RaportDzienny_Nowe(SPItemEventProperties properties, DateTime targetDate)
+        {
+            ArrayList totals = new ArrayList();
+
+            //wybierz posortowane kontrakty w/g daty agenta i daty zgłoszenia
+            StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""Agent_x002e__x003a__Grupa"" /></OrderBy><Where><Eq><FieldRef Name=""Created"" /><Value Type=""DateTime"">___TargetDate___</Value></Eq></Where>");
+            sb.Replace("___TargetDate___", targetDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabKontrakty"];
+
+                    SPListItemCollection items = list.GetItems(query);
+
+                    totals = CountSelected_RaportDzienny(properties, targetDate, items);
+
+                }
+            }
+
+            return totals;
+        }
+
+        private ArrayList CountSelected_RaportDzienny(SPItemEventProperties properties, DateTime targetDate, ArrayList validKontraktIds, SPListItemCollection items)
+        {
+            //dodatkowe filtrowanie w/g validKontaktIds
+
+            ArrayList result = new ArrayList();
+
+            if (items.Count > 0 && validKontraktIds.Count > 0)
+            {
+
+                //wypełnij listę grup
+                ArrayList grList = new ArrayList();
+                FillGroupsList(items, grList, validKontraktIds);
+
+
+                //wypełnij listę operatorów
+                ArrayList opList = new ArrayList();
+                FillOperatorsList(properties, items, opList, validKontraktIds);
+
+                //zliczenia wartości do raportu
+
+                Sum_RaportDzienny r = new Sum_RaportDzienny();
+                r.Data = targetDate;
+                
+                foreach (SPListItem item in items)
+                {
+                    bool isValid = false;
+                    foreach (Int32 k in validKontraktIds)
+                    {
+                        if (item.ID==k)
+                        {
+                            isValid = true;
+                            break;
+                        }
+                    }
+                    if (isValid)
+                    {
+                        r.LiczbaRekordow += 1;    
+                    }
+                }
+
+                foreach (string g in grList)
+                {
+                    Sum_RaportDzienny_Grupa rg = new Sum_RaportDzienny_Grupa();
+                    rg.Data = targetDate;
+                    rg.Grupa = g;
+
+                    foreach (SPListItem item in items)
+                    {
+                        bool isValid = false;
+                        foreach (Int32 k in validKontraktIds)
+                        {
+                            if (item.ID == k)
+                            {
+                                isValid = true;
+                                break;
                             }
                         }
 
+                        if (isValid)
+                        {
+                            if (item["Agent_x002e__x003a__Grupa"] != null)
+                            {
+                                string gr = new SPFieldLookupValue(item["Agent_x002e__x003a__Grupa"] as string).LookupValue;
 
-                        //wypełnij listę operatorów
-                        ArrayList opList = new ArrayList();
-                        foreach (SPListItem item in items)
+                                if (gr == g)
+                                {
+                                    rg.LiczbaRekordow += 1;
+                                }
+                            } 
+                        }
+                    }
+
+                    result.Add(rg);
+                }
+
+                foreach (SPFieldUserValue o in opList)
+                {
+                    Sum_RaportDzienny_Operator ro = new Sum_RaportDzienny_Operator();
+                    ro.Data = targetDate;
+                    ro.Operator = o;
+
+                    foreach (SPListItem item in items)
+                    {
+                        bool isValid = false;
+                        foreach (Int32 k in validKontraktIds)
+                        {
+                            if (item.ID == k)
+                            {
+                                isValid = true;
+                                break;
+                            }
+                        }
+
+                        if (isValid)
                         {
                             SPFieldUserValue op = new SPFieldUserValue();
 
@@ -178,88 +1841,260 @@ namespace Reports.tabRaportyEventReceiver
                                 op = new SPFieldUserValue(properties.Web, item["colOperator"].ToString());
                             }
 
-                            bool isFound = false;
-                            foreach (SPFieldUserValue o in opList)
+                            if (op.LookupId == o.LookupId)
                             {
-                                if (o.LookupId == op.LookupId)
-                                {
-                                    isFound = true;
-                                    break;
-                                }
-                            }
-                            if (!isFound)
-                            {
-                                opList.Add(op);
-                            }
+                                ro.LiczbaRekordow += 1;
+                            } 
                         }
-
-                        //zliczenia wartości do raportu
-
-                        Rekord_RaportDzienny r = new Rekord_RaportDzienny();
-                        r.Data = targetDate;
-                        r.NoweWnioski = items.Count;
-
-                        foreach (string g in grList)
-                        {
-                            Rekord_RaportDzienny_Grupa rg = new Rekord_RaportDzienny_Grupa();
-                            rg.Data = targetDate;
-                            rg.Grupa = g;
-
-                            foreach (SPListItem item in items)
-                            {
-                                if (item["Agent_x002e__x003a__Grupa"] != null)
-                                {
-                                    string gr = new SPFieldLookupValue(item["Agent_x002e__x003a__Grupa"] as string).LookupValue;
-
-                                    if (gr == g)
-                                    {
-                                        rg.NoweWnioski += 1;
-                                    }
-                                }
-                            }
-
-                            result.Add(rg);
-                        }
-
-                        foreach (SPFieldUserValue o in opList)
-                        {
-                            Rekord_RaportDzienny_Operator ro = new Rekord_RaportDzienny_Operator();
-                            ro.Data = targetDate;
-                            ro.Operator = o;
-                            
-                            foreach (SPListItem item in items)
-                            {
-                                SPFieldUserValue op = new SPFieldUserValue();
-
-                                if (item["colOperator"] != null)
-                                {
-                                    op = new SPFieldUserValue(properties.Web, item["colOperator"].ToString());  
-                                }
-
-                                if (op.LookupId == o.LookupId)
-                                {
-                                    ro.NoweWnioski += 1;
-                                }
-                            }
-
-                            result.Add(ro);
-                        }
-
-                        result.Add(r);
-                    }
-                    else
-                    {
-                        // dodaj puste rekordy
-                        Rekord_RaportDzienny r = new Rekord_RaportDzienny();
-                        r.Data = targetDate;
-                        result.Add(r);
                     }
 
+                    result.Add(ro);
                 }
+
+                result.Add(r);
+            }
+            else
+            {
+                // dodaj puste rekordy
+                Sum_RaportDzienny r = new Sum_RaportDzienny();
+                r.Data = targetDate;
+                result.Add(r);
+
+                Sum_RaportDzienny_Grupa rg = new Sum_RaportDzienny_Grupa();
+                rg.Data = targetDate;
+                rg.Grupa = null;
+                result.Add(rg);
+
+                Sum_RaportDzienny_Operator ro = new Sum_RaportDzienny_Operator();
+                ro.Data = targetDate;
+                ro.Operator = null;
             }
 
             return result;
+        }
 
+        private void FillOperatorsList(SPItemEventProperties properties, SPListItemCollection items, ArrayList opList, ArrayList validKontraktIds)
+        {
+            foreach (SPListItem item in items)
+            {
+                bool isValid = false;
+                foreach (Int32 k in validKontraktIds)
+                {
+                    if (item.ID == k)
+                    {
+                        isValid = true;
+                        break;
+                    }
+                }
+
+                if (isValid)
+                {
+                    SPFieldUserValue op = new SPFieldUserValue();
+
+                    if (item["colOperator"] != null)
+                    {
+                        op = new SPFieldUserValue(properties.Web, item["colOperator"].ToString());
+                    }
+
+                    bool isFound = false;
+                    foreach (SPFieldUserValue o in opList)
+                    {
+                        if (o.LookupId == op.LookupId)
+                        {
+                            isFound = true;
+                            break;
+                        }
+                    }
+                    if (!isFound)
+                    {
+                        opList.Add(op);
+                    } 
+                }
+            }
+        }
+
+        private void FillGroupsList(SPListItemCollection items, ArrayList grList, ArrayList validKontraktIds)
+        {
+            foreach (SPListItem item in items)
+            {
+                bool isValid = false;
+                foreach (Int32 k in validKontraktIds)
+                {
+                    if (item.ID==k)
+                    {
+                        isValid = true;
+                        break;
+                    }
+                }
+
+                if (isValid)
+                {
+                    string gr = string.Empty;
+
+                    if (item["Agent_x002e__x003a__Grupa"] != null)
+                    {
+                        gr = new SPFieldLookupValue(item["Agent_x002e__x003a__Grupa"] as string).LookupValue;
+                    }
+
+                    bool isFound = false;
+                    foreach (string g in grList)
+                    {
+                        if (g == gr)
+                        {
+                            isFound = true;
+                            break;
+                        }
+                    }
+                    if (!isFound)
+                    {
+                        grList.Add(gr);
+                    } 
+                }
+            }
+        }
+
+        private static ArrayList CountSelected_RaportDzienny(SPItemEventProperties properties, DateTime targetDate, SPListItemCollection items)
+        {
+            ArrayList result = new ArrayList();
+            
+            if (items.Count > 0)
+            {
+
+                //wypełnij listę grup
+                ArrayList grList = new ArrayList();
+                FillGroupsList(items, grList);
+
+
+                //wypełnij listę operatorów
+                ArrayList opList = new ArrayList();
+                FillOperatorsList(properties, items, opList);
+
+                //zliczenia wartości do raportu
+
+                Sum_RaportDzienny r = new Sum_RaportDzienny();
+                r.Data = targetDate;
+                r.LiczbaRekordow = items.Count;
+
+                foreach (string g in grList)
+                {
+                    Sum_RaportDzienny_Grupa rg = new Sum_RaportDzienny_Grupa();
+                    rg.Data = targetDate;
+                    rg.Grupa = g;
+
+                    foreach (SPListItem item in items)
+                    {
+                        if (item["Agent_x002e__x003a__Grupa"] != null)
+                        {
+                            string gr = new SPFieldLookupValue(item["Agent_x002e__x003a__Grupa"] as string).LookupValue;
+
+                            if (gr == g)
+                            {
+                                rg.LiczbaRekordow += 1;
+                            }
+                        }
+                    }
+
+                    result.Add(rg);
+                }
+
+                foreach (SPFieldUserValue o in opList)
+                {
+                    Sum_RaportDzienny_Operator ro = new Sum_RaportDzienny_Operator();
+                    ro.Data = targetDate;
+                    ro.Operator = o;
+
+                    foreach (SPListItem item in items)
+                    {
+                        SPFieldUserValue op = new SPFieldUserValue();
+
+                        if (item["colOperator"] != null)
+                        {
+                            op = new SPFieldUserValue(properties.Web, item["colOperator"].ToString());
+                        }
+
+                        if (op.LookupId == o.LookupId)
+                        {
+                            ro.LiczbaRekordow += 1;
+                        }
+                    }
+
+                    result.Add(ro);
+                }
+
+                result.Add(r);
+            }
+            else
+            {
+                // dodaj puste rekordy
+                Sum_RaportDzienny r = new Sum_RaportDzienny();
+                r.Data = targetDate;
+                result.Add(r);
+
+                Sum_RaportDzienny_Grupa rg = new Sum_RaportDzienny_Grupa();
+                rg.Data = targetDate;
+                rg.Grupa = null;
+                result.Add(rg);
+
+                Sum_RaportDzienny_Operator ro = new Sum_RaportDzienny_Operator();
+                ro.Data = targetDate;
+                ro.Operator = null;
+            }
+
+            return result;
+        }
+
+        private static void FillOperatorsList(SPItemEventProperties properties, SPListItemCollection items, ArrayList opList)
+        {
+            foreach (SPListItem item in items)
+            {
+                SPFieldUserValue op = new SPFieldUserValue();
+
+                if (item["colOperator"] != null)
+                {
+                    op = new SPFieldUserValue(properties.Web, item["colOperator"].ToString());
+                }
+
+                bool isFound = false;
+                foreach (SPFieldUserValue o in opList)
+                {
+                    if (o.LookupId == op.LookupId)
+                    {
+                        isFound = true;
+                        break;
+                    }
+                }
+                if (!isFound)
+                {
+                    opList.Add(op);
+                }
+            }
+        }
+
+        private static void FillGroupsList(SPListItemCollection items, ArrayList grList)
+        {
+            foreach (SPListItem item in items)
+            {
+                string gr = string.Empty;
+
+                if (item["Agent_x002e__x003a__Grupa"] != null)
+                {
+                    gr = new SPFieldLookupValue(item["Agent_x002e__x003a__Grupa"] as string).LookupValue;
+                }
+
+                bool isFound = false;
+                foreach (string g in grList)
+                {
+                    if (g == gr)
+                    {
+                        isFound = true;
+                        break;
+                    }
+                }
+                if (!isFound)
+                {
+                    grList.Add(gr);
+                }
+            }
         }
 
         private ArrayList SelectAgents_RaportDzienny(SPItemEventProperties properties)

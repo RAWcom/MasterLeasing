@@ -4,6 +4,6 @@
     <Assembly Location="masterleasing.Reports.dll" DeploymentTarget="GlobalAssemblyCache" />
   </Assemblies>
   <FeatureManifests>
-    <FeatureManifest Location="Reports_Feature1\Feature.xml" />
+    <FeatureManifest Location="MasterLeasing.Reports_Feature1\Feature.xml" />
   </FeatureManifests>
 </Solution>

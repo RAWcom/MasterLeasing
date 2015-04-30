@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="c20072e2-3765-4eaa-8fd9-5e8c8c69e0f3" SharePointProductVersion="14.0">
+  <Assemblies>
+    <Assembly Location="masterleasing.RaportDziennyTimerJob.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="MasterLeasing.RaportDziennyTimerJob_RaportDziennyTimerJobFeature\Feature.xml" />
+  </FeatureManifests>
+</Solution>
