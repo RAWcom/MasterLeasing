@@ -71,7 +71,7 @@ namespace Reports.tabRaportyEventReceiver
                         Create_RaportHandlowca(properties);
                         break;
                     default:
-                        properties.ListItem["colStatus"] = STATUS_ANULOWANY;
+                        properties.ListItem["colStatus"] = STATUS_ZAKONCZONY;
                         properties.ListItem.Update();
                         break;
                 }
@@ -133,7 +133,7 @@ namespace Reports.tabRaportyEventReceiver
                 DateTime baseDate = startDate.AddDays(-1);
                 SPListItem baseRecord = Select_tabRaportDzienny_BaseRecord(properties, baseDate);
 
-                CreateReportDzienny(properties, baseRecord, records, isRaportTestowy);
+                CreateReportDzienny(properties, baseRecord, records, isRaportTestowy, startDate, endDate);
 
                 ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("Raport Dzienny", String.Format("ilość razem: {0}",
                     recordsAL.Count.ToString()));
@@ -151,12 +151,12 @@ namespace Reports.tabRaportyEventReceiver
             }
         }
 
-        private void CreateReportDzienny(SPItemEventProperties properties, SPListItem baseRecord, SPListItemCollection records, bool isRaportTestowy)
+        private void CreateReportDzienny(SPItemEventProperties properties, SPListItem baseRecord, SPListItemCollection records, bool isRaportTestowy,DateTime startDate, DateTime endDate)
         {
             MailMsg msg = new MailMsg();
             SPListItem item = properties.ListItem;
 
-            string s = "Raport Dzienny Zbiorczy";
+            string s = String.Format(@"Raport Dzienny Zbiorczy za okres {0}..{1}",startDate.ToShortDateString(), endDate.ToShortDateString());
 
             //To = bieżący użytkownik
             if (item["Author"] != null)
@@ -204,8 +204,10 @@ namespace Reports.tabRaportyEventReceiver
 	text-align: left;
 }
 </style>
-</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport Dzienny</h3><ul><li class=""auto-style2"">Zestawienie zbiorcze aktywności związanych z obsugą wniosków leasingowych w ramach miesiąca</li></ul></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">&nbsp;</td><td class=""style2"">Nowe</td><td class=""style2"">Koszyk</td><td class=""style2"">Wnioski złożone danego dnia</td><td class=""style2"">Wnioski w obróbce</td><td class=""style2"">Decyzje pozytywne danego dnia</td><td class=""style2"">Decyzje pozytywne w obróbce</td><td class=""style2"">Uruchomienia</td><td class=""style2"">Stracone</td><td class=""style2"">Opóźnione na etapie Telemarketing</td><td class=""style2"">Opónione na etapie Akceptcja oferty</td><td class=""style2"">Uruchomienia netto</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport Dzienny</h3><ul><li class=""auto-style2"">Zestawienie zbiorcze aktywności związanych z obsugą wniosków leasingowych w ramach miesiąca</li></ul></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">___Okres___</td><td class=""style2"">Nowe</td><td class=""style2"">Koszyk</td><td class=""style2"">Wnioski złożone danego dnia</td><td class=""style2"">Wnioski w obróbce</td><td class=""style2"">Decyzje pozytywne danego dnia</td><td class=""style2"">Decyzje pozytywne w obróbce</td><td class=""style2"">Uruchomienia</td><td class=""style2"">Stracone</td><td class=""style2"">Opóźnione na etapie Telemarketing</td><td class=""style2"">Opónione na etapie Akceptcja oferty</td><td class=""style2"">Uruchomienia netto</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
 </table></body>");
+
+            sb.Replace("___Okres___", startDate.ToString("yyyy-MM"));
 
             //TBody
 
@@ -216,6 +218,13 @@ namespace Reports.tabRaportyEventReceiver
                 string groupHeader = string.Empty;
 
                 string groupHeaderBackgroundColor = @"style=""background:#CCCCCC"""; //szary
+
+                //parametry do podsumowania
+                int total_nowe = 0;
+                int total_wz = 0;
+                int total_dp = 0;
+                int total_u = 0;
+                int total_s = 0;
 
                 foreach (SPListItem r in records)
                 {
@@ -288,6 +297,27 @@ namespace Reports.tabRaportyEventReceiver
                         groupHeader = newGroupHeader;
                     }
 
+                    if (r["colNoweWnioski"] != null)
+                    {
+                        total_nowe += (int)Decimal.Parse(r["colNoweWnioski"].ToString());
+                    }
+                    if (r["colWnioskiZlozoneDanegoDnia"] != null)
+                    {
+                        total_wz += (int)Decimal.Parse(r["colWnioskiZlozoneDanegoDnia"].ToString());
+                    }
+                    if (r["colDecyzjePozytywneDanegoDnia"] != null)
+                    {
+                        total_dp += (int)Decimal.Parse(r["colDecyzjePozytywneDanegoDnia"].ToString());
+                    }
+                    if (r["colUruchomienia"] != null)
+                    {
+                        total_u += (int)Decimal.Parse(r["colUruchomienia"].ToString());
+                    }
+                    if (r["colStracone"] != null)
+                    {
+                        total_s += (int)Decimal.Parse(r["colStracone"].ToString());
+                    }
+
                     string backgroundColor = string.Empty;
                     //if (r.Status == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
                     //if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
@@ -310,7 +340,7 @@ namespace Reports.tabRaportyEventReceiver
                                                     <td class=""style2"" align=""center"">{12}</td>
         			                            </tr>",
                             backgroundColor,
-                            ((DateTime)r["colData"]).ToShortDateString(),
+                            ((DateTime)r["colData"]).ToString("MM-dd"),
                             r["colNoweWnioski"].ToString(),
                             r["colKoszyk"].ToString(),
                             r["colWnioskiZlozoneDanegoDnia"].ToString(),
@@ -324,6 +354,36 @@ namespace Reports.tabRaportyEventReceiver
                             r["colUruchomieniaNetto"].ToString()));
 
                 }
+
+                //podsumowanie raportu
+                sb0.Append(String.Format(@"<tr {0} valign=""top"">
+        				                            <td class=""style2"">{1}</td>
+        				                            <td class=""style2"" align=""center"">{2}</td>
+        				                            <td class=""style2"" align=""center"">{3}</td>
+        				                            <td class=""style2"" align=""center"">{4}</td>
+        				                            <td class=""style2"" align=""center"">{5}</td>
+        				                            <td class=""style2"" align=""center"">{6}</td>
+                                                    <td class=""style2"" align=""center"">{7}</td>
+        				                            <td class=""style2"" align=""center"">{8}</td>
+        				                            <td class=""style2"" align=""center"">{9}</td>
+                                                    <td class=""style2"" align=""center"">{10}</td>
+                                                    <td class=""style2"" align=""center"">{11}</td>
+                                                    <td class=""style2"" align=""center"">{12}</td>
+        			                            </tr>",
+                                groupHeaderBackgroundColor,
+                                "RAZEM:",
+                                total_nowe.ToString(),
+                                "",
+                                total_wz.ToString(),
+                                "",
+                                total_dp.ToString(),
+                                "",
+                                total_u.ToString(),
+                                total_s.ToString(),
+                                "",
+                                "",
+                                ""));
+                
             }
 
             sb.Replace(@"***TBody***", sb0.ToString());

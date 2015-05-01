@@ -2,3 +2,4 @@ C:\_GitHub\MasterLeasing\RaportDziennyTimerJob\bin\Debug\masterleasing.RaportDzi
 C:\_GitHub\MasterLeasing\RaportDziennyTimerJob\bin\Debug\masterleasing.RaportDziennyTimerJob.pdb
 C:\_GitHub\MasterLeasing\RaportDziennyTimerJob\obj\Debug\masterleasing.RaportDziennyTimerJob.dll
 C:\_GitHub\MasterLeasing\RaportDziennyTimerJob\obj\Debug\masterleasing.RaportDziennyTimerJob.pdb
+C:\_GitHub\MasterLeasing\RaportDziennyTimerJob\obj\Debug\MasterLeasing.RaportDziennyTimerJob.csprojResolveAssemblyReference.cache

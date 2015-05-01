@@ -53,13 +53,16 @@
   <ItemGroup>
     <Compile Include="Features\RaportDziennyTimerJobFeature\RaportDziennyTimerJobFeature.EventReceiver.cs">
       <DependentUpon>RaportDziennyTimerJobFeature.feature</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PowiadomienieTimerJob.cs" />
+    <Compile Include="PowiadomienieTimerJob.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Features\RaportDziennyTimerJobFeature\RaportDziennyTimerJobFeature.feature">
-      <FeatureId>{293d56cb-35e8-4082-b5a5-7cfc09618f68}</FeatureId>
+      <FeatureId>{46559a30-3586-47f1-b92f-0ec2afe61200}</FeatureId>
     </None>
     <None Include="key.snk" />
     <None Include="Package\Package.package">
@@ -69,7 +72,6 @@
       <DependentUpon>Package.package</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Features\RaportDziennyTimerJobFeature\RaportDziennyTimerJobFeature.Template.xml">
       <DependentUpon>RaportDziennyTimerJobFeature.feature</DependentUpon>
