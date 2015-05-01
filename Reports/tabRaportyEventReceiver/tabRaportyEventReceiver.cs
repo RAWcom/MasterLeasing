@@ -118,15 +118,23 @@ namespace Reports.tabRaportyEventReceiver
                     targetEmail = "jacek.rawiak@hotmail.com";
                 }
 
-                //ArrayList agentsAL = SelectAgents_RaportDzienny(properties);
-                //ArrayList recordsAL = SelectContracts_1Sprawa(properties, agentsAL);
                 ArrayList recordsAL = GetData_RaportDzienny(properties, targetDate);
                 
                 //update tabRaportDzienny
                 Update_tabRaportDzienny(properties, targetDate, recordsAL);
+                Update_tabRaportDzienny_ZmianaNetto(properties, targetDate);
 
                 //przygotuj raport
-                //CreateReport1Sprawa(properties, recordsAL, isRaportTestowy);
+                
+                DateTime startDate = new DateTime(targetDate.Year,targetDate.Month, 1);
+                DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+                SPListItemCollection records = Select_tabRaportDziennyByDateRange(properties, startDate, endDate);
+
+                DateTime baseDate = startDate.AddDays(-1);
+                SPListItem baseRecord = Select_tabRaportDzienny_BaseRecord(properties, baseDate);
+
+                CreateReportDzienny(properties, baseRecord, records, isRaportTestowy);
+
                 ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("Raport Dzienny", String.Format("ilość razem: {0}",
                     recordsAL.Count.ToString()));
 
@@ -141,6 +149,316 @@ namespace Reports.tabRaportyEventReceiver
                 properties.ListItem.Update();
                 string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny", ex.ToString());
             }
+        }
+
+        private void CreateReportDzienny(SPItemEventProperties properties, SPListItem baseRecord, SPListItemCollection records, bool isRaportTestowy)
+        {
+            MailMsg msg = new MailMsg();
+            SPListItem item = properties.ListItem;
+
+            string s = "Raport Dzienny Zbiorczy";
+
+            //To = bieżący użytkownik
+            if (item["Author"] != null)
+            {
+                SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["Author"].ToString());
+                msg.To = op.User.Email;
+            }
+            //SPUser currentUser = properties.Web.SiteUsers.GetByID(properties.CurrentUserId);
+            //msg.To = currentUser.Email;
+
+            //Cc, Subject
+            if (!s.StartsWith(":: "))
+            {
+                s = ":: " + s;
+            }
+
+            if (isRaportTestowy)
+            {
+                msg.Cc = string.Empty;
+                msg.Subject = ":: TESTOWY " + s;
+
+            }
+            else
+            {
+                msg.Cc = GetManagingPartnersEmails(properties);
+                //msg.Cc = "biuro@rawcom24.pl";
+                msg.Subject = s;
+            }
+
+
+            //Body
+
+            StringBuilder sb = new StringBuilder(@"<head><style type=""text/css"">
+.style1 {
+	border-style: solid;
+	border-width: 0px;
+}
+.style2 {
+	border-style: solid;
+	border-width: 1px;
+}
+.auto-style2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	text-align: left;
+}
+</style>
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport Dzienny</h3><ul><li class=""auto-style2"">Zestawienie zbiorcze aktywności związanych z obsugą wniosków leasingowych w ramach miesiąca</li></ul></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">&nbsp;</td><td class=""style2"">Nowe</td><td class=""style2"">Koszyk</td><td class=""style2"">Wnioski złożone danego dnia</td><td class=""style2"">Wnioski w obróbce</td><td class=""style2"">Decyzje pozytywne danego dnia</td><td class=""style2"">Decyzje pozytywne w obróbce</td><td class=""style2"">Uruchomienia</td><td class=""style2"">Stracone</td><td class=""style2"">Opóźnione na etapie Telemarketing</td><td class=""style2"">Opónione na etapie Akceptcja oferty</td><td class=""style2"">Uruchomienia netto</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+</table></body>");
+
+            //TBody
+
+            StringBuilder sb0 = new StringBuilder();
+
+            if (records.Count > 0)
+            {
+                string groupHeader = string.Empty;
+
+                string groupHeaderBackgroundColor = @"style=""background:#CCCCCC"""; //szary
+
+                foreach (SPListItem r in records)
+                {
+
+                    string newGroupHeader = "Bilans otwarcia";
+                    if (newGroupHeader != groupHeader)
+                    {
+                        if (baseRecord != null)
+                        {
+
+                            sb0.Append(String.Format(@"<tr {0} valign=""top"">
+        				                            <td class=""style2"">{1}</td>
+        				                            <td class=""style2"" align=""center"">{2}</td>
+        				                            <td class=""style2"" align=""center"">{3}</td>
+        				                            <td class=""style2"" align=""center"">{4}</td>
+        				                            <td class=""style2"" align=""center"">{5}</td>
+        				                            <td class=""style2"" align=""center"">{6}</td>
+                                                    <td class=""style2"" align=""center"">{7}</td>
+        				                            <td class=""style2"" align=""center"">{8}</td>
+        				                            <td class=""style2"" align=""center"">{9}</td>
+                                                    <td class=""style2"" align=""center"">{10}</td>
+                                                    <td class=""style2"" align=""center"">{11}</td>
+                                                    <td class=""style2"" align=""center"">{12}</td>
+        			                            </tr>",
+                                groupHeaderBackgroundColor,
+                                @"Bilans otwarcia",
+                                baseRecord["colNoweWnioski"].ToString(),
+                                baseRecord["colKoszyk"].ToString(),
+                                baseRecord["colWnioskiZlozoneDanegoDnia"].ToString(),
+                                baseRecord["colWnioskiWObrobce"].ToString(),
+                                baseRecord["colDecyzjePozytywneDanegoDnia"].ToString(),
+                                baseRecord["colDecyzjePozytywneWObrobce"].ToString(),
+                                baseRecord["colUruchomienia"].ToString(),
+                                baseRecord["colStracone"].ToString(),
+                                baseRecord["colOpoznioneNaEtapieTelemarketin"].ToString(),
+                                baseRecord["colOpozioneNaEtapieAkceptacjaOfe"].ToString(),
+                                baseRecord["colUruchomieniaNetto"].ToString()));
+                        }
+                        else
+                        {
+                            sb0.Append(String.Format(@"<tr {0} valign=""top"">
+        				                            <td class=""style2"">{1}</td>
+        				                            <td class=""style2"" align=""center"">{2}</td>
+        				                            <td class=""style2"" align=""center"">{3}</td>
+        				                            <td class=""style2"" align=""center"">{4}</td>
+        				                            <td class=""style2"" align=""center"">{5}</td>
+        				                            <td class=""style2"" align=""center"">{6}</td>
+                                                    <td class=""style2"" align=""center"">{7}</td>
+        				                            <td class=""style2"" align=""center"">{8}</td>
+        				                            <td class=""style2"" align=""center"">{9}</td>
+                                                    <td class=""style2"" align=""center"">{10}</td>
+                                                    <td class=""style2"" align=""center"">{11}</td>
+                                                    <td class=""style2"" align=""center"">{12}</td>
+        			                            </tr>",
+                                groupHeaderBackgroundColor,
+                                @"Bilans otwarcia",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                ""));
+                        }
+
+                        groupHeader = newGroupHeader;
+                    }
+
+                    string backgroundColor = string.Empty;
+                    //if (r.Status == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
+                    //if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                    //if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                    //if (r.DataZgloszenia == DateTime.MinValue) backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
+
+                    
+                    sb0.Append(String.Format(@"<tr {0} valign=""top"">
+        				                            <td class=""style2"">{1}</td>
+        				                            <td class=""style2"" align=""center"">{2}</td>
+        				                            <td class=""style2"" align=""center"">{3}</td>
+        				                            <td class=""style2"" align=""center"">{4}</td>
+        				                            <td class=""style2"" align=""center"">{5}</td>
+        				                            <td class=""style2"" align=""center"">{6}</td>
+                                                    <td class=""style2"" align=""center"">{7}</td>
+        				                            <td class=""style2"" align=""center"">{8}</td>
+        				                            <td class=""style2"" align=""center"">{9}</td>
+                                                    <td class=""style2"" align=""center"">{10}</td>
+                                                    <td class=""style2"" align=""center"">{11}</td>
+                                                    <td class=""style2"" align=""center"">{12}</td>
+        			                            </tr>",
+                            backgroundColor,
+                            ((DateTime)r["colData"]).ToShortDateString(),
+                            r["colNoweWnioski"].ToString(),
+                            r["colKoszyk"].ToString(),
+                            r["colWnioskiZlozoneDanegoDnia"].ToString(),
+                            r["colWnioskiWObrobce"].ToString(),
+                            r["colDecyzjePozytywneDanegoDnia"].ToString(),
+                            r["colDecyzjePozytywneWObrobce"].ToString(),
+                            r["colUruchomienia"].ToString(),
+                            r["colStracone"].ToString(),
+                            r["colOpoznioneNaEtapieTelemarketin"].ToString(),
+                            r["colOpozioneNaEtapieAkceptacjaOfe"].ToString(),
+                            r["colUruchomieniaNetto"].ToString()));
+
+                }
+            }
+
+            sb.Replace(@"***TBody***", sb0.ToString());
+
+            //legenda
+            //sb.Append(@"<table style=""width: 680px""><tbody><tr><td colspan=""2"" style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><strong>Legenda</strong></td></tr><tr valign=""top""><td style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozmowa - wniosek w trakcie weryfikacji telefonicznej</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Oferta - przygotwanie i decyzja Klienta w sprawie oferty</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Wniosek - oferta zaakceptowana, przygotowanie i decyzja Banku w sprawie przyznania środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Umowa - wniosek zaaprobowany przez Bank, przygotowanie i akceptacja umowy przez Klienta</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Uruchomienie - umowa zaakceptowana, uruchomienie środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozliczenie - środki uruchomione, kontrakt do rozliczenie prowizji</li></ul></td><td><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Stracony - wniosek stracony, klient nie zaakceptował oferty lub odstąpił od kontraktu z innych przyczyn</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Telefon - zaplanowany kontakt z Klientem w późniejszym terminie</li></ul></td></tr></tbody></table>");
+
+            msg.Body = sb.ToString();
+
+            //wyślij raport mailem
+
+            SendMail(properties, msg);
+        }
+
+        private string Format_Number(double n)
+        {
+            string result = "0";
+
+            if (n!=null)
+            {
+                Int32 number = 0;
+                Int32.TryParse(n.ToString(), out number);
+                if (number > 0)
+                {
+                    result = number.ToString();
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Aktualizuje parametr zmiana netto w raporcie zbiorczym ct=RaportDzienny dla miesiąca w którym przypada targetDate
+        /// Bilans otwarcia brany jest z poprzedniego miesiąca
+        /// </summary>
+        /// <param name="properties"></param>
+        /// <param name="targetDate"></param>
+        private void Update_tabRaportDzienny_ZmianaNetto(SPItemEventProperties properties, DateTime targetDate)
+        {
+            DateTime startDate = new DateTime(targetDate.Year, targetDate.Month, 1);
+            DateTime tempDate = startDate.AddMonths(1);
+            DateTime endDate = new DateTime(tempDate.Year, tempDate.Month, 1).AddDays(-1);
+
+            DateTime baseDate = startDate.AddDays(-1);
+
+            SPListItem baseRecord = Select_tabRaportDzienny_BaseRecord(properties, baseDate);
+            SPListItemCollection records = Select_tabRaportDziennyByDateRange(properties, startDate, endDate);
+
+            int baseValue = 0;
+            if (baseRecord!=null)
+            {
+                if (baseRecord["colDecyzjePozytywneWObrobce"]!=null)
+                {
+                    Int32.TryParse(baseRecord["colDecyzjePozytywneWObrobce"].ToString(), out baseValue);
+                }
+                
+            }
+
+            Int32 v_Uruchominia_RunninSum = 0;
+
+            foreach (SPListItem r in records)
+            {
+                Int32 v_DecyzjePozytywneWObrobce = 0;
+                if (r["colDecyzjePozytywneWObrobce"]!=null)
+                {
+                    Int32.TryParse(r["colDecyzjePozytywneWObrobce"].ToString(), out v_DecyzjePozytywneWObrobce);
+                }
+                
+                
+                Int32 v_Uruchomienia = 0;
+                if (r["colUruchomienia"]!=null)
+                {
+                    Int32.TryParse(r["colUruchomienia"].ToString(), out v_Uruchomienia);
+                }
+
+                v_Uruchominia_RunninSum += v_Uruchomienia;
+
+                Int32 targetValue = v_Uruchominia_RunninSum + v_DecyzjePozytywneWObrobce - baseValue;
+
+                r["colUruchomieniaNetto"] = targetValue;
+                r.Update();
+            }
+        }
+
+        private SPListItem Select_tabRaportDzienny_BaseRecord(SPItemEventProperties properties, DateTime baseDate)
+        {
+            SPListItem result = null;
+
+            //wybierz rekordy dla Date <= baseDate, posortowane malejąco w/g daty (pierwszy rekord najbardziej adekwatny)
+            StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colData"" Ascending=""FALSE"" /></OrderBy><Where><And><Eq><FieldRef Name=""ContentType"" /><Value Type=""Computed"">RaportDzienny</Value></Eq><Leq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___BaseDate___</Value></Leq></And></Where>");
+            sb.Replace("___BaseDate___", baseDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabRaportDzienny"];
+
+                    SPListItemCollection items = list.GetItems(query);
+                    if (items.Count>0)
+                    {
+                        result = items[0];
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private SPListItemCollection Select_tabRaportDziennyByDateRange(SPItemEventProperties properties, DateTime startDate, DateTime endDate)
+        {
+            SPListItemCollection result = null;
+            
+            //wybierz rekordy dla zadanej daty
+            StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colData"" /></OrderBy><Where><And><And><Eq><FieldRef Name=""ContentType"" /><Value Type=""Computed"">RaportDzienny</Value></Eq><Geq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___StartDate___</Value></Geq></And><Leq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___EndDate___</Value></Leq></And></Where>");
+            sb.Replace("___StartDate___", startDate.ToShortDateString());
+            sb.Replace("___EndDate___", endDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabRaportDzienny"];
+
+                    SPListItemCollection items = list.GetItems(query);
+                    result = items;
+
+                }
+            }
+
+            return result;
         }
 
         private void Update_tabRaportDzienny(SPItemEventProperties properties, DateTime targetDate, ArrayList recordsAL)
