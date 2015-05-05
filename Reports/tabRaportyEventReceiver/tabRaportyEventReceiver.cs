@@ -186,6 +186,18 @@ namespace Reports.tabRaportyEventReceiver
                                     records = Select_tabRaportDzienny_OperatorzyByDateRange(properties, startDate, endDate);
                                     baseRecords = Select_tabRaportDzienny_Operatorzy_BaseRecords(properties, baseDate);
 
+                                    try
+                                    {
+                                        EmailReportDzienny_Operatorzy(properties, baseRecords, records, isRaportTestowy, startDate, endDate);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        properties.ListItem["colMEMO"] = ex.ToString();
+                                        properties.ListItem["colStatus"] = STATUS_ANULOWANY;
+                                        properties.ListItem.Update();
+                                        string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny - na operatorów", ex.ToString());
+                                    }
+
                                     break;
                                 default:
                                     throw new NotImplementedException(string.Format(@"Opcja wyboru: {0} nie jest obsługiwana", opcje[i].ToString()));
@@ -212,6 +224,364 @@ namespace Reports.tabRaportyEventReceiver
                 properties.ListItem.Update();
                 string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny", ex.ToString());
             }
+        }
+
+        private void EmailReportDzienny_Operatorzy(SPItemEventProperties properties, SPListItemCollection baseRecords, SPListItemCollection records, bool isRaportTestowy, DateTime startDate, DateTime endDate)
+        {
+            MailMsg msg = new MailMsg();
+            SPListItem item = properties.ListItem;
+
+            string s = String.Format(@"Raport Dzienny na Operatorów za okres {0}..{1}", startDate.ToShortDateString(), endDate.ToShortDateString());
+
+            //To = bieżący użytkownik
+            if (item["Author"] != null)
+            {
+                SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["Author"].ToString());
+                msg.To = op.User.Email;
+            }
+            //SPUser currentUser = properties.Web.SiteUsers.GetByID(properties.CurrentUserId);
+            //msg.To = currentUser.Email;
+
+            //Cc, Subject
+            if (!s.StartsWith(":: "))
+            {
+                s = ":: " + s;
+            }
+
+            if (isRaportTestowy)
+            {
+                msg.Cc = string.Empty;
+                msg.Subject = ":: TESTOWY " + s;
+
+            }
+            else
+            {
+                msg.Cc = GetManagingPartnersEmails(properties);
+                //msg.Cc = "biuro@rawcom24.pl";
+                msg.Subject = s;
+            }
+
+
+            //Body
+
+            StringBuilder sb = new StringBuilder(@"<head><style type=""text/css"">
+.style1 {
+	border-style: solid;
+	border-width: 0px;
+}
+.style2 {
+	border-style: solid;
+	border-width: 1px;
+}
+.auto-style2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	text-align: left;
+}
+</style>
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport Dzienny na Operatorów</h3><ul><li class=""auto-style2"">Zestawienie zbiorcze aktywności związanych z obsugą wniosków leasingowych w ramach miesiąca</li></ul></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">___Okres___</td><td class=""style2"">Nowe</td><td class=""style2"">Koszyk</td><td class=""style2"">Wnioski złożone danego dnia</td><td class=""style2"">Wnioski w obróbce</td><td class=""style2"">Decyzje pozytywne danego dnia</td><td class=""style2"">Decyzje pozytywne w obróbce</td><td class=""style2"">Uruchomienia</td><td class=""style2"">Stracone</td><td class=""style2"">Opóźnione na etapie Telemarketing</td><td class=""style2"">Opónione na etapie Akceptcja oferty</td><td class=""style2"">Netto</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+</table></body>");
+
+            sb.Replace("___Okres___", startDate.ToString("yyyy-MM"));
+
+            ArrayList agregator = new ArrayList();
+
+            if (records.Count > 0)
+            {
+                agregator = GetOperatorzy(properties.Web, records);
+
+            };
+
+            //TBody
+
+
+
+            StringBuilder sb0 = new StringBuilder();
+
+            for (int i = 0; i < agregator.Count; i++)
+            {
+                string gr = agregator[i].ToString();
+
+                string groupHeader = gr;
+
+                int _bo_dpwo = 0;
+                int total_netto = 0;
+
+                if (records.Count > 0)
+                {
+                    string groupHeaderBackgroundColor = @"style=""background:#CCCCCC"""; //szary
+
+                    SPListItem baseRecord = GetOperatorBaseRecord(properties.Web, baseRecords, gr);
+
+                    string newGroupHeader = "Bilans otwarcia";
+                    if (newGroupHeader != groupHeader)
+                    {
+                        _bo_dpwo = 0;
+                        total_netto = 0;
+
+                        //nagłówek grupy
+                        string backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
+                        sb0.Append(String.Format(@"<tr {0} valign=""top""><td class=""style2"" colspan=12>{1}</td></tr>",
+                            backgroundColor,
+                            String.Format(@"Operator: {0}", groupHeader)));
+
+                        if (baseRecord != null)
+                        {
+
+
+                            sb0.Append(String.Format(@"<tr {0} valign=""top"">
+                            				                            <td class=""style2"">{1}</td>
+                            				                            <td class=""style2"" align=""center"">{2}</td>
+                            				                            <td class=""style2"" align=""center"">{3}</td>
+                            				                            <td class=""style2"" align=""center"">{4}</td>
+                            				                            <td class=""style2"" align=""center"">{5}</td>
+                            				                            <td class=""style2"" align=""center"">{6}</td>
+                                                                        <td class=""style2"" align=""center"">{7}</td>
+                            				                            <td class=""style2"" align=""center"">{8}</td>
+                            				                            <td class=""style2"" align=""center"">{9}</td>
+                                                                        <td class=""style2"" align=""center"">{10}</td>
+                                                                        <td class=""style2"" align=""center"">{11}</td>
+                                                                        <td class=""style2"" align=""center"">{12}</td>
+                            			                            </tr>",
+                                groupHeaderBackgroundColor,
+                                @"Bilans otwarcia",
+                                GetStringValue(baseRecord["colNoweWnioski"]),
+                                GetStringValue(baseRecord["colKoszyk"]),
+                                GetStringValue(baseRecord["colWnioskiZlozoneDanegoDnia"]),
+                                GetStringValue(baseRecord["colWnioskiWObrobce"]),
+                                GetStringValue(baseRecord["colDecyzjePozytywneDanegoDnia"]),
+                                GetStringValue(baseRecord["colDecyzjePozytywneWObrobce"]),
+                                GetStringValue(baseRecord["colUruchomienia"]),
+                                GetStringValue(baseRecord["colStracone"]),
+                                GetStringValue(baseRecord["colOpoznioneNaEtapieTelemarketin"]),
+                                GetStringValue(baseRecord["colOpozioneNaEtapieAkceptacjaOfe"]),
+                                GetStringValue(baseRecord["colUruchomieniaNetto"])));
+
+                            if (baseRecord["colDecyzjePozytywneWObrobce"] != null)
+                            {
+                                _bo_dpwo = (int)Decimal.Parse(baseRecord["colDecyzjePozytywneWObrobce"].ToString());
+                            }
+
+                        }
+                        else
+                        {
+                            sb0.Append(String.Format(@"<tr {0} valign=""top"">
+                            				                            <td class=""style2"">{1}</td>
+                            				                            <td class=""style2"" align=""center"">{2}</td>
+                            				                            <td class=""style2"" align=""center"">{3}</td>
+                            				                            <td class=""style2"" align=""center"">{4}</td>
+                            				                            <td class=""style2"" align=""center"">{5}</td>
+                            				                            <td class=""style2"" align=""center"">{6}</td>
+                                                                        <td class=""style2"" align=""center"">{7}</td>
+                            				                            <td class=""style2"" align=""center"">{8}</td>
+                            				                            <td class=""style2"" align=""center"">{9}</td>
+                                                                        <td class=""style2"" align=""center"">{10}</td>
+                                                                        <td class=""style2"" align=""center"">{11}</td>
+                                                                        <td class=""style2"" align=""center"">{12}</td>
+                            			                            </tr>",
+                                groupHeaderBackgroundColor,
+                                @"Bilans otwarcia",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                ""));
+                        }
+
+                        groupHeader = newGroupHeader;
+                    }
+
+
+                    //parametry do podsumowania
+                    int total_nowe = 0;
+                    int total_wz = 0;
+                    int total_dp = 0;
+                    int total_u = 0;
+                    int total_s = 0;
+
+
+
+                    foreach (SPListItem r in records)
+                    {
+                        string e = string.Empty;
+
+
+                        SPFieldUserValue op = new SPFieldUserValue();
+
+                        if (r["colOperator"] != null)
+                        {
+                            op = new SPFieldUserValue(properties.Web, r["colOperator"].ToString());
+                            e = op.User.Name;
+                        }
+                
+                        if (e == gr)
+                        {
+
+
+                            if (r["colNoweWnioski"] != null)
+                            {
+                                total_nowe += (int)Decimal.Parse(r["colNoweWnioski"].ToString());
+                            }
+                            if (r["colWnioskiZlozoneDanegoDnia"] != null)
+                            {
+                                total_wz += (int)Decimal.Parse(r["colWnioskiZlozoneDanegoDnia"].ToString());
+                            }
+                            if (r["colDecyzjePozytywneDanegoDnia"] != null)
+                            {
+                                total_dp += (int)Decimal.Parse(r["colDecyzjePozytywneDanegoDnia"].ToString());
+                            }
+                            if (r["colUruchomienia"] != null)
+                            {
+                                total_u += (int)Decimal.Parse(r["colUruchomienia"].ToString());
+                            }
+                            if (r["colStracone"] != null)
+                            {
+                                total_s += (int)Decimal.Parse(r["colStracone"].ToString());
+                            }
+                            if (r["colDecyzjePozytywneWObrobce"] != null)
+                            {
+                                int _dpwo = (int)Decimal.Parse(r["colDecyzjePozytywneWObrobce"].ToString());
+                                total_netto += _dpwo - _bo_dpwo;
+                            }
+
+
+                            string backgroundColor = string.Empty;
+                            //if (r.Status == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
+                            //if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                            //if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                            //if (r.DataZgloszenia == DateTime.MinValue) backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
+
+
+                            sb0.Append(String.Format(@"<tr {0} valign=""top"">
+                                    				                            <td class=""style2"">{1}</td>
+                                    				                            <td class=""style2"" align=""center"">{2}</td>
+                                    				                            <td class=""style2"" align=""center"">{3}</td>
+                                    				                            <td class=""style2"" align=""center"">{4}</td>
+                                    				                            <td class=""style2"" align=""center"">{5}</td>
+                                    				                            <td class=""style2"" align=""center"">{6}</td>
+                                                                                <td class=""style2"" align=""center"">{7}</td>
+                                    				                            <td class=""style2"" align=""center"">{8}</td>
+                                    				                            <td class=""style2"" align=""center"">{9}</td>
+                                                                                <td class=""style2"" align=""center"">{10}</td>
+                                                                                <td class=""style2"" align=""center"">{11}</td>
+                                                                                <td class=""style2"" align=""center"">{12}</td>
+                                    			                            </tr>",
+                                    backgroundColor,
+                                    ((DateTime)r["colData"]).ToString("MM-dd"),
+                                    r["colNoweWnioski"].ToString(),
+                                    r["colKoszyk"].ToString(),
+                                    r["colWnioskiZlozoneDanegoDnia"].ToString(),
+                                    r["colWnioskiWObrobce"].ToString(),
+                                    r["colDecyzjePozytywneDanegoDnia"].ToString(),
+                                    r["colDecyzjePozytywneWObrobce"].ToString(),
+                                    r["colUruchomienia"].ToString(),
+                                    r["colStracone"].ToString(),
+                                    r["colOpoznioneNaEtapieTelemarketin"].ToString(),
+                                    r["colOpozioneNaEtapieAkceptacjaOfe"].ToString(),
+                                    total_netto.ToString()));
+
+                        }
+                    }
+
+                    //podsumowanie raportu
+                    sb0.Append(String.Format(@"<tr {0} valign=""top"">
+                            				                            <td class=""style2"">{1}</td>
+                            				                            <td class=""style2"" align=""center"">{2}</td>
+                            				                            <td class=""style2"" align=""center"">{3}</td>
+                            				                            <td class=""style2"" align=""center"">{4}</td>
+                            				                            <td class=""style2"" align=""center"">{5}</td>
+                            				                            <td class=""style2"" align=""center"">{6}</td>
+                                                                        <td class=""style2"" align=""center"">{7}</td>
+                            				                            <td class=""style2"" align=""center"">{8}</td>
+                            				                            <td class=""style2"" align=""center"">{9}</td>
+                                                                        <td class=""style2"" align=""center"">{10}</td>
+                                                                        <td class=""style2"" align=""center"">{11}</td>
+                                                                        <td class=""style2"" align=""center"">{12}</td>
+                            			                            </tr>",
+                                    groupHeaderBackgroundColor,
+                                    "RAZEM:",
+                                    total_nowe.ToString(),
+                                    "",
+                                    total_wz.ToString(),
+                                    "",
+                                    total_dp.ToString(),
+                                    "",
+                                    total_u.ToString(),
+                                    total_s.ToString(),
+                                    "",
+                                    "",
+                                    ""));
+
+                }
+
+            }
+
+            sb.Replace(@"***TBody***", sb0.ToString());
+
+            //legenda
+            //sb.Append(@"<table style=""width: 680px""><tbody><tr><td colspan=""2"" style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><strong>Legenda</strong></td></tr><tr valign=""top""><td style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozmowa - wniosek w trakcie weryfikacji telefonicznej</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Oferta - przygotwanie i decyzja Klienta w sprawie oferty</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Wniosek - oferta zaakceptowana, przygotowanie i decyzja Banku w sprawie przyznania środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Umowa - wniosek zaaprobowany przez Bank, przygotowanie i akceptacja umowy przez Klienta</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Uruchomienie - umowa zaakceptowana, uruchomienie środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozliczenie - środki uruchomione, kontrakt do rozliczenie prowizji</li></ul></td><td><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Stracony - wniosek stracony, klient nie zaakceptował oferty lub odstąpił od kontraktu z innych przyczyn</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Telefon - zaplanowany kontakt z Klientem w późniejszym terminie</li></ul></td></tr></tbody></table>");
+
+            msg.Body = sb.ToString();
+
+            //wyślij raport mailem
+
+            SendMail(properties, msg);
+        }
+
+        private ArrayList GetOperatorzy(SPWeb web, SPListItemCollection records)
+        {
+            ArrayList result = new ArrayList();
+            foreach (SPListItem item in records)
+            {
+                string e = string.Empty;
+
+                SPFieldUserValue op = new SPFieldUserValue();
+
+                if (item["colOperator"] != null)
+                {
+                    op = new SPFieldUserValue(web, item["colOperator"].ToString());
+                    e = op.User.Name; 
+                }
+
+                if (!result.Contains(e))
+                {
+                    result.Add(e);
+                }
+
+            }
+
+            return result;
+        }
+
+        private SPListItem GetOperatorBaseRecord(SPWeb web, SPListItemCollection baseRecords, string operatorName)
+        {
+            SPListItem result = null;
+            foreach (SPListItem item in baseRecords)
+            {
+                string e = string.Empty;
+
+                SPFieldUserValue op = new SPFieldUserValue();
+
+                if (item["colOperator"] != null)
+                {
+                    op = new SPFieldUserValue(web, item["colOperator"].ToString());
+                    e = op.User.Name;
+                }
+
+                if (e == operatorName)
+                {
+                    result = item;
+                    break;
+                }
+            }
+
+            return result;
         }
 
         private void EmailReportDzienny_Grupy(SPItemEventProperties properties, SPListItemCollection baseRecords, SPListItemCollection records, bool isRaportTestowy, DateTime startDate, DateTime endDate)
@@ -267,7 +637,7 @@ namespace Reports.tabRaportyEventReceiver
 	text-align: left;
 }
 </style>
-</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport Dzienny na Grupy</h3><ul><li class=""auto-style2"">Zestawienie zbiorcze aktywności związanych z obsugą wniosków leasingowych w ramach miesiąca</li></ul></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">___Okres___</td><td class=""style2"">Nowe</td><td class=""style2"">Koszyk</td><td class=""style2"">Wnioski złożone danego dnia</td><td class=""style2"">Wnioski w obróbce</td><td class=""style2"">Decyzje pozytywne danego dnia</td><td class=""style2"">Decyzje pozytywne w obróbce</td><td class=""style2"">Uruchomienia</td><td class=""style2"">Stracone</td><td class=""style2"">Opóźnione na etapie Telemarketing</td><td class=""style2"">Opónione na etapie Akceptcja oferty</td><td class=""style2""></td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport Dzienny na Grupy</h3><ul><li class=""auto-style2"">Zestawienie zbiorcze aktywności związanych z obsugą wniosków leasingowych w ramach miesiąca</li></ul></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">___Okres___</td><td class=""style2"">Nowe</td><td class=""style2"">Koszyk</td><td class=""style2"">Wnioski złożone danego dnia</td><td class=""style2"">Wnioski w obróbce</td><td class=""style2"">Decyzje pozytywne danego dnia</td><td class=""style2"">Decyzje pozytywne w obróbce</td><td class=""style2"">Uruchomienia</td><td class=""style2"">Stracone</td><td class=""style2"">Opóźnione na etapie Telemarketing</td><td class=""style2"">Opónione na etapie Akceptcja oferty</td><td class=""style2"">Netto</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
 </table></body>");
 
             sb.Replace("___Okres___", startDate.ToString("yyyy-MM"));
@@ -292,6 +662,9 @@ namespace Reports.tabRaportyEventReceiver
 
                 string groupHeader = gr;
 
+                int _bo_dpwo = 0;
+                int total_netto = 0;
+
                 if (records.Count > 0)
                 {
                     string groupHeaderBackgroundColor = @"style=""background:#CCCCCC"""; //szary
@@ -301,16 +674,19 @@ namespace Reports.tabRaportyEventReceiver
                     string newGroupHeader = "Bilans otwarcia";
                     if (newGroupHeader != groupHeader)
                     {
+                        _bo_dpwo = 0;
+                        total_netto = 0;
 
                         //nagłówek grupy
+                        string backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
                         sb0.Append(String.Format(@"<tr {0} valign=""top""><td class=""style2"" colspan=12>{1}</td></tr>",
-                            groupHeaderBackgroundColor,
+                            backgroundColor,
                             String.Format(@"Grupa: {0}", groupHeader)));
 
                         if (baseRecord != null)
                         {
 
-                            string backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
+                            
                             sb0.Append(String.Format(@"<tr {0} valign=""top"">
                             				                            <td class=""style2"">{1}</td>
                             				                            <td class=""style2"" align=""center"">{2}</td>
@@ -325,7 +701,7 @@ namespace Reports.tabRaportyEventReceiver
                                                                         <td class=""style2"" align=""center"">{11}</td>
                                                                         <td class=""style2"" align=""center"">{12}</td>
                             			                            </tr>",
-                                backgroundColor,
+                                groupHeaderBackgroundColor,
                                 @"Bilans otwarcia",
                                 GetStringValue(baseRecord["colNoweWnioski"]),
                                 GetStringValue(baseRecord["colKoszyk"]),
@@ -338,6 +714,12 @@ namespace Reports.tabRaportyEventReceiver
                                 GetStringValue(baseRecord["colOpoznioneNaEtapieTelemarketin"]),
                                 GetStringValue(baseRecord["colOpozioneNaEtapieAkceptacjaOfe"]),
                                 GetStringValue(baseRecord["colUruchomieniaNetto"])));
+
+                                if (baseRecord["colDecyzjePozytywneWObrobce"] != null)
+                                {
+                                    _bo_dpwo = (int)Decimal.Parse(baseRecord["colDecyzjePozytywneWObrobce"].ToString());
+                                }
+
                         }
                         else
                         {
@@ -381,6 +763,8 @@ namespace Reports.tabRaportyEventReceiver
                     int total_u = 0;
                     int total_s = 0;
 
+                                     
+
                     foreach (SPListItem r in records)
                     {
                         string e = string.Empty;
@@ -414,6 +798,12 @@ namespace Reports.tabRaportyEventReceiver
                             {
                                 total_s += (int)Decimal.Parse(r["colStracone"].ToString());
                             }
+                            if (r["colDecyzjePozytywneWObrobce"] != null)
+                            {
+                                int _dpwo = (int)Decimal.Parse(r["colDecyzjePozytywneWObrobce"].ToString());
+                                total_netto += _dpwo - _bo_dpwo;
+                            }
+
 
                             string backgroundColor = string.Empty;
                             //if (r.Status == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
@@ -448,7 +838,7 @@ namespace Reports.tabRaportyEventReceiver
                                     r["colStracone"].ToString(),
                                     r["colOpoznioneNaEtapieTelemarketin"].ToString(),
                                     r["colOpozioneNaEtapieAkceptacjaOfe"].ToString(),
-                                    string.Empty)); //r["colUruchomieniaNetto"].ToString()
+                                    total_netto.ToString()));
 
                         }
                     }
@@ -714,7 +1104,7 @@ namespace Reports.tabRaportyEventReceiver
 	text-align: left;
 }
 </style>
-</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport Dzienny</h3><ul><li class=""auto-style2"">Zestawienie zbiorcze aktywności związanych z obsugą wniosków leasingowych w ramach miesiąca</li></ul></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">___Okres___</td><td class=""style2"">Nowe</td><td class=""style2"">Koszyk</td><td class=""style2"">Wnioski złożone danego dnia</td><td class=""style2"">Wnioski w obróbce</td><td class=""style2"">Decyzje pozytywne danego dnia</td><td class=""style2"">Decyzje pozytywne w obróbce</td><td class=""style2"">Uruchomienia</td><td class=""style2"">Stracone</td><td class=""style2"">Opóźnione na etapie Telemarketing</td><td class=""style2"">Opónione na etapie Akceptcja oferty</td><td class=""style2"">Uruchomienia netto</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport Dzienny</h3><ul><li class=""auto-style2"">Zestawienie zbiorcze aktywności związanych z obsugą wniosków leasingowych w ramach miesiąca</li></ul></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">___Okres___</td><td class=""style2"">Nowe</td><td class=""style2"">Koszyk</td><td class=""style2"">Wnioski złożone danego dnia</td><td class=""style2"">Wnioski w obróbce</td><td class=""style2"">Decyzje pozytywne danego dnia</td><td class=""style2"">Decyzje pozytywne w obróbce</td><td class=""style2"">Uruchomienia</td><td class=""style2"">Stracone</td><td class=""style2"">Opóźnione na etapie Telemarketing</td><td class=""style2"">Opónione na etapie Akceptcja oferty</td><td class=""style2"">Netto</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
 </table></body>");
 
             sb.Replace("___Okres___", startDate.ToString("yyyy-MM"));
