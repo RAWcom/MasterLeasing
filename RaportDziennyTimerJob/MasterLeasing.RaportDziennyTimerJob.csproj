@@ -33,6 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -51,8 +52,8 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\RaportDziennyTimerJobFeature\RaportDziennyTimerJobFeature.EventReceiver.cs">
-      <DependentUpon>RaportDziennyTimerJobFeature.feature</DependentUpon>
+    <Compile Include="Features\RaportDziennyTJFeature\RaportDziennyTJFeature.EventReceiver.cs">
+      <DependentUpon>RaportDziennyTJFeature.feature</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PowiadomienieTimerJob.cs">
@@ -61,7 +62,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\RaportDziennyTimerJobFeature\RaportDziennyTimerJobFeature.feature">
+    <None Include="Features\RaportDziennyTJFeature\RaportDziennyTJFeature.feature">
       <FeatureId>{46559a30-3586-47f1-b92f-0ec2afe61200}</FeatureId>
     </None>
     <None Include="key.snk" />
@@ -73,8 +74,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\RaportDziennyTimerJobFeature\RaportDziennyTimerJobFeature.Template.xml">
-      <DependentUpon>RaportDziennyTimerJobFeature.feature</DependentUpon>
+    <Content Include="Features\RaportDziennyTJFeature\RaportDziennyTJFeature.Template.xml">
+      <DependentUpon>RaportDziennyTJFeature.feature</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

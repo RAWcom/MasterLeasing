@@ -35,7 +35,7 @@ namespace masterleasing.RaportDziennyTimerJob.Features.RaportDziennyTimerJobFeat
                 SPMinuteSchedule schedule = new SPMinuteSchedule();
                 schedule.BeginSecond = 0;
                 schedule.EndSecond = 59;
-                schedule.Interval = 1;
+                schedule.Interval = 60;
                 listLoggerJob.Schedule = schedule;
                 listLoggerJob.Update();
             });
@@ -51,7 +51,10 @@ namespace masterleasing.RaportDziennyTimerJob.Features.RaportDziennyTimerJobFeat
                 SPSite site = properties.Feature.Parent as SPSite;
 
                 // delete the job 
-                site.WebApplication.JobDefinitions.Where(t => t.Name.Equals(List_JOB_NAME)).ToList().ForEach(j => j.Delete());
+                site.WebApplication.JobDefinitions
+                    .Where(t => t.Name.Equals(List_JOB_NAME))
+                    .ToList()
+                    .ForEach(j => j.Delete());
             });
         }
 

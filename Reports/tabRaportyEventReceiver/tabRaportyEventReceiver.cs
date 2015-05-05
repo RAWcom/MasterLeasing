@@ -10,6 +10,7 @@ using System.Collections;
 using Microsoft.SharePoint.Administration;
 using System.Collections.Specialized;
 using masterleasing.Reports;
+using System.Collections.Generic;
 
 namespace Reports.tabRaportyEventReceiver
 {
@@ -85,7 +86,7 @@ namespace Reports.tabRaportyEventReceiver
             try
             {
                 SPListItem item = properties.ListItem;
-                
+
                 item["colStatus"] = STATUS_AKTYWNY;
                 item.Update();
 
@@ -107,8 +108,8 @@ namespace Reports.tabRaportyEventReceiver
                     targetDate = DateTime.Parse(item["colTargetDate"].ToString());
                 }
 
-                string targetEmail = string.Empty ;
-                if (item["colTargetRecepient"]!=null)
+                string targetEmail = string.Empty;
+                if (item["colTargetRecepient"] != null)
                 {
                     SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["colTargetRecepient"].ToString());
                     targetEmail = op.User.Email;
@@ -119,24 +120,86 @@ namespace Reports.tabRaportyEventReceiver
                 }
 
                 ArrayList recordsAL = GetData_RaportDzienny(properties, targetDate);
-                
+
                 //update tabRaportDzienny
                 Update_tabRaportDzienny(properties, targetDate, recordsAL);
                 Update_tabRaportDzienny_ZmianaNetto(properties, targetDate);
 
-                //przygotuj raport
-                
-                DateTime startDate = new DateTime(targetDate.Year,targetDate.Month, 1);
-                DateTime endDate = startDate.AddMonths(1).AddDays(-1);
-                SPListItemCollection records = Select_tabRaportDziennyByDateRange(properties, startDate, endDate);
+                if (item["colRaportDzienny_Opcje"] != null)
+                {
+                    SPFieldMultiChoiceValue opcje = new SPFieldMultiChoiceValue(item["colRaportDzienny_Opcje"].ToString());
+                    if (opcje.Count > 0)
+                    {
+                        DateTime startDate = new DateTime(targetDate.Year, targetDate.Month, 1);
+                        DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+                        DateTime baseDate = startDate.AddDays(-1);
 
-                DateTime baseDate = startDate.AddDays(-1);
-                SPListItem baseRecord = Select_tabRaportDzienny_BaseRecord(properties, baseDate);
+                        for (int i = 0; i < opcje.Count; i++)
+                        {
+                            SPListItemCollection records = null;
+                            SPListItem baseRecord = null;
+                            SPListItemCollection baseRecords = null;
 
-                CreateReportDzienny(properties, baseRecord, records, isRaportTestowy, startDate, endDate);
+                            switch (opcje[i].ToString())
+                            {
+                                case "Wyślij raport zbiorczy":
 
-                ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("Raport Dzienny", String.Format("ilość razem: {0}",
-                    recordsAL.Count.ToString()));
+                                    records = Select_tabRaportDziennyByDateRange(properties, startDate, endDate);
+                                    baseRecord = Select_tabRaportDzienny_BaseRecord(properties, baseDate);
+
+                                    try
+                                    {
+                                        EmailReportDzienny(properties, baseRecord, records, isRaportTestowy, startDate, endDate);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        properties.ListItem["colMEMO"] = ex.ToString();
+                                        properties.ListItem["colStatus"] = STATUS_ANULOWANY;
+                                        properties.ListItem.Update();
+                                        string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny - Zbiorczy", ex.ToString());
+
+                                    }
+
+
+                                    break;
+                                case "Wyślij raport dla grup":
+
+                                    records = Select_tabRaportDzienny_GrupyByDateRange(properties, startDate, endDate);
+                                    baseRecords = Select_tabRaportDzienny_Grupy_BaseRecords(properties, baseDate);
+
+                                    try
+                                    {
+                                        EmailReportDzienny_Grupy(properties, baseRecords, records, isRaportTestowy, startDate, endDate);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        properties.ListItem["colMEMO"] = ex.ToString();
+                                        properties.ListItem["colStatus"] = STATUS_ANULOWANY;
+                                        properties.ListItem.Update();
+                                        string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny - na grupy", ex.ToString());
+                                    }
+
+
+                                    break;
+                                case "Wyślij raport dla operatorów":
+
+                                    records = Select_tabRaportDzienny_OperatorzyByDateRange(properties, startDate, endDate);
+                                    baseRecords = Select_tabRaportDzienny_Operatorzy_BaseRecords(properties, baseDate);
+
+                                    break;
+                                default:
+                                    throw new NotImplementedException(string.Format(@"Opcja wyboru: {0} nie jest obsługiwana", opcje[i].ToString()));
+
+                            }
+                        }
+                    }
+                }
+
+
+
+
+                //ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("Raport Dzienny", String.Format("ilość razem: {0}",
+                //    recordsAL.Count.ToString()));
 
                 properties.ListItem["colStatus"] = STATUS_ZAKONCZONY;
                 properties.ListItem.Update();
@@ -151,12 +214,459 @@ namespace Reports.tabRaportyEventReceiver
             }
         }
 
-        private void CreateReportDzienny(SPItemEventProperties properties, SPListItem baseRecord, SPListItemCollection records, bool isRaportTestowy,DateTime startDate, DateTime endDate)
+        private void EmailReportDzienny_Grupy(SPItemEventProperties properties, SPListItemCollection baseRecords, SPListItemCollection records, bool isRaportTestowy, DateTime startDate, DateTime endDate)
         {
             MailMsg msg = new MailMsg();
             SPListItem item = properties.ListItem;
 
-            string s = String.Format(@"Raport Dzienny Zbiorczy za okres {0}..{1}",startDate.ToShortDateString(), endDate.ToShortDateString());
+            string s = String.Format(@"Raport Dzienny na Grupy za okres {0}..{1}", startDate.ToShortDateString(), endDate.ToShortDateString());
+
+            //To = bieżący użytkownik
+            if (item["Author"] != null)
+            {
+                SPFieldUserValue op = new SPFieldUserValue(properties.Web, item["Author"].ToString());
+                msg.To = op.User.Email;
+            }
+            //SPUser currentUser = properties.Web.SiteUsers.GetByID(properties.CurrentUserId);
+            //msg.To = currentUser.Email;
+
+            //Cc, Subject
+            if (!s.StartsWith(":: "))
+            {
+                s = ":: " + s;
+            }
+
+            if (isRaportTestowy)
+            {
+                msg.Cc = string.Empty;
+                msg.Subject = ":: TESTOWY " + s;
+
+            }
+            else
+            {
+                msg.Cc = GetManagingPartnersEmails(properties);
+                //msg.Cc = "biuro@rawcom24.pl";
+                msg.Subject = s;
+            }
+
+
+            //Body
+
+            StringBuilder sb = new StringBuilder(@"<head><style type=""text/css"">
+.style1 {
+	border-style: solid;
+	border-width: 0px;
+}
+.style2 {
+	border-style: solid;
+	border-width: 1px;
+}
+.auto-style2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	text-align: left;
+}
+</style>
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport Dzienny na Grupy</h3><ul><li class=""auto-style2"">Zestawienie zbiorcze aktywności związanych z obsugą wniosków leasingowych w ramach miesiąca</li></ul></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">___Okres___</td><td class=""style2"">Nowe</td><td class=""style2"">Koszyk</td><td class=""style2"">Wnioski złożone danego dnia</td><td class=""style2"">Wnioski w obróbce</td><td class=""style2"">Decyzje pozytywne danego dnia</td><td class=""style2"">Decyzje pozytywne w obróbce</td><td class=""style2"">Uruchomienia</td><td class=""style2"">Stracone</td><td class=""style2"">Opóźnione na etapie Telemarketing</td><td class=""style2"">Opónione na etapie Akceptcja oferty</td><td class=""style2""></td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+</table></body>");
+
+            sb.Replace("___Okres___", startDate.ToString("yyyy-MM"));
+
+            ArrayList agregator = new ArrayList();
+
+            if (records.Count > 0)
+            {
+                agregator = GetGrupy(records);
+
+            };
+
+            //TBody
+
+
+
+            StringBuilder sb0 = new StringBuilder();
+
+            for (int i = 0; i < agregator.Count; i++)
+            {
+                string gr = agregator[i].ToString();
+
+                string groupHeader = gr;
+
+                if (records.Count > 0)
+                {
+                    string groupHeaderBackgroundColor = @"style=""background:#CCCCCC"""; //szary
+
+                    SPListItem baseRecord = GetGrupaBaseRecord(baseRecords, gr);
+
+                    string newGroupHeader = "Bilans otwarcia";
+                    if (newGroupHeader != groupHeader)
+                    {
+
+                        //nagłówek grupy
+                        sb0.Append(String.Format(@"<tr {0} valign=""top""><td class=""style2"" colspan=12>{1}</td></tr>",
+                            groupHeaderBackgroundColor,
+                            String.Format(@"Grupa: {0}", groupHeader)));
+
+                        if (baseRecord != null)
+                        {
+
+                            string backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
+                            sb0.Append(String.Format(@"<tr {0} valign=""top"">
+                            				                            <td class=""style2"">{1}</td>
+                            				                            <td class=""style2"" align=""center"">{2}</td>
+                            				                            <td class=""style2"" align=""center"">{3}</td>
+                            				                            <td class=""style2"" align=""center"">{4}</td>
+                            				                            <td class=""style2"" align=""center"">{5}</td>
+                            				                            <td class=""style2"" align=""center"">{6}</td>
+                                                                        <td class=""style2"" align=""center"">{7}</td>
+                            				                            <td class=""style2"" align=""center"">{8}</td>
+                            				                            <td class=""style2"" align=""center"">{9}</td>
+                                                                        <td class=""style2"" align=""center"">{10}</td>
+                                                                        <td class=""style2"" align=""center"">{11}</td>
+                                                                        <td class=""style2"" align=""center"">{12}</td>
+                            			                            </tr>",
+                                backgroundColor,
+                                @"Bilans otwarcia",
+                                GetStringValue(baseRecord["colNoweWnioski"]),
+                                GetStringValue(baseRecord["colKoszyk"]),
+                                GetStringValue(baseRecord["colWnioskiZlozoneDanegoDnia"]),
+                                GetStringValue(baseRecord["colWnioskiWObrobce"]),
+                                GetStringValue(baseRecord["colDecyzjePozytywneDanegoDnia"]),
+                                GetStringValue(baseRecord["colDecyzjePozytywneWObrobce"]),
+                                GetStringValue(baseRecord["colUruchomienia"]),
+                                GetStringValue(baseRecord["colStracone"]),
+                                GetStringValue(baseRecord["colOpoznioneNaEtapieTelemarketin"]),
+                                GetStringValue(baseRecord["colOpozioneNaEtapieAkceptacjaOfe"]),
+                                GetStringValue(baseRecord["colUruchomieniaNetto"])));
+                        }
+                        else
+                        {
+                            sb0.Append(String.Format(@"<tr {0} valign=""top"">
+                            				                            <td class=""style2"">{1}</td>
+                            				                            <td class=""style2"" align=""center"">{2}</td>
+                            				                            <td class=""style2"" align=""center"">{3}</td>
+                            				                            <td class=""style2"" align=""center"">{4}</td>
+                            				                            <td class=""style2"" align=""center"">{5}</td>
+                            				                            <td class=""style2"" align=""center"">{6}</td>
+                                                                        <td class=""style2"" align=""center"">{7}</td>
+                            				                            <td class=""style2"" align=""center"">{8}</td>
+                            				                            <td class=""style2"" align=""center"">{9}</td>
+                                                                        <td class=""style2"" align=""center"">{10}</td>
+                                                                        <td class=""style2"" align=""center"">{11}</td>
+                                                                        <td class=""style2"" align=""center"">{12}</td>
+                            			                            </tr>",
+                                groupHeaderBackgroundColor,
+                                @"Bilans otwarcia",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                ""));
+                        }
+
+                        groupHeader = newGroupHeader;
+                    }
+
+
+                    //parametry do podsumowania
+                    int total_nowe = 0;
+                    int total_wz = 0;
+                    int total_dp = 0;
+                    int total_u = 0;
+                    int total_s = 0;
+
+                    foreach (SPListItem r in records)
+                    {
+                        string e = string.Empty;
+                        if (r["colGrupa"] != null)
+                        {
+                            e = r["colGrupa"].ToString();
+                        }
+
+
+                        if (e == gr)
+                        {
+
+
+                            if (r["colNoweWnioski"] != null)
+                            {
+                                total_nowe += (int)Decimal.Parse(r["colNoweWnioski"].ToString());
+                            }
+                            if (r["colWnioskiZlozoneDanegoDnia"] != null)
+                            {
+                                total_wz += (int)Decimal.Parse(r["colWnioskiZlozoneDanegoDnia"].ToString());
+                            }
+                            if (r["colDecyzjePozytywneDanegoDnia"] != null)
+                            {
+                                total_dp += (int)Decimal.Parse(r["colDecyzjePozytywneDanegoDnia"].ToString());
+                            }
+                            if (r["colUruchomienia"] != null)
+                            {
+                                total_u += (int)Decimal.Parse(r["colUruchomienia"].ToString());
+                            }
+                            if (r["colStracone"] != null)
+                            {
+                                total_s += (int)Decimal.Parse(r["colStracone"].ToString());
+                            }
+
+                            string backgroundColor = string.Empty;
+                            //if (r.Status == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
+                            //if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                            //if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                            //if (r.DataZgloszenia == DateTime.MinValue) backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
+
+
+                            sb0.Append(String.Format(@"<tr {0} valign=""top"">
+                                    				                            <td class=""style2"">{1}</td>
+                                    				                            <td class=""style2"" align=""center"">{2}</td>
+                                    				                            <td class=""style2"" align=""center"">{3}</td>
+                                    				                            <td class=""style2"" align=""center"">{4}</td>
+                                    				                            <td class=""style2"" align=""center"">{5}</td>
+                                    				                            <td class=""style2"" align=""center"">{6}</td>
+                                                                                <td class=""style2"" align=""center"">{7}</td>
+                                    				                            <td class=""style2"" align=""center"">{8}</td>
+                                    				                            <td class=""style2"" align=""center"">{9}</td>
+                                                                                <td class=""style2"" align=""center"">{10}</td>
+                                                                                <td class=""style2"" align=""center"">{11}</td>
+                                                                                <td class=""style2"" align=""center"">{12}</td>
+                                    			                            </tr>",
+                                    backgroundColor,
+                                    ((DateTime)r["colData"]).ToString("MM-dd"),
+                                    r["colNoweWnioski"].ToString(),
+                                    r["colKoszyk"].ToString(),
+                                    r["colWnioskiZlozoneDanegoDnia"].ToString(),
+                                    r["colWnioskiWObrobce"].ToString(),
+                                    r["colDecyzjePozytywneDanegoDnia"].ToString(),
+                                    r["colDecyzjePozytywneWObrobce"].ToString(),
+                                    r["colUruchomienia"].ToString(),
+                                    r["colStracone"].ToString(),
+                                    r["colOpoznioneNaEtapieTelemarketin"].ToString(),
+                                    r["colOpozioneNaEtapieAkceptacjaOfe"].ToString(),
+                                    string.Empty)); //r["colUruchomieniaNetto"].ToString()
+
+                        }
+                    }
+
+                    //podsumowanie raportu
+                    sb0.Append(String.Format(@"<tr {0} valign=""top"">
+                            				                            <td class=""style2"">{1}</td>
+                            				                            <td class=""style2"" align=""center"">{2}</td>
+                            				                            <td class=""style2"" align=""center"">{3}</td>
+                            				                            <td class=""style2"" align=""center"">{4}</td>
+                            				                            <td class=""style2"" align=""center"">{5}</td>
+                            				                            <td class=""style2"" align=""center"">{6}</td>
+                                                                        <td class=""style2"" align=""center"">{7}</td>
+                            				                            <td class=""style2"" align=""center"">{8}</td>
+                            				                            <td class=""style2"" align=""center"">{9}</td>
+                                                                        <td class=""style2"" align=""center"">{10}</td>
+                                                                        <td class=""style2"" align=""center"">{11}</td>
+                                                                        <td class=""style2"" align=""center"">{12}</td>
+                            			                            </tr>",
+                                    groupHeaderBackgroundColor,
+                                    "RAZEM:",
+                                    total_nowe.ToString(),
+                                    "",
+                                    total_wz.ToString(),
+                                    "",
+                                    total_dp.ToString(),
+                                    "",
+                                    total_u.ToString(),
+                                    total_s.ToString(),
+                                    "",
+                                    "",
+                                    ""));
+
+                }
+
+            }
+
+            sb.Replace(@"***TBody***", sb0.ToString());
+
+            //legenda
+            //sb.Append(@"<table style=""width: 680px""><tbody><tr><td colspan=""2"" style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><strong>Legenda</strong></td></tr><tr valign=""top""><td style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small""><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozmowa - wniosek w trakcie weryfikacji telefonicznej</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Oferta - przygotwanie i decyzja Klienta w sprawie oferty</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Wniosek - oferta zaakceptowana, przygotowanie i decyzja Banku w sprawie przyznania środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Umowa - wniosek zaaprobowany przez Bank, przygotowanie i akceptacja umowy przez Klienta</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Uruchomienie - umowa zaakceptowana, uruchomienie środków</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Rozliczenie - środki uruchomione, kontrakt do rozliczenie prowizji</li></ul></td><td><ul><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Stracony - wniosek stracony, klient nie zaakceptował oferty lub odstąpił od kontraktu z innych przyczyn</li><li style=""font-family: Arial, Helvetica, sans-serif; font-size: xx-small"">Telefon - zaplanowany kontakt z Klientem w późniejszym terminie</li></ul></td></tr></tbody></table>");
+
+            msg.Body = sb.ToString();
+
+            //wyślij raport mailem
+
+            SendMail(properties, msg);
+        }
+
+
+        private String GetStringValue(object p)
+        {
+            string result = string.Empty;
+
+            if (p != null && p.GetType() == typeof(System.Double))
+            {
+                int n = int.Parse(p.ToString());
+                if (n > 0) result = n.ToString();
+            }
+            return result;
+        }
+
+        private SPListItem GetGrupaBaseRecord(SPListItemCollection baseRecords, string gr)
+        {
+            SPListItem result = null;
+            foreach (SPListItem item in baseRecords)
+            {
+                string g = string.Empty;
+
+                if (item["colGrupa"] != null)
+                {
+                    g = item["colGrupa"].ToString();
+                }
+
+                if (g == gr)
+                {
+                    result = item;
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        private ArrayList GetGrupy(SPListItemCollection records)
+        {
+            ArrayList result = new ArrayList();
+            foreach (SPListItem item in records)
+            {
+                string e = string.Empty;
+
+                if (item["colGrupa"] != null)
+                {
+                    e = item["colGrupa"].ToString();
+                }
+
+                if (!result.Contains(e))
+                {
+                    result.Add(e);
+                }
+
+            }
+
+            return result;
+        }
+
+        private SPListItemCollection Select_tabRaportDzienny_Operatorzy_BaseRecords(SPItemEventProperties properties, DateTime baseDate)
+        {
+            SPListItemCollection result = null;
+
+            //wybierz rekordy dla Date <= baseDate, posortowane malejąco w/g daty (pierwszy rekord najbardziej adekwatny)
+            StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colData"" Ascending=""FALSE"" /></OrderBy><Where><And><Eq><FieldRef Name=""ContentType"" /><Value Type=""Computed"">RaportDzienny.Operator</Value></Eq><Leq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___BaseDate___</Value></Leq></And></Where>");
+            sb.Replace("___BaseDate___", baseDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabRaportDzienny"];
+
+                    SPListItemCollection items = list.GetItems(query);
+                    if (items.Count > 0)
+                    {
+                        result = items;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private SPListItemCollection Select_tabRaportDzienny_OperatorzyByDateRange(SPItemEventProperties properties, DateTime startDate, DateTime endDate)
+        {
+            SPListItemCollection result = null;
+
+            //wybierz rekordy dla zadanej daty i ct=RaportDzienny_Grupy
+            StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colData"" /></OrderBy><Where><And><And><Eq><FieldRef Name=""ContentType"" /><Value Type=""Computed"">RaportDzienny.Operator</Value></Eq><Geq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___StartDate___</Value></Geq></And><Leq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___EndDate___</Value></Leq></And></Where>");
+            sb.Replace("___StartDate___", startDate.ToShortDateString());
+            sb.Replace("___EndDate___", endDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabRaportDzienny"];
+
+                    SPListItemCollection items = list.GetItems(query);
+                    result = items;
+
+                }
+            }
+
+            return result;
+        }
+
+        private SPListItemCollection Select_tabRaportDzienny_Grupy_BaseRecords(SPItemEventProperties properties, DateTime baseDate)
+        {
+            SPListItemCollection result = null;
+
+            //wybierz rekordy dla Date <= baseDate, posortowane malejąco w/g daty (pierwszy rekord najbardziej adekwatny)
+            StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colData"" Ascending=""FALSE"" /></OrderBy><Where><And><Eq><FieldRef Name=""ContentType"" /><Value Type=""Computed"">RaportDzienny.Grupa</Value></Eq><Leq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___BaseDate___</Value></Leq></And></Where>");
+            sb.Replace("___BaseDate___", baseDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabRaportDzienny"];
+
+                    SPListItemCollection items = list.GetItems(query);
+                    if (items.Count > 0)
+                    {
+                        result = items;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private SPListItemCollection Select_tabRaportDzienny_GrupyByDateRange(SPItemEventProperties properties, DateTime startDate, DateTime endDate)
+        {
+            SPListItemCollection result = null;
+
+            //wybierz rekordy dla zadanej daty i ct=RaportDzienny_Grupy
+            StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colData"" /></OrderBy><Where><And><And><Eq><FieldRef Name=""ContentType"" /><Value Type=""Computed"">RaportDzienny.Grupa</Value></Eq><Geq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___StartDate___</Value></Geq></And><Leq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___EndDate___</Value></Leq></And></Where>");
+            sb.Replace("___StartDate___", startDate.ToShortDateString());
+            sb.Replace("___EndDate___", endDate.ToShortDateString());
+            SPQuery query = new SPQuery();
+            query.Query = sb.ToString();
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"tabRaportDzienny"];
+
+                    SPListItemCollection items = list.GetItems(query);
+                    result = items;
+
+                }
+            }
+
+            return result;
+        }
+
+        private void EmailReportDzienny(SPItemEventProperties properties, SPListItem baseRecord, SPListItemCollection records, bool isRaportTestowy, DateTime startDate, DateTime endDate)
+        {
+            MailMsg msg = new MailMsg();
+            SPListItem item = properties.ListItem;
+
+            string s = String.Format(@"Raport Dzienny Zbiorczy za okres {0}..{1}", startDate.ToShortDateString(), endDate.ToShortDateString());
 
             //To = bieżący użytkownik
             if (item["Author"] != null)
@@ -324,7 +834,7 @@ namespace Reports.tabRaportyEventReceiver
                     //if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
                     //if (r.DataZgloszenia == DateTime.MinValue) backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
 
-                    
+
                     sb0.Append(String.Format(@"<tr {0} valign=""top"">
         				                            <td class=""style2"">{1}</td>
         				                            <td class=""style2"" align=""center"">{2}</td>
@@ -383,7 +893,7 @@ namespace Reports.tabRaportyEventReceiver
                                 "",
                                 "",
                                 ""));
-                
+
             }
 
             sb.Replace(@"***TBody***", sb0.ToString());
@@ -402,7 +912,7 @@ namespace Reports.tabRaportyEventReceiver
         {
             string result = "0";
 
-            if (n!=null)
+            if (n != null)
             {
                 Int32 number = 0;
                 Int32.TryParse(n.ToString(), out number);
@@ -433,13 +943,13 @@ namespace Reports.tabRaportyEventReceiver
             SPListItemCollection records = Select_tabRaportDziennyByDateRange(properties, startDate, endDate);
 
             int baseValue = 0;
-            if (baseRecord!=null)
+            if (baseRecord != null)
             {
-                if (baseRecord["colDecyzjePozytywneWObrobce"]!=null)
+                if (baseRecord["colDecyzjePozytywneWObrobce"] != null)
                 {
                     Int32.TryParse(baseRecord["colDecyzjePozytywneWObrobce"].ToString(), out baseValue);
                 }
-                
+
             }
 
             Int32 v_Uruchominia_RunninSum = 0;
@@ -447,14 +957,14 @@ namespace Reports.tabRaportyEventReceiver
             foreach (SPListItem r in records)
             {
                 Int32 v_DecyzjePozytywneWObrobce = 0;
-                if (r["colDecyzjePozytywneWObrobce"]!=null)
+                if (r["colDecyzjePozytywneWObrobce"] != null)
                 {
                     Int32.TryParse(r["colDecyzjePozytywneWObrobce"].ToString(), out v_DecyzjePozytywneWObrobce);
                 }
-                
-                
+
+
                 Int32 v_Uruchomienia = 0;
-                if (r["colUruchomienia"]!=null)
+                if (r["colUruchomienia"] != null)
                 {
                     Int32.TryParse(r["colUruchomienia"].ToString(), out v_Uruchomienia);
                 }
@@ -485,7 +995,7 @@ namespace Reports.tabRaportyEventReceiver
                     SPList list = web.Lists[@"tabRaportDzienny"];
 
                     SPListItemCollection items = list.GetItems(query);
-                    if (items.Count>0)
+                    if (items.Count > 0)
                     {
                         result = items[0];
                     }
@@ -498,7 +1008,7 @@ namespace Reports.tabRaportyEventReceiver
         private SPListItemCollection Select_tabRaportDziennyByDateRange(SPItemEventProperties properties, DateTime startDate, DateTime endDate)
         {
             SPListItemCollection result = null;
-            
+
             //wybierz rekordy dla zadanej daty
             StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colData"" /></OrderBy><Where><And><And><Eq><FieldRef Name=""ContentType"" /><Value Type=""Computed"">RaportDzienny</Value></Eq><Geq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___StartDate___</Value></Geq></And><Leq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___EndDate___</Value></Leq></And></Where>");
             sb.Replace("___StartDate___", startDate.ToShortDateString());
@@ -540,9 +1050,9 @@ namespace Reports.tabRaportyEventReceiver
                     SPListItemCollection items = list.GetItems(query);
 
                     //usuń istniejące rekordy
-                    if (items.Count>0)
+                    if (items.Count > 0)
                     {
-                        for (int i = items.Count-1; i >= 0; i--)
+                        for (int i = items.Count - 1; i >= 0; i--)
                         {
                             items[i].Delete();
                         }
@@ -551,7 +1061,7 @@ namespace Reports.tabRaportyEventReceiver
                     }
 
                     //dodaj nowe rekordy 
-                    if (recordsAL.Count>0)
+                    if (recordsAL.Count > 0)
                     {
                         foreach (var item in recordsAL)
                         {
@@ -565,54 +1075,54 @@ namespace Reports.tabRaportyEventReceiver
                                 case "Rekord_RaportDzienny":
                                     ct = "RaportDzienny";
                                     Rekord_RaportDzienny o = (Rekord_RaportDzienny)item;
-                                    li["ContentType"]=ct;
+                                    li["ContentType"] = ct;
 
-                                    li["colNoweWnioski"]=o.NoweWnioski;
-                                    li["colKoszyk"]=o.Koszyk;
-                                    li["colWnioskiZlozoneDanegoDnia"]=o.WnioskiZlozoneDanegoDnia;
+                                    li["colNoweWnioski"] = o.NoweWnioski;
+                                    li["colKoszyk"] = o.Koszyk;
+                                    li["colWnioskiZlozoneDanegoDnia"] = o.WnioskiZlozoneDanegoDnia;
                                     li["colWnioskiWObrobce"] = o.WnioskiWObrobce;
-                                    li["colDecyzjePozytywneDanegoDnia"]=o.DecyzjePozytywneDanegoDnia;
-                                    li["colDecyzjePozytywneWObrobce"]=o.DecyzjePozytywneWObrobce;
-                                    li["colUruchomienia"]=o.Uruchomienia;
-                                    li["colStracone"]=o.Stracone;
-                                    li["colOpoznioneNaEtapieTelemarketin"]=o.OpoznioneNaEtapieTelemarketing;
-                                    li["colOpozioneNaEtapieAkceptacjaOfe"]=o.OpoznioneNaEtapieAkceptacjaOferty;
+                                    li["colDecyzjePozytywneDanegoDnia"] = o.DecyzjePozytywneDanegoDnia;
+                                    li["colDecyzjePozytywneWObrobce"] = o.DecyzjePozytywneWObrobce;
+                                    li["colUruchomienia"] = o.Uruchomienia;
+                                    li["colStracone"] = o.Stracone;
+                                    li["colOpoznioneNaEtapieTelemarketin"] = o.OpoznioneNaEtapieTelemarketing;
+                                    li["colOpozioneNaEtapieAkceptacjaOfe"] = o.OpoznioneNaEtapieAkceptacjaOferty;
                                     break;
                                 case "Rekord_RaportDzienny_Grupa":
                                     ct = "RaportDzienny.Grupa";
                                     Rekord_RaportDzienny_Grupa og = (Rekord_RaportDzienny_Grupa)item;
-                                    li["ContentType"]=ct;
+                                    li["ContentType"] = ct;
                                     li["colGrupa"] = og.Grupa;
 
-                                    li["colNoweWnioski"]=og.NoweWnioski;
-                                    li["colKoszyk"]=og.Koszyk;
-                                    li["colWnioskiZlozoneDanegoDnia"]=og.WnioskiZlozoneDanegoDnia;
+                                    li["colNoweWnioski"] = og.NoweWnioski;
+                                    li["colKoszyk"] = og.Koszyk;
+                                    li["colWnioskiZlozoneDanegoDnia"] = og.WnioskiZlozoneDanegoDnia;
                                     li["colWnioskiWObrobce"] = og.WnioskiWObrobce;
-                                    li["colDecyzjePozytywneDanegoDnia"]=og.DecyzjePozytywneDanegoDnia;
-                                    li["colDecyzjePozytywneWObrobce"]=og.DecyzjePozytywneWObrobce;
-                                    li["colUruchomienia"]=og.Uruchomienia;
-                                    li["colStracone"]=og.Stracone;
-                                    li["colOpoznioneNaEtapieTelemarketin"]=og.OpoznioneNaEtapieTelemarketing;
-                                    li["colOpozioneNaEtapieAkceptacjaOfe"]=og.OpoznioneNaEtapieAkceptacjaOferty;
+                                    li["colDecyzjePozytywneDanegoDnia"] = og.DecyzjePozytywneDanegoDnia;
+                                    li["colDecyzjePozytywneWObrobce"] = og.DecyzjePozytywneWObrobce;
+                                    li["colUruchomienia"] = og.Uruchomienia;
+                                    li["colStracone"] = og.Stracone;
+                                    li["colOpoznioneNaEtapieTelemarketin"] = og.OpoznioneNaEtapieTelemarketing;
+                                    li["colOpozioneNaEtapieAkceptacjaOfe"] = og.OpoznioneNaEtapieAkceptacjaOferty;
                                     break;
                                 case "Rekord_RaportDzienny_Operator":
                                     ct = "RaportDzienny.Operator";
                                     Rekord_RaportDzienny_Operator oo = (Rekord_RaportDzienny_Operator)item;
-                                    li["ContentType"]=ct;
-                                    if (oo.Operator.LookupId>0)
+                                    li["ContentType"] = ct;
+                                    if (oo.Operator.LookupId > 0)
                                     {
                                         li["colOperator"] = oo.Operator;
                                     }
-                                    li["colNoweWnioski"]=oo.NoweWnioski;
-                                    li["colKoszyk"]=oo.Koszyk;
-                                    li["colWnioskiZlozoneDanegoDnia"]=oo.WnioskiZlozoneDanegoDnia;
+                                    li["colNoweWnioski"] = oo.NoweWnioski;
+                                    li["colKoszyk"] = oo.Koszyk;
+                                    li["colWnioskiZlozoneDanegoDnia"] = oo.WnioskiZlozoneDanegoDnia;
                                     li["colWnioskiWObrobce"] = oo.WnioskiWObrobce;
-                                    li["colDecyzjePozytywneDanegoDnia"]=oo.DecyzjePozytywneDanegoDnia;
-                                    li["colDecyzjePozytywneWObrobce"]=oo.DecyzjePozytywneWObrobce;
-                                    li["colUruchomienia"]=oo.Uruchomienia;
-                                    li["colStracone"]=oo.Stracone;
-                                    li["colOpoznioneNaEtapieTelemarketin"]=oo.OpoznioneNaEtapieTelemarketing;
-                                    li["colOpozioneNaEtapieAkceptacjaOfe"]=oo.OpoznioneNaEtapieAkceptacjaOferty;
+                                    li["colDecyzjePozytywneDanegoDnia"] = oo.DecyzjePozytywneDanegoDnia;
+                                    li["colDecyzjePozytywneWObrobce"] = oo.DecyzjePozytywneWObrobce;
+                                    li["colUruchomienia"] = oo.Uruchomienia;
+                                    li["colStracone"] = oo.Stracone;
+                                    li["colOpoznioneNaEtapieTelemarketin"] = oo.OpoznioneNaEtapieTelemarketing;
+                                    li["colOpozioneNaEtapieAkceptacjaOfe"] = oo.OpoznioneNaEtapieAkceptacjaOferty;
                                     break;
                                 default:
                                     break;
@@ -625,7 +1135,7 @@ namespace Reports.tabRaportyEventReceiver
                 }
             }
 
-   
+
         }
 
         private ArrayList GetData_RaportDzienny(SPItemEventProperties properties, DateTime targetDate)
@@ -638,7 +1148,7 @@ namespace Reports.tabRaportyEventReceiver
             Count_RaportDzienny_DecyzjeAktywne(properties, records, targetDate);
             Count_RaportDzienny_Opoznione_Telemarketing(properties, records, targetDate);
             Count_RaportDzienny_Opoznione_AkceptacjaOferty(properties, records, targetDate);
-            
+
             //Count_RaportDzienny_Netto(properties, records, targetDate);
 
             //poniższe raporty korzystają z tabZmianyStatusu
@@ -863,10 +1373,10 @@ namespace Reports.tabRaportyEventReceiver
         private ArrayList Select_RaportDzienny_Opoznione_AkceptacjaOferty(SPItemEventProperties properties, DateTime targetDate)
         {
             ArrayList totals = new ArrayList();
-            
+
             //status=Oferta, planowany kontakt > "", liczba dni opóźnienia > 0
             //StringBuilder sb = new StringBuilder(@"<GroupBy Collapse=""TRUE"" GroupLimit=""30""><FieldRef Name=""colStatusLeadu"" /><FieldRef Name=""colOperator"" /></GroupBy><OrderBy><FieldRef Name=""colPartner_x002e_OsobaKontaktowa"" Ascending=""FALSE"" /><FieldRef Name=""colDataNastepnegoKontaktu"" Ascending=""FALSE"" /></OrderBy><Where><And><And><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">Oferta</Value></Eq><Gt><FieldRef Name=""colDataNastepnegoKontaktu"" /><Value Type=""DateTime"">1900-01-01T00:00:00Z</Value></Gt></And><Gt><FieldRef Name=""colIloscDniOpoznienia"" /><Value Type=""Number"">0</Value></Gt></And></Where>");
-            
+
             //obsługa kontaktu=Akceptacja oferty (kod 19) i ustawiona data kontaktu i opóźnienie > 0
             StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""ID"" /></OrderBy><Where><And><And><Eq><FieldRef Name=""Obs_x0142_ugaK"" /><Value Type=""WorkflowStatus"">19</Value></Eq><IsNotNull><FieldRef Name=""colDataNastepnegoKontaktu"" /></IsNotNull></And><Gt><FieldRef Name=""colIloscDniOpoznienia"" /><Value Type=""Number"">0</Value></Gt></And></Where>");
             SPQuery query = new SPQuery();
@@ -1824,39 +2334,39 @@ namespace Reports.tabRaportyEventReceiver
             return totals;
         }
 
-        
+
 
         private SPListItemCollection Select_tabKontrakty_byItemIds(SPWeb web, ArrayList kontraktIdAL)
         {
-            
+
             SPListItemCollection result = null;
 
-            if (kontraktIdAL.Count>0)
-	        {
-                    SPList list = web.Lists[@"tabKontrakty"];
-                    SPListItemCollection items = list.GetItems();
+            if (kontraktIdAL.Count > 0)
+            {
+                SPList list = web.Lists[@"tabKontrakty"];
+                SPListItemCollection items = list.GetItems();
 
-                    for (int i = items.Count-1; i >= 0; i--)
+                for (int i = items.Count - 1; i >= 0; i--)
+                {
+                    bool isFound = false;
+                    foreach (Int32 k in kontraktIdAL)
                     {
-                        bool isFound = false;
-                        foreach (Int32 k in kontraktIdAL)
+                        if (items[i].ID == k)
                         {
-                            if (items[i].ID==k)
-                            {
-                                isFound = true;
-                                break;
-                            }
-                        }
-                        if (!isFound)
-                        {
-                            items[i].Delete();
+                            isFound = true;
+                            break;
                         }
                     }
+                    if (!isFound)
+                    {
+                        items[i].Delete();
+                    }
+                }
 
-                    result = items;
-                   
+                result = items;
+
             }
-            
+
             return result;
         }
 
@@ -2000,7 +2510,7 @@ namespace Reports.tabRaportyEventReceiver
                 switch (className)
                 {
                     case "Sum_RaportDzienny":
-                        
+
                         Sum_RaportDzienny tt = (Sum_RaportDzienny)t;
 
                         isFound = false;
@@ -2027,7 +2537,7 @@ namespace Reports.tabRaportyEventReceiver
                         }
                         break;
                     case "Sum_RaportDzienny_Grupa":
-                        
+
                         Sum_RaportDzienny_Grupa ttg = (Sum_RaportDzienny_Grupa)t;
 
                         isFound = false;
@@ -2035,16 +2545,16 @@ namespace Reports.tabRaportyEventReceiver
                         {
                             if (r.GetType().Name == "Rekord_RaportDzienny_Grupa")
                             {
-                                
+
                                 Rekord_RaportDzienny_Grupa rr = (Rekord_RaportDzienny_Grupa)r;
 
-                                if (ttg.Data == rr.Data && ttg.Grupa==rr.Grupa)
+                                if (ttg.Data == rr.Data && ttg.Grupa == rr.Grupa)
                                 {
                                     rr.NoweWnioski += ttg.LiczbaRekordow;
                                     isFound = true;
                                     break;
                                 }
-                            }                           
+                            }
                         }
                         if (!isFound)
                         {
@@ -2056,7 +2566,7 @@ namespace Reports.tabRaportyEventReceiver
                         }
                         break;
                     case "Sum_RaportDzienny_Operator":
-                        
+
                         Sum_RaportDzienny_Operator tto = (Sum_RaportDzienny_Operator)t;
 
                         isFound = false;
@@ -2064,10 +2574,10 @@ namespace Reports.tabRaportyEventReceiver
                         {
                             if (r.GetType().Name == "Rekord_RaportDzienny_Operator")
                             {
-                                
+
                                 Rekord_RaportDzienny_Operator rr = (Rekord_RaportDzienny_Operator)r;
 
-                                if (tto.Data == rr.Data && tto.Operator==rr.Operator)
+                                if (tto.Data == rr.Data && tto.Operator == rr.Operator)
                                 {
                                     rr.NoweWnioski += tto.LiczbaRekordow;
                                     isFound = true;
@@ -2139,13 +2649,13 @@ namespace Reports.tabRaportyEventReceiver
 
                 Sum_RaportDzienny r = new Sum_RaportDzienny();
                 r.Data = targetDate;
-                
+
                 foreach (SPListItem item in items)
                 {
                     bool isValid = false;
                     foreach (Int32 k in validKontraktIds)
                     {
-                        if (item.ID==k)
+                        if (item.ID == k)
                         {
                             isValid = true;
                             break;
@@ -2153,7 +2663,7 @@ namespace Reports.tabRaportyEventReceiver
                     }
                     if (isValid)
                     {
-                        r.LiczbaRekordow += 1;    
+                        r.LiczbaRekordow += 1;
                     }
                 }
 
@@ -2185,7 +2695,7 @@ namespace Reports.tabRaportyEventReceiver
                                 {
                                     rg.LiczbaRekordow += 1;
                                 }
-                            } 
+                            }
                         }
                     }
 
@@ -2222,7 +2732,7 @@ namespace Reports.tabRaportyEventReceiver
                             if (op.LookupId == o.LookupId)
                             {
                                 ro.LiczbaRekordow += 1;
-                            } 
+                            }
                         }
                     }
 
@@ -2286,7 +2796,7 @@ namespace Reports.tabRaportyEventReceiver
                     if (!isFound)
                     {
                         opList.Add(op);
-                    } 
+                    }
                 }
             }
         }
@@ -2298,7 +2808,7 @@ namespace Reports.tabRaportyEventReceiver
                 bool isValid = false;
                 foreach (Int32 k in validKontraktIds)
                 {
-                    if (item.ID==k)
+                    if (item.ID == k)
                     {
                         isValid = true;
                         break;
@@ -2326,7 +2836,7 @@ namespace Reports.tabRaportyEventReceiver
                     if (!isFound)
                     {
                         grList.Add(gr);
-                    } 
+                    }
                 }
             }
         }
@@ -2334,7 +2844,7 @@ namespace Reports.tabRaportyEventReceiver
         private static ArrayList CountSelected_RaportDzienny(SPItemEventProperties properties, DateTime targetDate, SPListItemCollection items)
         {
             ArrayList result = new ArrayList();
-            
+
             if (items.Count > 0)
             {
 
@@ -2495,49 +3005,49 @@ namespace Reports.tabRaportyEventReceiver
                     foreach (SPListItem item in items)
                     {
 
-                                Agent r = new Agent();
+                        Agent r = new Agent();
 
-                                r.AgentId = item.ID;
+                        r.AgentId = item.ID;
 
-                                if (item["colAktywny"] != null)
+                        if (item["colAktywny"] != null)
+                        {
+                            r.AgentIsActive = (bool)item["colAktywny"];
+                        }
+
+                        if (item["colEmailOsobyKontaktowej"] != null)
+                        {
+                            r.AgentEmail = item["colEmailOsobyKontaktowej"].ToString();
+                        }
+                        if (item["colOsobaKontaktowa"] != null)
+                        {
+                            r.AgentName = item["colOsobaKontaktowa"].ToString();
+                        }
+
+                        if (item["colManager"] != null)
+                        {
+                            SPFieldLookupValue value = new SPFieldLookupValue(item["colManager"].ToString());
+                            if (value.LookupId > 0)
+                            {
+                                //pobierz dane managera
+                                SPListItem itemManager = list.GetItemById(value.LookupId);
+                                if (itemManager["colEmailOsobyKontaktowej"] != null)
                                 {
-                                    r.AgentIsActive = (bool)item["colAktywny"];
+                                    r.ManagerEmail = itemManager["colEmailOsobyKontaktowej"].ToString();
                                 }
-
-                                if (item["colEmailOsobyKontaktowej"] != null)
+                                if (itemManager["colOsobaKontaktowa"] != null)
                                 {
-                                    r.AgentEmail = item["colEmailOsobyKontaktowej"].ToString();
+                                    r.ManagerName = itemManager["colOsobaKontaktowa"].ToString();
                                 }
-                                if (item["colOsobaKontaktowa"] != null)
-                                {
-                                    r.AgentName = item["colOsobaKontaktowa"].ToString();
-                                }
+                            }
+                        }
 
-                                if (item["colManager"] != null)
-                                {
-                                    SPFieldLookupValue value = new SPFieldLookupValue(item["colManager"].ToString());
-                                    if (value.LookupId > 0)
-                                    {
-                                        //pobierz dane managera
-                                        SPListItem itemManager = list.GetItemById(value.LookupId);
-                                        if (itemManager["colEmailOsobyKontaktowej"] != null)
-                                        {
-                                            r.ManagerEmail = itemManager["colEmailOsobyKontaktowej"].ToString();
-                                        }
-                                        if (itemManager["colOsobaKontaktowa"] != null)
-                                        {
-                                            r.ManagerName = itemManager["colOsobaKontaktowa"].ToString();
-                                        }
-                                    }
-                                }
+                        if (item["colGrupa"] != null)
+                        {
+                            r.Grupa = item["colGrupa"].ToString();
+                        }
 
-                                if (item["colGrupa"] != null)
-                                {
-                                    r.Grupa = item["colGrupa"].ToString();
-                                }
-
-                                //dodaj agenta do listy
-                                result.Add(r);
+                        //dodaj agenta do listy
+                        result.Add(r);
                     }
                 }
             }
@@ -3304,7 +3814,7 @@ niż 14 dni temu</li>
 
                 //validacja danych
                 string errorMessage = string.Empty;
-                if (endDate<beginDate)
+                if (endDate < beginDate)
                 {
                     errorMessage = String.Format(@"{0}<li>{1}</li>",
                         errorMessage,
@@ -3346,11 +3856,11 @@ niż 14 dni temu</li>
 
         private ArrayList SelectTotals_DlaGrupy(SPItemEventProperties properties, DateTime beginDate, DateTime endDate, SPFieldMultiChoiceValue groupsCollection)
         {
-            ArrayList agentsAL = SelectAgents_DlaGrupy(properties,groupsCollection);
+            ArrayList agentsAL = SelectAgents_DlaGrupy(properties, groupsCollection);
 
-            string mGroup = string.Empty ;
+            string mGroup = string.Empty;
             string mManager = string.Empty;
-            string mAgent = string.Empty ;
+            string mAgent = string.Empty;
             int mLiczbaNowychSpraw = 0;
             int mLiczbaSpraw_Wniosek = 0;
             int mLiczbaSpraw_Uruchomienie = 0;
@@ -3364,7 +3874,7 @@ niż 14 dni temu</li>
                 {
                     using (SPWeb web = site.AllWebs[properties.Web.ID])
                     {
-                        
+
                         //wybierze kontrakty zgłoszone w zadanym przedziale dat
                         StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""ID"" /><FieldRef Name=""colDataZgloszenia"" /></OrderBy><Where><And><Geq><FieldRef Name=""colDataZgloszenia"" /><Value Type=""DateTime"">***beginDate***</Value></Geq><Leq><FieldRef Name=""colDataZgloszenia"" /><Value Type=""DateTime"">***endDate***</Value></Leq></And></Where>");
                         sb.Replace("***beginDate***", beginDate.ToShortDateString());
@@ -3408,7 +3918,7 @@ niż 14 dni temu</li>
                                     {
                                         SPFieldLookupValue temp = new SPFieldLookupValue(item["colPartner_x002e_OsobaKontaktowa"].ToString());
                                         int agentId = temp.LookupId;
-                                        
+
                                         if (agentId == r.AgentId)
                                         {
                                             counterLiczbaNowychSpraw += 1;
@@ -3463,7 +3973,7 @@ niż 14 dni temu</li>
                                 gti.LiczbaNowychSpraw = counterLiczbaNowychSpraw;
                                 gti.LiczbaSpraw_Wniosek = counterLiczbaSpraw_Wniosek;
                                 gti.LiczbaSpraw_Uruchmienie = counterLiczbaSpraw_Uruchomienie;
-                                
+
 
                                 result.Add(gti);
                                 Reset_gti(ref mLiczbaNowychSpraw, ref mLiczbaSpraw_Wniosek, ref mLiczbaSpraw_Uruchomienie);
@@ -3493,7 +4003,7 @@ niż 14 dni temu</li>
 
                     if (item["colStatusKoncowy"] != null)
                     {
-                        if (item["colStatusKoncowy"]==status)
+                        if (item["colStatusKoncowy"] == status)
                         {
                             statusFound = true;
                             break;
@@ -3530,14 +4040,14 @@ niż 14 dni temu</li>
 
             string groupList = string.Empty;
             for (int i = 0; i < groupsCollection.Count; i++)
-			{
-			    if (i>0)
-	            {
-		             groupList = groupList + ",";
-	            }
-                groupList = groupList+groupsCollection[i].ToString();
-                
-			}
+            {
+                if (i > 0)
+                {
+                    groupList = groupList + ",";
+                }
+                groupList = groupList + groupsCollection[i].ToString();
+
+            }
             string s = String.Format("Raport dla Grupy [{0}] za okres {1}..{2}",
                 groupList,
                 beginDate.ToShortDateString(),
@@ -3971,18 +4481,18 @@ niż 14 dni temu</li>
                                 if (!String.IsNullOrEmpty(r.Grupa))
                                 {
                                     for (int i = 0; i < groupsCollection.Count; i++)
-			                        {
+                                    {
                                         if (r.Grupa == groupsCollection[i].ToString())
                                         {
                                             //dodaj agenta do listy
                                             result.Add(r);
                                             break;
                                         }
-			                        }
-                                    
-                                }  
+                                    }
 
-                                
+                                }
+
+
 
                             }
                         }
@@ -4567,10 +5077,10 @@ niż 14 dni temu</li>
         public int LiczbaSpraw_Uruchmienie { get; set; }
 
     }
-    
+
 
     #endregion
 
 }
-    
+
 
