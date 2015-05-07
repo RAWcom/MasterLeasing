@@ -57,10 +57,15 @@ private void Update_tabStatusTracking(SPItemEventProperties properties,int kontr
 {
 
            //sprawdź czy istnieje
-            StringBuilder sb = new StringBuilder(@"<Where><And><And><Eq><FieldRef Name=""colKontraktId"" /><Value Type=""Number"">___KontraktId___</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">___Status___</Value></Eq></And><Eq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___TargetDate___</Value></Eq></And></Where>");
-            sb.Replace("___KontraktId___",kontraktId.ToString());
-            sb.Replace("___Status___",status.ToString());
-            sb.Replace("___TargetDate___", targetDate.ToShortDateString());
+            //StringBuilder sb = new StringBuilder(@"<Where><And><And><Eq><FieldRef Name=""colKontraktId"" /><Value Type=""Number"">___KontraktId___</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">___Status___</Value></Eq></And><Eq><FieldRef Name=""colData"" /><Value Type=""DateTime"">___TargetDate___</Value></Eq></And></Where>");
+            //sb.Replace("___KontraktId___",kontraktId.ToString());
+            //sb.Replace("___Status___",status.ToString());
+            //sb.Replace("___TargetDate___", targetDate.ToShortDateString());
+
+            StringBuilder sb = new StringBuilder(@"<Where><And><Eq><FieldRef Name=""colKontraktId"" /><Value Type=""Number"">___KontraktId___</Value></Eq><Eq><FieldRef Name=""colStatusLeadu"" /><Value Type=""Text"">___Status___</Value></Eq></And></Where>");
+            sb.Replace("___KontraktId___", kontraktId.ToString());
+            sb.Replace("___Status___", status.ToString());
+            
 
             SPQuery query = new SPQuery();
             query.Query = sb.ToString();

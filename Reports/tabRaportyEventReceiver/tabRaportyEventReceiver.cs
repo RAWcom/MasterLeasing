@@ -156,7 +156,7 @@ namespace Reports.tabRaportyEventReceiver
                                         properties.ListItem["colMEMO"] = ex.ToString();
                                         properties.ListItem["colStatus"] = STATUS_ANULOWANY;
                                         properties.ListItem.Update();
-                                        string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny - Zbiorczy", ex.ToString());
+                                        //string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny - Zbiorczy", ex.ToString());
 
                                     }
 
@@ -176,7 +176,7 @@ namespace Reports.tabRaportyEventReceiver
                                         properties.ListItem["colMEMO"] = ex.ToString();
                                         properties.ListItem["colStatus"] = STATUS_ANULOWANY;
                                         properties.ListItem.Update();
-                                        string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny - na grupy", ex.ToString());
+                                        //string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny - na grupy", ex.ToString());
                                     }
 
 
@@ -195,7 +195,7 @@ namespace Reports.tabRaportyEventReceiver
                                         properties.ListItem["colMEMO"] = ex.ToString();
                                         properties.ListItem["colStatus"] = STATUS_ANULOWANY;
                                         properties.ListItem.Update();
-                                        string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny - na operatorów", ex.ToString());
+                                        //string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny - na operatorów", ex.ToString());
                                     }
 
                                     break;
@@ -222,7 +222,7 @@ namespace Reports.tabRaportyEventReceiver
                 properties.ListItem["colMEMO"] = ex.ToString();
                 properties.ListItem["colStatus"] = STATUS_ANULOWANY;
                 properties.ListItem.Update();
-                string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny", ex.ToString());
+                //string result = ElasticEmailSendMailApp.ElasticTestMail.SendTestEmail("ERR: ML.RaportDzienny", ex.ToString());
             }
         }
 
@@ -419,7 +419,7 @@ namespace Reports.tabRaportyEventReceiver
                             op = new SPFieldUserValue(properties.Web, r["colOperator"].ToString());
                             e = op.User.Name;
                         }
-                
+
                         if (e == gr)
                         {
 
@@ -456,17 +456,18 @@ namespace Reports.tabRaportyEventReceiver
                             //if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
                             //if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
                             //if (r.DataZgloszenia == DateTime.MinValue) backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
+                            string columnBackgroundColor = @"style=""background:#CCFFCC"""; //zielony
 
 
                             sb0.Append(String.Format(@"<tr {0} valign=""top"">
                                     				                            <td class=""style2"">{1}</td>
-                                    				                            <td class=""style2"" align=""center"">{2}</td>
+                                    				                            <td class=""style2"" align=""center"" {13}>{2}</td>
                                     				                            <td class=""style2"" align=""center"">{3}</td>
-                                    				                            <td class=""style2"" align=""center"">{4}</td>
+                                    				                            <td class=""style2"" align=""center"" {13}>{4}</td>
                                     				                            <td class=""style2"" align=""center"">{5}</td>
-                                    				                            <td class=""style2"" align=""center"">{6}</td>
+                                    				                            <td class=""style2"" align=""center"" {13}>{6}</td>
                                                                                 <td class=""style2"" align=""center"">{7}</td>
-                                    				                            <td class=""style2"" align=""center"">{8}</td>
+                                    				                            <td class=""style2"" align=""center"" {13}>{8}</td>
                                     				                            <td class=""style2"" align=""center"">{9}</td>
                                                                                 <td class=""style2"" align=""center"">{10}</td>
                                                                                 <td class=""style2"" align=""center"">{11}</td>
@@ -484,7 +485,8 @@ namespace Reports.tabRaportyEventReceiver
                                     r["colStracone"].ToString(),
                                     r["colOpoznioneNaEtapieTelemarketin"].ToString(),
                                     r["colOpozioneNaEtapieAkceptacjaOfe"].ToString(),
-                                    total_netto.ToString()));
+                                    total_netto.ToString(),
+                                    columnBackgroundColor));
 
                         }
                     }
@@ -546,7 +548,7 @@ namespace Reports.tabRaportyEventReceiver
                 if (item["colOperator"] != null)
                 {
                     op = new SPFieldUserValue(web, item["colOperator"].ToString());
-                    e = op.User.Name; 
+                    e = op.User.Name;
                 }
 
                 if (!result.Contains(e))
@@ -686,7 +688,7 @@ namespace Reports.tabRaportyEventReceiver
                         if (baseRecord != null)
                         {
 
-                            
+
                             sb0.Append(String.Format(@"<tr {0} valign=""top"">
                             				                            <td class=""style2"">{1}</td>
                             				                            <td class=""style2"" align=""center"">{2}</td>
@@ -715,10 +717,10 @@ namespace Reports.tabRaportyEventReceiver
                                 GetStringValue(baseRecord["colOpozioneNaEtapieAkceptacjaOfe"]),
                                 GetStringValue(baseRecord["colUruchomieniaNetto"])));
 
-                                if (baseRecord["colDecyzjePozytywneWObrobce"] != null)
-                                {
-                                    _bo_dpwo = (int)Decimal.Parse(baseRecord["colDecyzjePozytywneWObrobce"].ToString());
-                                }
+                            if (baseRecord["colDecyzjePozytywneWObrobce"] != null)
+                            {
+                                _bo_dpwo = (int)Decimal.Parse(baseRecord["colDecyzjePozytywneWObrobce"].ToString());
+                            }
 
                         }
                         else
@@ -763,7 +765,7 @@ namespace Reports.tabRaportyEventReceiver
                     int total_u = 0;
                     int total_s = 0;
 
-                                     
+
 
                     foreach (SPListItem r in records)
                     {
@@ -810,17 +812,18 @@ namespace Reports.tabRaportyEventReceiver
                             //if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
                             //if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
                             //if (r.DataZgloszenia == DateTime.MinValue) backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
+                            string columnBackgroundColor = @"style=""background:#CCFFCC""";
 
 
                             sb0.Append(String.Format(@"<tr {0} valign=""top"">
                                     				                            <td class=""style2"">{1}</td>
-                                    				                            <td class=""style2"" align=""center"">{2}</td>
+                                    				                            <td class=""style2"" align=""center"" {13}>{2}</td>
                                     				                            <td class=""style2"" align=""center"">{3}</td>
-                                    				                            <td class=""style2"" align=""center"">{4}</td>
+                                    				                            <td class=""style2"" align=""center"" {13}>{4}</td>
                                     				                            <td class=""style2"" align=""center"">{5}</td>
-                                    				                            <td class=""style2"" align=""center"">{6}</td>
+                                    				                            <td class=""style2"" align=""center"" {13}>{6}</td>
                                                                                 <td class=""style2"" align=""center"">{7}</td>
-                                    				                            <td class=""style2"" align=""center"">{8}</td>
+                                    				                            <td class=""style2"" align=""center"" {13}>{8}</td>
                                     				                            <td class=""style2"" align=""center"">{9}</td>
                                                                                 <td class=""style2"" align=""center"">{10}</td>
                                                                                 <td class=""style2"" align=""center"">{11}</td>
@@ -838,7 +841,8 @@ namespace Reports.tabRaportyEventReceiver
                                     r["colStracone"].ToString(),
                                     r["colOpoznioneNaEtapieTelemarketin"].ToString(),
                                     r["colOpozioneNaEtapieAkceptacjaOfe"].ToString(),
-                                    total_netto.ToString()));
+                                    total_netto.ToString(),
+                                    columnBackgroundColor));
 
                         }
                     }
@@ -935,7 +939,7 @@ namespace Reports.tabRaportyEventReceiver
                     e = item["colGrupa"].ToString();
                 }
 
-                if (!result.Contains(e))
+                if (!result.Contains(e) && !string.IsNullOrEmpty(e))
                 {
                     result.Add(e);
                 }
@@ -1223,17 +1227,18 @@ namespace Reports.tabRaportyEventReceiver
                     //if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
                     //if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
                     //if (r.DataZgloszenia == DateTime.MinValue) backgroundColor = @"style=""background:#F1D0A7"""; //pomarańcz
+                    string columnBackgroundColor = @"style=""background:#CCFFCC""";
 
 
                     sb0.Append(String.Format(@"<tr {0} valign=""top"">
         				                            <td class=""style2"">{1}</td>
-        				                            <td class=""style2"" align=""center"">{2}</td>
+        				                            <td class=""style2"" align=""center"" {13}>{2}</td>
         				                            <td class=""style2"" align=""center"">{3}</td>
-        				                            <td class=""style2"" align=""center"">{4}</td>
+        				                            <td class=""style2"" align=""center"" {13}>{4}</td>
         				                            <td class=""style2"" align=""center"">{5}</td>
-        				                            <td class=""style2"" align=""center"">{6}</td>
+        				                            <td class=""style2"" align=""center"" {13}>{6}</td>
                                                     <td class=""style2"" align=""center"">{7}</td>
-        				                            <td class=""style2"" align=""center"">{8}</td>
+        				                            <td class=""style2"" align=""center"" {13}>{8}</td>
         				                            <td class=""style2"" align=""center"">{9}</td>
                                                     <td class=""style2"" align=""center"">{10}</td>
                                                     <td class=""style2"" align=""center"">{11}</td>
@@ -1251,7 +1256,8 @@ namespace Reports.tabRaportyEventReceiver
                             r["colStracone"].ToString(),
                             r["colOpoznioneNaEtapieTelemarketin"].ToString(),
                             r["colOpozioneNaEtapieAkceptacjaOfe"].ToString(),
-                            r["colUruchomieniaNetto"].ToString()));
+                            r["colUruchomieniaNetto"].ToString(),
+                            columnBackgroundColor));
 
                 }
 
@@ -3449,7 +3455,7 @@ namespace Reports.tabRaportyEventReceiver
 
         /// <summary>
         /// R1.raport VIP – ma to być taki sam jak raport dla handlowców tyko z zaznaczeniem,
-        /// że dotyczy tylko spraw gdzie wartość przedmiotu jest równe lub większe 200.000 zł.
+        /// że dotyczy tylko spraw gdzie wartość przedmiotu jest równe lub większe 300.000 zł.
         /// Raport ten powinien zawierać także nazwisko handlowca i managera.
         /// Raport ten ma być wysyłany tylko do mnie, Kasi i Norberta
         /// </summary>
@@ -3474,7 +3480,7 @@ namespace Reports.tabRaportyEventReceiver
                 }
 
                 //przygotuj listę rekordów spełniających kryteria
-                StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colDataZgloszenia"" Ascending=""FALSE"" /></OrderBy><Where><Geq><FieldRef Name=""colWartoscKontraktuPLN"" /><Value Type=""Currency"">200000</Value></Geq></Where>");
+                StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colDataZgloszenia"" Ascending=""FALSE"" /></OrderBy><Where><Geq><FieldRef Name=""colWartoscKontraktuPLN"" /><Value Type=""Currency"">300000</Value></Geq></Where>");
                 SPQuery query = new SPQuery();
                 query.Query = sb.ToString();
 
@@ -3579,7 +3585,7 @@ namespace Reports.tabRaportyEventReceiver
 </style>
 </head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport VIP</h3>
 <ul><li class=""auto-style2"">Uwzględnia wyłącznie rekordy o wartości 
-kontraktu &gt; 200000 PLN</li>
+kontraktu &gt; 300000 PLN</li>
 <li class=""auto-style2"">Nie wyświetla rekordów o statusie <strong>
 Stracony</strong> i <strong>Rozliczenie</strong> modyfikowanych dawniej 
 niż 14 dni temu</li>
@@ -3597,13 +3603,16 @@ niż 14 dni temu</li>
             {
 
                 string backgroundColor = string.Empty;
+                string foregroundColor = string.Empty;
                 if (r.Status == "Stracony") backgroundColor = @"style=""background:#CCCCCC"""; //szary
                 if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
                 if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
+                if (r.IloscDniOpoznienia > 0) foregroundColor = @"style=""color:#FF0000"""; //czerwony
+                
 
                 sb0.Append(String.Format(@"
                      <tr {0} valign=""top"">
-        				<td class=""style2"">{1}</td>
+        				<td class=""style2"">{1} {13}</td>
         				<td class=""style2"">{2}</td>
         				<td class=""style2"">{3}</td>
         				<td class=""style2"">{4}</td>
@@ -3613,8 +3622,8 @@ niż 14 dni temu</li>
         				<td class=""style2"">{8}</td>
         				<td class=""style2"">{9}</td>
                         <td class=""style2"">{10}</td>
-                        <td class=""style2"">{11}</td>
-                        <td class=""style2"">{12}</td>
+                        <td class=""style2"" {13}>{11}</td>
+                        <td class=""style2"">{12}({14})</td>
         			</tr>",
                        backgroundColor,
                        r.ID,
@@ -3628,7 +3637,8 @@ niż 14 dni temu</li>
                        r.Status,
                        r.Ustalenia,
                        r.PlanowanyKontaktDisplay,
-                       r.Operator));
+                       r.Operator,
+                       foregroundColor,r.IloscDniOpoznienia.ToString()));
             }
 
             sb0.Append("</tbody>");
@@ -3702,7 +3712,7 @@ niż 14 dni temu</li>
             }
         }
         /// <summary>
-        /// fitr: wartość PLN >= 200000,
+        /// fitr: wartość PLN >= 300000,
         /// usuń Status Leadu=Stracony|Rozliczenie starsze niż 60 dni (w/g daty modyfikacji)
         /// 
         /// sort: wartość PLN (malejąco)
@@ -3772,6 +3782,22 @@ niż 14 dni temu</li>
                         if (item["ID"] != null)
                         {
                             r.ID = item["ID"].ToString();
+                        }
+
+                        if (item["colIloscDniOpoznienia"]!=null)
+                        {
+                            SPFieldCalculated temp = (SPFieldCalculated)item.Fields["Ilość Dni Opóźnienia"];
+                            string s = temp.GetFieldValueAsText(item["colIloscDniOpoznienia"]);
+
+                            int ii = 0;
+                            Int32.TryParse(s, out ii);
+                            r.IloscDniOpoznienia = ii;
+                            
+
+                        }
+                        else
+                        {
+                            r.IloscDniOpoznienia = 0;
                         }
 
 
@@ -5389,6 +5415,8 @@ niż 14 dni temu</li>
         public String Operator { get; set; }
         public DateTime DataModyfikacji { get; set; }
         public String Status { get; set; }
+        public int IloscDniOpoznienia { get; set; }
+       
         public bool IsValid { get; set; }
 
         public String PlanowanyKontaktDisplay
@@ -5435,20 +5463,20 @@ niż 14 dni temu</li>
             }
         }
 
-        public String IloscDniOpoznienia
-        {
-            get
-            {
-                if (PlanowanyKontakt <= DateTime.Today)
-                {
-                    return (DateTime.Today - PlanowanyKontakt).Days.ToString();
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-        }
+        //public String IloscDniOpoznienia
+        //{
+        //    get
+        //    {
+        //        if (PlanowanyKontakt <= DateTime.Today)
+        //        {
+        //            return (DateTime.Today - PlanowanyKontakt).Days.ToString();
+        //        }
+        //        else
+        //        {
+        //            return string.Empty;
+        //        }
+        //    }
+        //}
     }
 
     public class MailMsg
