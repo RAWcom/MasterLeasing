@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Id="28312784-6671-4972-9c49-4ab442f0ea43" ReceiverAssembly="masterleasing.RaportDziennyTimerJob, Version=1.0.0.0, Culture=neutral, PublicKeyToken=11ea8652364f4d97" ReceiverClass="masterleasing.RaportDziennyTimerJob.Features.RaportDziennyTimerJobFeature.RaportDziennyTimerJobFeatureEventReceiver" Scope="Site" Title="MasterLeasing RaportDziennyTimerJob Feature"></Feature>

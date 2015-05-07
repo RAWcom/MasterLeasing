@@ -1,1 +1,1 @@
-bin\Release\masterleasing.RaportDziennyTimerJob.wsp
+bin\Release\masterleasing.RaportDziennyTimerJob2.wsp

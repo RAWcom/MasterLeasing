@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="c20072e2-3765-4eaa-8fd9-5e8c8c69e0f3" solutionId="c20072e2-3765-4eaa-8fd9-5e8c8c69e0f3" resetWebServer="false" name="masterleasing.RaportDziennyTimerJob" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="c20072e2-3765-4eaa-8fd9-5e8c8c69e0f3" solutionId="c20072e2-3765-4eaa-8fd9-5e8c8c69e0f3" resetWebServer="false" name="masterleasing.RaportDziennyTimerJob2" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
-    <featureReference itemId="46559a30-3586-47f1-b92f-0ec2afe61200" />
+    <featureReference itemId="52cd823f-4304-4a3d-a423-a875f12a3b70" />
   </features>
 </package>

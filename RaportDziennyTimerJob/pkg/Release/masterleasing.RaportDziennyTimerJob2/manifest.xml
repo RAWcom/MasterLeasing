@@ -4,7 +4,6 @@
     <Assembly Location="masterleasing.RaportDziennyTimerJob.dll" DeploymentTarget="GlobalAssemblyCache" />
   </Assemblies>
   <FeatureManifests>
-    <FeatureManifest Location="MasterLeasing.RaportDziennyTimerJob_RaportDziennyTJFeature\Feature.xml" />
-    <FeatureManifest Location="MasterLeasing.RaportDziennyTimerJob_KonraktyUpdateFeature\Feature.xml" />
+    <FeatureManifest Location="MasterLeasing.RaportDziennyTimerJob_Feature1\Feature.xml" />
   </FeatureManifests>
 </Solution>

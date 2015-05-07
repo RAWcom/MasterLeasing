@@ -52,18 +52,15 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\RaportDziennyTJFeature\RaportDziennyTJFeature.EventReceiver.cs">
-      <DependentUpon>RaportDziennyTJFeature.feature</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PowiadomienieTimerJob.cs">
-      <SubType>Code</SubType>
+    <Compile Include="Features\Feature1\Feature1.EventReceiver.cs">
+      <DependentUpon>Feature1.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RaportDziennyTimerJob.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\RaportDziennyTJFeature\RaportDziennyTJFeature.feature">
-      <FeatureId>{46559a30-3586-47f1-b92f-0ec2afe61200}</FeatureId>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{52cd823f-4304-4a3d-a423-a875f12a3b70}</FeatureId>
     </None>
     <None Include="key.snk" />
     <None Include="Package\Package.package">
@@ -74,8 +71,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\RaportDziennyTJFeature\RaportDziennyTJFeature.Template.xml">
-      <DependentUpon>RaportDziennyTJFeature.feature</DependentUpon>
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
