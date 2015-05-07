@@ -1,0 +1,5 @@
+C:\_GitHub\MasterLeasing\MasterLeasing.KontraktyUpdateTimerJob\obj\Release\MasterLeasing.KontraktyUpdateTimerJob.csprojResolveAssemblyReference.cache
+C:\_GitHub\MasterLeasing\MasterLeasing.KontraktyUpdateTimerJob\bin\Release\MasterLeasing.KontraktyUpdateTimerJob.dll
+C:\_GitHub\MasterLeasing\MasterLeasing.KontraktyUpdateTimerJob\bin\Release\MasterLeasing.KontraktyUpdateTimerJob.pdb
+C:\_GitHub\MasterLeasing\MasterLeasing.KontraktyUpdateTimerJob\obj\Release\MasterLeasing.KontraktyUpdateTimerJob.dll
+C:\_GitHub\MasterLeasing\MasterLeasing.KontraktyUpdateTimerJob\obj\Release\MasterLeasing.KontraktyUpdateTimerJob.pdb

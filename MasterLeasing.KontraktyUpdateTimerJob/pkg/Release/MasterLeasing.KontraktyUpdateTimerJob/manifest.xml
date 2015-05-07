@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="3ad405ed-b9a3-42c5-a558-48745d0b9414" SharePointProductVersion="14.0">
+  <Assemblies>
+    <Assembly Location="MasterLeasing.KontraktyUpdateTimerJob.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="MasterLeasing.KontraktyUpdateTimerJob_Feature1\Feature.xml" />
+  </FeatureManifests>
+</Solution>

@@ -17,7 +17,7 @@ namespace masterleasing.RaportDziennyTimerJob.Features.RaportDziennyTimerJobFeat
     [Guid("b4729229-b9b3-43ef-b144-133bea31f983")]
     public class RaportDziennyTimerJobFeatureEventReceiver : SPFeatureReceiver
     {
-        private const string List_JOB_NAME = "RaportDziennyTimerJob2";
+        private const string List_JOB_NAME = "MLRaportDziennyTJ";
 
         // Uncomment the method below to handle the event raised after a feature has been activated.
 
@@ -32,10 +32,16 @@ namespace masterleasing.RaportDziennyTimerJob.Features.RaportDziennyTimerJobFeat
 
                 // install the job 
                 RaportDziennyTimerJob listLoggerJob = new RaportDziennyTimerJob(List_JOB_NAME, site.WebApplication);
-                SPMinuteSchedule schedule = new SPMinuteSchedule();
-                schedule.BeginSecond = 0;
-                schedule.EndSecond = 59;
-                schedule.Interval = 60;
+
+                SPHourlySchedule schedule = new SPHourlySchedule();
+                schedule.BeginMinute = 0;
+                schedule.EndMinute = 5;
+
+                ////SPMinuteSchedule schedule = new SPMinuteSchedule();
+                ////schedule.BeginSecond = 0;
+                ////schedule.EndSecond = 59;
+                ////schedule.Interval = 60;
+
                 listLoggerJob.Schedule = schedule;
                 listLoggerJob.Update();
             });

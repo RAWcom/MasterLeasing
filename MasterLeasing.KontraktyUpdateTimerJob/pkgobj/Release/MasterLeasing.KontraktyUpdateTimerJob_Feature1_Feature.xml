@@ -1,0 +1,2 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="MasterLeasing KontraktyUpdateTimerJob Feature" Id="bd7e4911-59f7-4a35-8836-39e4629dd002" ReceiverAssembly="MasterLeasing.KontraktyUpdateTimerJob, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7bb0d1fd9497dcca" ReceiverClass="MasterLeasing.KontraktyUpdateTimerJob.Features.Feature1.Feature1EventReceiver" Scope="Site"></Feature>
