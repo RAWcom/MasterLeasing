@@ -3612,7 +3612,7 @@ niż 14 dni temu</li>
 
                 sb0.Append(String.Format(@"
                      <tr {0} valign=""top"">
-        				<td class=""style2"">{1} {13}</td>
+        				<td class=""style2"" {13}>{1}</td>
         				<td class=""style2"">{2}</td>
         				<td class=""style2"">{3}</td>
         				<td class=""style2"">{4}</td>
@@ -3623,7 +3623,7 @@ niż 14 dni temu</li>
         				<td class=""style2"">{9}</td>
                         <td class=""style2"">{10}</td>
                         <td class=""style2"" {13}>{11}</td>
-                        <td class=""style2"">{12}({14})</td>
+                        <td class=""style2"">{12}</td>
         			</tr>",
                        backgroundColor,
                        r.ID,
