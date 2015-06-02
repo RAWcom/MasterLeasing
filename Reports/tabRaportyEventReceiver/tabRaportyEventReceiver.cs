@@ -3784,7 +3784,7 @@ niż 14 dni temu</li>
                             r.ID = item["ID"].ToString();
                         }
 
-                        if (item["colIloscDniOpoznienia"]!=null)
+                        if (item["colIloscDniOpoznienia"] != null)
                         {
                             SPFieldCalculated temp = (SPFieldCalculated)item.Fields["Ilość Dni Opóźnienia"];
                             string s = temp.GetFieldValueAsText(item["colIloscDniOpoznienia"]);
@@ -3792,7 +3792,7 @@ niż 14 dni temu</li>
                             int ii = 0;
                             Int32.TryParse(s, out ii);
                             r.IloscDniOpoznienia = ii;
-                            
+
 
                         }
                         else
@@ -3801,10 +3801,16 @@ niż 14 dni temu</li>
                         }
 
 
-                        result.Add(r);
-
-
+                        if (r.Status == "Stracony" && r.DataModyfikacji < DateTime.Now.AddDays(-14))
+                        {
+                            // pomiń Stracone rekordy starsze niż 14 dni od daty ostatniej modyfikacji.
+                        }
+                        else
+                        {
+                            result.Add(r);
+                        }
                     }
+
                 }
             }
 
