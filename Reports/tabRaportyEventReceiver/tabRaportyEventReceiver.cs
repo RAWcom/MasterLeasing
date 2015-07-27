@@ -3568,7 +3568,34 @@ namespace Reports.tabRaportyEventReceiver
 
             //Body
 
+//            StringBuilder sb = new StringBuilder(@"<head><style type=""text/css"">
+//.style1 {
+//	border-style: solid;
+//	border-width: 0px;
+//}
+//.style2 {
+//	border-style: solid;
+//	border-width: 1px;
+//}
+//.auto-style2 {
+//	font-family: Arial, Helvetica, sans-serif;
+//	font-size: xx-small;
+//	text-align: left;
+//}
+//</style>
+//</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport VIP</h3>
+//<ul><li class=""auto-style2"">Uwzględnia wyłącznie rekordy o wartości 
+//kontraktu &gt; 300000 PLN</li>
+//<li class=""auto-style2"">Nie wyświetla rekordów o statusie <strong>
+//Stracony</strong> i <strong>Rozliczenie</strong> modyfikowanych dawniej 
+//niż 14 dni temu</li>
+//	<li class=""auto-style2"">Sortowanie w/g Daty zgłoszenia - malejąco</li>
+//</ul>
+//<p>&nbsp;</p></td>
+//	<td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">#</td><td class=""style2"">Grupa</td><td class=""style2"">Menedżer</td><td class=""style2"">Agent</td><td class=""style2"">Klient</td><td class=""style2"">Data zgłoszenia</td><td class=""style2"">Wartość PLN</td><td class=""style2"">Cel finansowania</td><td class=""style2"">Status</td><td class=""style2"">Ustalenia z klientem</td><td class=""style2"">Data następnego kontaktu</td><td class=""style2"">Operator</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+//</table></body>");
             StringBuilder sb = new StringBuilder(@"<head><style type=""text/css"">
+
 .style1 {
 	border-style: solid;
 	border-width: 0px;
@@ -3592,7 +3619,7 @@ niż 14 dni temu</li>
 	<li class=""auto-style2"">Sortowanie w/g Daty zgłoszenia - malejąco</li>
 </ul>
 <p>&nbsp;</p></td>
-	<td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">#</td><td class=""style2"">Grupa</td><td class=""style2"">Menedżer</td><td class=""style2"">Agent</td><td class=""style2"">Klient</td><td class=""style2"">Data zgłoszenia</td><td class=""style2"">Wartość PLN</td><td class=""style2"">Cel finansowania</td><td class=""style2"">Status</td><td class=""style2"">Ustalenia z klientem</td><td class=""style2"">Data następnego kontaktu</td><td class=""style2"">Operator</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
+	<td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110"" /></td></tr></table></td></tr><tr><td><table cellpadding=""2"" cellspacing=""1"" class=""style1"" style=""width: 100%; font-size: x-small""><thead style=""background: silver""><tr><td class=""style2"">#</td><td class=""style2"">Grupa</td><td class=""style2"">Menedżer</td><td class=""style2"">Agent</td><td class=""style2"">Klient</td><td class=""style2"">Data zgłoszenia</td><td class=""style2"">Wartość PLN</td><td class=""style2"">Cel finansowania</td><td class=""style2"">Status</td><td class=""style2"">Data następnego kontaktu</td><td class=""style2"">Operator</td></tr></thead>***TBody*** </table></td></tr><tr><td>&nbsp;</td></tr>
 </table></body>");
 
             //TBody
@@ -3608,7 +3635,38 @@ niż 14 dni temu</li>
                 if (r.Status == "Uruchomienie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
                 if (r.Status == "Rozliczenie") backgroundColor = @"style=""background:#CCFFCC"""; //zielony
                 if (r.IloscDniOpoznienia > 0) foregroundColor = @"style=""color:#FF0000"""; //czerwony
-                
+
+
+//                sb0.Append(String.Format(@"
+//                     <tr {0} valign=""top"">
+//        				<td class=""style2"" {13}>{1}</td>
+//        				<td class=""style2"">{2}</td>
+//        				<td class=""style2"">{3}</td>
+//        				<td class=""style2"">{4}</td>
+//        				<td class=""style2"">{5}</td>
+//        				<td class=""style2"">{6}</td>
+//                        <td class=""style2"" align=""right"">{7}</td>
+//        				<td class=""style2"">{8}</td>
+//        				<td class=""style2"">{9}</td>
+//                        <td class=""style2"">{10}</td>
+//                        <td class=""style2"" {13}>{11}</td>
+//                        <td class=""style2"">{12}</td>
+//        			</tr>",
+//                       backgroundColor,
+//                       r.ID,
+//                       r.Grupa,
+//                       r.ManagerName,
+//                       r.AgentName,
+//                       r.Klient,
+//                       r.DataZgloszeniaDisplay,
+//                       r.WartoscPLNDisplay,
+//                       r.CelFinansowania,
+//                       r.Status,
+//                       r.Ustalenia,
+//                       r.PlanowanyKontaktDisplay,
+//                       r.Operator,
+//                       foregroundColor, r.IloscDniOpoznienia.ToString()));
+
 
                 sb0.Append(String.Format(@"
                      <tr {0} valign=""top"">
@@ -3621,10 +3679,9 @@ niż 14 dni temu</li>
                         <td class=""style2"" align=""right"">{7}</td>
         				<td class=""style2"">{8}</td>
         				<td class=""style2"">{9}</td>
-                        <td class=""style2"">{10}</td>
                         <td class=""style2"" {13}>{11}</td>
                         <td class=""style2"">{12}</td>
-        			</tr>",
+        			</tr><tr><td colspan=5>&nbsp;</td><td colspan=6 class=""style2"">{10}</td></tr>",
                        backgroundColor,
                        r.ID,
                        r.Grupa,
