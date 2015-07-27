@@ -3886,7 +3886,7 @@ niż 14 dni temu</li>
             }
             else
             {
-                msg.Cc = GetManagingPartnersEmails(properties);
+                msg.Cc = Get3SprawyTargetEmails(properties);
                 //msg.Cc = "biuro@rawcom24.pl";
                 msg.Subject = s;
             }
@@ -5325,6 +5325,34 @@ niż 14 dni temu</li>
 
             return result;
         }
+
+        private string Get3SprawyTargetEmails(SPItemEventProperties properties)
+        {
+
+            string result = string.Empty;
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"admSetup"];
+
+                    foreach (SPListItem item in list.Items)
+                    {
+                        string key = item["colKEY"].ToString();
+
+                        if (key == @"RAPORT_3SPRAWY_CC_COPY")
+                        {
+                            result = item["colVALUE"].ToString();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
 
         private string GetSmtpServer()
         {
