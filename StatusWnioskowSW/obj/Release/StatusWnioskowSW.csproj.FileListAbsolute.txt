@@ -5,6 +5,5 @@ C:\Users\admin3324\Documents\GitHub\MasterLeasing\StatusWnioskowSW\obj\Release\m
 C:\Users\admin3324\Documents\GitHub\MasterLeasing\StatusWnioskowSW\obj\Release\StatusWnioskowSW.csprojResolveAssemblyReference.cache
 C:\_GitHub\MasterLeasing\StatusWnioskowSW\bin\Release\masterleasing.Reports.StatusWnioskowSW.dll
 C:\_GitHub\MasterLeasing\StatusWnioskowSW\bin\Release\masterleasing.Reports.StatusWnioskowSW.pdb
-C:\_GitHub\MasterLeasing\StatusWnioskowSW\obj\Release\StatusWnioskowSW.csprojResolveAssemblyReference.cache
 C:\_GitHub\MasterLeasing\StatusWnioskowSW\obj\Release\masterleasing.Reports.StatusWnioskowSW.dll
 C:\_GitHub\MasterLeasing\StatusWnioskowSW\obj\Release\masterleasing.Reports.StatusWnioskowSW.pdb

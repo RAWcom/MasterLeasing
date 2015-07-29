@@ -3,3 +3,8 @@ C:\Users\admin3324\Documents\GitHub\MasterLeasing\StatusWnioskowSW\bin\Debug\mas
 C:\Users\admin3324\Documents\GitHub\MasterLeasing\StatusWnioskowSW\obj\Debug\masterleasing.Reports.StatusWnioskowSW.dll
 C:\Users\admin3324\Documents\GitHub\MasterLeasing\StatusWnioskowSW\obj\Debug\masterleasing.Reports.StatusWnioskowSW.pdb
 C:\Users\admin3324\Documents\GitHub\MasterLeasing\StatusWnioskowSW\obj\Debug\StatusWnioskowSW.csprojResolveAssemblyReference.cache
+C:\_GitHub\MasterLeasing\StatusWnioskowSW\bin\Debug\masterleasing.Reports.StatusWnioskowSW.dll
+C:\_GitHub\MasterLeasing\StatusWnioskowSW\bin\Debug\masterleasing.Reports.StatusWnioskowSW.pdb
+C:\_GitHub\MasterLeasing\StatusWnioskowSW\obj\Debug\StatusWnioskowSW.csprojResolveAssemblyReference.cache
+C:\_GitHub\MasterLeasing\StatusWnioskowSW\obj\Debug\masterleasing.Reports.StatusWnioskowSW.dll
+C:\_GitHub\MasterLeasing\StatusWnioskowSW\obj\Debug\masterleasing.Reports.StatusWnioskowSW.pdb

@@ -199,9 +199,25 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                 WriteToHistoryLog("To:" + sendTo, "");
                 sendCC = GetManagerEmail(partner);
                 sendBCC = GetManagingPartnersEmails();
+
+                string strOsobaKontaktowa = partner["colOsobaKontaktowa"].ToString();
+                
+                //modyfikacja opisu jeżeli partner należy do grupy księgowi
+                if (partner["colGrupa"]!=null)
+                {
+                    string strGrupa = partner["colGrupa"].ToString();
+                    if (strGrupa=="Księgowi")
+                    {
+                        strOsobaKontaktowa = strOsobaKontaktowa + " - Biuro Rachunkowe";
+                    }
+                    
+                }
+                
+
+
                 sendSubject = String.Format(":: Status kontraków : {0} : {1}",
                     DateTime.Now.ToShortDateString(),
-                    partner["colOsobaKontaktowa"].ToString());
+                    strOsobaKontaktowa);
 
                 StringBuilder sb = new StringBuilder();
 
@@ -668,7 +684,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
         }
 
         private void sendRaportDlaAgenta_MethodInvoking(object sender, EventArgs e)
-        {
+        {           
             if (bRaportTestowy)
             {
                 //podmień dane do wysyłki
