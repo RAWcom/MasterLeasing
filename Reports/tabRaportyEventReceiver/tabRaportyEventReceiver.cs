@@ -345,13 +345,13 @@ namespace Reports.tabRaportyEventReceiver
                             			                            </tr>",
                                 groupHeaderBackgroundColor,
                                 @"Bilans otwarcia",
-                                GetStringValue(baseRecord["colNoweWnioski"]),
+                                string.Empty,//GetStringValue(baseRecord["colNoweWnioski"]),
                                 GetStringValue(baseRecord["colKoszyk"]),
-                                GetStringValue(baseRecord["colWnioskiZlozoneDanegoDnia"]),
+                                string.Empty,//GetStringValue(baseRecord["colWnioskiZlozoneDanegoDnia"]),
                                 GetStringValue(baseRecord["colWnioskiWObrobce"]),
-                                GetStringValue(baseRecord["colDecyzjePozytywneDanegoDnia"]),
+                                string.Empty,//GetStringValue(baseRecord["colDecyzjePozytywneDanegoDnia"]),
                                 GetStringValue(baseRecord["colDecyzjePozytywneWObrobce"]),
-                                GetStringValue(baseRecord["colUruchomienia"]),
+                                string.Empty,//GetStringValue(baseRecord["colUruchomienia"]),
                                 GetStringValue(baseRecord["colStracone"]),
                                 GetStringValue(baseRecord["colOpoznioneNaEtapieTelemarketin"]),
                                 GetStringValue(baseRecord["colOpozioneNaEtapieAkceptacjaOfe"]),
@@ -447,7 +447,7 @@ namespace Reports.tabRaportyEventReceiver
                             if (r["colDecyzjePozytywneWObrobce"] != null)
                             {
                                 int _dpwo = (int)Decimal.Parse(r["colDecyzjePozytywneWObrobce"].ToString());
-                                total_netto += _dpwo - _bo_dpwo;
+                                total_netto = _dpwo - _bo_dpwo + total_u;
                             }
 
 
@@ -705,13 +705,13 @@ namespace Reports.tabRaportyEventReceiver
                             			                            </tr>",
                                 groupHeaderBackgroundColor,
                                 @"Bilans otwarcia",
-                                GetStringValue(baseRecord["colNoweWnioski"]),
+                                string.Empty,//GetStringValue(baseRecord["colNoweWnioski"]),
                                 GetStringValue(baseRecord["colKoszyk"]),
-                                GetStringValue(baseRecord["colWnioskiZlozoneDanegoDnia"]),
+                                string.Empty,//GetStringValue(baseRecord["colWnioskiZlozoneDanegoDnia"]),
                                 GetStringValue(baseRecord["colWnioskiWObrobce"]),
-                                GetStringValue(baseRecord["colDecyzjePozytywneDanegoDnia"]),
+                                string.Empty,//GetStringValue(baseRecord["colDecyzjePozytywneDanegoDnia"]),
                                 GetStringValue(baseRecord["colDecyzjePozytywneWObrobce"]),
-                                GetStringValue(baseRecord["colUruchomienia"]),
+                                string.Empty,//GetStringValue(baseRecord["colUruchomienia"]),
                                 GetStringValue(baseRecord["colStracone"]),
                                 GetStringValue(baseRecord["colOpoznioneNaEtapieTelemarketin"]),
                                 GetStringValue(baseRecord["colOpozioneNaEtapieAkceptacjaOfe"]),
@@ -803,7 +803,7 @@ namespace Reports.tabRaportyEventReceiver
                             if (r["colDecyzjePozytywneWObrobce"] != null)
                             {
                                 int _dpwo = (int)Decimal.Parse(r["colDecyzjePozytywneWObrobce"].ToString());
-                                total_netto += _dpwo - _bo_dpwo;
+                                total_netto = _dpwo - _bo_dpwo + total_u;
                             }
 
 
@@ -1155,13 +1155,13 @@ namespace Reports.tabRaportyEventReceiver
         			                            </tr>",
                                 groupHeaderBackgroundColor,
                                 @"Bilans otwarcia",
-                                baseRecord["colNoweWnioski"].ToString(),
+                                string.Empty,//baseRecord["colNoweWnioski"].ToString(),
                                 baseRecord["colKoszyk"].ToString(),
-                                baseRecord["colWnioskiZlozoneDanegoDnia"].ToString(),
+                                string.Empty,//baseRecord["colWnioskiZlozoneDanegoDnia"].ToString(),
                                 baseRecord["colWnioskiWObrobce"].ToString(),
-                                baseRecord["colDecyzjePozytywneDanegoDnia"].ToString(),
+                                string.Empty,//baseRecord["colDecyzjePozytywneDanegoDnia"].ToString(),
                                 baseRecord["colDecyzjePozytywneWObrobce"].ToString(),
-                                baseRecord["colUruchomienia"].ToString(),
+                                string.Empty,//baseRecord["colUruchomienia"].ToString(),
                                 baseRecord["colStracone"].ToString(),
                                 baseRecord["colOpoznioneNaEtapieTelemarketin"].ToString(),
                                 baseRecord["colOpozioneNaEtapieAkceptacjaOfe"].ToString(),
