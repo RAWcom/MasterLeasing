@@ -3480,7 +3480,8 @@ namespace Reports.tabRaportyEventReceiver
                 }
 
                 //przygotuj listę rekordów spełniających kryteria
-                StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colDataZgloszenia"" Ascending=""FALSE"" /></OrderBy><Where><Geq><FieldRef Name=""colWartoscKontraktuPLN"" /><Value Type=""Currency"">300000</Value></Geq></Where>");
+                //StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colDataZgloszenia"" Ascending=""FALSE"" /></OrderBy><Where><Geq><FieldRef Name=""colWartoscKontraktuPLN"" /><Value Type=""Currency"">300000</Value></Geq></Where>");
+                StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colDataZgloszenia"" Ascending=""FALSE"" /></OrderBy><Where><Eq><FieldRef Name=""colOperator"" /><Value Type=""User"">Gawrylak, Katarzyna</Value></Eq></Where>");
                 SPQuery query = new SPQuery();
                 query.Query = sb.ToString();
 
@@ -3611,8 +3612,7 @@ namespace Reports.tabRaportyEventReceiver
 }
 </style>
 </head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport VIP</h3>
-<ul><li class=""auto-style2"">Uwzględnia wyłącznie rekordy o wartości 
-kontraktu &gt; 300000 PLN</li>
+<ul><li class=""auto-style2"">Wyświetla wyłącznie rekordy przypisane do operatora Katarzyna Gawrylak</li>
 <li class=""auto-style2"">Nie wyświetla rekordów o statusie <strong>
 Stracony</strong> i <strong>Rozliczenie</strong> modyfikowanych dawniej 
 niż 14 dni temu</li>
