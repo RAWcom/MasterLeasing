@@ -256,7 +256,8 @@ namespace Reports.tabRaportyEventReceiver
             }
             else
             {
-                msg.Cc = GetManagingPartnersEmails(properties);
+                msg.Cc = GetTargetEmails(properties, "RAPORT_DZIENNYZBIORCZY_CC_COPY");
+                //msg.Cc = GetManagingPartnersEmails(properties);
                 //msg.Cc = "biuro@rawcom24.pl";
                 msg.Subject = s;
             }
@@ -534,6 +535,32 @@ namespace Reports.tabRaportyEventReceiver
             //wyślij raport mailem
 
             SendMail(properties, msg);
+        }
+
+        private string GetTargetEmails(SPItemEventProperties properties, string KEY)
+        {
+            string result = string.Empty;
+
+            using (SPSite site = new SPSite(properties.SiteId))
+            {
+                using (SPWeb web = site.AllWebs[properties.Web.ID])
+                {
+                    SPList list = web.Lists[@"admSetup"];
+
+                    foreach (SPListItem item in list.Items)
+                    {
+                        string key = item["colKEY"].ToString();
+
+                        if (key == KEY)
+                        {
+                            result = item["colVALUE"].ToString();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
 
         private ArrayList GetOperatorzy(SPWeb web, SPListItemCollection records)
