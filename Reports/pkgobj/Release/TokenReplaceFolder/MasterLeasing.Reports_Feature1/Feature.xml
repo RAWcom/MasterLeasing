@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="MasterLeasing Reports Feature" Id="09150b32-e6bd-4f24-a7fa-44ec64f37c08" Scope="Web">
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Id="09150b32-e6bd-4f24-a7fa-44ec64f37c08" Scope="Web" Title="MasterLeasing Reports Feature">
   <ElementManifests>
     <ElementManifest Location="tabRaportyEventReceiver\Elements.xml" />
     <ElementManifest Location="tabKontraktyEventReceiver\Elements.xml" />

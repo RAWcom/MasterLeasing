@@ -48,6 +48,10 @@ namespace Reports.tabRaportyEventReceiver
 
             SPSecurity.RunWithElevatedPrivileges(delegate()
             {
+                try
+                {
+
+
 
                 //określ rodzaj raportu
                 string ct = properties.ListItem["ContentType"].ToString();
@@ -75,6 +79,13 @@ namespace Reports.tabRaportyEventReceiver
                         properties.ListItem["colStatus"] = STATUS_ZAKONCZONY;
                         properties.ListItem.Update();
                         break;
+                }
+
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogEvent(properties.WebUrl, ex.ToString());
+                    ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, properties.WebUrl, "MasterLasing.Reports");
                 }
             });
 
@@ -3508,11 +3519,15 @@ namespace Reports.tabRaportyEventReceiver
 
                 //przygotuj listę rekordów spełniających kryteria
                 //StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colDataZgloszenia"" Ascending=""FALSE"" /></OrderBy><Where><Geq><FieldRef Name=""colWartoscKontraktuPLN"" /><Value Type=""Currency"">300000</Value></Geq></Where>");
-                StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colDataZgloszenia"" Ascending=""FALSE"" /></OrderBy><Where><Eq><FieldRef Name=""colOperator"" /><Value Type=""User"">Gawrylak, Katarzyna</Value></Eq></Where>");
+                //StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colDataZgloszenia"" Ascending=""FALSE"" /></OrderBy><Where><Eq><FieldRef Name=""colOperator"" /><Value Type=""User"">Gawrylak, Katarzyna</Value></Eq></Where>");
+                StringBuilder sb = new StringBuilder(@"<OrderBy><FieldRef Name=""colDataZgloszenia"" Ascending=""FALSE"" /></OrderBy><Where><Eq><FieldRef Name=""colVIP"" /><Value Type=""Boolean"">1</Value></Eq></Where>");
+                
                 SPQuery query = new SPQuery();
                 query.Query = sb.ToString();
 
                 ArrayList recordsAL = SelectContracts_VIP(properties, query);
+
+                Logger.LogEvent(properties.WebUrl + "::RaportVIP", "query.Count=" + recordsAL.Count.ToString());
 
                 //validate contracts
 
@@ -3531,20 +3546,27 @@ namespace Reports.tabRaportyEventReceiver
                     }
                 }
 
-                for (int i = recordsAL.Count - 1; i <= 0; i--)
+                if (recordsAL.Count > 0)
                 {
-                    Kontrakt r = (Kontrakt)recordsAL[i];
-                    if (!r.IsValid)
+                    Logger.LogEvent(properties.WebUrl+"::RaportVIP", "recordsAL.Count > 0");
+                    for (int i = recordsAL.Count - 1; i >= 0; i--)
                     {
-                        recordsAL.RemoveAt(i);
+                        Kontrakt r = (Kontrakt)recordsAL[i];
+                        if (!r.IsValid)
+                        {
+                            recordsAL.RemoveAt(i);
+                        }
                     }
+                    Logger.LogEvent(properties.WebUrl + "::RaportVIP", "matched=" +recordsAL.Count.ToString());
                 }
 
                 //uzupełnij dane partnera
                 UpdatePartnerDetails(properties, recordsAL);
+                Logger.LogEvent(properties.WebUrl + "::RaportVIP", "UpdatePartnerDetails - done");
 
                 //przygotuj raport
                 CreateReportVIP(properties, recordsAL, isRaportTestowy);
+                Logger.LogEvent(properties.WebUrl + "::RaportVIP", "CreateReportVIP - done");
 
                 properties.ListItem["colStatus"] = STATUS_ZAKONCZONY;
                 properties.ListItem.Update();
@@ -3555,6 +3577,9 @@ namespace Reports.tabRaportyEventReceiver
                 properties.ListItem["colMEMO"] = ex.ToString();
                 properties.ListItem["colStatus"] = STATUS_ANULOWANY;
                 properties.ListItem.Update();
+
+                Logger.LogEvent(properties.WebUrl, ex.ToString());
+                ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, properties.WebUrl, "Create_ReportVIP");
             }
 
         }
@@ -3639,7 +3664,7 @@ namespace Reports.tabRaportyEventReceiver
 }
 </style>
 </head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td align=""center"" valign=""middle""><h3>Raport VIP</h3>
-<ul><li class=""auto-style2"">Wyświetla wyłącznie rekordy przypisane do operatora Katarzyna Gawrylak</li>
+<ul><li class=""auto-style2"">Wyświetla wyłącznie rekordy oznaczone flagą VIP</li>
 <li class=""auto-style2"">Nie wyświetla rekordów o statusie <strong>
 Stracony</strong> i <strong>Rozliczenie</strong> modyfikowanych dawniej 
 niż 14 dni temu</li>
