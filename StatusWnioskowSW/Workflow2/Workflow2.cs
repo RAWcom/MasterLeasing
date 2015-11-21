@@ -359,10 +359,10 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                         return false;
                     }
 
-
-                    if (strStatusLeadu == "Stracony" && datModified < DateTime.Now.AddDays(-60))
+                    //if (strStatusLeadu == "Stracony" && datModified < DateTime.Now.AddDays(60))
+                    if (strStatusLeadu == "Stracony" && datModified < DateTime.Now.AddDays(-7))
                     {
-                        //ignoruj rekordy o statusie stracony, których status został nadany więcej niż 60 dni temu (ostatnia aktulizacja rekordu)
+                        //ignoruj rekordy o statusie stracony, których status został nadany więcej niż 7 dni temu (ostatnia aktulizacja rekordu)
                     }
                     else
                     {

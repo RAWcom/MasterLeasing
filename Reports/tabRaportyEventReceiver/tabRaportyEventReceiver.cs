@@ -11,6 +11,7 @@ using Microsoft.SharePoint.Administration;
 using System.Collections.Specialized;
 using masterleasing.Reports;
 using System.Collections.Generic;
+using masterleasing.Reports.tabRaportyEventReceiver;
 
 namespace Reports.tabRaportyEventReceiver
 {
@@ -4800,6 +4801,11 @@ niż 14 dni temu</li>
 
                 bool isActiveGroupFooter = false;
                 string newGroupHeader = string.Empty;
+
+                //dodano sortowanie malejące tablicy
+                recordsAL.Sort(new CustomComparer());
+          
+
 
                 foreach (GroupTotalsItem r in recordsAL)
                 {

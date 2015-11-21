@@ -59,6 +59,7 @@
     <Compile Include="Rekord_RaportDzienny.cs" />
     <Compile Include="Sum_RaportDzienny.cs" />
     <Compile Include="tabKontraktyEventReceiver\tabKontraktyEventReceiver.cs" />
+    <Compile Include="tabRaportyEventReceiver\CustomComparer.cs" />
     <Compile Include="tabRaportyEventReceiver\tabRaportyEventReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
