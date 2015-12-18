@@ -37,8 +37,9 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             System.Workflow.Activities.CodeCondition codecondition1 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition2 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition3 = new System.Workflow.Activities.CodeCondition();
-            System.Workflow.Activities.CodeCondition codecondition4 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.ComponentModel.ActivityBind activitybind8 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.Activities.CodeCondition codecondition4 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.ComponentModel.ActivityBind activitybind9 = new System.Workflow.ComponentModel.ActivityBind();
             this.logRaportWyslany = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.sendRaportDlaAgenta = new Microsoft.SharePoint.WorkflowActions.SendEmail();
             this.ifZnalezioneKontrakty = new System.Workflow.Activities.IfElseBranchActivity();
@@ -49,11 +50,16 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             this.sequencePrzygotujRaport = new System.Workflow.Activities.SequenceActivity();
             this.whileAgentAvailable = new System.Workflow.Activities.WhileActivity();
             this.AgenciDoObslugi = new System.Workflow.Activities.IfElseBranchActivity();
+            this.logErrorMessage = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.cmdErrorHandler = new System.Workflow.Activities.CodeActivity();
             this.codeRemoveItem = new System.Workflow.Activities.CodeActivity();
             this.ifElseActivity1 = new System.Workflow.Activities.IfElseActivity();
             this.codeGetTrybRaportu = new System.Workflow.Activities.CodeActivity();
             this.codeGetAgentDetails = new System.Workflow.Activities.CodeActivity();
+            this.faultHandlerActivity1 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifCTStatusWnioskow = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlersActivity1 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.cancellationHandlerActivity1 = new System.Workflow.ComponentModel.CancellationHandlerActivity();
             this.ifElseActivity3 = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowActivated1 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
             // 
@@ -147,6 +153,23 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             this.AgenciDoObslugi.Condition = codecondition3;
             this.AgenciDoObslugi.Name = "AgenciDoObslugi";
             // 
+            // logErrorMessage
+            // 
+            this.logErrorMessage.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logErrorMessage.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind8.Name = "Workflow2";
+            activitybind8.Path = "logErrorMessage_HistoryDescription";
+            this.logErrorMessage.HistoryOutcome = "";
+            this.logErrorMessage.Name = "logErrorMessage";
+            this.logErrorMessage.OtherData = "";
+            this.logErrorMessage.UserId = -1;
+            this.logErrorMessage.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind8)));
+            // 
+            // cmdErrorHandler
+            // 
+            this.cmdErrorHandler.Name = "cmdErrorHandler";
+            this.cmdErrorHandler.ExecuteCode += new System.EventHandler(this.cmdErrorHandler_ExecuteCode);
+            // 
             // codeRemoveItem
             // 
             this.codeRemoveItem.Name = "codeRemoveItem";
@@ -167,6 +190,13 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             this.codeGetAgentDetails.Name = "codeGetAgentDetails";
             this.codeGetAgentDetails.ExecuteCode += new System.EventHandler(this.codeGetAgentDetails_ExecuteCode);
             // 
+            // faultHandlerActivity1
+            // 
+            this.faultHandlerActivity1.Activities.Add(this.cmdErrorHandler);
+            this.faultHandlerActivity1.Activities.Add(this.logErrorMessage);
+            this.faultHandlerActivity1.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity1.Name = "faultHandlerActivity1";
+            // 
             // ifCTStatusWnioskow
             // 
             this.ifCTStatusWnioskow.Activities.Add(this.codeGetAgentDetails);
@@ -176,6 +206,15 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             codecondition4.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isCTStatusWnioskow);
             this.ifCTStatusWnioskow.Condition = codecondition4;
             this.ifCTStatusWnioskow.Name = "ifCTStatusWnioskow";
+            // 
+            // faultHandlersActivity1
+            // 
+            this.faultHandlersActivity1.Activities.Add(this.faultHandlerActivity1);
+            this.faultHandlersActivity1.Name = "faultHandlersActivity1";
+            // 
+            // cancellationHandlerActivity1
+            // 
+            this.cancellationHandlerActivity1.Name = "cancellationHandlerActivity1";
             // 
             // ifElseActivity3
             // 
@@ -187,20 +226,32 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             this.onWorkflowActivated1.CorrelationToken = correlationtoken1;
             this.onWorkflowActivated1.EventName = "OnWorkflowActivated";
             this.onWorkflowActivated1.Name = "onWorkflowActivated1";
-            activitybind8.Name = "Workflow2";
-            activitybind8.Path = "workflowProperties";
-            this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind8)));
+            activitybind9.Name = "Workflow2";
+            activitybind9.Path = "workflowProperties";
+            this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind9)));
             // 
             // Workflow2
             // 
             this.Activities.Add(this.onWorkflowActivated1);
             this.Activities.Add(this.ifElseActivity3);
+            this.Activities.Add(this.cancellationHandlerActivity1);
+            this.Activities.Add(this.faultHandlersActivity1);
             this.Name = "Workflow2";
             this.CanModifyActivities = false;
 
         }
 
         #endregion
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logErrorMessage;
+
+        private CodeActivity cmdErrorHandler;
+
+        private FaultHandlerActivity faultHandlerActivity1;
+
+        private FaultHandlersActivity faultHandlersActivity1;
+
+        private CancellationHandlerActivity cancellationHandlerActivity1;
 
         private IfElseBranchActivity ifCTStatusWnioskow;
 
@@ -235,6 +286,10 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
         private CodeActivity codeGetAgentDetails;
 
         private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated1;
+
+
+
+
 
 
 

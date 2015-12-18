@@ -201,18 +201,18 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                 sendBCC = GetManagingPartnersEmails();
 
                 string strOsobaKontaktowa = partner["colOsobaKontaktowa"].ToString();
-                
+
                 //modyfikacja opisu jeżeli partner należy do grupy księgowi
-                if (partner["colGrupa"]!=null)
+                if (partner["colGrupa"] != null)
                 {
                     string strGrupa = partner["colGrupa"].ToString();
-                    if (strGrupa=="Księgowi")
+                    if (strGrupa == "Księgowi")
                     {
                         strOsobaKontaktowa = strOsobaKontaktowa + " - Biuro Rachunkowe";
                     }
-                    
+
                 }
-                
+
 
 
                 sendSubject = String.Format(":: Status kontraków : {0} : {1}",
@@ -222,8 +222,8 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                 StringBuilder sb = new StringBuilder();
 
                 sb.Append(@"
-<head>
-<style type=""text/css"">
+<head><style type=""text/css"">
+
 .style1 {
 	border-style: solid;
 	border-width: 0px;
@@ -233,50 +233,8 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
 	border-width: 1px;
 }
 </style>
-</head>
-
-<body style=""font-family: Arial"">
-
-<table style=""width: 680px"">
-	<tr>
-		<td>
-		<table style=""width: 100%"">
-			<tr>
-				<td valign=""middle"" align=""center"">
-				<h3>Zestawienie bieżących kontraktów</h3>
-				</td>
-				<td align=""right"">
-				<img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110""></td>
-			</tr>
-		</table>
-		</td>
-	</tr>
-	<tr>
-		<td>
-		<table style=""width: 100%; font-size: x-small"" class=""style1"" cellpadding=""2"" cellspacing=""1"">
-			<thead style=""background: silver"">
-				<tr>
-					<td class=""style2"">#</td>
-					<td class=""style2"">Klient</td>
-					<td class=""style2"">Data zgłoszenia</td>
-					<td class=""style2"">Wartość PLN</td>
-					<td class=""style2"">Cel finansowania</td>
-					<td class=""style2"">Status</td>
-					<td class=""style2"">Ustalenia z klientem</td>
-                    <td class=""style2"">Data następnego kontaktu</td>
-				</tr>
-			</thead>
-			***rows***
-		</table>
-		</td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-	</tr>
-</table>
-
-</body>
-");
+</head><body style=""font-family: Arial""><table style=""width: 680px""><tr><td><table style=""width: 100%""><tr><td valign=""middle"" align=""center""><h3>Zestawienie bieżących kontraktów</h3></td><td align=""right""><img alt=""logo"" src=""http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG"" width=""110""></td></tr></table></td></tr><tr><td><table style=""width: 100%; font-size: x-small"" class=""style1"" cellpadding=""2"" cellspacing=""1""><thead style=""background: silver""><tr><td class=""style2"">#</td><td class=""style2"">Klient</td><td class=""style2"">Data zgłoszenia</td><td class=""style2"">Wartość PLN</td><td class=""style2"">Cel finansowania</td><td class=""style2"">Status</td><td class=""style2"">Ustalenia z klientem</td><td class=""style2"">Data następnego kontaktu</td></tr></thead>***rows*** </table></td></tr><tr>
+	<td style=""background-color: #DAF6CE""><div style=""background-color: #DAF6CE""><p>&nbsp;<span style=""font-size: x-small""><br>&nbsp;&nbsp; Witamy serdecznie</span></p><p style=""font-size: x-small"">Przypominamy Państwu o gotowości naszych doradców do pomocy w zakresie wsparcia handlowego. Zapewniamy Państwa Klientom nie tylko poradę w zakresie wyboru odpowiedniej formy leasingu, ale także doradzamy w obszarze optymalizacji podatkowej. Jeśli potrzebujecie Państwo dodatkowego wsparcia marketingowego również chętnie służymy pomocą.</p><p style=""font-size: x-small"">Jednocześnie informujemy, że w przypadku kilku naszych Partnerów procedury umożliwiają renegocjowanie ofert. Warunkiem renegocjacji jest dostarczenie do nas kontroferty.<br>W przypadku posiadania takiej kontroferty będziemy reprezentować Państwa firmę w procesie negocjacji warunków umowy. </p><blockquote><p style=""font-size: x-small""><span style=""font-size: small"">Współpracujemy z </span><span style=""color: #1A3F93""><strong><span style=""font-size: small"">17 bankami i firmami leasingowymi</span></strong></span><br>dlatego naszymi największymi atutami są:</p><ul><li style=""font-size: x-small""><span style=""color: #1A3F93""><strong>duże doświadczenie</strong></span> w doborze najbardziej zoptymalizowanej formy finansowania dla klienta </li><li style=""font-size: x-small"">współpracując z kilkunastoma bankami mamy możliwość wyboru <span style=""color: #1A3F93""><strong>najkorzystniejszego leasingu na rynku</strong></span> </li><li style=""font-size: x-small"">mamy możliwość reprezentowania klienta w <strong><span style=""color: #1A3F93"">procesie renegocjacji</span> <span style=""color: #1A3F93"">warunków umowy</span></strong> leasingu (warunkiem renegocjacji jest dostarczenie do nas kontroferty) </li><li style=""font-size: x-small"">jako broker mamy możliwość<span style=""color: #1A3F93""> <strong>sprawdzenia wszystkich kosztów</strong></span> związanych z umową leasingu, także tych ukrytych </li><li style=""font-size: x-small"">zapewniamy swoim klientom <span style=""color: #1A3F93""><strong>opiekę przez cały okres trwania umowy</strong></span> leasingu, bez konieczności komunikowania się z bankiem przez telemarketing </li></ul></blockquote><p style=""font-size: x-small"">W przypadku jakichkolwiek pytań służymy pomocą.<br><br><em>Zespół Master Leasing</em></p></div></td></tr></table></body>");
                 StringBuilder sb2 = new StringBuilder();
 
                 foreach (SPListItem item in items)
@@ -684,7 +642,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
         }
 
         private void sendRaportDlaAgenta_MethodInvoking(object sender, EventArgs e)
-        {           
+        {
             if (bRaportTestowy)
             {
                 //podmień dane do wysyłki
@@ -751,6 +709,23 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
                 e.Result = false;
             }
         }
+
+        private void cmdErrorHandler_ExecuteCode(object sender, EventArgs e)
+        {
+            FaultHandlerActivity fa = ((Activity)sender).Parent as FaultHandlerActivity;
+            if (fa != null)
+            {
+                Debug.WriteLine(fa.Fault.Source);
+                Debug.WriteLine(fa.Fault.Message);
+                Debug.WriteLine(fa.Fault.StackTrace);
+
+                logErrorMessage_HistoryDescription = string.Format("{0}::{1}",
+                    fa.Fault.Message,
+                    fa.Fault.StackTrace);
+            }
+        }
+
+        public String logErrorMessage_HistoryDescription = default(System.String);
 
     }
 }

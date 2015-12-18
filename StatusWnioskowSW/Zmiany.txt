@@ -1,0 +1,104 @@
+﻿Nowy szablon:
+
+<head>
+<style type="text/css">
+
+.style1 {
+	border-style: solid;
+	border-width: 0px;
+}
+.style2 {
+	border-style: solid;
+	border-width: 1px;
+}
+</style>
+</head>
+
+<body style="font-family: Arial">
+
+<table style="width: 680px">
+	<tr>
+		<td>
+		<table style="width: 100%">
+			<tr>
+				<td valign="middle" align="center">
+				<h3>Zestawienie bieżących kontraktów</h3>
+				</td>
+				<td align="right">
+				<img alt="logo" src="http://stafix24cdn.blob.core.windows.net/sharedfiles/masterleasingLogo.PNG" width="110"></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<table style="width: 100%; font-size: x-small" class="style1" cellpadding="2" cellspacing="1">
+			<thead style="background: silver">
+				<tr>
+					<td class="style2">#</td>
+					<td class="style2">Klient</td>
+					<td class="style2">Data zgłoszenia</td>
+					<td class="style2">Wartość PLN</td>
+					<td class="style2">Cel finansowania</td>
+					<td class="style2">Status</td>
+					<td class="style2">Ustalenia z klientem</td>
+                    <td class="style2">Data następnego kontaktu</td>
+				</tr>
+			</thead>
+			***rows***
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<p>&nbsp;<span style="font-size: x-small"><br>&nbsp;&nbsp; Witamy serdecznie</span></p>
+		<p style="font-size: x-small">Przypominamy Państwu o gotowości naszych 
+		doradców do pomocy w zakresie wsparcia handlowego. Zapewniamy Państwa 
+		Klientom nie tylko poradę w zakresie wyboru odpowiedniej formy leasingu, 
+		ale także doradzamy w obszarze optymalizacji podatkowej. Jeśli 
+		potrzebujecie Państwo dodatkowego wsparcia marketingowego również 
+		chętnie służymy pomocą.</p>
+		<p style="font-size: x-small">Jednocześnie informujemy, że w przypadku 
+		kilku naszych Partnerów procedury umożliwiają renegocjowanie ofert. 
+		Warunkiem renegocjacji jest dostarczenie do nas kontroferty.<br>W 
+		przypadku posiadania takiej kontroferty będziemy reprezentować Państwa 
+		firmę w procesie negocjacji warunków umowy. </p>
+		<p style="font-size: x-small">Współpracujemy z <strong>17 bankami i 
+		firmami leasingowymi</strong><br>dlatego naszymi największymi atutami 
+		są:</p>
+		<ul>
+			<li>
+			<p style="font-size: x-small">
+			<span style="text-decoration: underline">duże doświadczenie</span> w 
+			doborze najbardziej zoptymalizowanej formy finansowania dla klienta</p>
+			</li>
+			<li>
+			<p style="font-size: x-small">współpracując z kilkunastoma bankami 
+			mamy możliwość wyboru <span style="text-decoration: underline">
+			najkorzystniejszego leasingu na rynku</span></p>
+			</li>
+			<li>
+			<p style="font-size: x-small">mamy możliwość reprezentowania klienta 
+			w <span style="text-decoration: underline">procesie renegocjacji 
+			warunków umowy</span> leasingu (warunkiem renegocjacji jest 
+			dostarczenie do nas kontroferty)</p>
+			</li>
+			<li>
+			<p style="font-size: x-small">jako broker mamy możliwość
+			<span style="text-decoration: underline">sprawdzenia wszystkich 
+			kosztów</span> związanych z umową leasingu, także tych ukrytych</p>
+			</li>
+			<li>
+			<p style="font-size: x-small">zapewniamy swoim klientom
+			<span style="text-decoration: underline">opiekę przez cały okres 
+			trwania umowy</span> leasingu, bez konieczności komunikowania się z 
+			bankiem przez telemarketing</p>
+			</li>
+		</ul>
+		<p style="font-size: x-small">W przypadku jakichkolwiek pytań służymy 
+		pomocą.<br><br><em>Zespół Master Leasing</em></p>
+		</td>
+	</tr>
+</table>
+
+</body>
