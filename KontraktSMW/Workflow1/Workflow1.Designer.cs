@@ -119,6 +119,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             System.Workflow.Runtime.CorrelationToken correlationtoken25 = new System.Workflow.Runtime.CorrelationToken();
             System.Workflow.Runtime.CorrelationToken correlationtoken26 = new System.Workflow.Runtime.CorrelationToken();
             System.Workflow.Runtime.CorrelationToken correlationtoken27 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken28 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken29 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken30 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken31 = new System.Workflow.Runtime.CorrelationToken();
             System.Workflow.ComponentModel.ActivityBind activitybind32 = new System.Workflow.ComponentModel.ActivityBind();
             this.logToHistoryListActivity20 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.sendEmail_Uruchomiony = new Microsoft.SharePoint.WorkflowActions.SendEmail();
@@ -238,50 +242,59 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity11 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.ifElseActivity11 = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged11 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
-            this.SetCT_Dokumentacja = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow12 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Dokumentacja = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity9 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.SetCT_Dokumentacja = new System.Workflow.Activities.CodeActivity();
             this.ifElseActivity123 = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged12 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
-            this.SetCT_Uruchomienie = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow11 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Uruchomienie = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity10 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.SetCT_Uruchomienie = new System.Workflow.Activities.CodeActivity();
             this.TestAkceptacjaUmowy = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged10 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
-            this.SetCT_AkceptacjaUmowy = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow10 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_AkceptacjaUmowy = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity13 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.SetCT_AkceptacjaUmowy = new System.Workflow.Activities.CodeActivity();
             this.ifElseActivity9 = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged9 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
-            this.SetCT_Umowa = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow9 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Umowa = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity8 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.SetCT_Umowa = new System.Workflow.Activities.CodeActivity();
             this.ifElseActivity8 = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged8 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
-            this.SetCT_Wniosek1 = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow8 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_KorektaWniosku = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity12 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.SetCT_Wniosek1 = new System.Workflow.Activities.CodeActivity();
             this.ifElseActivity7 = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged7 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
-            this.SetCT_AkceptacjaWniosku = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow7 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_AkceptacjaWniosku = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity7 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.SetCT_AkceptacjaWniosku = new System.Workflow.Activities.CodeActivity();
             this.ifElseActivity6 = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged6 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.codeDodajDoRozliczen = new System.Workflow.Activities.CodeActivity();
-            this.SetCT_Wniosek = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow6 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Wniosek = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity6 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.SetCT_Wniosek = new System.Workflow.Activities.CodeActivity();
             this.ifElseActivity5 = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged5 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
-            this.SetCT_Oferta1 = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow5 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_KorektaOferty = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logKorektaOferty = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.SetCT_Oferta1 = new System.Workflow.Activities.CodeActivity();
             this.AkceptacjaOferty_Telemarketing = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged4 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
-            this.SetCT_AkceptacjaOferty = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow4 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_AkceptacjaOferty = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity5 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.SetCT_AkceptacjaOferty = new System.Workflow.Activities.CodeActivity();
             this.setStateActivity26 = new System.Workflow.Activities.SetStateActivity();
             this.ifElseActivity1 = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity2 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -289,18 +302,21 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.setState_Odrzucony = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.Oferta_Routing = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged2 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
-            this.SetCT_Oferta = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow3 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Oferta = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity15 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.SetCT_Oferta = new System.Workflow.Activities.CodeActivity();
             this.Telemarketing_Routing = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged3 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
-            this.SetCT_Telemarketing = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow2 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Telemarketing = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity16 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.SetCT_Telemarketing = new System.Workflow.Activities.CodeActivity();
             this.faultHandlersActivity4 = new System.Workflow.ComponentModel.FaultHandlersActivity();
-            this.SetCT_Weryfikacja = new System.Workflow.Activities.CodeActivity();
+            this.initializeWorkflow1 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.logToHistoryListActivity14 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.setState_Weryfikacja = new Microsoft.SharePoint.WorkflowActions.SetState();
+            this.SetCT_Weryfikacja = new System.Workflow.Activities.CodeActivity();
             this.faultHandlersActivity5 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.Weryfikacja_Routing = new System.Workflow.Activities.IfElseActivity();
             this.onWorkflowItemChanged13 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
@@ -378,7 +394,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             activitybind3.Name = "Workflow1";
             activitybind3.Path = "Mail_CC";
             correlationtoken1.Name = "myWorkflowToken";
-            correlationtoken1.OwnerActivityName = "Workflow1";
+            correlationtoken1.OwnerActivityName = "Uruchomienie";
             this.sendEmail_Uruchomiony.CorrelationToken = correlationtoken1;
             activitybind4.Name = "Workflow1";
             activitybind4.Path = "Mail_From";
@@ -416,7 +432,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             activitybind9.Name = "Workflow1";
             activitybind9.Path = "Mail_CC";
             correlationtoken2.Name = "myWorkflowToken";
-            correlationtoken2.OwnerActivityName = "Workflow1";
+            correlationtoken2.OwnerActivityName = "AkceptacjaUmowy";
             this.sendEmail_UmowaZaakceptowana.CorrelationToken = correlationtoken2;
             activitybind10.Name = "Workflow1";
             activitybind10.Path = "Mail_From";
@@ -454,7 +470,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             activitybind15.Name = "Workflow1";
             activitybind15.Path = "Mail_CC";
             correlationtoken3.Name = "myWorkflowToken";
-            correlationtoken3.OwnerActivityName = "Workflow1";
+            correlationtoken3.OwnerActivityName = "AkceptacjaWniosku";
             this.sendEmail_WniosekZaakceptowany.CorrelationToken = correlationtoken3;
             activitybind16.Name = "Workflow1";
             activitybind16.Path = "Mail_From";
@@ -492,7 +508,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             activitybind21.Name = "Workflow1";
             activitybind21.Path = "Mail_CC";
             correlationtoken4.Name = "myWorkflowToken";
-            correlationtoken4.OwnerActivityName = "Workflow1";
+            correlationtoken4.OwnerActivityName = "AkceptacjaOferty";
             this.sendEmail_OfertaZaakceptowana.CorrelationToken = correlationtoken4;
             activitybind22.Name = "Workflow1";
             activitybind22.Path = "Mail_From";
@@ -1235,15 +1251,15 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged11.AfterProperties = null;
             this.onWorkflowItemChanged11.BeforeProperties = null;
-            correlationtoken7.Name = "myWorkflowToken";
-            correlationtoken7.OwnerActivityName = "Workflow1";
+            correlationtoken7.Name = "wtDokumentacja";
+            correlationtoken7.OwnerActivityName = "Dokumentacja";
             this.onWorkflowItemChanged11.CorrelationToken = correlationtoken7;
             this.onWorkflowItemChanged11.Name = "onWorkflowItemChanged11";
             // 
-            // SetCT_Dokumentacja
+            // initializeWorkflow12
             // 
-            this.SetCT_Dokumentacja.Name = "SetCT_Dokumentacja";
-            this.SetCT_Dokumentacja.ExecuteCode += new System.EventHandler(this.SetCT_Dokumentacja_ExecuteCode);
+            this.initializeWorkflow12.CorrelationToken = correlationtoken7;
+            this.initializeWorkflow12.Name = "initializeWorkflow12";
             // 
             // setState_Dokumentacja
             // 
@@ -1263,6 +1279,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity9.OtherData = "";
             this.logToHistoryListActivity9.UserId = -1;
             // 
+            // SetCT_Dokumentacja
+            // 
+            this.SetCT_Dokumentacja.Name = "SetCT_Dokumentacja";
+            this.SetCT_Dokumentacja.ExecuteCode += new System.EventHandler(this.SetCT_Dokumentacja_ExecuteCode);
+            // 
             // ifElseActivity123
             // 
             this.ifElseActivity123.Activities.Add(this.Uruchomienie_Dokumentacja);
@@ -1272,19 +1293,21 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged12.AfterProperties = null;
             this.onWorkflowItemChanged12.BeforeProperties = null;
-            this.onWorkflowItemChanged12.CorrelationToken = correlationtoken1;
+            correlationtoken9.Name = "wtUruchomienie";
+            correlationtoken9.OwnerActivityName = "Uruchomienie";
+            this.onWorkflowItemChanged12.CorrelationToken = correlationtoken9;
             this.onWorkflowItemChanged12.Name = "onWorkflowItemChanged12";
             // 
-            // SetCT_Uruchomienie
+            // initializeWorkflow11
             // 
-            this.SetCT_Uruchomienie.Name = "SetCT_Uruchomienie";
-            this.SetCT_Uruchomienie.ExecuteCode += new System.EventHandler(this.SetCT_Uruchomienie_ExecuteCode);
+            this.initializeWorkflow11.CorrelationToken = correlationtoken9;
+            this.initializeWorkflow11.Name = "initializeWorkflow11";
             // 
             // setState_Uruchomienie
             // 
-            correlationtoken9.Name = "myWorkflowToken";
-            correlationtoken9.OwnerActivityName = "Workflow1";
-            this.setState_Uruchomienie.CorrelationToken = correlationtoken9;
+            correlationtoken10.Name = "myWorkflowToken";
+            correlationtoken10.OwnerActivityName = "Workflow1";
+            this.setState_Uruchomienie.CorrelationToken = correlationtoken10;
             this.setState_Uruchomienie.Name = "setState_Uruchomienie";
             this.setState_Uruchomienie.State = 25;
             // 
@@ -1298,6 +1321,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity10.OtherData = "";
             this.logToHistoryListActivity10.UserId = -1;
             // 
+            // SetCT_Uruchomienie
+            // 
+            this.SetCT_Uruchomienie.Name = "SetCT_Uruchomienie";
+            this.SetCT_Uruchomienie.ExecuteCode += new System.EventHandler(this.SetCT_Uruchomienie_ExecuteCode);
+            // 
             // TestAkceptacjaUmowy
             // 
             this.TestAkceptacjaUmowy.Activities.Add(this.AkceptacjaUmowy_Uruchomienie);
@@ -1309,19 +1337,21 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged10.AfterProperties = null;
             this.onWorkflowItemChanged10.BeforeProperties = null;
-            this.onWorkflowItemChanged10.CorrelationToken = correlationtoken2;
+            correlationtoken11.Name = "wtAkceptacjaUmowy";
+            correlationtoken11.OwnerActivityName = "AkceptacjaUmowy";
+            this.onWorkflowItemChanged10.CorrelationToken = correlationtoken11;
             this.onWorkflowItemChanged10.Name = "onWorkflowItemChanged10";
             // 
-            // SetCT_AkceptacjaUmowy
+            // initializeWorkflow10
             // 
-            this.SetCT_AkceptacjaUmowy.Name = "SetCT_AkceptacjaUmowy";
-            this.SetCT_AkceptacjaUmowy.ExecuteCode += new System.EventHandler(this.SetCT_AkceptacjaUmowy_ExecuteCode);
+            this.initializeWorkflow10.CorrelationToken = correlationtoken11;
+            this.initializeWorkflow10.Name = "initializeWorkflow10";
             // 
             // setState_AkceptacjaUmowy
             // 
-            correlationtoken10.Name = "myWorkflowToken";
-            correlationtoken10.OwnerActivityName = "Workflow1";
-            this.setState_AkceptacjaUmowy.CorrelationToken = correlationtoken10;
+            correlationtoken12.Name = "myWorkflowToken";
+            correlationtoken12.OwnerActivityName = "Workflow1";
+            this.setState_AkceptacjaUmowy.CorrelationToken = correlationtoken12;
             this.setState_AkceptacjaUmowy.Name = "setState_AkceptacjaUmowy";
             this.setState_AkceptacjaUmowy.State = 28;
             // 
@@ -1335,6 +1365,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity13.OtherData = "";
             this.logToHistoryListActivity13.UserId = -1;
             // 
+            // SetCT_AkceptacjaUmowy
+            // 
+            this.SetCT_AkceptacjaUmowy.Name = "SetCT_AkceptacjaUmowy";
+            this.SetCT_AkceptacjaUmowy.ExecuteCode += new System.EventHandler(this.SetCT_AkceptacjaUmowy_ExecuteCode);
+            // 
             // ifElseActivity9
             // 
             this.ifElseActivity9.Activities.Add(this.Umowa_AkceptacjaUmowy);
@@ -1344,21 +1379,21 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged9.AfterProperties = null;
             this.onWorkflowItemChanged9.BeforeProperties = null;
-            correlationtoken11.Name = "myWorkflowToken";
-            correlationtoken11.OwnerActivityName = "Workflow1";
-            this.onWorkflowItemChanged9.CorrelationToken = correlationtoken11;
+            correlationtoken13.Name = "wtUmowa";
+            correlationtoken13.OwnerActivityName = "Umowa";
+            this.onWorkflowItemChanged9.CorrelationToken = correlationtoken13;
             this.onWorkflowItemChanged9.Name = "onWorkflowItemChanged9";
             // 
-            // SetCT_Umowa
+            // initializeWorkflow9
             // 
-            this.SetCT_Umowa.Name = "SetCT_Umowa";
-            this.SetCT_Umowa.ExecuteCode += new System.EventHandler(this.SetCT_Umowa_ExecuteCode);
+            this.initializeWorkflow9.CorrelationToken = correlationtoken13;
+            this.initializeWorkflow9.Name = "initializeWorkflow9";
             // 
             // setState_Umowa
             // 
-            correlationtoken12.Name = "myWorkflowToken";
-            correlationtoken12.OwnerActivityName = "Workflow1";
-            this.setState_Umowa.CorrelationToken = correlationtoken12;
+            correlationtoken14.Name = "myWorkflowToken";
+            correlationtoken14.OwnerActivityName = "Workflow1";
+            this.setState_Umowa.CorrelationToken = correlationtoken14;
             this.setState_Umowa.Name = "setState_Umowa";
             this.setState_Umowa.State = 23;
             // 
@@ -1372,6 +1407,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity8.OtherData = "";
             this.logToHistoryListActivity8.UserId = -1;
             // 
+            // SetCT_Umowa
+            // 
+            this.SetCT_Umowa.Name = "SetCT_Umowa";
+            this.SetCT_Umowa.ExecuteCode += new System.EventHandler(this.SetCT_Umowa_ExecuteCode);
+            // 
             // ifElseActivity8
             // 
             this.ifElseActivity8.Activities.Add(this.KorektaWniosku_AkceptacjaWniosku);
@@ -1381,21 +1421,21 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged8.AfterProperties = null;
             this.onWorkflowItemChanged8.BeforeProperties = null;
-            correlationtoken13.Name = "myWorkflowToken";
-            correlationtoken13.OwnerActivityName = "Workflow1";
-            this.onWorkflowItemChanged8.CorrelationToken = correlationtoken13;
+            correlationtoken15.Name = "wtKorektaWniosku";
+            correlationtoken15.OwnerActivityName = "KorektaWniosku";
+            this.onWorkflowItemChanged8.CorrelationToken = correlationtoken15;
             this.onWorkflowItemChanged8.Name = "onWorkflowItemChanged8";
             // 
-            // SetCT_Wniosek1
+            // initializeWorkflow8
             // 
-            this.SetCT_Wniosek1.Name = "SetCT_Wniosek1";
-            this.SetCT_Wniosek1.ExecuteCode += new System.EventHandler(this.SetCT_Wniosek_ExecuteCode);
+            this.initializeWorkflow8.CorrelationToken = correlationtoken15;
+            this.initializeWorkflow8.Name = "initializeWorkflow8";
             // 
             // setState_KorektaWniosku
             // 
-            correlationtoken14.Name = "myWorkflowToken";
-            correlationtoken14.OwnerActivityName = "Workflow1";
-            this.setState_KorektaWniosku.CorrelationToken = correlationtoken14;
+            correlationtoken16.Name = "myWorkflowToken";
+            correlationtoken16.OwnerActivityName = "Workflow1";
+            this.setState_KorektaWniosku.CorrelationToken = correlationtoken16;
             this.setState_KorektaWniosku.Name = "setState_KorektaWniosku";
             this.setState_KorektaWniosku.State = 27;
             // 
@@ -1409,6 +1449,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity12.OtherData = "";
             this.logToHistoryListActivity12.UserId = -1;
             // 
+            // SetCT_Wniosek1
+            // 
+            this.SetCT_Wniosek1.Name = "SetCT_Wniosek1";
+            this.SetCT_Wniosek1.ExecuteCode += new System.EventHandler(this.SetCT_Wniosek_ExecuteCode);
+            // 
             // ifElseActivity7
             // 
             this.ifElseActivity7.Activities.Add(this.AkceptacjaWniosku_Umowa);
@@ -1420,19 +1465,21 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged7.AfterProperties = null;
             this.onWorkflowItemChanged7.BeforeProperties = null;
-            this.onWorkflowItemChanged7.CorrelationToken = correlationtoken3;
+            correlationtoken17.Name = "wtAkceptacjaWniosku";
+            correlationtoken17.OwnerActivityName = "AkceptacjaWniosku";
+            this.onWorkflowItemChanged7.CorrelationToken = correlationtoken17;
             this.onWorkflowItemChanged7.Name = "onWorkflowItemChanged7";
             // 
-            // SetCT_AkceptacjaWniosku
+            // initializeWorkflow7
             // 
-            this.SetCT_AkceptacjaWniosku.Name = "SetCT_AkceptacjaWniosku";
-            this.SetCT_AkceptacjaWniosku.ExecuteCode += new System.EventHandler(this.SetCT_AkceptacjaWniosku_ExecuteCode);
+            this.initializeWorkflow7.CorrelationToken = correlationtoken17;
+            this.initializeWorkflow7.Name = "initializeWorkflow7";
             // 
             // setState_AkceptacjaWniosku
             // 
-            correlationtoken15.Name = "myWorkflowToken";
-            correlationtoken15.OwnerActivityName = "Workflow1";
-            this.setState_AkceptacjaWniosku.CorrelationToken = correlationtoken15;
+            correlationtoken18.Name = "myWorkflowToken";
+            correlationtoken18.OwnerActivityName = "Workflow1";
+            this.setState_AkceptacjaWniosku.CorrelationToken = correlationtoken18;
             this.setState_AkceptacjaWniosku.Name = "setState_AkceptacjaWniosku";
             this.setState_AkceptacjaWniosku.State = 22;
             // 
@@ -1446,6 +1493,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity7.OtherData = "";
             this.logToHistoryListActivity7.UserId = -1;
             // 
+            // SetCT_AkceptacjaWniosku
+            // 
+            this.SetCT_AkceptacjaWniosku.Name = "SetCT_AkceptacjaWniosku";
+            this.SetCT_AkceptacjaWniosku.ExecuteCode += new System.EventHandler(this.SetCT_AkceptacjaWniosku_ExecuteCode);
+            // 
             // ifElseActivity6
             // 
             this.ifElseActivity6.Activities.Add(this.Wniosek_AkceptacjaWniosku);
@@ -1455,9 +1507,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged6.AfterProperties = null;
             this.onWorkflowItemChanged6.BeforeProperties = null;
-            correlationtoken16.Name = "myWorkflowToken";
-            correlationtoken16.OwnerActivityName = "Workflow1";
-            this.onWorkflowItemChanged6.CorrelationToken = correlationtoken16;
+            correlationtoken19.Name = "wtWniosek";
+            correlationtoken19.OwnerActivityName = "Wniosek";
+            this.onWorkflowItemChanged6.CorrelationToken = correlationtoken19;
             this.onWorkflowItemChanged6.Name = "onWorkflowItemChanged6";
             // 
             // codeDodajDoRozliczen
@@ -1465,16 +1517,16 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.codeDodajDoRozliczen.Name = "codeDodajDoRozliczen";
             this.codeDodajDoRozliczen.ExecuteCode += new System.EventHandler(this.codeDodajDoRozliczen_ExecuteCode);
             // 
-            // SetCT_Wniosek
+            // initializeWorkflow6
             // 
-            this.SetCT_Wniosek.Name = "SetCT_Wniosek";
-            this.SetCT_Wniosek.ExecuteCode += new System.EventHandler(this.SetCT_Wniosek_ExecuteCode);
+            this.initializeWorkflow6.CorrelationToken = correlationtoken19;
+            this.initializeWorkflow6.Name = "initializeWorkflow6";
             // 
             // setState_Wniosek
             // 
-            correlationtoken17.Name = "myWorkflowToken";
-            correlationtoken17.OwnerActivityName = "Workflow1";
-            this.setState_Wniosek.CorrelationToken = correlationtoken17;
+            correlationtoken20.Name = "myWorkflowToken";
+            correlationtoken20.OwnerActivityName = "Workflow1";
+            this.setState_Wniosek.CorrelationToken = correlationtoken20;
             this.setState_Wniosek.Name = "setState_Wniosek";
             this.setState_Wniosek.State = 21;
             // 
@@ -1488,6 +1540,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity6.OtherData = "";
             this.logToHistoryListActivity6.UserId = -1;
             // 
+            // SetCT_Wniosek
+            // 
+            this.SetCT_Wniosek.Name = "SetCT_Wniosek";
+            this.SetCT_Wniosek.ExecuteCode += new System.EventHandler(this.SetCT_Wniosek_ExecuteCode);
+            // 
             // ifElseActivity5
             // 
             this.ifElseActivity5.Activities.Add(this.KorektaOferty_AkceptacjaOferty);
@@ -1497,21 +1554,21 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged5.AfterProperties = null;
             this.onWorkflowItemChanged5.BeforeProperties = null;
-            correlationtoken18.Name = "myWorkflowToken";
-            correlationtoken18.OwnerActivityName = "Workflow1";
-            this.onWorkflowItemChanged5.CorrelationToken = correlationtoken18;
+            correlationtoken21.Name = "wtKorektaOferty";
+            correlationtoken21.OwnerActivityName = "KorektaOferty";
+            this.onWorkflowItemChanged5.CorrelationToken = correlationtoken21;
             this.onWorkflowItemChanged5.Name = "onWorkflowItemChanged5";
             // 
-            // SetCT_Oferta1
+            // initializeWorkflow5
             // 
-            this.SetCT_Oferta1.Name = "SetCT_Oferta1";
-            this.SetCT_Oferta1.ExecuteCode += new System.EventHandler(this.SetCT_Oferta_ExecuteCode);
+            this.initializeWorkflow5.CorrelationToken = correlationtoken21;
+            this.initializeWorkflow5.Name = "initializeWorkflow5";
             // 
             // setState_KorektaOferty
             // 
-            correlationtoken19.Name = "myWorkflowToken";
-            correlationtoken19.OwnerActivityName = "Workflow1";
-            this.setState_KorektaOferty.CorrelationToken = correlationtoken19;
+            correlationtoken22.Name = "myWorkflowToken";
+            correlationtoken22.OwnerActivityName = "Workflow1";
+            this.setState_KorektaOferty.CorrelationToken = correlationtoken22;
             this.setState_KorektaOferty.Name = "setState_KorektaOferty";
             this.setState_KorektaOferty.State = 20;
             // 
@@ -1525,6 +1582,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logKorektaOferty.OtherData = "";
             this.logKorektaOferty.UserId = -1;
             // 
+            // SetCT_Oferta1
+            // 
+            this.SetCT_Oferta1.Name = "SetCT_Oferta1";
+            this.SetCT_Oferta1.ExecuteCode += new System.EventHandler(this.SetCT_Oferta_ExecuteCode);
+            // 
             // AkceptacjaOferty_Telemarketing
             // 
             this.AkceptacjaOferty_Telemarketing.Activities.Add(this.AkceptacjaOferty_Wniosek);
@@ -1537,19 +1599,21 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged4.AfterProperties = null;
             this.onWorkflowItemChanged4.BeforeProperties = null;
-            this.onWorkflowItemChanged4.CorrelationToken = correlationtoken4;
+            correlationtoken23.Name = "wtAkceptacjaOferty";
+            correlationtoken23.OwnerActivityName = "AkceptacjaOferty";
+            this.onWorkflowItemChanged4.CorrelationToken = correlationtoken23;
             this.onWorkflowItemChanged4.Name = "onWorkflowItemChanged4";
             // 
-            // SetCT_AkceptacjaOferty
+            // initializeWorkflow4
             // 
-            this.SetCT_AkceptacjaOferty.Name = "SetCT_AkceptacjaOferty";
-            this.SetCT_AkceptacjaOferty.ExecuteCode += new System.EventHandler(this.SetCT_AkceptacjaOferty_ExecuteCode);
+            this.initializeWorkflow4.CorrelationToken = correlationtoken23;
+            this.initializeWorkflow4.Name = "initializeWorkflow4";
             // 
             // setState_AkceptacjaOferty
             // 
-            correlationtoken20.Name = "myWorkflowToken";
-            correlationtoken20.OwnerActivityName = "Workflow1";
-            this.setState_AkceptacjaOferty.CorrelationToken = correlationtoken20;
+            correlationtoken24.Name = "myWorkflowToken";
+            correlationtoken24.OwnerActivityName = "Workflow1";
+            this.setState_AkceptacjaOferty.CorrelationToken = correlationtoken24;
             this.setState_AkceptacjaOferty.Name = "setState_AkceptacjaOferty";
             this.setState_AkceptacjaOferty.State = 19;
             // 
@@ -1562,6 +1626,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity5.Name = "logToHistoryListActivity5";
             this.logToHistoryListActivity5.OtherData = "";
             this.logToHistoryListActivity5.UserId = -1;
+            // 
+            // SetCT_AkceptacjaOferty
+            // 
+            this.SetCT_AkceptacjaOferty.Name = "SetCT_AkceptacjaOferty";
+            this.SetCT_AkceptacjaOferty.ExecuteCode += new System.EventHandler(this.SetCT_AkceptacjaOferty_ExecuteCode);
             // 
             // setStateActivity26
             // 
@@ -1603,21 +1672,21 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged2.AfterProperties = null;
             this.onWorkflowItemChanged2.BeforeProperties = null;
-            correlationtoken21.Name = "myWorkflowToken";
-            correlationtoken21.OwnerActivityName = "Workflow1";
-            this.onWorkflowItemChanged2.CorrelationToken = correlationtoken21;
+            correlationtoken25.Name = "wtOferta";
+            correlationtoken25.OwnerActivityName = "Oferta";
+            this.onWorkflowItemChanged2.CorrelationToken = correlationtoken25;
             this.onWorkflowItemChanged2.Name = "onWorkflowItemChanged2";
             // 
-            // SetCT_Oferta
+            // initializeWorkflow3
             // 
-            this.SetCT_Oferta.Name = "SetCT_Oferta";
-            this.SetCT_Oferta.ExecuteCode += new System.EventHandler(this.SetCT_Oferta_ExecuteCode);
+            this.initializeWorkflow3.CorrelationToken = correlationtoken25;
+            this.initializeWorkflow3.Name = "initializeWorkflow3";
             // 
             // setState_Oferta
             // 
-            correlationtoken22.Name = "myWorkflowToken";
-            correlationtoken22.OwnerActivityName = "Workflow1";
-            this.setState_Oferta.CorrelationToken = correlationtoken22;
+            correlationtoken26.Name = "myWorkflowToken";
+            correlationtoken26.OwnerActivityName = "Workflow1";
+            this.setState_Oferta.CorrelationToken = correlationtoken26;
             this.setState_Oferta.Name = "setState_Oferta";
             this.setState_Oferta.State = 18;
             // 
@@ -1631,6 +1700,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity15.OtherData = "";
             this.logToHistoryListActivity15.UserId = -1;
             // 
+            // SetCT_Oferta
+            // 
+            this.SetCT_Oferta.Name = "SetCT_Oferta";
+            this.SetCT_Oferta.ExecuteCode += new System.EventHandler(this.SetCT_Oferta_ExecuteCode);
+            // 
             // Telemarketing_Routing
             // 
             this.Telemarketing_Routing.Activities.Add(this.Telemarketing_Oferta);
@@ -1641,21 +1715,22 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged3.AfterProperties = null;
             this.onWorkflowItemChanged3.BeforeProperties = null;
-            correlationtoken23.Name = "myWorkflowToken";
-            correlationtoken23.OwnerActivityName = "Workflow1";
-            this.onWorkflowItemChanged3.CorrelationToken = correlationtoken23;
+            correlationtoken27.Name = "wtTelemarketing";
+            correlationtoken27.OwnerActivityName = "Telemarketing";
+            this.onWorkflowItemChanged3.CorrelationToken = correlationtoken27;
             this.onWorkflowItemChanged3.Name = "onWorkflowItemChanged3";
             // 
-            // SetCT_Telemarketing
+            // initializeWorkflow2
             // 
-            this.SetCT_Telemarketing.Name = "SetCT_Telemarketing";
-            this.SetCT_Telemarketing.ExecuteCode += new System.EventHandler(this.SetCT_Telemarketing_ExecuteCode);
+            this.initializeWorkflow2.CorrelationToken = correlationtoken27;
+            this.initializeWorkflow2.Name = "initializeWorkflow2";
+            this.initializeWorkflow2.MethodInvoking += new System.EventHandler(this.initializeWorkflow2_MethodInvoking);
             // 
             // setState_Telemarketing
             // 
-            correlationtoken24.Name = "myWorkflowToken";
-            correlationtoken24.OwnerActivityName = "Workflow1";
-            this.setState_Telemarketing.CorrelationToken = correlationtoken24;
+            correlationtoken28.Name = "myWorkflowToken";
+            correlationtoken28.OwnerActivityName = "Workflow1";
+            this.setState_Telemarketing.CorrelationToken = correlationtoken28;
             this.setState_Telemarketing.Name = "setState_Telemarketing";
             this.setState_Telemarketing.State = 17;
             // 
@@ -1669,15 +1744,22 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity16.OtherData = "";
             this.logToHistoryListActivity16.UserId = -1;
             // 
+            // SetCT_Telemarketing
+            // 
+            this.SetCT_Telemarketing.Name = "SetCT_Telemarketing";
+            this.SetCT_Telemarketing.ExecuteCode += new System.EventHandler(this.SetCT_Telemarketing_ExecuteCode);
+            // 
             // faultHandlersActivity4
             // 
             this.faultHandlersActivity4.Activities.Add(this.faultHandlerActivity4);
             this.faultHandlersActivity4.Name = "faultHandlersActivity4";
             // 
-            // SetCT_Weryfikacja
+            // initializeWorkflow1
             // 
-            this.SetCT_Weryfikacja.Name = "SetCT_Weryfikacja";
-            this.SetCT_Weryfikacja.ExecuteCode += new System.EventHandler(this.SetCT_Weryfikacja_ExecuteCode);
+            correlationtoken29.Name = "wtWeryfikacja";
+            correlationtoken29.OwnerActivityName = "Weryfikacja";
+            this.initializeWorkflow1.CorrelationToken = correlationtoken29;
+            this.initializeWorkflow1.Name = "initializeWorkflow1";
             // 
             // logToHistoryListActivity14
             // 
@@ -1691,11 +1773,16 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // setState_Weryfikacja
             // 
-            correlationtoken25.Name = "myWorkflowToken";
-            correlationtoken25.OwnerActivityName = "Workflow1";
-            this.setState_Weryfikacja.CorrelationToken = correlationtoken25;
+            correlationtoken30.Name = "myWorkflowToken";
+            correlationtoken30.OwnerActivityName = "Workflow1";
+            this.setState_Weryfikacja.CorrelationToken = correlationtoken30;
             this.setState_Weryfikacja.Name = "setState_Weryfikacja";
             this.setState_Weryfikacja.State = 15;
+            // 
+            // SetCT_Weryfikacja
+            // 
+            this.SetCT_Weryfikacja.Name = "SetCT_Weryfikacja";
+            this.SetCT_Weryfikacja.ExecuteCode += new System.EventHandler(this.SetCT_Weryfikacja_ExecuteCode);
             // 
             // faultHandlersActivity5
             // 
@@ -1714,9 +1801,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged13.AfterProperties = null;
             this.onWorkflowItemChanged13.BeforeProperties = null;
-            correlationtoken26.Name = "myWorkflowToken";
-            correlationtoken26.OwnerActivityName = "Workflow1";
-            this.onWorkflowItemChanged13.CorrelationToken = correlationtoken26;
+            this.onWorkflowItemChanged13.CorrelationToken = correlationtoken29;
             this.onWorkflowItemChanged13.Name = "onWorkflowItemChanged13";
             // 
             // faultHandlersActivity3
@@ -1778,9 +1863,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // onWorkflowActivated1
             // 
-            correlationtoken27.Name = "myWorkflowToken";
-            correlationtoken27.OwnerActivityName = "Workflow1";
-            this.onWorkflowActivated1.CorrelationToken = correlationtoken27;
+            correlationtoken31.Name = "myWorkflowToken";
+            correlationtoken31.OwnerActivityName = "Workflow1";
+            this.onWorkflowActivated1.CorrelationToken = correlationtoken31;
             this.onWorkflowActivated1.EventName = "OnWorkflowActivated";
             this.onWorkflowActivated1.Name = "onWorkflowActivated1";
             activitybind32.Name = "Workflow1";
@@ -1806,9 +1891,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity10
             // 
+            this.stateInitializationActivity10.Activities.Add(this.SetCT_Dokumentacja);
             this.stateInitializationActivity10.Activities.Add(this.logToHistoryListActivity9);
             this.stateInitializationActivity10.Activities.Add(this.setState_Dokumentacja);
-            this.stateInitializationActivity10.Activities.Add(this.SetCT_Dokumentacja);
+            this.stateInitializationActivity10.Activities.Add(this.initializeWorkflow12);
             this.stateInitializationActivity10.Name = "stateInitializationActivity10";
             // 
             // Uruchomienie_OnChange
@@ -1819,9 +1905,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity11
             // 
+            this.stateInitializationActivity11.Activities.Add(this.SetCT_Uruchomienie);
             this.stateInitializationActivity11.Activities.Add(this.logToHistoryListActivity10);
             this.stateInitializationActivity11.Activities.Add(this.setState_Uruchomienie);
-            this.stateInitializationActivity11.Activities.Add(this.SetCT_Uruchomienie);
+            this.stateInitializationActivity11.Activities.Add(this.initializeWorkflow11);
             this.stateInitializationActivity11.Name = "stateInitializationActivity11";
             // 
             // AkceptacjaUmowy_OnChange
@@ -1832,9 +1919,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity14
             // 
+            this.stateInitializationActivity14.Activities.Add(this.SetCT_AkceptacjaUmowy);
             this.stateInitializationActivity14.Activities.Add(this.logToHistoryListActivity13);
             this.stateInitializationActivity14.Activities.Add(this.setState_AkceptacjaUmowy);
-            this.stateInitializationActivity14.Activities.Add(this.SetCT_AkceptacjaUmowy);
+            this.stateInitializationActivity14.Activities.Add(this.initializeWorkflow10);
             this.stateInitializationActivity14.Name = "stateInitializationActivity14";
             // 
             // Umowa_OnChange
@@ -1845,9 +1933,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity9
             // 
+            this.stateInitializationActivity9.Activities.Add(this.SetCT_Umowa);
             this.stateInitializationActivity9.Activities.Add(this.logToHistoryListActivity8);
             this.stateInitializationActivity9.Activities.Add(this.setState_Umowa);
-            this.stateInitializationActivity9.Activities.Add(this.SetCT_Umowa);
+            this.stateInitializationActivity9.Activities.Add(this.initializeWorkflow9);
             this.stateInitializationActivity9.Name = "stateInitializationActivity9";
             // 
             // KorektaWniosku_OnChange
@@ -1858,9 +1947,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity13
             // 
+            this.stateInitializationActivity13.Activities.Add(this.SetCT_Wniosek1);
             this.stateInitializationActivity13.Activities.Add(this.logToHistoryListActivity12);
             this.stateInitializationActivity13.Activities.Add(this.setState_KorektaWniosku);
-            this.stateInitializationActivity13.Activities.Add(this.SetCT_Wniosek1);
+            this.stateInitializationActivity13.Activities.Add(this.initializeWorkflow8);
             this.stateInitializationActivity13.Name = "stateInitializationActivity13";
             // 
             // AkceptacjaWniosku_OnChange
@@ -1871,9 +1961,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity8
             // 
+            this.stateInitializationActivity8.Activities.Add(this.SetCT_AkceptacjaWniosku);
             this.stateInitializationActivity8.Activities.Add(this.logToHistoryListActivity7);
             this.stateInitializationActivity8.Activities.Add(this.setState_AkceptacjaWniosku);
-            this.stateInitializationActivity8.Activities.Add(this.SetCT_AkceptacjaWniosku);
+            this.stateInitializationActivity8.Activities.Add(this.initializeWorkflow7);
             this.stateInitializationActivity8.Name = "stateInitializationActivity8";
             // 
             // Wniosek_OnChange
@@ -1884,9 +1975,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity7
             // 
+            this.stateInitializationActivity7.Activities.Add(this.SetCT_Wniosek);
             this.stateInitializationActivity7.Activities.Add(this.logToHistoryListActivity6);
             this.stateInitializationActivity7.Activities.Add(this.setState_Wniosek);
-            this.stateInitializationActivity7.Activities.Add(this.SetCT_Wniosek);
+            this.stateInitializationActivity7.Activities.Add(this.initializeWorkflow6);
             this.stateInitializationActivity7.Activities.Add(this.codeDodajDoRozliczen);
             this.stateInitializationActivity7.Name = "stateInitializationActivity7";
             // 
@@ -1898,9 +1990,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity6
             // 
+            this.stateInitializationActivity6.Activities.Add(this.SetCT_Oferta1);
             this.stateInitializationActivity6.Activities.Add(this.logKorektaOferty);
             this.stateInitializationActivity6.Activities.Add(this.setState_KorektaOferty);
-            this.stateInitializationActivity6.Activities.Add(this.SetCT_Oferta1);
+            this.stateInitializationActivity6.Activities.Add(this.initializeWorkflow5);
             this.stateInitializationActivity6.Name = "stateInitializationActivity6";
             // 
             // AkceptacjaOferty_OnChange
@@ -1911,9 +2004,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity5
             // 
+            this.stateInitializationActivity5.Activities.Add(this.SetCT_AkceptacjaOferty);
             this.stateInitializationActivity5.Activities.Add(this.logToHistoryListActivity5);
             this.stateInitializationActivity5.Activities.Add(this.setState_AkceptacjaOferty);
-            this.stateInitializationActivity5.Activities.Add(this.SetCT_AkceptacjaOferty);
+            this.stateInitializationActivity5.Activities.Add(this.initializeWorkflow4);
             this.stateInitializationActivity5.Name = "stateInitializationActivity5";
             // 
             // stateInitializationActivity2
@@ -1933,9 +2027,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity4
             // 
+            this.stateInitializationActivity4.Activities.Add(this.SetCT_Oferta);
             this.stateInitializationActivity4.Activities.Add(this.logToHistoryListActivity15);
             this.stateInitializationActivity4.Activities.Add(this.setState_Oferta);
-            this.stateInitializationActivity4.Activities.Add(this.SetCT_Oferta);
+            this.stateInitializationActivity4.Activities.Add(this.initializeWorkflow3);
             this.stateInitializationActivity4.Name = "stateInitializationActivity4";
             // 
             // Telemarketing_OnChange
@@ -1946,16 +2041,18 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity3
             // 
+            this.stateInitializationActivity3.Activities.Add(this.SetCT_Telemarketing);
             this.stateInitializationActivity3.Activities.Add(this.logToHistoryListActivity16);
             this.stateInitializationActivity3.Activities.Add(this.setState_Telemarketing);
-            this.stateInitializationActivity3.Activities.Add(this.SetCT_Telemarketing);
+            this.stateInitializationActivity3.Activities.Add(this.initializeWorkflow2);
             this.stateInitializationActivity3.Name = "stateInitializationActivity3";
             // 
             // stateInitializationActivity1
             // 
+            this.stateInitializationActivity1.Activities.Add(this.SetCT_Weryfikacja);
             this.stateInitializationActivity1.Activities.Add(this.setState_Weryfikacja);
             this.stateInitializationActivity1.Activities.Add(this.logToHistoryListActivity14);
-            this.stateInitializationActivity1.Activities.Add(this.SetCT_Weryfikacja);
+            this.stateInitializationActivity1.Activities.Add(this.initializeWorkflow1);
             this.stateInitializationActivity1.Activities.Add(this.faultHandlersActivity4);
             this.stateInitializationActivity1.Name = "stateInitializationActivity1";
             // 
@@ -2107,6 +2204,30 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         }
 
         #endregion
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow1;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow2;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow12;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow11;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow10;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow9;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow8;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow7;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow6;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow5;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow4;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow3;
 
         private CodeActivity codeDodajDoRozliczen;
 
@@ -2583,6 +2704,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         private StateActivity Navigator;
 
         private StateActivity Start;
+
+
+
+
+
+
+
 
 
 

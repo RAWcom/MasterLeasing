@@ -13,14 +13,14 @@
         <ProjectItemStore Id="{46ede7de-4e44-4de0-9fe6-32eae30eaf1b}">
           <DisplayName>KontraktSMW</DisplayName>
           <HistoryList>Workflow History</HistoryList>
-          <HistoryListGuid>{6de47e63-8a82-4f88-a577-fbc338bf0515}</HistoryListGuid>
-          <TaskList>Zadania</TaskList>
-          <TaskListGuid>{9a7ce622-ef97-4f28-9340-1fd3e3b0546f}</TaskListGuid>
+          <HistoryListGuid>{e6d092aa-9b24-43d2-9280-71b447069b0b}</HistoryListGuid>
+          <TaskList>Tasks</TaskList>
+          <TaskListGuid>{b09885f9-237c-4cfd-835d-74596d64a5b8}</TaskListGuid>
           <AutoAssociate>true</AutoAssociate>
           <ManualStart>true</ManualStart>
-          <ListURL>http://spf2010dev/sites/dev/ml2/Lists/tabKontrakty/Kartoteka.aspx</ListURL>
+          <ListURL>http://spf2010/sites/ML/Lists/tabKontrakty/Kartoteka.aspx</ListURL>
           <TargetList>tabKontrakty</TargetList>
-          <TargetListGuid>{efb2e4db-aae8-4fdc-88ce-bfc77a99e571}</TargetListGuid>
+          <TargetListGuid>{289a7a60-eb7c-4d50-a60d-d60221a2d7a2}</TargetListGuid>
           <StartOnCreate>true</StartOnCreate>
           <StartOnChange>false</StartOnChange>
         </ProjectItemStore>

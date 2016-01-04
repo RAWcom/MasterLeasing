@@ -1022,6 +1022,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             SPSecurity.RunWithElevatedPrivileges(delegate() { DodajDoRozliczen(); });
         }
 
+        private void initializeWorkflow2_MethodInvoking(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 
