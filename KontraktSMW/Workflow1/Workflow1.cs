@@ -30,7 +30,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         const string _UMOWA_ = "Umowa";
         const string _TELEFON_ = "Telefon";
         const string _STRACONY_ = "Stracony";
-        const string _URUCHOMIONY_ = "Uruchomiony";
+        //const string _URUCHOMIONY_ = "Uruchomiony";
+        const string _URUCHOMIONY_ = "Uruchomienie";
         const string _ROZLICZENIE_ = "Rozliczenie";
 
         const string _DEFAULT_EMAIL_SENDER_ = "Master Leasing<noreply@stafix24.pl>";

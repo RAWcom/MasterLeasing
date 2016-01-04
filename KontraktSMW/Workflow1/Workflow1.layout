@@ -1,4 +1,4 @@
-﻿<StateMachineWorkflowDesigner xmlns:ns0="clr-namespace:System.Drawing;Assembly=System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Size="1191, 1964" AutoSizeMargin="16, 24" Location="30, 30" Name="Workflow1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+﻿<StateMachineWorkflowDesigner xmlns:ns0="clr-namespace:System.Drawing;Assembly=System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Size="1191, 1964" AutoSizeMargin="16, 24" AutoSize="False" Location="30, 30" Name="Workflow1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
 	<StateMachineWorkflowDesigner.DesignerConnectors>
 		<StateDesignerConnector TargetActivity="Navigator" TargetConnectionEdge="Top" SetStateName="setStateActivity1" SourceActivity="Start" TargetConnectionIndex="0" SourceStateName="Start" SourceConnectionEdge="Right" EventHandlerName="eventDrivenActivity1" SourceConnectionIndex="0" TargetStateName="Navigator">
 			<StateDesignerConnector.Segments>
@@ -313,52 +313,52 @@
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
 		</StateDesigner>
-		<StateDesigner Size="219, 80" AutoSizeMargin="16, 24" Location="46, 168" Name="Navigator">
+		<StateDesigner Size="219, 80" AutoSizeMargin="16, 24" AutoSize="False" Location="46, 168" Name="Navigator">
 			<StateDesigner.Designers>
-				<StateInitializationDesigner Name="stateInitializationActivity15" Size="1419, 399" Location="54, 202">
+				<StateInitializationDesigner Name="stateInitializationActivity15" Size="1419, 399" Location="62, 157">
 					<StateInitializationDesigner.Designers>
-						<ActivityDesigner Name="logRouter" Size="130, 41" Location="698, 268" />
-						<IfElseDesigner Name="Navigator_Routing" Size="1399, 254" Location="64, 328">
+						<ActivityDesigner Name="logRouter" Size="130, 41" Location="706, 223" />
+						<IfElseDesigner Name="Navigator_Routing" Size="1399, 254" Location="72, 283">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="StatusLeadu_Telefon" Size="150, 150" Location="83, 403">
+								<IfElseBranchDesigner Name="StatusLeadu_Telefon" Size="150, 150" Location="91, 358">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Telemarketing" Size="130, 65" Location="93, 469" />
+										<SetStateDesigner Name="Navigator_Telemarketing" Size="130, 65" Location="101, 424" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="StatusLeadu_Oferta" Size="150, 150" Location="256, 403">
+								<IfElseBranchDesigner Name="StatusLeadu_Oferta" Size="150, 150" Location="264, 358">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Oferta" Size="130, 65" Location="266, 469" />
+										<SetStateDesigner Name="Navigator_Oferta" Size="130, 65" Location="274, 424" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="StatusLeadu_Wniosek" Size="150, 150" Location="429, 403">
+								<IfElseBranchDesigner Name="StatusLeadu_Wniosek" Size="150, 150" Location="437, 358">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Wniosek" Size="130, 65" Location="439, 469" />
+										<SetStateDesigner Name="Navigator_Wniosek" Size="130, 65" Location="447, 424" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="StatusLeadu_Umowa" Size="150, 150" Location="602, 403">
+								<IfElseBranchDesigner Name="StatusLeadu_Umowa" Size="150, 150" Location="610, 358">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Umowa" Size="130, 65" Location="612, 469" />
+										<SetStateDesigner Name="Navigator_Umowa" Size="130, 65" Location="620, 424" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="StatusLeadu_Uruchomiony" Size="150, 150" Location="775, 403">
+								<IfElseBranchDesigner Name="StatusLeadu_Uruchomiony" Size="150, 150" Location="783, 358">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Uruchomienie" Size="130, 65" Location="785, 469" />
+										<SetStateDesigner Name="Navigator_Uruchomienie" Size="130, 65" Location="793, 424" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="StatusLeadu_Stracony" Size="150, 150" Location="948, 403">
+								<IfElseBranchDesigner Name="StatusLeadu_Stracony" Size="150, 150" Location="956, 358">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Stracony" Size="130, 65" Location="958, 469" />
+										<SetStateDesigner Name="Navigator_Stracony" Size="130, 65" Location="966, 424" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 								<FaultHandlersActivityDesigner Name="faultHandlersActivity7" Size="130, 41" Location="0, 0" ShowPreview="False" />
-								<IfElseBranchDesigner Name="StatusLeadu_Rozliczenie" Size="150, 150" Location="1121, 403">
+								<IfElseBranchDesigner Name="StatusLeadu_Rozliczenie" Size="150, 150" Location="1129, 358">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity23" Size="130, 65" Location="1131, 469" />
+										<SetStateDesigner Name="setStateActivity23" Size="130, 65" Location="1139, 424" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="Status_Lead_Else" Size="150, 150" Location="1294, 403">
+								<IfElseBranchDesigner Name="Status_Lead_Else" Size="150, 150" Location="1302, 358">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity27" Size="130, 65" Location="1304, 469" />
+										<SetStateDesigner Name="setStateActivity27" Size="130, 65" Location="1312, 424" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
