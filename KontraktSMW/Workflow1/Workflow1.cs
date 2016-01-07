@@ -270,63 +270,80 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         #region Ustawianie CT
 
+        private void Set_Etap(Etap etap)
+        {
+            workflowProperties.Item["_ETAP"] = etap.ToString();
+        }
+
         private void SetCT_Weryfikacja_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.Weryfikacja);
             AdjustFormSettings("ctKontrakt.Weryfikacja", "Rozmowa", "cmdKontrakt_Weryfikacja", true);
         }
 
         private void SetCT_Telemarketing_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.Weryfikacja);
             AdjustFormSettings("ctKontrakt.Telemarketing", "Telefon", "cmdKontrakt_Telemarketing", true);
         }
 
         private void SetCT_Oferta_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.Oferta);
             AdjustFormSettings("ctKontrakt.Oferta", "Oferta", "cmdKontrakt_Oferta", true);
         }
 
         private void SetCT_AkceptacjaOferty_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.AkceptacjaOferty);
             AdjustFormSettings("ctKontrakt.AkceptacjaOferty", "Oferta", "cmdKontrakt_AkceptacjaOferty", true);
         }
 
         private void SetCT_Wniosek_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.Wniosek);
             AdjustFormSettings("ctKontrakt.Wniosek", "Wniosek", "cmdKontrakt_Wniosek", true);
         }
 
         private void SetCT_AkceptacjaWniosku_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.AkceptacjaWniosku);
             AdjustFormSettings("ctKontrakt.AkceptacjaWniosku", "Wniosek", "cmdKontrakt_AkceptacjaWniosku", true);
         }
 
         private void SetCT_Umowa_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.Umowa);
             AdjustFormSettings("ctKontrakt.Umowa", "Umowa", "cmdKontrakt_Umowa", true);
         }
 
         private void SetCT_AkceptacjaUmowy_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.AkceptacjaUmowy);
             AdjustFormSettings("ctKontrakt.AkceptacjaUmowy", "Umowa", "cmdKontrakt_AkceptacjaUmowy", true);
         }
 
         private void SetCT_Uruchomienie_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.Uruchomienie);
             AdjustFormSettings("ctKontrakt.Uruchomienie", "Uruchomienie", "cmdKontrakt_Uruchomienie", false);
         }
 
         private void SetCT_Dokumentacja_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.Dokumentacja);
             AdjustFormSettings("ctKontrakt.Dokumentacja", "Uruchomienie", "cmdKontrakt_Dokumentacja", false);
         }
 
         private void SetCT_Rozliczenie_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.Rozliczenie);
             AdjustFormSettings("ctKontrakt.Rozliczenie", "Rozliczenie", string.Empty, false);
         }
 
         private void SetCT_Odrzucony_ExecuteCode(object sender, EventArgs e)
         {
+            Set_Etap(Etap.Odrzucenie);
             AdjustFormSettings("ctKontrakt.Odrzucenie", "Stracony", string.Empty, false);
         }
 
@@ -862,10 +879,19 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
                 ResetMailConfig();
 
                 Mail_To = emailAgenta.ToString();
+                WriteToHistoryLog("Mail_To", Mail_To);
+
                 Mail_BCC = "biuro@rawcom24.pl";
+                WriteToHistoryLog("Mail_BCC", Mail_BCC);
+
                 Mail_From = _DEFAULT_EMAIL_SENDER_;
+                WriteToHistoryLog("Mail_From", Mail_From);
+
                 Mail_Subject = strSubject;
+                WriteToHistoryLog("Mail_Subject", partnerID.ToString());
+
                 Mail_Body = strBody;
+                WriteToHistoryLog("Mail_Body", partnerID.ToString());
 
                 return true;
 
@@ -1028,16 +1054,123 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         }
 
+        private void ErrorHandler_ExecuteCode(object sender, EventArgs e)
+        {
+
+        }
+
+        public String logErrorMessage_HistoryDescription = default(System.String);
+        public String logErrorMessage_HistoryOutcome = default(System.String);
+
+        private void isEtapNotNull(object sender, ConditionalEventArgs e)
+        {
+            if (workflowProperties.Item["_ETAP"] != null
+                && !string.IsNullOrEmpty(workflowProperties.Item["_ETAP"].ToString())) e.Result = true;
+        }
 
 
+        private bool Check_CurrentEtap(Etap etap)
+        {
+            string e = workflowProperties.Item["_ETAP"] != null ? workflowProperties.Item["_ETAP"].ToString() : string.Empty;
+            if (etap.ToString().Equals(e)) return true;
+            else return false;
+        }
 
+        private void isWeryfikacja(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.Weryfikacja);
+        }
 
+        private void isTelemarketing(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.Telemarketing);
+        }
 
+        private void isOferta(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.Oferta);
+        }
 
+        private void isOdrzucenie(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.Odrzucenie);
+        }
 
+        private void isAkceptacjaOferty(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.AkceptacjaOferty);
+        }
 
+        private void isKorektaOferty(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.KorektaOferty);
+        }
 
+        private void isWniosek(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.Wniosek);
+        }
 
+        private void isAkceptacjaWniosku(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.AkceptacjaWniosku);
+        }
+
+        private void isKorektaWniosku(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.KorektaWniosku);
+        }
+
+        private void isUmowa(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.Umowa);
+        }
+
+        private void isAkceptacjaUmowy(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.AkceptacjaUmowy);
+        }
+
+        private void isUruchomienie(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.Uruchomienie);
+        }
+
+        private void isDokumentacja(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.Dokumentacja);
+        }
+
+        private void isRozliczenie(object sender, ConditionalEventArgs e)
+        {
+            e.Result = Check_CurrentEtap(Etap.Rozliczenie);
+        }
+
+        public String logNavigator_HistoryOutcome = default(System.String);
+
+        private void SetNavigatorMessage(object sender, EventArgs e)
+        {
+            logNavigator_HistoryOutcome = workflowProperties.Item["_ETAP"].ToString();
+        }
+
+    }
+
+    public enum Etap
+    {
+        Weryfikacja,
+        Telemarketing,
+        Oferta,
+        Odrzucenie,
+        AkceptacjaOferty,
+        KorektaOferty,
+        Wniosek,
+        AkceptacjaWniosku,
+        KorektaWniosku,
+        Umowa,
+        AkceptacjaUmowy,
+        Uruchomienie,
+        Dokumentacja,
+        Rozliczenie
     }
 
 }

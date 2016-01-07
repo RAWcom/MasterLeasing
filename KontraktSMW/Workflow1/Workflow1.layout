@@ -315,50 +315,142 @@
 		</StateDesigner>
 		<StateDesigner Size="219, 80" AutoSizeMargin="16, 24" AutoSize="False" Location="46, 168" Name="Navigator">
 			<StateDesigner.Designers>
-				<StateInitializationDesigner Name="stateInitializationActivity15" Size="1419, 399" Location="62, 157">
+				<StateInitializationDesigner Name="stateInitializationActivity15" Size="2861, 648" Location="62, 157">
 					<StateInitializationDesigner.Designers>
-						<ActivityDesigner Name="logRouter" Size="130, 41" Location="706, 223" />
-						<IfElseDesigner Name="Navigator_Routing" Size="1399, 254" Location="72, 283">
+						<ActivityDesigner Name="logRouter" Size="130, 41" Location="1427, 223" />
+						<IfElseDesigner Name="TestEtap" Size="2841, 503" Location="72, 283">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="StatusLeadu_Telefon" Size="150, 150" Location="91, 358">
+								<IfElseBranchDesigner Name="ifEtapNotNull" Size="2630, 399" Location="91, 358">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Telemarketing" Size="130, 65" Location="101, 424" />
+										<IfElseDesigner Name="E" Size="2610, 314" Location="101, 424">
+											<IfElseDesigner.Designers>
+												<IfElseBranchDesigner Name="ifWeryfikacja" Size="150, 210" Location="120, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity28" Size="130, 65" Location="130, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifTelemarketing" Size="150, 210" Location="293, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity30" Size="130, 65" Location="303, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifOferta" Size="150, 210" Location="466, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity31" Size="130, 65" Location="476, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifOdrzucenie" Size="150, 210" Location="639, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity32" Size="130, 65" Location="649, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifAkceptacjaOferty" Size="150, 210" Location="812, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity33" Size="130, 65" Location="822, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifKorektaOferty" Size="150, 210" Location="985, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity34" Size="130, 65" Location="995, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifWniosek" Size="150, 210" Location="1158, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity35" Size="130, 65" Location="1168, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifAkceptacjaWniosku" Size="150, 210" Location="1331, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity36" Size="130, 65" Location="1341, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifKorektaWniosku" Size="150, 210" Location="1504, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity37" Size="130, 65" Location="1514, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifUmowa" Size="150, 210" Location="1677, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity38" Size="130, 65" Location="1687, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifAkceptacjaUmowy" Size="150, 210" Location="1850, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity39" Size="130, 65" Location="1860, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifUruchomienie" Size="150, 210" Location="2023, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity40" Size="130, 65" Location="2033, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifDokumentacja" Size="150, 210" Location="2196, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity41" Size="130, 65" Location="2206, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="ifRozliczenie" Size="150, 210" Location="2369, 499">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity42" Size="130, 65" Location="2379, 595" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="Else2" Size="150, 210" Location="2542, 499">
+													<IfElseBranchDesigner.Designers>
+														<ActivityDesigner Name="logNavigator" Size="130, 41" Location="2552, 565" />
+														<SetStateDesigner Name="setStateActivity29" Size="130, 65" Location="2552, 625" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+											</IfElseDesigner.Designers>
+										</IfElseDesigner>
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="StatusLeadu_Oferta" Size="150, 150" Location="264, 358">
+								<IfElseBranchDesigner Name="Else" Size="150, 399" Location="2744, 358">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Oferta" Size="130, 65" Location="274, 424" />
-									</IfElseBranchDesigner.Designers>
-								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="StatusLeadu_Wniosek" Size="150, 150" Location="437, 358">
-									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Wniosek" Size="130, 65" Location="447, 424" />
-									</IfElseBranchDesigner.Designers>
-								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="StatusLeadu_Umowa" Size="150, 150" Location="610, 358">
-									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Umowa" Size="130, 65" Location="620, 424" />
-									</IfElseBranchDesigner.Designers>
-								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="StatusLeadu_Uruchomiony" Size="150, 150" Location="783, 358">
-									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Uruchomienie" Size="130, 65" Location="793, 424" />
-									</IfElseBranchDesigner.Designers>
-								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="StatusLeadu_Stracony" Size="150, 150" Location="956, 358">
-									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="Navigator_Stracony" Size="130, 65" Location="966, 424" />
-									</IfElseBranchDesigner.Designers>
-								</IfElseBranchDesigner>
-								<FaultHandlersActivityDesigner Name="faultHandlersActivity7" Size="130, 41" Location="0, 0" ShowPreview="False" />
-								<IfElseBranchDesigner Name="StatusLeadu_Rozliczenie" Size="150, 150" Location="1129, 358">
-									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity23" Size="130, 65" Location="1139, 424" />
-									</IfElseBranchDesigner.Designers>
-								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="Status_Lead_Else" Size="150, 150" Location="1302, 358">
-									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity27" Size="130, 65" Location="1312, 424" />
+										<IfElseDesigner Name="Navigator_Routing" Size="130, 55" Location="2754, 554">
+											<IfElseDesigner.Designers>
+												<IfElseBranchDesigner Name="StatusLeadu_Telefon" Size="150, 150" Location="2773, 629">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="Navigator_Telemarketing" Size="130, 65" Location="2783, 695" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="StatusLeadu_Oferta" Size="150, 150" Location="2946, 629">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="Navigator_Oferta" Size="130, 65" Location="2956, 695" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="StatusLeadu_Wniosek" Size="150, 150" Location="3119, 629">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="Navigator_Wniosek" Size="130, 65" Location="3129, 695" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="StatusLeadu_Umowa" Size="150, 150" Location="3292, 629">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="Navigator_Umowa" Size="130, 65" Location="3302, 695" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="StatusLeadu_Uruchomiony" Size="150, 150" Location="3465, 629">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="Navigator_Uruchomienie" Size="130, 65" Location="3475, 695" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="StatusLeadu_Stracony" Size="150, 150" Location="3638, 629">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="Navigator_Stracony" Size="130, 65" Location="3648, 695" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<FaultHandlersActivityDesigner Name="faultHandlersActivity7" Size="130, 41" Location="0, 0" ShowPreview="False" />
+												<IfElseBranchDesigner Name="StatusLeadu_Rozliczenie" Size="150, 150" Location="3811, 629">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity23" Size="130, 65" Location="3821, 695" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+												<IfElseBranchDesigner Name="Status_Lead_Else" Size="150, 150" Location="3984, 629">
+													<IfElseBranchDesigner.Designers>
+														<SetStateDesigner Name="setStateActivity27" Size="130, 65" Location="3994, 695" />
+													</IfElseBranchDesigner.Designers>
+												</IfElseBranchDesigner>
+											</IfElseDesigner.Designers>
+										</IfElseDesigner>
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
@@ -378,37 +470,42 @@
 		</StateDesigner>
 		<StateDesigner Size="211, 103" AutoSizeMargin="16, 24" Location="46, 264" Name="Weryfikacja">
 			<StateDesigner.Designers>
-				<EventDrivenDesigner Name="Weryfikacja_OnChange" Size="554, 469" Location="54, 325">
+				<EventDrivenDesigner Name="Weryfikacja_OnChange" Size="240, 339" Location="54, 325">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged13" Size="130, 46" Location="266, 391" />
-						<IfElseDesigner Name="Weryfikacja_Routing" Size="534, 319" Location="64, 456">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged13" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity28" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="Weryfikacja_Routing" Size="534, 384" Location="358, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="Weryfikacja_Oferta" Size="150, 215" Location="83, 531">
+								<IfElseBranchDesigner Name="Weryfikacja_Oferta" Size="150, 280" Location="377, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="StatusRozmowa_Oferta" Size="130, 46" Location="93, 597" />
-										<SetStateDesigner Name="setStateActivity3" Size="130, 65" Location="93, 662" />
+										<ActivityDesigner Name="logToHistoryListActivity29" Size="130, 46" Location="387, 494" />
+										<CodeDesigner Name="StatusRozmowa_Oferta" Size="130, 46" Location="387, 559" />
+										<SetStateDesigner Name="setStateActivity3" Size="130, 65" Location="387, 624" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="Weryfikacja_Telemarketing" Size="150, 215" Location="256, 531">
+								<IfElseBranchDesigner Name="Weryfikacja_Telemarketing" Size="150, 280" Location="550, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="StatusRozmowa_Telefon" Size="130, 46" Location="266, 597" />
-										<SetStateDesigner Name="setStateActivity4" Size="130, 65" Location="266, 662" />
+										<ActivityDesigner Name="logToHistoryListActivity30" Size="130, 46" Location="560, 494" />
+										<CodeDesigner Name="StatusRozmowa_Telefon" Size="130, 46" Location="560, 559" />
+										<SetStateDesigner Name="setStateActivity4" Size="130, 65" Location="560, 624" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="Weryfikacja_Odrzucenie" Size="150, 215" Location="429, 531">
+								<IfElseBranchDesigner Name="Weryfikacja_Odrzucenie" Size="150, 280" Location="723, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="StatusRozmowa_Stracony" Size="130, 46" Location="439, 597" />
-										<SetStateDesigner Name="setStateActivity2" Size="130, 65" Location="439, 662" />
+										<ActivityDesigner Name="logToHistoryListActivity31" Size="130, 46" Location="733, 494" />
+										<CodeDesigner Name="StatusRozmowa_Stracony" Size="130, 46" Location="733, 559" />
+										<SetStateDesigner Name="setStateActivity2" Size="130, 65" Location="733, 624" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 								<FaultHandlersActivityDesigner Name="faultHandlersActivity6" Size="130, 41" Location="0, 0" ShowPreview="False" />
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
-						<FaultHandlersActivityDesigner Name="faultHandlersActivity5" Size="130, 41" Location="0, 0" ShowPreview="False">
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity5" Size="220, 280" Location="64, 376" ShowPreview="False">
 							<FaultHandlersActivityDesigner.Designers>
-								<FaultHandlerActivityDesigner Name="faultHandlerActivity5" Size="130, 41" Location="0, 0">
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity5" Size="204, 187" Location="72, 465">
 									<FaultHandlerActivityDesigner.Designers>
-										<ActivityDesigner Name="logERROR_WefyfikacjaEvent" Size="130, 41" Location="0, 0" />
+										<CodeDesigner Name="ErrorHandler_Weryfikacja" Size="130, 46" Location="109, 531" />
+										<ActivityDesigner Name="logToHistoryListActivity57" Size="130, 46" Location="109, 596" />
 									</FaultHandlerActivityDesigner.Designers>
 								</FaultHandlerActivityDesigner>
 							</FaultHandlersActivityDesigner.Designers>
@@ -444,25 +541,38 @@
 						<CallExternalMethodActivityDesigner Name="initializeWorkflow2" Size="130, 46" Location="64, 678" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="Telemarketing_OnChange" Size="381, 469" Location="54, 444">
+				<EventDrivenDesigner Name="Telemarketing_OnChange" Size="240, 339" Location="54, 444">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged3" Size="130, 46" Location="179, 510" />
-						<IfElseDesigner Name="Telemarketing_Routing" Size="361, 319" Location="64, 575">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged3" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity32" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="Telemarketing_Routing" Size="361, 384" Location="445, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="Telemarketing_Oferta" Size="150, 215" Location="83, 650">
+								<IfElseBranchDesigner Name="Telemarketing_Oferta" Size="150, 280" Location="464, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="StatusTelefon_Oferta" Size="130, 46" Location="93, 716" />
-										<SetStateDesigner Name="setStateActivity9" Size="130, 65" Location="93, 781" />
+										<ActivityDesigner Name="logToHistoryListActivity33" Size="130, 46" Location="474, 494" />
+										<CodeDesigner Name="StatusTelefon_Oferta" Size="130, 46" Location="474, 559" />
+										<SetStateDesigner Name="setStateActivity9" Size="130, 65" Location="474, 624" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="Telemarketing_Odrzucenie" Size="150, 215" Location="256, 650">
+								<IfElseBranchDesigner Name="Telemarketing_Odrzucenie" Size="150, 280" Location="637, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="StatusTelefon_Stracony" Size="130, 46" Location="266, 716" />
-										<SetStateDesigner Name="setStateActivity10" Size="130, 65" Location="266, 781" />
+										<ActivityDesigner Name="logToHistoryListActivity34" Size="130, 46" Location="647, 494" />
+										<CodeDesigner Name="StatusTelefon_Stracony" Size="130, 46" Location="647, 559" />
+										<SetStateDesigner Name="setStateActivity10" Size="130, 65" Location="647, 624" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity9" Size="220, 280" Location="64, 495" ShowPreview="False">
+							<FaultHandlersActivityDesigner.Designers>
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity6" Size="204, 187" Location="72, 584">
+									<FaultHandlerActivityDesigner.Designers>
+										<CodeDesigner Name="codeActivity1" Size="130, 46" Location="109, 650" />
+										<ActivityDesigner Name="logToHistoryListActivity58" Size="130, 46" Location="109, 715" />
+									</FaultHandlerActivityDesigner.Designers>
+								</FaultHandlerActivityDesigner>
+							</FaultHandlersActivityDesigner.Designers>
+						</FaultHandlersActivityDesigner>
 					</EventDrivenDesigner.Designers>
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
@@ -477,23 +587,34 @@
 						<CallExternalMethodActivityDesigner Name="initializeWorkflow3" Size="130, 46" Location="64, 797" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="Oferta_OnChange" Size="208, 404" Location="54, 563">
+				<EventDrivenDesigner Name="Oferta_OnChange" Size="240, 339" Location="54, 563">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged2" Size="130, 46" Location="93, 629" />
-						<IfElseDesigner Name="Oferta_Routing" Size="188, 254" Location="64, 694">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged2" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity35" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="Oferta_Routing" Size="188, 254" Location="531, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="Oferta_AkceptacjaOferty" Size="150, 150" Location="83, 769">
+								<IfElseBranchDesigner Name="Oferta_AkceptacjaOferty" Size="150, 150" Location="550, 428">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity5" Size="130, 65" Location="93, 835" />
+										<SetStateDesigner Name="setStateActivity5" Size="130, 65" Location="560, 494" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity10" Size="220, 280" Location="64, 614" ShowPreview="False">
+							<FaultHandlersActivityDesigner.Designers>
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity7" Size="204, 187" Location="72, 703">
+									<FaultHandlerActivityDesigner.Designers>
+										<CodeDesigner Name="codeActivity2" Size="130, 46" Location="109, 769" />
+										<ActivityDesigner Name="logToHistoryListActivity59" Size="130, 46" Location="109, 834" />
+									</FaultHandlerActivityDesigner.Designers>
+								</FaultHandlerActivityDesigner>
+							</FaultHandlersActivityDesigner.Designers>
+						</FaultHandlersActivityDesigner>
 					</EventDrivenDesigner.Designers>
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
 		</StateDesigner>
-		<StateDesigner Size="211, 80" AutoSizeMargin="16, 24" AutoSize="False" Location="46, 621" Name="Odrzucenie">
+		<StateDesigner Size="211, 80" AutoSizeMargin="16, 24" Location="46, 621" Name="Odrzucenie">
 			<StateDesigner.Designers>
 				<StateInitializationDesigner Name="stateInitializationActivity2" Size="208, 664" Location="54, 655">
 					<StateInitializationDesigner.Designers>
@@ -525,48 +646,64 @@
 						<CallExternalMethodActivityDesigner Name="initializeWorkflow4" Size="130, 46" Location="64, 1012" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="AkceptacjaOferty_OnChange" Size="785, 853" Location="54, 778">
+				<EventDrivenDesigner Name="AkceptacjaOferty_OnChange" Size="240, 334" Location="54, 778">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged4" Size="130, 46" Location="381, 844" />
-						<IfElseDesigner Name="AkceptacjaOferty_Telemarketing" Size="765, 703" Location="64, 909">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged4" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity25" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="AkceptacjaOferty_Telemarketing" Size="765, 833" Location="243, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="AkceptacjaOferty_Wniosek" Size="208, 599" Location="83, 984">
+								<IfElseBranchDesigner Name="AkceptacjaOferty_Wniosek" Size="208, 729" Location="262, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="Komunikat_AkceptacjaOferty" Size="130, 46" Location="122, 1050" />
-										<IfElseDesigner Name="ifElseActivity2" Size="188, 300" Location="93, 1115">
+										<ActivityDesigner Name="logToHistoryListActivity21" Size="130, 46" Location="301, 494" />
+										<CodeDesigner Name="Komunikat_AkceptacjaOferty" Size="130, 46" Location="301, 559" />
+										<IfElseDesigner Name="ifElseActivity2" Size="188, 365" Location="272, 624">
 											<IfElseDesigner.Designers>
-												<IfElseBranchDesigner Name="AkceptacjaOferty_MailSendAllowed" Size="150, 196" Location="112, 1190">
+												<IfElseBranchDesigner Name="AkceptacjaOferty_MailSendAllowed" Size="150, 261" Location="291, 699">
 													<IfElseBranchDesigner.Designers>
-														<CallExternalMethodActivityDesigner Name="sendEmail_OfertaZaakceptowana" Size="130, 46" Location="122, 1256" />
-														<ActivityDesigner Name="logToHistoryListActivity1" Size="130, 46" Location="122, 1321" />
+														<ActivityDesigner Name="logToHistoryListActivity56" Size="130, 46" Location="301, 765" />
+														<CallExternalMethodActivityDesigner Name="sendEmail_OfertaZaakceptowana" Size="130, 46" Location="301, 830" />
+														<ActivityDesigner Name="logToHistoryListActivity1" Size="130, 46" Location="301, 895" />
 													</IfElseBranchDesigner.Designers>
 												</IfElseBranchDesigner>
 											</IfElseDesigner.Designers>
 										</IfElseDesigner>
-										<CodeDesigner Name="StatusOferta_Wniosek" Size="130, 46" Location="122, 1434" />
-										<SetStateDesigner Name="setStateActivity11" Size="130, 65" Location="122, 1499" />
+										<CodeDesigner Name="StatusOferta_Wniosek" Size="130, 46" Location="301, 1008" />
+										<SetStateDesigner Name="setStateActivity11" Size="130, 65" Location="301, 1073" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="AkceptacjaOferty_Odrzucenie" Size="150, 599" Location="314, 984">
+								<IfElseBranchDesigner Name="AkceptacjaOferty_Odrzucenie" Size="150, 729" Location="493, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="Komunikat_OfertaNiezaakceptowana" Size="130, 46" Location="324, 1050" />
-										<CodeDesigner Name="StatusOferta_Stracony" Size="130, 46" Location="324, 1115" />
-										<SetStateDesigner Name="setStateActivity12" Size="130, 65" Location="324, 1180" />
+										<ActivityDesigner Name="logToHistoryListActivity22" Size="130, 46" Location="503, 494" />
+										<CodeDesigner Name="Komunikat_OfertaNiezaakceptowana" Size="130, 46" Location="503, 559" />
+										<CodeDesigner Name="StatusOferta_Stracony" Size="130, 46" Location="503, 624" />
+										<SetStateDesigner Name="setStateActivity12" Size="130, 65" Location="503, 689" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="AkceptacjaOferty_KorektaOferty" Size="150, 599" Location="487, 984">
+								<IfElseBranchDesigner Name="AkceptacjaOferty_KorektaOferty" Size="150, 729" Location="666, 428">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity6" Size="130, 65" Location="497, 1275" />
+										<ActivityDesigner Name="logToHistoryListActivity23" Size="130, 46" Location="676, 494" />
+										<SetStateDesigner Name="setStateActivity6" Size="130, 65" Location="676, 559" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="AkceptacjaOferty_Telemarketing1" Size="150, 599" Location="660, 984">
+								<IfElseBranchDesigner Name="AkceptacjaOferty_Telemarketing1" Size="150, 729" Location="839, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="StatusOferta_Telefon" Size="130, 46" Location="670, 1050" />
-										<SetStateDesigner Name="setStateActivity7" Size="130, 65" Location="670, 1115" />
+										<ActivityDesigner Name="logToHistoryListActivity24" Size="130, 46" Location="849, 494" />
+										<CodeDesigner Name="StatusOferta_Telefon" Size="130, 46" Location="849, 559" />
+										<SetStateDesigner Name="setStateActivity7" Size="130, 65" Location="849, 624" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity8" Size="220, 275" Location="64, 829" ShowPreview="False">
+							<FaultHandlersActivityDesigner.Designers>
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity1" Size="204, 182" Location="72, 918">
+									<FaultHandlerActivityDesigner.Designers>
+										<CodeDesigner Name="ErrorHandler" Size="130, 41" Location="109, 984" />
+										<ActivityDesigner Name="logErrorMessage" Size="130, 46" Location="109, 1044" />
+									</FaultHandlerActivityDesigner.Designers>
+								</FaultHandlerActivityDesigner>
+							</FaultHandlersActivityDesigner.Designers>
+						</FaultHandlersActivityDesigner>
 					</EventDrivenDesigner.Designers>
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
@@ -581,18 +718,30 @@
 						<CallExternalMethodActivityDesigner Name="initializeWorkflow5" Size="130, 46" Location="64, 1131" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="KorektaOferty_OnChange" Size="208, 404" Location="54, 897">
+				<EventDrivenDesigner Name="KorektaOferty_OnChange" Size="240, 339" Location="54, 897">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged5" Size="130, 46" Location="93, 963" />
-						<IfElseDesigner Name="ifElseActivity5" Size="188, 254" Location="64, 1028">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged5" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity36" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="ifElseActivity5" Size="188, 319" Location="531, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="KorektaOferty_AkceptacjaOferty" Size="150, 150" Location="83, 1103">
+								<IfElseBranchDesigner Name="KorektaOferty_AkceptacjaOferty" Size="150, 215" Location="550, 428">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity8" Size="130, 65" Location="93, 1169" />
+										<ActivityDesigner Name="logToHistoryListActivity37" Size="130, 46" Location="560, 494" />
+										<SetStateDesigner Name="setStateActivity8" Size="130, 65" Location="560, 559" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity11" Size="220, 280" Location="64, 948" ShowPreview="False">
+							<FaultHandlersActivityDesigner.Designers>
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity8" Size="204, 187" Location="72, 1037">
+									<FaultHandlerActivityDesigner.Designers>
+										<CodeDesigner Name="codeActivity3" Size="130, 46" Location="109, 1103" />
+										<ActivityDesigner Name="logToHistoryListActivity60" Size="130, 46" Location="109, 1168" />
+									</FaultHandlerActivityDesigner.Designers>
+								</FaultHandlerActivityDesigner>
+							</FaultHandlersActivityDesigner.Designers>
+						</FaultHandlersActivityDesigner>
 					</EventDrivenDesigner.Designers>
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
@@ -608,18 +757,30 @@
 						<CodeDesigner Name="codeDodajDoRozliczen" Size="130, 46" Location="64, 1315" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="Wniosek_OnChange" Size="208, 404" Location="54, 1016">
+				<EventDrivenDesigner Name="Wniosek_OnChange" Size="240, 339" Location="54, 1016">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged6" Size="130, 46" Location="93, 1082" />
-						<IfElseDesigner Name="ifElseActivity6" Size="188, 254" Location="64, 1147">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged6" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity26" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="ifElseActivity6" Size="188, 319" Location="531, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="Wniosek_AkceptacjaWniosku" Size="150, 150" Location="83, 1222">
+								<IfElseBranchDesigner Name="Wniosek_AkceptacjaWniosku" Size="150, 215" Location="550, 428">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity13" Size="130, 65" Location="93, 1288" />
+										<ActivityDesigner Name="logToHistoryListActivity27" Size="130, 46" Location="560, 494" />
+										<SetStateDesigner Name="setStateActivity13" Size="130, 65" Location="560, 559" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity12" Size="220, 280" Location="64, 1067" ShowPreview="False">
+							<FaultHandlersActivityDesigner.Designers>
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity9" Size="204, 187" Location="72, 1156">
+									<FaultHandlerActivityDesigner.Designers>
+										<CodeDesigner Name="codeActivity4" Size="130, 46" Location="109, 1222" />
+										<ActivityDesigner Name="logToHistoryListActivity61" Size="130, 46" Location="109, 1287" />
+									</FaultHandlerActivityDesigner.Designers>
+								</FaultHandlerActivityDesigner>
+							</FaultHandlersActivityDesigner.Designers>
+						</FaultHandlersActivityDesigner>
 					</EventDrivenDesigner.Designers>
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
@@ -634,42 +795,57 @@
 						<CallExternalMethodActivityDesigner Name="initializeWorkflow7" Size="130, 46" Location="64, 1369" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="AkceptacjaWniosku_OnChange" Size="612, 853" Location="54, 1135">
+				<EventDrivenDesigner Name="AkceptacjaWniosku_OnChange" Size="240, 339" Location="54, 1135">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged7" Size="130, 46" Location="295, 1201" />
-						<IfElseDesigner Name="ifElseActivity7" Size="592, 703" Location="64, 1266">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged7" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity38" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="ifElseActivity7" Size="592, 833" Location="329, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="AkceptacjaWniosku_Umowa" Size="208, 599" Location="83, 1341">
+								<IfElseBranchDesigner Name="AkceptacjaWniosku_Umowa" Size="208, 729" Location="348, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="Komunikat_AkceptacjaWniosku" Size="130, 46" Location="122, 1407" />
-										<IfElseDesigner Name="ifElseActivity3" Size="188, 300" Location="93, 1472">
+										<ActivityDesigner Name="logToHistoryListActivity39" Size="130, 46" Location="387, 494" />
+										<CodeDesigner Name="Komunikat_AkceptacjaWniosku" Size="130, 46" Location="387, 559" />
+										<IfElseDesigner Name="ifElseActivity3" Size="188, 365" Location="358, 624">
 											<IfElseDesigner.Designers>
-												<IfElseBranchDesigner Name="AkceptacjaWniosku_SendMailAllowed" Size="150, 196" Location="112, 1547">
+												<IfElseBranchDesigner Name="AkceptacjaWniosku_SendMailAllowed" Size="150, 261" Location="377, 699">
 													<IfElseBranchDesigner.Designers>
-														<CallExternalMethodActivityDesigner Name="sendEmail_WniosekZaakceptowany" Size="130, 46" Location="122, 1613" />
-														<ActivityDesigner Name="logToHistoryListActivity18" Size="130, 46" Location="122, 1678" />
+														<ActivityDesigner Name="logToHistoryListActivity55" Size="130, 46" Location="387, 765" />
+														<CallExternalMethodActivityDesigner Name="sendEmail_WniosekZaakceptowany" Size="130, 46" Location="387, 830" />
+														<ActivityDesigner Name="logToHistoryListActivity18" Size="130, 46" Location="387, 895" />
 													</IfElseBranchDesigner.Designers>
 												</IfElseBranchDesigner>
 											</IfElseDesigner.Designers>
 										</IfElseDesigner>
-										<CodeDesigner Name="StatusWniosek_Umowa" Size="130, 46" Location="122, 1791" />
-										<SetStateDesigner Name="setStateActivity14" Size="130, 65" Location="122, 1856" />
+										<CodeDesigner Name="StatusWniosek_Umowa" Size="130, 46" Location="387, 1008" />
+										<SetStateDesigner Name="setStateActivity14" Size="130, 65" Location="387, 1073" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="AkceptacjaWniosku_KorektaWniosku" Size="150, 599" Location="314, 1341">
+								<IfElseBranchDesigner Name="AkceptacjaWniosku_KorektaWniosku" Size="150, 729" Location="579, 428">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity15" Size="130, 65" Location="324, 1632" />
+										<ActivityDesigner Name="logToHistoryListActivity40" Size="130, 46" Location="589, 494" />
+										<SetStateDesigner Name="setStateActivity15" Size="130, 65" Location="589, 559" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="AkceptacjaWniosku_Odrzucenie" Size="150, 599" Location="487, 1341">
+								<IfElseBranchDesigner Name="AkceptacjaWniosku_Odrzucenie" Size="150, 729" Location="752, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="Komunikat_WniosekOdrzucony" Size="130, 46" Location="497, 1407" />
-										<CodeDesigner Name="StatusWniosek_Stracony" Size="130, 46" Location="497, 1472" />
-										<SetStateDesigner Name="setStateActivity16" Size="130, 65" Location="497, 1537" />
+										<ActivityDesigner Name="logToHistoryListActivity41" Size="130, 46" Location="762, 494" />
+										<CodeDesigner Name="Komunikat_WniosekOdrzucony" Size="130, 46" Location="762, 559" />
+										<CodeDesigner Name="StatusWniosek_Stracony" Size="130, 46" Location="762, 624" />
+										<SetStateDesigner Name="setStateActivity16" Size="130, 65" Location="762, 689" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity13" Size="220, 280" Location="64, 1186" ShowPreview="False">
+							<FaultHandlersActivityDesigner.Designers>
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity10" Size="204, 187" Location="72, 1275">
+									<FaultHandlerActivityDesigner.Designers>
+										<CodeDesigner Name="codeActivity5" Size="130, 46" Location="109, 1341" />
+										<ActivityDesigner Name="logToHistoryListActivity62" Size="130, 46" Location="109, 1406" />
+									</FaultHandlerActivityDesigner.Designers>
+								</FaultHandlerActivityDesigner>
+							</FaultHandlersActivityDesigner.Designers>
+						</FaultHandlersActivityDesigner>
 					</EventDrivenDesigner.Designers>
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
@@ -684,18 +860,30 @@
 						<CallExternalMethodActivityDesigner Name="initializeWorkflow8" Size="130, 46" Location="64, 1488" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="KorektaWniosku_OnChange" Size="208, 404" Location="54, 1254">
+				<EventDrivenDesigner Name="KorektaWniosku_OnChange" Size="240, 339" Location="54, 1254">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged8" Size="130, 46" Location="93, 1320" />
-						<IfElseDesigner Name="ifElseActivity8" Size="188, 254" Location="64, 1385">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged8" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity42" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="ifElseActivity8" Size="188, 319" Location="531, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="KorektaWniosku_AkceptacjaWniosku" Size="150, 150" Location="83, 1460">
+								<IfElseBranchDesigner Name="KorektaWniosku_AkceptacjaWniosku" Size="150, 215" Location="550, 428">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity17" Size="130, 65" Location="93, 1526" />
+										<ActivityDesigner Name="logToHistoryListActivity43" Size="130, 46" Location="560, 494" />
+										<SetStateDesigner Name="setStateActivity17" Size="130, 65" Location="560, 559" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity14" Size="220, 280" Location="64, 1305" ShowPreview="False">
+							<FaultHandlersActivityDesigner.Designers>
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity11" Size="204, 187" Location="72, 1394">
+									<FaultHandlerActivityDesigner.Designers>
+										<CodeDesigner Name="codeActivity6" Size="130, 46" Location="109, 1460" />
+										<ActivityDesigner Name="logToHistoryListActivity63" Size="130, 46" Location="109, 1525" />
+									</FaultHandlerActivityDesigner.Designers>
+								</FaultHandlerActivityDesigner>
+							</FaultHandlersActivityDesigner.Designers>
+						</FaultHandlersActivityDesigner>
 					</EventDrivenDesigner.Designers>
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
@@ -710,18 +898,30 @@
 						<CallExternalMethodActivityDesigner Name="initializeWorkflow9" Size="130, 46" Location="64, 1607" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="Umowa_OnChange" Size="208, 404" Location="54, 1373">
+				<EventDrivenDesigner Name="Umowa_OnChange" Size="240, 339" Location="54, 1373">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged9" Size="130, 46" Location="93, 1439" />
-						<IfElseDesigner Name="ifElseActivity9" Size="188, 254" Location="64, 1504">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged9" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity44" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="ifElseActivity9" Size="188, 319" Location="531, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="Umowa_AkceptacjaUmowy" Size="150, 150" Location="83, 1579">
+								<IfElseBranchDesigner Name="Umowa_AkceptacjaUmowy" Size="150, 215" Location="550, 428">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity19" Size="130, 65" Location="93, 1645" />
+										<ActivityDesigner Name="logToHistoryListActivity45" Size="130, 46" Location="560, 494" />
+										<SetStateDesigner Name="setStateActivity19" Size="130, 65" Location="560, 559" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity15" Size="220, 280" Location="64, 1424" ShowPreview="False">
+							<FaultHandlersActivityDesigner.Designers>
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity12" Size="204, 187" Location="72, 1513">
+									<FaultHandlerActivityDesigner.Designers>
+										<CodeDesigner Name="codeActivity7" Size="130, 46" Location="109, 1579" />
+										<ActivityDesigner Name="logToHistoryListActivity64" Size="130, 46" Location="109, 1644" />
+									</FaultHandlerActivityDesigner.Designers>
+								</FaultHandlerActivityDesigner>
+							</FaultHandlersActivityDesigner.Designers>
+						</FaultHandlersActivityDesigner>
 					</EventDrivenDesigner.Designers>
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
@@ -736,44 +936,58 @@
 						<CallExternalMethodActivityDesigner Name="initializeWorkflow10" Size="130, 46" Location="64, 1726" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="AkceptacjaUmowy_OnChange" Size="612, 853" Location="54, 1492">
+				<EventDrivenDesigner Name="AkceptacjaUmowy_OnChange" Size="240, 339" Location="54, 1492">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged10" Size="130, 46" Location="295, 1558" />
-						<IfElseDesigner Name="TestAkceptacjaUmowy" Size="592, 703" Location="64, 1623">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged10" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity46" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="TestAkceptacjaUmowy" Size="592, 768" Location="329, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="AkceptacjaUmowy_Uruchomienie" Size="208, 599" Location="83, 1698">
+								<IfElseBranchDesigner Name="AkceptacjaUmowy_Uruchomienie" Size="208, 664" Location="348, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="Komunikat_UmowaUruchomiona" Size="130, 46" Location="122, 1764" />
-										<IfElseDesigner Name="ifElseActivity4" Size="188, 300" Location="93, 1829">
+										<ActivityDesigner Name="logToHistoryListActivity47" Size="130, 46" Location="387, 494" />
+										<CodeDesigner Name="Komunikat_UmowaUruchomiona" Size="130, 46" Location="387, 559" />
+										<IfElseDesigner Name="ifElseActivity4" Size="188, 300" Location="358, 624">
 											<IfElseDesigner.Designers>
-												<IfElseBranchDesigner Name="AkceptacjaUmowy_SendEmailAllowed" Size="150, 196" Location="112, 1904">
+												<IfElseBranchDesigner Name="AkceptacjaUmowy_SendEmailAllowed" Size="150, 196" Location="377, 699">
 													<IfElseBranchDesigner.Designers>
-														<CallExternalMethodActivityDesigner Name="sendEmail_UmowaZaakceptowana" Size="130, 46" Location="122, 1970" />
-														<ActivityDesigner Name="logToHistoryListActivity19" Size="130, 46" Location="122, 2035" />
+														<CallExternalMethodActivityDesigner Name="sendEmail_UmowaZaakceptowana" Size="130, 46" Location="387, 765" />
+														<ActivityDesigner Name="logToHistoryListActivity19" Size="130, 46" Location="387, 830" />
 													</IfElseBranchDesigner.Designers>
 												</IfElseBranchDesigner>
 											</IfElseDesigner.Designers>
 										</IfElseDesigner>
-										<CodeDesigner Name="StatusUmowa_Uruchomienie" Size="130, 46" Location="122, 2148" />
-										<SetStateDesigner Name="setStateActivity20" Size="130, 65" Location="122, 2213" />
+										<CodeDesigner Name="StatusUmowa_Uruchomienie" Size="130, 46" Location="387, 943" />
+										<SetStateDesigner Name="setStateActivity20" Size="130, 65" Location="387, 1008" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="AkceptacjaUmowy_Odrzucenie" Size="150, 599" Location="314, 1698">
+								<IfElseBranchDesigner Name="AkceptacjaUmowy_Odrzucenie" Size="150, 664" Location="579, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="Komunikat_UmowaStracona" Size="130, 46" Location="324, 1764" />
-										<CodeDesigner Name="StatusUmowa_Stracony" Size="130, 46" Location="324, 1829" />
-										<SetStateDesigner Name="setStateActivity24" Size="130, 65" Location="324, 1894" />
+										<ActivityDesigner Name="logToHistoryListActivity48" Size="130, 46" Location="589, 494" />
+										<CodeDesigner Name="Komunikat_UmowaStracona" Size="130, 46" Location="589, 559" />
+										<CodeDesigner Name="StatusUmowa_Stracony" Size="130, 46" Location="589, 624" />
+										<SetStateDesigner Name="setStateActivity24" Size="130, 65" Location="589, 689" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
-								<IfElseBranchDesigner Name="AkceptacjaUmowy_Telemarketing" Size="150, 599" Location="487, 1698">
+								<IfElseBranchDesigner Name="AkceptacjaUmowy_Telemarketing" Size="150, 664" Location="752, 428">
 									<IfElseBranchDesigner.Designers>
-										<CodeDesigner Name="Komunikat_UmowaNiezaakceptowana" Size="130, 46" Location="497, 1764" />
-										<CodeDesigner Name="StatusUmowa_Telefon" Size="130, 46" Location="497, 1829" />
-										<SetStateDesigner Name="setStateActivity18" Size="130, 65" Location="497, 1894" />
+										<ActivityDesigner Name="logToHistoryListActivity49" Size="130, 46" Location="762, 494" />
+										<CodeDesigner Name="Komunikat_UmowaNiezaakceptowana" Size="130, 46" Location="762, 559" />
+										<CodeDesigner Name="StatusUmowa_Telefon" Size="130, 46" Location="762, 624" />
+										<SetStateDesigner Name="setStateActivity18" Size="130, 65" Location="762, 689" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity16" Size="220, 280" Location="64, 1543" ShowPreview="False">
+							<FaultHandlersActivityDesigner.Designers>
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity13" Size="204, 187" Location="72, 1632">
+									<FaultHandlerActivityDesigner.Designers>
+										<CodeDesigner Name="codeActivity8" Size="130, 46" Location="109, 1698" />
+										<ActivityDesigner Name="logToHistoryListActivity65" Size="130, 46" Location="109, 1763" />
+									</FaultHandlerActivityDesigner.Designers>
+								</FaultHandlerActivityDesigner>
+							</FaultHandlersActivityDesigner.Designers>
+						</FaultHandlersActivityDesigner>
 					</EventDrivenDesigner.Designers>
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
@@ -788,28 +1002,41 @@
 						<CallExternalMethodActivityDesigner Name="initializeWorkflow11" Size="130, 46" Location="64, 1845" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="Uruchomienie_OnChange" Size="266, 723" Location="54, 1611">
+				<EventDrivenDesigner Name="Uruchomienie_OnChange" Size="240, 339" Location="54, 1611">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged12" Size="130, 46" Location="122, 1677" />
-						<IfElseDesigner Name="ifElseActivity123" Size="246, 573" Location="64, 1742">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged12" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity50" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="ifElseActivity123" Size="246, 703" Location="502, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="Uruchomienie_Dokumentacja" Size="208, 469" Location="83, 1817">
+								<IfElseBranchDesigner Name="Uruchomienie_Dokumentacja" Size="208, 599" Location="521, 428">
 									<IfElseBranchDesigner.Designers>
-										<IfElseDesigner Name="ifElseActivity10" Size="188, 300" Location="93, 1883">
+										<ActivityDesigner Name="logToHistoryListActivity51" Size="130, 46" Location="560, 494" />
+										<IfElseDesigner Name="ifElseActivity10" Size="188, 365" Location="531, 559">
 											<IfElseDesigner.Designers>
-												<IfElseBranchDesigner Name="Uruchomiony_SendMailAllowed" Size="150, 196" Location="112, 1958">
+												<IfElseBranchDesigner Name="Uruchomiony_SendMailAllowed" Size="150, 261" Location="550, 634">
 													<IfElseBranchDesigner.Designers>
-														<CallExternalMethodActivityDesigner Name="sendEmail_Uruchomiony" Size="130, 46" Location="122, 2024" />
-														<ActivityDesigner Name="logToHistoryListActivity20" Size="130, 46" Location="122, 2089" />
+														<ActivityDesigner Name="logToHistoryListActivity52" Size="130, 46" Location="560, 700" />
+														<CallExternalMethodActivityDesigner Name="sendEmail_Uruchomiony" Size="130, 46" Location="560, 765" />
+														<ActivityDesigner Name="logToHistoryListActivity20" Size="130, 46" Location="560, 830" />
 													</IfElseBranchDesigner.Designers>
 												</IfElseBranchDesigner>
 											</IfElseDesigner.Designers>
 										</IfElseDesigner>
-										<SetStateDesigner Name="setStateActivity22" Size="130, 65" Location="122, 2202" />
+										<SetStateDesigner Name="setStateActivity22" Size="130, 65" Location="560, 943" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity17" Size="220, 280" Location="64, 1662" ShowPreview="False">
+							<FaultHandlersActivityDesigner.Designers>
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity14" Size="204, 187" Location="72, 1751">
+									<FaultHandlerActivityDesigner.Designers>
+										<CodeDesigner Name="codeActivity9" Size="130, 46" Location="109, 1817" />
+										<ActivityDesigner Name="logToHistoryListActivity66" Size="130, 46" Location="109, 1882" />
+									</FaultHandlerActivityDesigner.Designers>
+								</FaultHandlerActivityDesigner>
+							</FaultHandlersActivityDesigner.Designers>
+						</FaultHandlersActivityDesigner>
 					</EventDrivenDesigner.Designers>
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
@@ -824,23 +1051,35 @@
 						<CallExternalMethodActivityDesigner Name="initializeWorkflow12" Size="130, 46" Location="64, 1964" />
 					</StateInitializationDesigner.Designers>
 				</StateInitializationDesigner>
-				<EventDrivenDesigner Name="Dokumentacja_OnChange" Size="208, 404" Location="54, 1730">
+				<EventDrivenDesigner Name="Dokumentacja_OnChange" Size="240, 339" Location="54, 1730">
 					<EventDrivenDesigner.Designers>
-						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged11" Size="130, 46" Location="93, 1796" />
-						<IfElseDesigner Name="ifElseActivity11" Size="188, 254" Location="64, 1861">
+						<HandleExternalEventActivityDesigner Name="onWorkflowItemChanged11" Size="130, 46" Location="560, 223" />
+						<ActivityDesigner Name="logToHistoryListActivity53" Size="130, 46" Location="560, 288" />
+						<IfElseDesigner Name="ifElseActivity11" Size="188, 319" Location="531, 353">
 							<IfElseDesigner.Designers>
-								<IfElseBranchDesigner Name="Dokumentacja_Rozliczenie" Size="150, 150" Location="83, 1936">
+								<IfElseBranchDesigner Name="Dokumentacja_Rozliczenie" Size="150, 215" Location="550, 428">
 									<IfElseBranchDesigner.Designers>
-										<SetStateDesigner Name="setStateActivity21" Size="130, 65" Location="93, 2002" />
+										<ActivityDesigner Name="logToHistoryListActivity54" Size="130, 46" Location="560, 494" />
+										<SetStateDesigner Name="setStateActivity21" Size="130, 65" Location="560, 559" />
 									</IfElseBranchDesigner.Designers>
 								</IfElseBranchDesigner>
 							</IfElseDesigner.Designers>
 						</IfElseDesigner>
+						<FaultHandlersActivityDesigner Name="faultHandlersActivity18" Size="220, 280" Location="64, 1781" ShowPreview="False">
+							<FaultHandlersActivityDesigner.Designers>
+								<FaultHandlerActivityDesigner Name="faultHandlerActivity15" Size="204, 187" Location="72, 1870">
+									<FaultHandlerActivityDesigner.Designers>
+										<CodeDesigner Name="codeActivity10" Size="130, 46" Location="109, 1936" />
+										<ActivityDesigner Name="logToHistoryListActivity67" Size="130, 46" Location="109, 2001" />
+									</FaultHandlerActivityDesigner.Designers>
+								</FaultHandlerActivityDesigner>
+							</FaultHandlersActivityDesigner.Designers>
+						</FaultHandlersActivityDesigner>
 					</EventDrivenDesigner.Designers>
 				</EventDrivenDesigner>
 			</StateDesigner.Designers>
 		</StateDesigner>
-		<StateDesigner Size="219, 80" AutoSizeMargin="16, 24" AutoSize="False" Location="46, 1788" Name="Rozliczenie">
+		<StateDesigner Size="219, 80" AutoSizeMargin="16, 24" Location="46, 1788" Name="Rozliczenie">
 			<StateDesigner.Designers>
 				<StateInitializationDesigner Name="stateInitializationActivity12" Size="150, 475" Location="54, 1822">
 					<StateInitializationDesigner.Designers>

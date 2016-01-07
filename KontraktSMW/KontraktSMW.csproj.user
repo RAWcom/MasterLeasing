@@ -11,7 +11,7 @@
           <SharePointStartupItem>Workflow1</SharePointStartupItem>
         </ProjectStore>
         <ProjectItemStore Id="{46ede7de-4e44-4de0-9fe6-32eae30eaf1b}">
-          <DisplayName>KontraktSMW</DisplayName>
+          <DisplayName>Obsługa Kontraktu</DisplayName>
           <HistoryList>Workflow History</HistoryList>
           <HistoryListGuid>{e6d092aa-9b24-43d2-9280-71b447069b0b}</HistoryListGuid>
           <TaskList>Tasks</TaskList>

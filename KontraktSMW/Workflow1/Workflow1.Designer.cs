@@ -54,17 +54,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             System.Workflow.ComponentModel.ActivityBind activitybind22 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.ComponentModel.ActivityBind activitybind23 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.ComponentModel.ActivityBind activitybind24 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind25 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.Activities.CodeCondition codecondition1 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition2 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition3 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition4 = new System.Workflow.Activities.CodeCondition();
-            System.Workflow.ComponentModel.ActivityBind activitybind25 = new System.Workflow.ComponentModel.ActivityBind();
-            System.Workflow.ComponentModel.ActivityBind activitybind26 = new System.Workflow.ComponentModel.ActivityBind();
-            System.Workflow.ComponentModel.ActivityBind activitybind27 = new System.Workflow.ComponentModel.ActivityBind();
-            System.Workflow.Runtime.CorrelationToken correlationtoken5 = new System.Workflow.Runtime.CorrelationToken();
-            System.Workflow.ComponentModel.ActivityBind activitybind28 = new System.Workflow.ComponentModel.ActivityBind();
-            System.Workflow.ComponentModel.ActivityBind activitybind29 = new System.Workflow.ComponentModel.ActivityBind();
-            System.Workflow.ComponentModel.ActivityBind activitybind30 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.Activities.CodeCondition codecondition5 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition6 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition7 = new System.Workflow.Activities.CodeCondition();
@@ -87,6 +81,37 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             System.Workflow.Activities.CodeCondition codecondition24 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition25 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition26 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.ComponentModel.ActivityBind activitybind26 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind27 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind28 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind29 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind30 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind31 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind32 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind33 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind34 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind35 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind36 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind37 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind38 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind39 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind40 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind41 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind42 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind43 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind44 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind45 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind46 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.Runtime.CorrelationToken correlationtoken5 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.ComponentModel.ActivityBind activitybind47 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind48 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind49 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind50 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind51 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind52 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind53 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind54 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind55 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.Activities.CodeCondition codecondition27 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition28 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition29 = new System.Workflow.Activities.CodeCondition();
@@ -96,7 +121,22 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             System.Workflow.Activities.CodeCondition codecondition33 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition34 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition35 = new System.Workflow.Activities.CodeCondition();
-            System.Workflow.ComponentModel.ActivityBind activitybind31 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.Activities.CodeCondition codecondition36 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition37 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition38 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition39 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition40 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition41 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition42 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition43 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition44 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition45 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition46 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition47 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition48 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition49 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.Activities.CodeCondition codecondition50 = new System.Workflow.Activities.CodeCondition();
+            System.Workflow.ComponentModel.ActivityBind activitybind56 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.Runtime.CorrelationToken correlationtoken6 = new System.Workflow.Runtime.CorrelationToken();
             System.Workflow.Runtime.CorrelationToken correlationtoken7 = new System.Workflow.Runtime.CorrelationToken();
             System.Workflow.Runtime.CorrelationToken correlationtoken8 = new System.Workflow.Runtime.CorrelationToken();
@@ -123,71 +163,18 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             System.Workflow.Runtime.CorrelationToken correlationtoken29 = new System.Workflow.Runtime.CorrelationToken();
             System.Workflow.Runtime.CorrelationToken correlationtoken30 = new System.Workflow.Runtime.CorrelationToken();
             System.Workflow.Runtime.CorrelationToken correlationtoken31 = new System.Workflow.Runtime.CorrelationToken();
-            System.Workflow.ComponentModel.ActivityBind activitybind32 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind57 = new System.Workflow.ComponentModel.ActivityBind();
             this.logToHistoryListActivity20 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.sendEmail_Uruchomiony = new Microsoft.SharePoint.WorkflowActions.SendEmail();
+            this.logToHistoryListActivity52 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.logToHistoryListActivity19 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.sendEmail_UmowaZaakceptowana = new Microsoft.SharePoint.WorkflowActions.SendEmail();
             this.logToHistoryListActivity18 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.sendEmail_WniosekZaakceptowany = new Microsoft.SharePoint.WorkflowActions.SendEmail();
+            this.logToHistoryListActivity55 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.logToHistoryListActivity1 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.sendEmail_OfertaZaakceptowana = new Microsoft.SharePoint.WorkflowActions.SendEmail();
-            this.Uruchomiony_SendMailAllowed = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaUmowy_SendEmailAllowed = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaWniosku_SendMailAllowed = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaOferty_MailSendAllowed = new System.Workflow.Activities.IfElseBranchActivity();
-            this.logToHistoryListActivity4 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
-            this.setStateActivity21 = new System.Workflow.Activities.SetStateActivity();
-            this.setStateActivity22 = new System.Workflow.Activities.SetStateActivity();
-            this.ifElseActivity10 = new System.Workflow.Activities.IfElseActivity();
-            this.setStateActivity18 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusUmowa_Telefon = new System.Workflow.Activities.CodeActivity();
-            this.Komunikat_UmowaNiezaakceptowana = new System.Workflow.Activities.CodeActivity();
-            this.setStateActivity24 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusUmowa_Stracony = new System.Workflow.Activities.CodeActivity();
-            this.Komunikat_UmowaStracona = new System.Workflow.Activities.CodeActivity();
-            this.setStateActivity20 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusUmowa_Uruchomienie = new System.Workflow.Activities.CodeActivity();
-            this.ifElseActivity4 = new System.Workflow.Activities.IfElseActivity();
-            this.Komunikat_UmowaUruchomiona = new System.Workflow.Activities.CodeActivity();
-            this.setStateActivity19 = new System.Workflow.Activities.SetStateActivity();
-            this.setStateActivity17 = new System.Workflow.Activities.SetStateActivity();
-            this.setStateActivity16 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusWniosek_Stracony = new System.Workflow.Activities.CodeActivity();
-            this.Komunikat_WniosekOdrzucony = new System.Workflow.Activities.CodeActivity();
-            this.setStateActivity15 = new System.Workflow.Activities.SetStateActivity();
-            this.setStateActivity14 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusWniosek_Umowa = new System.Workflow.Activities.CodeActivity();
-            this.ifElseActivity3 = new System.Workflow.Activities.IfElseActivity();
-            this.Komunikat_AkceptacjaWniosku = new System.Workflow.Activities.CodeActivity();
-            this.setStateActivity13 = new System.Workflow.Activities.SetStateActivity();
-            this.setStateActivity8 = new System.Workflow.Activities.SetStateActivity();
-            this.setStateActivity7 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusOferta_Telefon = new System.Workflow.Activities.CodeActivity();
-            this.setStateActivity6 = new System.Workflow.Activities.SetStateActivity();
-            this.setStateActivity12 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusOferta_Stracony = new System.Workflow.Activities.CodeActivity();
-            this.Komunikat_OfertaNiezaakceptowana = new System.Workflow.Activities.CodeActivity();
-            this.setStateActivity11 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusOferta_Wniosek = new System.Workflow.Activities.CodeActivity();
-            this.ifElseActivity2 = new System.Workflow.Activities.IfElseActivity();
-            this.Komunikat_AkceptacjaOferty = new System.Workflow.Activities.CodeActivity();
-            this.logToHistoryListActivity17 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
-            this.sendEmail_Stracony = new Microsoft.SharePoint.WorkflowActions.SendEmail();
-            this.setStateActivity5 = new System.Workflow.Activities.SetStateActivity();
-            this.setStateActivity10 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusTelefon_Stracony = new System.Workflow.Activities.CodeActivity();
-            this.setStateActivity9 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusTelefon_Oferta = new System.Workflow.Activities.CodeActivity();
-            this.logERROR_WefyfikacjaInit = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
-            this.logERROR_WefyfikacjaEvent = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
-            this.setStateActivity2 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusRozmowa_Stracony = new System.Workflow.Activities.CodeActivity();
-            this.setStateActivity4 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusRozmowa_Telefon = new System.Workflow.Activities.CodeActivity();
-            this.setStateActivity3 = new System.Workflow.Activities.SetStateActivity();
-            this.StatusRozmowa_Oferta = new System.Workflow.Activities.CodeActivity();
-            this.logERROR_NavigatorInit = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity56 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.setStateActivity27 = new System.Workflow.Activities.SetStateActivity();
             this.setStateActivity23 = new System.Workflow.Activities.SetStateActivity();
             this.Navigator_Stracony = new System.Workflow.Activities.SetStateActivity();
@@ -196,34 +183,26 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Navigator_Wniosek = new System.Workflow.Activities.SetStateActivity();
             this.Navigator_Oferta = new System.Workflow.Activities.SetStateActivity();
             this.Navigator_Telemarketing = new System.Workflow.Activities.SetStateActivity();
-            this.faultHandlerActivity2 = new System.Workflow.ComponentModel.FaultHandlerActivity();
-            this.Dokumentacja_Rozliczenie = new System.Workflow.Activities.IfElseBranchActivity();
-            this.Uruchomienie_Dokumentacja = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaUmowy_Telemarketing = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaUmowy_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaUmowy_Uruchomienie = new System.Workflow.Activities.IfElseBranchActivity();
-            this.Umowa_AkceptacjaUmowy = new System.Workflow.Activities.IfElseBranchActivity();
-            this.KorektaWniosku_AkceptacjaWniosku = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaWniosku_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaWniosku_KorektaWniosku = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaWniosku_Umowa = new System.Workflow.Activities.IfElseBranchActivity();
-            this.Wniosek_AkceptacjaWniosku = new System.Workflow.Activities.IfElseBranchActivity();
-            this.KorektaOferty_AkceptacjaOferty = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaOferty_Telemarketing1 = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaOferty_KorektaOferty = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaOferty_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
-            this.AkceptacjaOferty_Wniosek = new System.Workflow.Activities.IfElseBranchActivity();
-            this.Odrzucenie_MailSendAllowed = new System.Workflow.Activities.IfElseBranchActivity();
-            this.Oferta_AkceptacjaOferty = new System.Workflow.Activities.IfElseBranchActivity();
-            this.Telemarketing_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
-            this.Telemarketing_Oferta = new System.Workflow.Activities.IfElseBranchActivity();
-            this.faultHandlerActivity4 = new System.Workflow.ComponentModel.FaultHandlerActivity();
-            this.faultHandlerActivity5 = new System.Workflow.ComponentModel.FaultHandlerActivity();
-            this.faultHandlersActivity6 = new System.Workflow.ComponentModel.FaultHandlersActivity();
-            this.Weryfikacja_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
-            this.Weryfikacja_Telemarketing = new System.Workflow.Activities.IfElseBranchActivity();
-            this.Weryfikacja_Oferta = new System.Workflow.Activities.IfElseBranchActivity();
-            this.faultHandlerActivity3 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.setStateActivity29 = new System.Workflow.Activities.SetStateActivity();
+            this.logNavigator = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.setStateActivity42 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity41 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity40 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity39 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity38 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity37 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity36 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity35 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity34 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity33 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity32 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity31 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity30 = new System.Workflow.Activities.SetStateActivity();
+            this.setStateActivity28 = new System.Workflow.Activities.SetStateActivity();
+            this.Uruchomiony_SendMailAllowed = new System.Workflow.Activities.IfElseBranchActivity();
+            this.AkceptacjaUmowy_SendEmailAllowed = new System.Workflow.Activities.IfElseBranchActivity();
+            this.AkceptacjaWniosku_SendMailAllowed = new System.Workflow.Activities.IfElseBranchActivity();
+            this.AkceptacjaOferty_MailSendAllowed = new System.Workflow.Activities.IfElseBranchActivity();
             this.Status_Lead_Else = new System.Workflow.Activities.IfElseBranchActivity();
             this.StatusLeadu_Rozliczenie = new System.Workflow.Activities.IfElseBranchActivity();
             this.faultHandlersActivity7 = new System.Workflow.ComponentModel.FaultHandlersActivity();
@@ -233,6 +212,160 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.StatusLeadu_Wniosek = new System.Workflow.Activities.IfElseBranchActivity();
             this.StatusLeadu_Oferta = new System.Workflow.Activities.IfElseBranchActivity();
             this.StatusLeadu_Telefon = new System.Workflow.Activities.IfElseBranchActivity();
+            this.Else2 = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifRozliczenie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifDokumentacja = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifUruchomienie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifAkceptacjaUmowy = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifUmowa = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifKorektaWniosku = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifAkceptacjaWniosku = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifWniosek = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifKorektaOferty = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifAkceptacjaOferty = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifOdrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifOferta = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifTelemarketing = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifWeryfikacja = new System.Workflow.Activities.IfElseBranchActivity();
+            this.logToHistoryListActivity4 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity67 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity10 = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity21 = new System.Workflow.Activities.SetStateActivity();
+            this.logToHistoryListActivity54 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity66 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity9 = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity22 = new System.Workflow.Activities.SetStateActivity();
+            this.ifElseActivity10 = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity51 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity65 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity8 = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity18 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusUmowa_Telefon = new System.Workflow.Activities.CodeActivity();
+            this.Komunikat_UmowaNiezaakceptowana = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity49 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.setStateActivity24 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusUmowa_Stracony = new System.Workflow.Activities.CodeActivity();
+            this.Komunikat_UmowaStracona = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity48 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.setStateActivity20 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusUmowa_Uruchomienie = new System.Workflow.Activities.CodeActivity();
+            this.ifElseActivity4 = new System.Workflow.Activities.IfElseActivity();
+            this.Komunikat_UmowaUruchomiona = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity47 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity64 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity7 = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity19 = new System.Workflow.Activities.SetStateActivity();
+            this.logToHistoryListActivity45 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity63 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity6 = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity17 = new System.Workflow.Activities.SetStateActivity();
+            this.logToHistoryListActivity43 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity62 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity5 = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity16 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusWniosek_Stracony = new System.Workflow.Activities.CodeActivity();
+            this.Komunikat_WniosekOdrzucony = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity41 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.setStateActivity15 = new System.Workflow.Activities.SetStateActivity();
+            this.logToHistoryListActivity40 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.setStateActivity14 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusWniosek_Umowa = new System.Workflow.Activities.CodeActivity();
+            this.ifElseActivity3 = new System.Workflow.Activities.IfElseActivity();
+            this.Komunikat_AkceptacjaWniosku = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity39 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity61 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity4 = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity13 = new System.Workflow.Activities.SetStateActivity();
+            this.logToHistoryListActivity27 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity60 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity3 = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity8 = new System.Workflow.Activities.SetStateActivity();
+            this.logToHistoryListActivity37 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logErrorMessage = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.ErrorHandler = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity7 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusOferta_Telefon = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity24 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.setStateActivity6 = new System.Workflow.Activities.SetStateActivity();
+            this.logToHistoryListActivity23 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.setStateActivity12 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusOferta_Stracony = new System.Workflow.Activities.CodeActivity();
+            this.Komunikat_OfertaNiezaakceptowana = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity22 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.setStateActivity11 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusOferta_Wniosek = new System.Workflow.Activities.CodeActivity();
+            this.ifElseActivity2 = new System.Workflow.Activities.IfElseActivity();
+            this.Komunikat_AkceptacjaOferty = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity21 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity17 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.sendEmail_Stracony = new Microsoft.SharePoint.WorkflowActions.SendEmail();
+            this.logToHistoryListActivity59 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity2 = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity5 = new System.Workflow.Activities.SetStateActivity();
+            this.logToHistoryListActivity58 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity1 = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity10 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusTelefon_Stracony = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity34 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.setStateActivity9 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusTelefon_Oferta = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity33 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logERROR_WefyfikacjaInit = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity57 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.ErrorHandler_Weryfikacja = new System.Workflow.Activities.CodeActivity();
+            this.setStateActivity2 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusRozmowa_Stracony = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity31 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.setStateActivity4 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusRozmowa_Telefon = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity30 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.setStateActivity3 = new System.Workflow.Activities.SetStateActivity();
+            this.StatusRozmowa_Oferta = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity29 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logERROR_NavigatorInit = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.Navigator_Routing = new System.Workflow.Activities.IfElseActivity();
+            this.E = new System.Workflow.Activities.IfElseActivity();
+            this.faultHandlerActivity2 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.faultHandlerActivity15 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.Dokumentacja_Rozliczenie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity14 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.Uruchomienie_Dokumentacja = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity13 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.AkceptacjaUmowy_Telemarketing = new System.Workflow.Activities.IfElseBranchActivity();
+            this.AkceptacjaUmowy_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.AkceptacjaUmowy_Uruchomienie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity12 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.Umowa_AkceptacjaUmowy = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity11 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.KorektaWniosku_AkceptacjaWniosku = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity10 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.AkceptacjaWniosku_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.AkceptacjaWniosku_KorektaWniosku = new System.Workflow.Activities.IfElseBranchActivity();
+            this.AkceptacjaWniosku_Umowa = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity9 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.Wniosek_AkceptacjaWniosku = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity8 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.KorektaOferty_AkceptacjaOferty = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity1 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.AkceptacjaOferty_Telemarketing1 = new System.Workflow.Activities.IfElseBranchActivity();
+            this.AkceptacjaOferty_KorektaOferty = new System.Workflow.Activities.IfElseBranchActivity();
+            this.AkceptacjaOferty_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.AkceptacjaOferty_Wniosek = new System.Workflow.Activities.IfElseBranchActivity();
+            this.Odrzucenie_MailSendAllowed = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity7 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.Oferta_AkceptacjaOferty = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity6 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.Telemarketing_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.Telemarketing_Oferta = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity4 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.faultHandlerActivity5 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.faultHandlersActivity6 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.Weryfikacja_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.Weryfikacja_Telemarketing = new System.Workflow.Activities.IfElseBranchActivity();
+            this.Weryfikacja_Oferta = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity3 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.Else = new System.Workflow.Activities.IfElseBranchActivity();
+            this.ifEtapNotNull = new System.Workflow.Activities.IfElseBranchActivity();
             this.faultHandlersActivity2 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.setStateActivity25 = new System.Workflow.Activities.SetStateActivity();
             this.logToHistoryListActivity3 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -240,56 +373,74 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.SetCT_Rozliczenie = new System.Workflow.Activities.CodeActivity();
             this.setState_Rozliczenie = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity11 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.faultHandlersActivity18 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.ifElseActivity11 = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity53 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged11 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.initializeWorkflow12 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Dokumentacja = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity9 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Dokumentacja = new System.Workflow.Activities.CodeActivity();
+            this.faultHandlersActivity17 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.ifElseActivity123 = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity50 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged12 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.initializeWorkflow11 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Uruchomienie = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity10 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Uruchomienie = new System.Workflow.Activities.CodeActivity();
+            this.faultHandlersActivity16 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.TestAkceptacjaUmowy = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity46 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged10 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.initializeWorkflow10 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_AkceptacjaUmowy = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity13 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_AkceptacjaUmowy = new System.Workflow.Activities.CodeActivity();
+            this.faultHandlersActivity15 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.ifElseActivity9 = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity44 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged9 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.initializeWorkflow9 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Umowa = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity8 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Umowa = new System.Workflow.Activities.CodeActivity();
+            this.faultHandlersActivity14 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.ifElseActivity8 = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity42 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged8 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.initializeWorkflow8 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_KorektaWniosku = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity12 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Wniosek1 = new System.Workflow.Activities.CodeActivity();
+            this.faultHandlersActivity13 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.ifElseActivity7 = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity38 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged7 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.initializeWorkflow7 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_AkceptacjaWniosku = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity7 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_AkceptacjaWniosku = new System.Workflow.Activities.CodeActivity();
+            this.faultHandlersActivity12 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.ifElseActivity6 = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity26 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged6 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.codeDodajDoRozliczen = new System.Workflow.Activities.CodeActivity();
             this.initializeWorkflow6 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Wniosek = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity6 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Wniosek = new System.Workflow.Activities.CodeActivity();
+            this.faultHandlersActivity11 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.ifElseActivity5 = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity36 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged5 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.initializeWorkflow5 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_KorektaOferty = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logKorektaOferty = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Oferta1 = new System.Workflow.Activities.CodeActivity();
+            this.faultHandlersActivity8 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.AkceptacjaOferty_Telemarketing = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity25 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged4 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.initializeWorkflow4 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_AkceptacjaOferty = new Microsoft.SharePoint.WorkflowActions.SetState();
@@ -300,13 +451,17 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity2 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Odrzucony = new System.Workflow.Activities.CodeActivity();
             this.setState_Odrzucony = new Microsoft.SharePoint.WorkflowActions.SetState();
+            this.faultHandlersActivity10 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.Oferta_Routing = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity35 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged2 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.initializeWorkflow3 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Oferta = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity15 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Oferta = new System.Workflow.Activities.CodeActivity();
+            this.faultHandlersActivity9 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.Telemarketing_Routing = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity32 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged3 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.initializeWorkflow2 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Telemarketing = new Microsoft.SharePoint.WorkflowActions.SetState();
@@ -319,9 +474,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.SetCT_Weryfikacja = new System.Workflow.Activities.CodeActivity();
             this.faultHandlersActivity5 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.Weryfikacja_Routing = new System.Workflow.Activities.IfElseActivity();
+            this.logToHistoryListActivity28 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged13 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.faultHandlersActivity3 = new System.Workflow.ComponentModel.FaultHandlersActivity();
-            this.Navigator_Routing = new System.Workflow.Activities.IfElseActivity();
+            this.TestEtap = new System.Workflow.Activities.IfElseActivity();
             this.logRouter = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.faultHandlersActivity1 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.setStateActivity1 = new System.Workflow.Activities.SetStateActivity();
@@ -413,6 +569,16 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.sendEmail_Uruchomiony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.SubjectProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
             this.sendEmail_Uruchomiony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.ToProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind6)));
             // 
+            // logToHistoryListActivity52
+            // 
+            this.logToHistoryListActivity52.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity52.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity52.HistoryDescription = "Uruchomiony_SendMailAllowed";
+            this.logToHistoryListActivity52.HistoryOutcome = "";
+            this.logToHistoryListActivity52.Name = "logToHistoryListActivity52";
+            this.logToHistoryListActivity52.OtherData = "";
+            this.logToHistoryListActivity52.UserId = -1;
+            // 
             // logToHistoryListActivity19
             // 
             this.logToHistoryListActivity19.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
@@ -489,6 +655,16 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.sendEmail_WniosekZaakceptowany.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.CCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind15)));
             this.sendEmail_WniosekZaakceptowany.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.FromProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind16)));
             // 
+            // logToHistoryListActivity55
+            // 
+            this.logToHistoryListActivity55.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity55.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity55.HistoryDescription = "AkceptacjaWniosku_SendMailAllowed";
+            this.logToHistoryListActivity55.HistoryOutcome = "";
+            this.logToHistoryListActivity55.Name = "logToHistoryListActivity55";
+            this.logToHistoryListActivity55.OtherData = "";
+            this.logToHistoryListActivity55.UserId = -1;
+            // 
             // logToHistoryListActivity1
             // 
             this.logToHistoryListActivity1.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
@@ -527,352 +703,15 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.sendEmail_OfertaZaakceptowana.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.CCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind21)));
             this.sendEmail_OfertaZaakceptowana.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.FromProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind22)));
             // 
-            // Uruchomiony_SendMailAllowed
-            // 
-            this.Uruchomiony_SendMailAllowed.Activities.Add(this.sendEmail_Uruchomiony);
-            this.Uruchomiony_SendMailAllowed.Activities.Add(this.logToHistoryListActivity20);
-            codecondition1.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsUruchomiony_SendMailAllowed);
-            this.Uruchomiony_SendMailAllowed.Condition = codecondition1;
-            this.Uruchomiony_SendMailAllowed.Name = "Uruchomiony_SendMailAllowed";
-            // 
-            // AkceptacjaUmowy_SendEmailAllowed
-            // 
-            this.AkceptacjaUmowy_SendEmailAllowed.Activities.Add(this.sendEmail_UmowaZaakceptowana);
-            this.AkceptacjaUmowy_SendEmailAllowed.Activities.Add(this.logToHistoryListActivity19);
-            codecondition2.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaUmowy_SendEmailAllowed);
-            this.AkceptacjaUmowy_SendEmailAllowed.Condition = codecondition2;
-            this.AkceptacjaUmowy_SendEmailAllowed.Name = "AkceptacjaUmowy_SendEmailAllowed";
-            // 
-            // AkceptacjaWniosku_SendMailAllowed
-            // 
-            this.AkceptacjaWniosku_SendMailAllowed.Activities.Add(this.sendEmail_WniosekZaakceptowany);
-            this.AkceptacjaWniosku_SendMailAllowed.Activities.Add(this.logToHistoryListActivity18);
-            codecondition3.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaWniosku_SendMailAllowed);
-            this.AkceptacjaWniosku_SendMailAllowed.Condition = codecondition3;
-            this.AkceptacjaWniosku_SendMailAllowed.Name = "AkceptacjaWniosku_SendMailAllowed";
-            // 
-            // AkceptacjaOferty_MailSendAllowed
-            // 
-            this.AkceptacjaOferty_MailSendAllowed.Activities.Add(this.sendEmail_OfertaZaakceptowana);
-            this.AkceptacjaOferty_MailSendAllowed.Activities.Add(this.logToHistoryListActivity1);
-            codecondition4.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaOferty_MailSendAllowed);
-            this.AkceptacjaOferty_MailSendAllowed.Condition = codecondition4;
-            this.AkceptacjaOferty_MailSendAllowed.Name = "AkceptacjaOferty_MailSendAllowed";
-            // 
-            // logToHistoryListActivity4
-            // 
-            this.logToHistoryListActivity4.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-            this.logToHistoryListActivity4.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            this.logToHistoryListActivity4.HistoryDescription = "SetCT_Rozliczenie_ExecuteCode";
-            this.logToHistoryListActivity4.HistoryOutcome = "ERR";
-            this.logToHistoryListActivity4.Name = "logToHistoryListActivity4";
-            this.logToHistoryListActivity4.OtherData = "";
-            this.logToHistoryListActivity4.UserId = -1;
-            // 
-            // setStateActivity21
-            // 
-            this.setStateActivity21.Name = "setStateActivity21";
-            this.setStateActivity21.TargetStateName = "Rozliczenie";
-            // 
-            // setStateActivity22
-            // 
-            this.setStateActivity22.Name = "setStateActivity22";
-            this.setStateActivity22.TargetStateName = "Dokumentacja";
-            // 
-            // ifElseActivity10
-            // 
-            this.ifElseActivity10.Activities.Add(this.Uruchomiony_SendMailAllowed);
-            this.ifElseActivity10.Name = "ifElseActivity10";
-            // 
-            // setStateActivity18
-            // 
-            this.setStateActivity18.Name = "setStateActivity18";
-            this.setStateActivity18.TargetStateName = "Telemarketing";
-            // 
-            // StatusUmowa_Telefon
-            // 
-            this.StatusUmowa_Telefon.Name = "StatusUmowa_Telefon";
-            this.StatusUmowa_Telefon.ExecuteCode += new System.EventHandler(this.StatusUmowa_Telefon_ExecuteCode);
-            // 
-            // Komunikat_UmowaNiezaakceptowana
-            // 
-            this.Komunikat_UmowaNiezaakceptowana.Enabled = false;
-            this.Komunikat_UmowaNiezaakceptowana.Name = "Komunikat_UmowaNiezaakceptowana";
-            this.Komunikat_UmowaNiezaakceptowana.ExecuteCode += new System.EventHandler(this.Komunikat_UmowaNiezaakceptowana_ExecuteCode);
-            // 
-            // setStateActivity24
-            // 
-            this.setStateActivity24.Name = "setStateActivity24";
-            this.setStateActivity24.TargetStateName = "Odrzucenie";
-            // 
-            // StatusUmowa_Stracony
-            // 
-            this.StatusUmowa_Stracony.Name = "StatusUmowa_Stracony";
-            this.StatusUmowa_Stracony.ExecuteCode += new System.EventHandler(this.StatusUmowa_Stracony_ExecuteCode);
-            // 
-            // Komunikat_UmowaStracona
-            // 
-            this.Komunikat_UmowaStracona.Enabled = false;
-            this.Komunikat_UmowaStracona.Name = "Komunikat_UmowaStracona";
-            this.Komunikat_UmowaStracona.ExecuteCode += new System.EventHandler(this.Komunikat_UmowaStracona_ExecuteCode);
-            // 
-            // setStateActivity20
-            // 
-            this.setStateActivity20.Name = "setStateActivity20";
-            this.setStateActivity20.TargetStateName = "Uruchomienie";
-            // 
-            // StatusUmowa_Uruchomienie
-            // 
-            this.StatusUmowa_Uruchomienie.Name = "StatusUmowa_Uruchomienie";
-            this.StatusUmowa_Uruchomienie.ExecuteCode += new System.EventHandler(this.StatusUmowa_Uruchomienie_ExecuteCode);
-            // 
-            // ifElseActivity4
-            // 
-            this.ifElseActivity4.Activities.Add(this.AkceptacjaUmowy_SendEmailAllowed);
-            this.ifElseActivity4.Name = "ifElseActivity4";
-            // 
-            // Komunikat_UmowaUruchomiona
-            // 
-            this.Komunikat_UmowaUruchomiona.Enabled = false;
-            this.Komunikat_UmowaUruchomiona.Name = "Komunikat_UmowaUruchomiona";
-            this.Komunikat_UmowaUruchomiona.ExecuteCode += new System.EventHandler(this.Komunikat_UmowaUruchomiona_ExecuteCode);
-            // 
-            // setStateActivity19
-            // 
-            this.setStateActivity19.Name = "setStateActivity19";
-            this.setStateActivity19.TargetStateName = "AkceptacjaUmowy";
-            // 
-            // setStateActivity17
-            // 
-            this.setStateActivity17.Name = "setStateActivity17";
-            this.setStateActivity17.TargetStateName = "AkceptacjaWniosku";
-            // 
-            // setStateActivity16
-            // 
-            this.setStateActivity16.Name = "setStateActivity16";
-            this.setStateActivity16.TargetStateName = "Odrzucenie";
-            // 
-            // StatusWniosek_Stracony
-            // 
-            this.StatusWniosek_Stracony.Name = "StatusWniosek_Stracony";
-            this.StatusWniosek_Stracony.ExecuteCode += new System.EventHandler(this.StatusWniosek_Stracony_ExecuteCode);
-            // 
-            // Komunikat_WniosekOdrzucony
-            // 
-            this.Komunikat_WniosekOdrzucony.Enabled = false;
-            this.Komunikat_WniosekOdrzucony.Name = "Komunikat_WniosekOdrzucony";
-            this.Komunikat_WniosekOdrzucony.ExecuteCode += new System.EventHandler(this.Komunikat_WniosekOdrzucony_ExecuteCode);
-            // 
-            // setStateActivity15
-            // 
-            this.setStateActivity15.Name = "setStateActivity15";
-            this.setStateActivity15.TargetStateName = "KorektaWniosku";
-            // 
-            // setStateActivity14
-            // 
-            this.setStateActivity14.Name = "setStateActivity14";
-            this.setStateActivity14.TargetStateName = "Umowa";
-            // 
-            // StatusWniosek_Umowa
-            // 
-            this.StatusWniosek_Umowa.Name = "StatusWniosek_Umowa";
-            this.StatusWniosek_Umowa.ExecuteCode += new System.EventHandler(this.StatusWniosek_Umowa_ExecuteCode);
-            // 
-            // ifElseActivity3
-            // 
-            this.ifElseActivity3.Activities.Add(this.AkceptacjaWniosku_SendMailAllowed);
-            this.ifElseActivity3.Name = "ifElseActivity3";
-            // 
-            // Komunikat_AkceptacjaWniosku
-            // 
-            this.Komunikat_AkceptacjaWniosku.Enabled = false;
-            this.Komunikat_AkceptacjaWniosku.Name = "Komunikat_AkceptacjaWniosku";
-            this.Komunikat_AkceptacjaWniosku.ExecuteCode += new System.EventHandler(this.Komunikat_AkceptacjaWniosku_ExecuteCode);
-            // 
-            // setStateActivity13
-            // 
-            this.setStateActivity13.Name = "setStateActivity13";
-            this.setStateActivity13.TargetStateName = "AkceptacjaWniosku";
-            // 
-            // setStateActivity8
-            // 
-            this.setStateActivity8.Name = "setStateActivity8";
-            this.setStateActivity8.TargetStateName = "AkceptacjaOferty";
-            // 
-            // setStateActivity7
-            // 
-            this.setStateActivity7.Name = "setStateActivity7";
-            this.setStateActivity7.TargetStateName = "Telemarketing";
-            // 
-            // StatusOferta_Telefon
-            // 
-            this.StatusOferta_Telefon.Name = "StatusOferta_Telefon";
-            this.StatusOferta_Telefon.ExecuteCode += new System.EventHandler(this.StatusOferta_Telefon_ExecuteCode);
-            // 
-            // setStateActivity6
-            // 
-            this.setStateActivity6.Name = "setStateActivity6";
-            this.setStateActivity6.TargetStateName = "KorektaOferty";
-            // 
-            // setStateActivity12
-            // 
-            this.setStateActivity12.Name = "setStateActivity12";
-            this.setStateActivity12.TargetStateName = "Odrzucenie";
-            // 
-            // StatusOferta_Stracony
-            // 
-            this.StatusOferta_Stracony.Name = "StatusOferta_Stracony";
-            this.StatusOferta_Stracony.ExecuteCode += new System.EventHandler(this.StatusOferta_Stracony_ExecuteCode);
-            // 
-            // Komunikat_OfertaNiezaakceptowana
-            // 
-            this.Komunikat_OfertaNiezaakceptowana.Enabled = false;
-            this.Komunikat_OfertaNiezaakceptowana.Name = "Komunikat_OfertaNiezaakceptowana";
-            this.Komunikat_OfertaNiezaakceptowana.ExecuteCode += new System.EventHandler(this.Komunikat_OfertaNiezaakceptowana_ExecuteCode);
-            // 
-            // setStateActivity11
-            // 
-            this.setStateActivity11.Name = "setStateActivity11";
-            this.setStateActivity11.TargetStateName = "Wniosek";
-            // 
-            // StatusOferta_Wniosek
-            // 
-            this.StatusOferta_Wniosek.Name = "StatusOferta_Wniosek";
-            this.StatusOferta_Wniosek.ExecuteCode += new System.EventHandler(this.StatusOferta_Wniosek_ExecuteCode);
-            // 
-            // ifElseActivity2
-            // 
-            this.ifElseActivity2.Activities.Add(this.AkceptacjaOferty_MailSendAllowed);
-            this.ifElseActivity2.Name = "ifElseActivity2";
-            // 
-            // Komunikat_AkceptacjaOferty
-            // 
-            this.Komunikat_AkceptacjaOferty.Enabled = false;
-            this.Komunikat_AkceptacjaOferty.Name = "Komunikat_AkceptacjaOferty";
-            this.Komunikat_AkceptacjaOferty.ExecuteCode += new System.EventHandler(this.Komunikat_AkceptacjaOferty_ExecuteCode);
-            // 
-            // logToHistoryListActivity17
-            // 
-            this.logToHistoryListActivity17.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-            this.logToHistoryListActivity17.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            this.logToHistoryListActivity17.HistoryDescription = "Wiadomość wysłana";
-            this.logToHistoryListActivity17.HistoryOutcome = "";
-            this.logToHistoryListActivity17.Name = "logToHistoryListActivity17";
-            this.logToHistoryListActivity17.OtherData = "";
-            this.logToHistoryListActivity17.UserId = -1;
-            // 
-            // sendEmail_Stracony
-            // 
-            activitybind25.Name = "Workflow1";
-            activitybind25.Path = "Mail_BCC";
-            activitybind26.Name = "Workflow1";
-            activitybind26.Path = "Mail_Body";
-            activitybind27.Name = "Workflow1";
-            activitybind27.Path = "Mail_CC";
-            correlationtoken5.Name = "myWorkflowToken";
-            correlationtoken5.OwnerActivityName = "Workflow1";
-            this.sendEmail_Stracony.CorrelationToken = correlationtoken5;
-            activitybind28.Name = "Workflow1";
-            activitybind28.Path = "Mail_From";
-            this.sendEmail_Stracony.Headers = null;
-            this.sendEmail_Stracony.IncludeStatus = false;
-            this.sendEmail_Stracony.Name = "sendEmail_Stracony";
-            activitybind29.Name = "Workflow1";
-            activitybind29.Path = "Mail_Subject";
-            activitybind30.Name = "Workflow1";
-            activitybind30.Path = "Mail_To";
-            this.sendEmail_Stracony.MethodInvoking += new System.EventHandler(this.sendEmail_Stracony_MethodInvoking);
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.ToProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind30)));
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.SubjectProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind29)));
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BodyProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind26)));
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BCCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind25)));
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.CCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind27)));
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.FromProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind28)));
-            // 
-            // setStateActivity5
-            // 
-            this.setStateActivity5.Name = "setStateActivity5";
-            this.setStateActivity5.TargetStateName = "AkceptacjaOferty";
-            // 
-            // setStateActivity10
-            // 
-            this.setStateActivity10.Name = "setStateActivity10";
-            this.setStateActivity10.TargetStateName = "Odrzucenie";
-            // 
-            // StatusTelefon_Stracony
-            // 
-            this.StatusTelefon_Stracony.Name = "StatusTelefon_Stracony";
-            this.StatusTelefon_Stracony.ExecuteCode += new System.EventHandler(this.StatusTelefon_Stracony_ExecuteCode);
-            // 
-            // setStateActivity9
-            // 
-            this.setStateActivity9.Name = "setStateActivity9";
-            this.setStateActivity9.TargetStateName = "Oferta";
-            // 
-            // StatusTelefon_Oferta
-            // 
-            this.StatusTelefon_Oferta.Name = "StatusTelefon_Oferta";
-            this.StatusTelefon_Oferta.ExecuteCode += new System.EventHandler(this.StatusTelefon_Oferta_ExecuteCode);
-            // 
-            // logERROR_WefyfikacjaInit
-            // 
-            this.logERROR_WefyfikacjaInit.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-            this.logERROR_WefyfikacjaInit.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            this.logERROR_WefyfikacjaInit.HistoryDescription = "WeryfikacjaInit";
-            this.logERROR_WefyfikacjaInit.HistoryOutcome = "ERR";
-            this.logERROR_WefyfikacjaInit.Name = "logERROR_WefyfikacjaInit";
-            this.logERROR_WefyfikacjaInit.OtherData = "";
-            this.logERROR_WefyfikacjaInit.UserId = -1;
-            // 
-            // logERROR_WefyfikacjaEvent
-            // 
-            this.logERROR_WefyfikacjaEvent.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-            this.logERROR_WefyfikacjaEvent.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            this.logERROR_WefyfikacjaEvent.HistoryDescription = "WeryfikacjaEvent";
-            this.logERROR_WefyfikacjaEvent.HistoryOutcome = "ERR";
-            this.logERROR_WefyfikacjaEvent.Name = "logERROR_WefyfikacjaEvent";
-            this.logERROR_WefyfikacjaEvent.OtherData = "";
-            this.logERROR_WefyfikacjaEvent.UserId = -1;
-            // 
-            // setStateActivity2
-            // 
-            this.setStateActivity2.Name = "setStateActivity2";
-            this.setStateActivity2.TargetStateName = "Odrzucenie";
-            // 
-            // StatusRozmowa_Stracony
-            // 
-            this.StatusRozmowa_Stracony.Name = "StatusRozmowa_Stracony";
-            this.StatusRozmowa_Stracony.ExecuteCode += new System.EventHandler(this.StatusRozmowa_Stracony_ExecuteCode);
-            // 
-            // setStateActivity4
-            // 
-            this.setStateActivity4.Name = "setStateActivity4";
-            this.setStateActivity4.TargetStateName = "Telemarketing";
-            // 
-            // StatusRozmowa_Telefon
-            // 
-            this.StatusRozmowa_Telefon.Name = "StatusRozmowa_Telefon";
-            this.StatusRozmowa_Telefon.ExecuteCode += new System.EventHandler(this.StatusRozmowa_Telefon_ExecuteCode);
-            // 
-            // setStateActivity3
-            // 
-            this.setStateActivity3.Name = "setStateActivity3";
-            this.setStateActivity3.TargetStateName = "Oferta";
-            // 
-            // StatusRozmowa_Oferta
-            // 
-            this.StatusRozmowa_Oferta.Name = "StatusRozmowa_Oferta";
-            this.StatusRozmowa_Oferta.ExecuteCode += new System.EventHandler(this.StatusRozmowa_Oferta_ExecuteCode);
-            // 
-            // logERROR_NavigatorInit
-            // 
-            this.logERROR_NavigatorInit.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-            this.logERROR_NavigatorInit.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            this.logERROR_NavigatorInit.HistoryDescription = "NavigatorInit";
-            this.logERROR_NavigatorInit.HistoryOutcome = "ERR";
-            this.logERROR_NavigatorInit.Name = "logERROR_NavigatorInit";
-            this.logERROR_NavigatorInit.OtherData = "";
-            this.logERROR_NavigatorInit.UserId = -1;
+            // logToHistoryListActivity56
+            // 
+            this.logToHistoryListActivity56.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity56.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity56.HistoryDescription = "AkceptacjaOferty_MailSendAllowed";
+            this.logToHistoryListActivity56.HistoryOutcome = "";
+            this.logToHistoryListActivity56.Name = "logToHistoryListActivity56";
+            this.logToHistoryListActivity56.OtherData = "";
+            this.logToHistoryListActivity56.UserId = -1;
             // 
             // setStateActivity27
             // 
@@ -914,172 +753,1329 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Navigator_Telemarketing.Name = "Navigator_Telemarketing";
             this.Navigator_Telemarketing.TargetStateName = "Telemarketing";
             // 
+            // setStateActivity29
+            // 
+            this.setStateActivity29.Name = "setStateActivity29";
+            this.setStateActivity29.TargetStateName = "Weryfikacja";
+            // 
+            // logNavigator
+            // 
+            this.logNavigator.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logNavigator.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logNavigator.HistoryDescription = "Navigator";
+            activitybind25.Name = "Workflow1";
+            activitybind25.Path = "logNavigator_HistoryOutcome";
+            this.logNavigator.Name = "logNavigator";
+            this.logNavigator.OtherData = "";
+            this.logNavigator.UserId = -1;
+            this.logNavigator.MethodInvoking += new System.EventHandler(this.SetNavigatorMessage);
+            this.logNavigator.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind25)));
+            // 
+            // setStateActivity42
+            // 
+            this.setStateActivity42.Name = "setStateActivity42";
+            this.setStateActivity42.TargetStateName = "Rozliczenie";
+            // 
+            // setStateActivity41
+            // 
+            this.setStateActivity41.Name = "setStateActivity41";
+            this.setStateActivity41.TargetStateName = "Dokumentacja";
+            // 
+            // setStateActivity40
+            // 
+            this.setStateActivity40.Name = "setStateActivity40";
+            this.setStateActivity40.TargetStateName = "Uruchomienie";
+            // 
+            // setStateActivity39
+            // 
+            this.setStateActivity39.Name = "setStateActivity39";
+            this.setStateActivity39.TargetStateName = "AkceptacjaUmowy";
+            // 
+            // setStateActivity38
+            // 
+            this.setStateActivity38.Name = "setStateActivity38";
+            this.setStateActivity38.TargetStateName = "Umowa";
+            // 
+            // setStateActivity37
+            // 
+            this.setStateActivity37.Name = "setStateActivity37";
+            this.setStateActivity37.TargetStateName = "KorektaWniosku";
+            // 
+            // setStateActivity36
+            // 
+            this.setStateActivity36.Name = "setStateActivity36";
+            this.setStateActivity36.TargetStateName = "AkceptacjaWniosku";
+            // 
+            // setStateActivity35
+            // 
+            this.setStateActivity35.Name = "setStateActivity35";
+            this.setStateActivity35.TargetStateName = "Wniosek";
+            // 
+            // setStateActivity34
+            // 
+            this.setStateActivity34.Name = "setStateActivity34";
+            this.setStateActivity34.TargetStateName = "KorektaOferty";
+            // 
+            // setStateActivity33
+            // 
+            this.setStateActivity33.Name = "setStateActivity33";
+            this.setStateActivity33.TargetStateName = "AkceptacjaOferty";
+            // 
+            // setStateActivity32
+            // 
+            this.setStateActivity32.Name = "setStateActivity32";
+            this.setStateActivity32.TargetStateName = "Odrzucenie";
+            // 
+            // setStateActivity31
+            // 
+            this.setStateActivity31.Name = "setStateActivity31";
+            this.setStateActivity31.TargetStateName = "Oferta";
+            // 
+            // setStateActivity30
+            // 
+            this.setStateActivity30.Name = "setStateActivity30";
+            this.setStateActivity30.TargetStateName = "Telemarketing";
+            // 
+            // setStateActivity28
+            // 
+            this.setStateActivity28.Name = "setStateActivity28";
+            this.setStateActivity28.TargetStateName = "Weryfikacja";
+            // 
+            // Uruchomiony_SendMailAllowed
+            // 
+            this.Uruchomiony_SendMailAllowed.Activities.Add(this.logToHistoryListActivity52);
+            this.Uruchomiony_SendMailAllowed.Activities.Add(this.sendEmail_Uruchomiony);
+            this.Uruchomiony_SendMailAllowed.Activities.Add(this.logToHistoryListActivity20);
+            codecondition1.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsUruchomiony_SendMailAllowed);
+            this.Uruchomiony_SendMailAllowed.Condition = codecondition1;
+            this.Uruchomiony_SendMailAllowed.Name = "Uruchomiony_SendMailAllowed";
+            // 
+            // AkceptacjaUmowy_SendEmailAllowed
+            // 
+            this.AkceptacjaUmowy_SendEmailAllowed.Activities.Add(this.sendEmail_UmowaZaakceptowana);
+            this.AkceptacjaUmowy_SendEmailAllowed.Activities.Add(this.logToHistoryListActivity19);
+            codecondition2.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaUmowy_SendEmailAllowed);
+            this.AkceptacjaUmowy_SendEmailAllowed.Condition = codecondition2;
+            this.AkceptacjaUmowy_SendEmailAllowed.Name = "AkceptacjaUmowy_SendEmailAllowed";
+            // 
+            // AkceptacjaWniosku_SendMailAllowed
+            // 
+            this.AkceptacjaWniosku_SendMailAllowed.Activities.Add(this.logToHistoryListActivity55);
+            this.AkceptacjaWniosku_SendMailAllowed.Activities.Add(this.sendEmail_WniosekZaakceptowany);
+            this.AkceptacjaWniosku_SendMailAllowed.Activities.Add(this.logToHistoryListActivity18);
+            codecondition3.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaWniosku_SendMailAllowed);
+            this.AkceptacjaWniosku_SendMailAllowed.Condition = codecondition3;
+            this.AkceptacjaWniosku_SendMailAllowed.Name = "AkceptacjaWniosku_SendMailAllowed";
+            // 
+            // AkceptacjaOferty_MailSendAllowed
+            // 
+            this.AkceptacjaOferty_MailSendAllowed.Activities.Add(this.logToHistoryListActivity56);
+            this.AkceptacjaOferty_MailSendAllowed.Activities.Add(this.sendEmail_OfertaZaakceptowana);
+            this.AkceptacjaOferty_MailSendAllowed.Activities.Add(this.logToHistoryListActivity1);
+            codecondition4.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaOferty_MailSendAllowed);
+            this.AkceptacjaOferty_MailSendAllowed.Condition = codecondition4;
+            this.AkceptacjaOferty_MailSendAllowed.Name = "AkceptacjaOferty_MailSendAllowed";
+            // 
+            // Status_Lead_Else
+            // 
+            this.Status_Lead_Else.Activities.Add(this.setStateActivity27);
+            codecondition5.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_ElseIf);
+            this.Status_Lead_Else.Condition = codecondition5;
+            this.Status_Lead_Else.Name = "Status_Lead_Else";
+            // 
+            // StatusLeadu_Rozliczenie
+            // 
+            this.StatusLeadu_Rozliczenie.Activities.Add(this.setStateActivity23);
+            codecondition6.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Rozliczenie);
+            this.StatusLeadu_Rozliczenie.Condition = codecondition6;
+            this.StatusLeadu_Rozliczenie.Name = "StatusLeadu_Rozliczenie";
+            // 
+            // faultHandlersActivity7
+            // 
+            this.faultHandlersActivity7.Name = "faultHandlersActivity7";
+            // 
+            // StatusLeadu_Stracony
+            // 
+            this.StatusLeadu_Stracony.Activities.Add(this.Navigator_Stracony);
+            codecondition7.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Stracony);
+            this.StatusLeadu_Stracony.Condition = codecondition7;
+            this.StatusLeadu_Stracony.Name = "StatusLeadu_Stracony";
+            // 
+            // StatusLeadu_Uruchomiony
+            // 
+            this.StatusLeadu_Uruchomiony.Activities.Add(this.Navigator_Uruchomienie);
+            codecondition8.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Uruchomiony);
+            this.StatusLeadu_Uruchomiony.Condition = codecondition8;
+            this.StatusLeadu_Uruchomiony.Name = "StatusLeadu_Uruchomiony";
+            // 
+            // StatusLeadu_Umowa
+            // 
+            this.StatusLeadu_Umowa.Activities.Add(this.Navigator_Umowa);
+            codecondition9.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Umowa);
+            this.StatusLeadu_Umowa.Condition = codecondition9;
+            this.StatusLeadu_Umowa.Name = "StatusLeadu_Umowa";
+            // 
+            // StatusLeadu_Wniosek
+            // 
+            this.StatusLeadu_Wniosek.Activities.Add(this.Navigator_Wniosek);
+            codecondition10.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Wniosek);
+            this.StatusLeadu_Wniosek.Condition = codecondition10;
+            this.StatusLeadu_Wniosek.Name = "StatusLeadu_Wniosek";
+            // 
+            // StatusLeadu_Oferta
+            // 
+            this.StatusLeadu_Oferta.Activities.Add(this.Navigator_Oferta);
+            codecondition11.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Oferta);
+            this.StatusLeadu_Oferta.Condition = codecondition11;
+            this.StatusLeadu_Oferta.Name = "StatusLeadu_Oferta";
+            // 
+            // StatusLeadu_Telefon
+            // 
+            this.StatusLeadu_Telefon.Activities.Add(this.Navigator_Telemarketing);
+            codecondition12.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Telefon);
+            this.StatusLeadu_Telefon.Condition = codecondition12;
+            this.StatusLeadu_Telefon.Name = "StatusLeadu_Telefon";
+            // 
+            // Else2
+            // 
+            this.Else2.Activities.Add(this.logNavigator);
+            this.Else2.Activities.Add(this.setStateActivity29);
+            this.Else2.Name = "Else2";
+            // 
+            // ifRozliczenie
+            // 
+            this.ifRozliczenie.Activities.Add(this.setStateActivity42);
+            codecondition13.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isRozliczenie);
+            this.ifRozliczenie.Condition = codecondition13;
+            this.ifRozliczenie.Name = "ifRozliczenie";
+            // 
+            // ifDokumentacja
+            // 
+            this.ifDokumentacja.Activities.Add(this.setStateActivity41);
+            codecondition14.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isDokumentacja);
+            this.ifDokumentacja.Condition = codecondition14;
+            this.ifDokumentacja.Name = "ifDokumentacja";
+            // 
+            // ifUruchomienie
+            // 
+            this.ifUruchomienie.Activities.Add(this.setStateActivity40);
+            codecondition15.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isUruchomienie);
+            this.ifUruchomienie.Condition = codecondition15;
+            this.ifUruchomienie.Name = "ifUruchomienie";
+            // 
+            // ifAkceptacjaUmowy
+            // 
+            this.ifAkceptacjaUmowy.Activities.Add(this.setStateActivity39);
+            codecondition16.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isAkceptacjaUmowy);
+            this.ifAkceptacjaUmowy.Condition = codecondition16;
+            this.ifAkceptacjaUmowy.Name = "ifAkceptacjaUmowy";
+            // 
+            // ifUmowa
+            // 
+            this.ifUmowa.Activities.Add(this.setStateActivity38);
+            codecondition17.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isUmowa);
+            this.ifUmowa.Condition = codecondition17;
+            this.ifUmowa.Name = "ifUmowa";
+            // 
+            // ifKorektaWniosku
+            // 
+            this.ifKorektaWniosku.Activities.Add(this.setStateActivity37);
+            codecondition18.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isKorektaWniosku);
+            this.ifKorektaWniosku.Condition = codecondition18;
+            this.ifKorektaWniosku.Name = "ifKorektaWniosku";
+            // 
+            // ifAkceptacjaWniosku
+            // 
+            this.ifAkceptacjaWniosku.Activities.Add(this.setStateActivity36);
+            codecondition19.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isAkceptacjaWniosku);
+            this.ifAkceptacjaWniosku.Condition = codecondition19;
+            this.ifAkceptacjaWniosku.Name = "ifAkceptacjaWniosku";
+            // 
+            // ifWniosek
+            // 
+            this.ifWniosek.Activities.Add(this.setStateActivity35);
+            codecondition20.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isWniosek);
+            this.ifWniosek.Condition = codecondition20;
+            this.ifWniosek.Name = "ifWniosek";
+            // 
+            // ifKorektaOferty
+            // 
+            this.ifKorektaOferty.Activities.Add(this.setStateActivity34);
+            codecondition21.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isKorektaOferty);
+            this.ifKorektaOferty.Condition = codecondition21;
+            this.ifKorektaOferty.Name = "ifKorektaOferty";
+            // 
+            // ifAkceptacjaOferty
+            // 
+            this.ifAkceptacjaOferty.Activities.Add(this.setStateActivity33);
+            codecondition22.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isAkceptacjaOferty);
+            this.ifAkceptacjaOferty.Condition = codecondition22;
+            this.ifAkceptacjaOferty.Name = "ifAkceptacjaOferty";
+            // 
+            // ifOdrzucenie
+            // 
+            this.ifOdrzucenie.Activities.Add(this.setStateActivity32);
+            codecondition23.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isOdrzucenie);
+            this.ifOdrzucenie.Condition = codecondition23;
+            this.ifOdrzucenie.Name = "ifOdrzucenie";
+            // 
+            // ifOferta
+            // 
+            this.ifOferta.Activities.Add(this.setStateActivity31);
+            codecondition24.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isOferta);
+            this.ifOferta.Condition = codecondition24;
+            this.ifOferta.Name = "ifOferta";
+            // 
+            // ifTelemarketing
+            // 
+            this.ifTelemarketing.Activities.Add(this.setStateActivity30);
+            codecondition25.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isTelemarketing);
+            this.ifTelemarketing.Condition = codecondition25;
+            this.ifTelemarketing.Name = "ifTelemarketing";
+            // 
+            // ifWeryfikacja
+            // 
+            this.ifWeryfikacja.Activities.Add(this.setStateActivity28);
+            codecondition26.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isWeryfikacja);
+            this.ifWeryfikacja.Condition = codecondition26;
+            this.ifWeryfikacja.Name = "ifWeryfikacja";
+            // 
+            // logToHistoryListActivity4
+            // 
+            this.logToHistoryListActivity4.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity4.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity4.HistoryDescription = "SetCT_Rozliczenie_ExecuteCode";
+            this.logToHistoryListActivity4.HistoryOutcome = "ERR";
+            this.logToHistoryListActivity4.Name = "logToHistoryListActivity4";
+            this.logToHistoryListActivity4.OtherData = "";
+            this.logToHistoryListActivity4.UserId = -1;
+            // 
+            // logToHistoryListActivity67
+            // 
+            this.logToHistoryListActivity67.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity67.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind26.Name = "Workflow1";
+            activitybind26.Path = "logErrorMessage_HistoryDescription";
+            activitybind27.Name = "Workflow1";
+            activitybind27.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity67.Name = "logToHistoryListActivity67";
+            this.logToHistoryListActivity67.OtherData = "";
+            this.logToHistoryListActivity67.UserId = -1;
+            this.logToHistoryListActivity67.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind26)));
+            this.logToHistoryListActivity67.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind27)));
+            // 
+            // codeActivity10
+            // 
+            this.codeActivity10.Name = "codeActivity10";
+            this.codeActivity10.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity21
+            // 
+            this.setStateActivity21.Name = "setStateActivity21";
+            this.setStateActivity21.TargetStateName = "Rozliczenie";
+            // 
+            // logToHistoryListActivity54
+            // 
+            this.logToHistoryListActivity54.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity54.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity54.HistoryDescription = "Dokumentacja_Rozliczenie";
+            this.logToHistoryListActivity54.HistoryOutcome = "";
+            this.logToHistoryListActivity54.Name = "logToHistoryListActivity54";
+            this.logToHistoryListActivity54.OtherData = "";
+            this.logToHistoryListActivity54.UserId = -1;
+            // 
+            // logToHistoryListActivity66
+            // 
+            this.logToHistoryListActivity66.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity66.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind28.Name = "Workflow1";
+            activitybind28.Path = "logErrorMessage_HistoryDescription";
+            activitybind29.Name = "Workflow1";
+            activitybind29.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity66.Name = "logToHistoryListActivity66";
+            this.logToHistoryListActivity66.OtherData = "";
+            this.logToHistoryListActivity66.UserId = -1;
+            this.logToHistoryListActivity66.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind28)));
+            this.logToHistoryListActivity66.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind29)));
+            // 
+            // codeActivity9
+            // 
+            this.codeActivity9.Name = "codeActivity9";
+            this.codeActivity9.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity22
+            // 
+            this.setStateActivity22.Name = "setStateActivity22";
+            this.setStateActivity22.TargetStateName = "Dokumentacja";
+            // 
+            // ifElseActivity10
+            // 
+            this.ifElseActivity10.Activities.Add(this.Uruchomiony_SendMailAllowed);
+            this.ifElseActivity10.Name = "ifElseActivity10";
+            // 
+            // logToHistoryListActivity51
+            // 
+            this.logToHistoryListActivity51.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity51.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity51.HistoryDescription = "Uruchomienie_Dokumentacja";
+            this.logToHistoryListActivity51.HistoryOutcome = "";
+            this.logToHistoryListActivity51.Name = "logToHistoryListActivity51";
+            this.logToHistoryListActivity51.OtherData = "";
+            this.logToHistoryListActivity51.UserId = -1;
+            // 
+            // logToHistoryListActivity65
+            // 
+            this.logToHistoryListActivity65.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity65.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind30.Name = "Workflow1";
+            activitybind30.Path = "logErrorMessage_HistoryDescription";
+            activitybind31.Name = "Workflow1";
+            activitybind31.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity65.Name = "logToHistoryListActivity65";
+            this.logToHistoryListActivity65.OtherData = "";
+            this.logToHistoryListActivity65.UserId = -1;
+            this.logToHistoryListActivity65.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind30)));
+            this.logToHistoryListActivity65.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind31)));
+            // 
+            // codeActivity8
+            // 
+            this.codeActivity8.Name = "codeActivity8";
+            this.codeActivity8.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity18
+            // 
+            this.setStateActivity18.Name = "setStateActivity18";
+            this.setStateActivity18.TargetStateName = "Telemarketing";
+            // 
+            // StatusUmowa_Telefon
+            // 
+            this.StatusUmowa_Telefon.Name = "StatusUmowa_Telefon";
+            this.StatusUmowa_Telefon.ExecuteCode += new System.EventHandler(this.StatusUmowa_Telefon_ExecuteCode);
+            // 
+            // Komunikat_UmowaNiezaakceptowana
+            // 
+            this.Komunikat_UmowaNiezaakceptowana.Enabled = false;
+            this.Komunikat_UmowaNiezaakceptowana.Name = "Komunikat_UmowaNiezaakceptowana";
+            this.Komunikat_UmowaNiezaakceptowana.ExecuteCode += new System.EventHandler(this.Komunikat_UmowaNiezaakceptowana_ExecuteCode);
+            // 
+            // logToHistoryListActivity49
+            // 
+            this.logToHistoryListActivity49.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity49.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity49.HistoryDescription = "AkceptacjaUmowy_Telemarketing";
+            this.logToHistoryListActivity49.HistoryOutcome = "";
+            this.logToHistoryListActivity49.Name = "logToHistoryListActivity49";
+            this.logToHistoryListActivity49.OtherData = "";
+            this.logToHistoryListActivity49.UserId = -1;
+            // 
+            // setStateActivity24
+            // 
+            this.setStateActivity24.Name = "setStateActivity24";
+            this.setStateActivity24.TargetStateName = "Odrzucenie";
+            // 
+            // StatusUmowa_Stracony
+            // 
+            this.StatusUmowa_Stracony.Name = "StatusUmowa_Stracony";
+            this.StatusUmowa_Stracony.ExecuteCode += new System.EventHandler(this.StatusUmowa_Stracony_ExecuteCode);
+            // 
+            // Komunikat_UmowaStracona
+            // 
+            this.Komunikat_UmowaStracona.Enabled = false;
+            this.Komunikat_UmowaStracona.Name = "Komunikat_UmowaStracona";
+            this.Komunikat_UmowaStracona.ExecuteCode += new System.EventHandler(this.Komunikat_UmowaStracona_ExecuteCode);
+            // 
+            // logToHistoryListActivity48
+            // 
+            this.logToHistoryListActivity48.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity48.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity48.HistoryDescription = "AkceptacjaUmowy_Odrzucenie";
+            this.logToHistoryListActivity48.HistoryOutcome = "";
+            this.logToHistoryListActivity48.Name = "logToHistoryListActivity48";
+            this.logToHistoryListActivity48.OtherData = "";
+            this.logToHistoryListActivity48.UserId = -1;
+            // 
+            // setStateActivity20
+            // 
+            this.setStateActivity20.Name = "setStateActivity20";
+            this.setStateActivity20.TargetStateName = "Uruchomienie";
+            // 
+            // StatusUmowa_Uruchomienie
+            // 
+            this.StatusUmowa_Uruchomienie.Name = "StatusUmowa_Uruchomienie";
+            this.StatusUmowa_Uruchomienie.ExecuteCode += new System.EventHandler(this.StatusUmowa_Uruchomienie_ExecuteCode);
+            // 
+            // ifElseActivity4
+            // 
+            this.ifElseActivity4.Activities.Add(this.AkceptacjaUmowy_SendEmailAllowed);
+            this.ifElseActivity4.Name = "ifElseActivity4";
+            // 
+            // Komunikat_UmowaUruchomiona
+            // 
+            this.Komunikat_UmowaUruchomiona.Enabled = false;
+            this.Komunikat_UmowaUruchomiona.Name = "Komunikat_UmowaUruchomiona";
+            this.Komunikat_UmowaUruchomiona.ExecuteCode += new System.EventHandler(this.Komunikat_UmowaUruchomiona_ExecuteCode);
+            // 
+            // logToHistoryListActivity47
+            // 
+            this.logToHistoryListActivity47.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity47.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity47.HistoryDescription = "AkceptacjaUmowy_Uruchomienie";
+            this.logToHistoryListActivity47.HistoryOutcome = "";
+            this.logToHistoryListActivity47.Name = "logToHistoryListActivity47";
+            this.logToHistoryListActivity47.OtherData = "";
+            this.logToHistoryListActivity47.UserId = -1;
+            // 
+            // logToHistoryListActivity64
+            // 
+            this.logToHistoryListActivity64.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity64.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind32.Name = "Workflow1";
+            activitybind32.Path = "logErrorMessage_HistoryDescription";
+            activitybind33.Name = "Workflow1";
+            activitybind33.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity64.Name = "logToHistoryListActivity64";
+            this.logToHistoryListActivity64.OtherData = "";
+            this.logToHistoryListActivity64.UserId = -1;
+            this.logToHistoryListActivity64.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind32)));
+            this.logToHistoryListActivity64.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind33)));
+            // 
+            // codeActivity7
+            // 
+            this.codeActivity7.Name = "codeActivity7";
+            this.codeActivity7.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity19
+            // 
+            this.setStateActivity19.Name = "setStateActivity19";
+            this.setStateActivity19.TargetStateName = "AkceptacjaUmowy";
+            // 
+            // logToHistoryListActivity45
+            // 
+            this.logToHistoryListActivity45.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity45.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity45.HistoryDescription = "Umowa_AkceptacjaUmowy";
+            this.logToHistoryListActivity45.HistoryOutcome = "";
+            this.logToHistoryListActivity45.Name = "logToHistoryListActivity45";
+            this.logToHistoryListActivity45.OtherData = "";
+            this.logToHistoryListActivity45.UserId = -1;
+            // 
+            // logToHistoryListActivity63
+            // 
+            this.logToHistoryListActivity63.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity63.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind34.Name = "Workflow1";
+            activitybind34.Path = "logErrorMessage_HistoryDescription";
+            activitybind35.Name = "Workflow1";
+            activitybind35.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity63.Name = "logToHistoryListActivity63";
+            this.logToHistoryListActivity63.OtherData = "";
+            this.logToHistoryListActivity63.UserId = -1;
+            this.logToHistoryListActivity63.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind34)));
+            this.logToHistoryListActivity63.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind35)));
+            // 
+            // codeActivity6
+            // 
+            this.codeActivity6.Name = "codeActivity6";
+            this.codeActivity6.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity17
+            // 
+            this.setStateActivity17.Name = "setStateActivity17";
+            this.setStateActivity17.TargetStateName = "AkceptacjaWniosku";
+            // 
+            // logToHistoryListActivity43
+            // 
+            this.logToHistoryListActivity43.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity43.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity43.HistoryDescription = "KorektaWniosku_AkceptacjaWniosku";
+            this.logToHistoryListActivity43.HistoryOutcome = "";
+            this.logToHistoryListActivity43.Name = "logToHistoryListActivity43";
+            this.logToHistoryListActivity43.OtherData = "";
+            this.logToHistoryListActivity43.UserId = -1;
+            // 
+            // logToHistoryListActivity62
+            // 
+            this.logToHistoryListActivity62.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity62.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind36.Name = "Workflow1";
+            activitybind36.Path = "logErrorMessage_HistoryDescription";
+            activitybind37.Name = "Workflow1";
+            activitybind37.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity62.Name = "logToHistoryListActivity62";
+            this.logToHistoryListActivity62.OtherData = "";
+            this.logToHistoryListActivity62.UserId = -1;
+            this.logToHistoryListActivity62.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind36)));
+            this.logToHistoryListActivity62.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind37)));
+            // 
+            // codeActivity5
+            // 
+            this.codeActivity5.Name = "codeActivity5";
+            this.codeActivity5.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity16
+            // 
+            this.setStateActivity16.Name = "setStateActivity16";
+            this.setStateActivity16.TargetStateName = "Odrzucenie";
+            // 
+            // StatusWniosek_Stracony
+            // 
+            this.StatusWniosek_Stracony.Name = "StatusWniosek_Stracony";
+            this.StatusWniosek_Stracony.ExecuteCode += new System.EventHandler(this.StatusWniosek_Stracony_ExecuteCode);
+            // 
+            // Komunikat_WniosekOdrzucony
+            // 
+            this.Komunikat_WniosekOdrzucony.Enabled = false;
+            this.Komunikat_WniosekOdrzucony.Name = "Komunikat_WniosekOdrzucony";
+            this.Komunikat_WniosekOdrzucony.ExecuteCode += new System.EventHandler(this.Komunikat_WniosekOdrzucony_ExecuteCode);
+            // 
+            // logToHistoryListActivity41
+            // 
+            this.logToHistoryListActivity41.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity41.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity41.HistoryDescription = "AkceptacjaWniosku_Odrzucenie";
+            this.logToHistoryListActivity41.HistoryOutcome = "";
+            this.logToHistoryListActivity41.Name = "logToHistoryListActivity41";
+            this.logToHistoryListActivity41.OtherData = "";
+            this.logToHistoryListActivity41.UserId = -1;
+            // 
+            // setStateActivity15
+            // 
+            this.setStateActivity15.Name = "setStateActivity15";
+            this.setStateActivity15.TargetStateName = "KorektaWniosku";
+            // 
+            // logToHistoryListActivity40
+            // 
+            this.logToHistoryListActivity40.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity40.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity40.HistoryDescription = "AkceptacjaWniosku_KorektaWniosku";
+            this.logToHistoryListActivity40.HistoryOutcome = "";
+            this.logToHistoryListActivity40.Name = "logToHistoryListActivity40";
+            this.logToHistoryListActivity40.OtherData = "";
+            this.logToHistoryListActivity40.UserId = -1;
+            // 
+            // setStateActivity14
+            // 
+            this.setStateActivity14.Name = "setStateActivity14";
+            this.setStateActivity14.TargetStateName = "Umowa";
+            // 
+            // StatusWniosek_Umowa
+            // 
+            this.StatusWniosek_Umowa.Name = "StatusWniosek_Umowa";
+            this.StatusWniosek_Umowa.ExecuteCode += new System.EventHandler(this.StatusWniosek_Umowa_ExecuteCode);
+            // 
+            // ifElseActivity3
+            // 
+            this.ifElseActivity3.Activities.Add(this.AkceptacjaWniosku_SendMailAllowed);
+            this.ifElseActivity3.Name = "ifElseActivity3";
+            // 
+            // Komunikat_AkceptacjaWniosku
+            // 
+            this.Komunikat_AkceptacjaWniosku.Enabled = false;
+            this.Komunikat_AkceptacjaWniosku.Name = "Komunikat_AkceptacjaWniosku";
+            this.Komunikat_AkceptacjaWniosku.ExecuteCode += new System.EventHandler(this.Komunikat_AkceptacjaWniosku_ExecuteCode);
+            // 
+            // logToHistoryListActivity39
+            // 
+            this.logToHistoryListActivity39.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity39.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity39.HistoryDescription = "AkceptacjaWniosku_Umowa";
+            this.logToHistoryListActivity39.HistoryOutcome = "";
+            this.logToHistoryListActivity39.Name = "logToHistoryListActivity39";
+            this.logToHistoryListActivity39.OtherData = "";
+            this.logToHistoryListActivity39.UserId = -1;
+            // 
+            // logToHistoryListActivity61
+            // 
+            this.logToHistoryListActivity61.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity61.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind38.Name = "Workflow1";
+            activitybind38.Path = "logErrorMessage_HistoryDescription";
+            activitybind39.Name = "Workflow1";
+            activitybind39.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity61.Name = "logToHistoryListActivity61";
+            this.logToHistoryListActivity61.OtherData = "";
+            this.logToHistoryListActivity61.UserId = -1;
+            this.logToHistoryListActivity61.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind38)));
+            this.logToHistoryListActivity61.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind39)));
+            // 
+            // codeActivity4
+            // 
+            this.codeActivity4.Name = "codeActivity4";
+            this.codeActivity4.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity13
+            // 
+            this.setStateActivity13.Name = "setStateActivity13";
+            this.setStateActivity13.TargetStateName = "AkceptacjaWniosku";
+            // 
+            // logToHistoryListActivity27
+            // 
+            this.logToHistoryListActivity27.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity27.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity27.HistoryDescription = "Wniosek_AkceptacjaWniosku";
+            this.logToHistoryListActivity27.HistoryOutcome = "";
+            this.logToHistoryListActivity27.Name = "logToHistoryListActivity27";
+            this.logToHistoryListActivity27.OtherData = "";
+            this.logToHistoryListActivity27.UserId = -1;
+            // 
+            // logToHistoryListActivity60
+            // 
+            this.logToHistoryListActivity60.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity60.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind40.Name = "Workflow1";
+            activitybind40.Path = "logErrorMessage_HistoryDescription";
+            activitybind41.Name = "Workflow1";
+            activitybind41.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity60.Name = "logToHistoryListActivity60";
+            this.logToHistoryListActivity60.OtherData = "";
+            this.logToHistoryListActivity60.UserId = -1;
+            this.logToHistoryListActivity60.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind40)));
+            this.logToHistoryListActivity60.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind41)));
+            // 
+            // codeActivity3
+            // 
+            this.codeActivity3.Name = "codeActivity3";
+            this.codeActivity3.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity8
+            // 
+            this.setStateActivity8.Name = "setStateActivity8";
+            this.setStateActivity8.TargetStateName = "AkceptacjaOferty";
+            // 
+            // logToHistoryListActivity37
+            // 
+            this.logToHistoryListActivity37.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity37.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity37.HistoryDescription = "KorektaOferty_AkceptacjaOferty";
+            this.logToHistoryListActivity37.HistoryOutcome = "";
+            this.logToHistoryListActivity37.Name = "logToHistoryListActivity37";
+            this.logToHistoryListActivity37.OtherData = "";
+            this.logToHistoryListActivity37.UserId = -1;
+            // 
+            // logErrorMessage
+            // 
+            this.logErrorMessage.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logErrorMessage.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind42.Name = "Workflow1";
+            activitybind42.Path = "logErrorMessage_HistoryDescription";
+            activitybind43.Name = "Workflow1";
+            activitybind43.Path = "logErrorMessage_HistoryOutcome";
+            this.logErrorMessage.Name = "logErrorMessage";
+            this.logErrorMessage.OtherData = "";
+            this.logErrorMessage.UserId = -1;
+            this.logErrorMessage.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind42)));
+            this.logErrorMessage.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind43)));
+            // 
+            // ErrorHandler
+            // 
+            this.ErrorHandler.Name = "ErrorHandler";
+            this.ErrorHandler.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity7
+            // 
+            this.setStateActivity7.Name = "setStateActivity7";
+            this.setStateActivity7.TargetStateName = "Telemarketing";
+            // 
+            // StatusOferta_Telefon
+            // 
+            this.StatusOferta_Telefon.Name = "StatusOferta_Telefon";
+            this.StatusOferta_Telefon.ExecuteCode += new System.EventHandler(this.StatusOferta_Telefon_ExecuteCode);
+            // 
+            // logToHistoryListActivity24
+            // 
+            this.logToHistoryListActivity24.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity24.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity24.HistoryDescription = "AkceptacjaOferty_Telemarketing1";
+            this.logToHistoryListActivity24.HistoryOutcome = "";
+            this.logToHistoryListActivity24.Name = "logToHistoryListActivity24";
+            this.logToHistoryListActivity24.OtherData = "";
+            this.logToHistoryListActivity24.UserId = -1;
+            // 
+            // setStateActivity6
+            // 
+            this.setStateActivity6.Name = "setStateActivity6";
+            this.setStateActivity6.TargetStateName = "KorektaOferty";
+            // 
+            // logToHistoryListActivity23
+            // 
+            this.logToHistoryListActivity23.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity23.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity23.HistoryDescription = "AkceptacjaOferty_KorektaOferty";
+            this.logToHistoryListActivity23.HistoryOutcome = "";
+            this.logToHistoryListActivity23.Name = "logToHistoryListActivity23";
+            this.logToHistoryListActivity23.OtherData = "";
+            this.logToHistoryListActivity23.UserId = -1;
+            // 
+            // setStateActivity12
+            // 
+            this.setStateActivity12.Name = "setStateActivity12";
+            this.setStateActivity12.TargetStateName = "Odrzucenie";
+            // 
+            // StatusOferta_Stracony
+            // 
+            this.StatusOferta_Stracony.Name = "StatusOferta_Stracony";
+            this.StatusOferta_Stracony.ExecuteCode += new System.EventHandler(this.StatusOferta_Stracony_ExecuteCode);
+            // 
+            // Komunikat_OfertaNiezaakceptowana
+            // 
+            this.Komunikat_OfertaNiezaakceptowana.Enabled = false;
+            this.Komunikat_OfertaNiezaakceptowana.Name = "Komunikat_OfertaNiezaakceptowana";
+            this.Komunikat_OfertaNiezaakceptowana.ExecuteCode += new System.EventHandler(this.Komunikat_OfertaNiezaakceptowana_ExecuteCode);
+            // 
+            // logToHistoryListActivity22
+            // 
+            this.logToHistoryListActivity22.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity22.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity22.HistoryDescription = "AkceptacjaOferty_Odrzucenie";
+            this.logToHistoryListActivity22.HistoryOutcome = "";
+            this.logToHistoryListActivity22.Name = "logToHistoryListActivity22";
+            this.logToHistoryListActivity22.OtherData = "";
+            this.logToHistoryListActivity22.UserId = -1;
+            // 
+            // setStateActivity11
+            // 
+            this.setStateActivity11.Name = "setStateActivity11";
+            this.setStateActivity11.TargetStateName = "Wniosek";
+            // 
+            // StatusOferta_Wniosek
+            // 
+            this.StatusOferta_Wniosek.Name = "StatusOferta_Wniosek";
+            this.StatusOferta_Wniosek.ExecuteCode += new System.EventHandler(this.StatusOferta_Wniosek_ExecuteCode);
+            // 
+            // ifElseActivity2
+            // 
+            this.ifElseActivity2.Activities.Add(this.AkceptacjaOferty_MailSendAllowed);
+            this.ifElseActivity2.Name = "ifElseActivity2";
+            // 
+            // Komunikat_AkceptacjaOferty
+            // 
+            this.Komunikat_AkceptacjaOferty.Enabled = false;
+            this.Komunikat_AkceptacjaOferty.Name = "Komunikat_AkceptacjaOferty";
+            this.Komunikat_AkceptacjaOferty.ExecuteCode += new System.EventHandler(this.Komunikat_AkceptacjaOferty_ExecuteCode);
+            // 
+            // logToHistoryListActivity21
+            // 
+            this.logToHistoryListActivity21.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity21.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity21.HistoryDescription = "AkceptacjaOferty_Wniosek";
+            this.logToHistoryListActivity21.HistoryOutcome = "";
+            this.logToHistoryListActivity21.Name = "logToHistoryListActivity21";
+            this.logToHistoryListActivity21.OtherData = "";
+            this.logToHistoryListActivity21.UserId = -1;
+            // 
+            // logToHistoryListActivity17
+            // 
+            this.logToHistoryListActivity17.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity17.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity17.HistoryDescription = "Wiadomość wysłana";
+            this.logToHistoryListActivity17.HistoryOutcome = "";
+            this.logToHistoryListActivity17.Name = "logToHistoryListActivity17";
+            this.logToHistoryListActivity17.OtherData = "";
+            this.logToHistoryListActivity17.UserId = -1;
+            // 
+            // sendEmail_Stracony
+            // 
+            activitybind44.Name = "Workflow1";
+            activitybind44.Path = "Mail_BCC";
+            activitybind45.Name = "Workflow1";
+            activitybind45.Path = "Mail_Body";
+            activitybind46.Name = "Workflow1";
+            activitybind46.Path = "Mail_CC";
+            correlationtoken5.Name = "myWorkflowToken";
+            correlationtoken5.OwnerActivityName = "Workflow1";
+            this.sendEmail_Stracony.CorrelationToken = correlationtoken5;
+            activitybind47.Name = "Workflow1";
+            activitybind47.Path = "Mail_From";
+            this.sendEmail_Stracony.Headers = null;
+            this.sendEmail_Stracony.IncludeStatus = false;
+            this.sendEmail_Stracony.Name = "sendEmail_Stracony";
+            activitybind48.Name = "Workflow1";
+            activitybind48.Path = "Mail_Subject";
+            activitybind49.Name = "Workflow1";
+            activitybind49.Path = "Mail_To";
+            this.sendEmail_Stracony.MethodInvoking += new System.EventHandler(this.sendEmail_Stracony_MethodInvoking);
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.ToProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind49)));
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.SubjectProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind48)));
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BodyProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind45)));
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BCCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind44)));
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.CCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind46)));
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.FromProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind47)));
+            // 
+            // logToHistoryListActivity59
+            // 
+            this.logToHistoryListActivity59.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity59.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind50.Name = "Workflow1";
+            activitybind50.Path = "logErrorMessage_HistoryDescription";
+            activitybind51.Name = "Workflow1";
+            activitybind51.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity59.Name = "logToHistoryListActivity59";
+            this.logToHistoryListActivity59.OtherData = "";
+            this.logToHistoryListActivity59.UserId = -1;
+            this.logToHistoryListActivity59.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind50)));
+            this.logToHistoryListActivity59.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind51)));
+            // 
+            // codeActivity2
+            // 
+            this.codeActivity2.Name = "codeActivity2";
+            this.codeActivity2.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity5
+            // 
+            this.setStateActivity5.Name = "setStateActivity5";
+            this.setStateActivity5.TargetStateName = "AkceptacjaOferty";
+            // 
+            // logToHistoryListActivity58
+            // 
+            this.logToHistoryListActivity58.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity58.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind52.Name = "Workflow1";
+            activitybind52.Path = "logErrorMessage_HistoryDescription";
+            activitybind53.Name = "Workflow1";
+            activitybind53.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity58.Name = "logToHistoryListActivity58";
+            this.logToHistoryListActivity58.OtherData = "";
+            this.logToHistoryListActivity58.UserId = -1;
+            this.logToHistoryListActivity58.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind52)));
+            this.logToHistoryListActivity58.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind53)));
+            // 
+            // codeActivity1
+            // 
+            this.codeActivity1.Name = "codeActivity1";
+            this.codeActivity1.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity10
+            // 
+            this.setStateActivity10.Name = "setStateActivity10";
+            this.setStateActivity10.TargetStateName = "Odrzucenie";
+            // 
+            // StatusTelefon_Stracony
+            // 
+            this.StatusTelefon_Stracony.Name = "StatusTelefon_Stracony";
+            this.StatusTelefon_Stracony.ExecuteCode += new System.EventHandler(this.StatusTelefon_Stracony_ExecuteCode);
+            // 
+            // logToHistoryListActivity34
+            // 
+            this.logToHistoryListActivity34.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity34.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity34.HistoryDescription = "Telemarketing_Odrzucenie";
+            this.logToHistoryListActivity34.HistoryOutcome = "";
+            this.logToHistoryListActivity34.Name = "logToHistoryListActivity34";
+            this.logToHistoryListActivity34.OtherData = "";
+            this.logToHistoryListActivity34.UserId = -1;
+            // 
+            // setStateActivity9
+            // 
+            this.setStateActivity9.Name = "setStateActivity9";
+            this.setStateActivity9.TargetStateName = "Oferta";
+            // 
+            // StatusTelefon_Oferta
+            // 
+            this.StatusTelefon_Oferta.Name = "StatusTelefon_Oferta";
+            this.StatusTelefon_Oferta.ExecuteCode += new System.EventHandler(this.StatusTelefon_Oferta_ExecuteCode);
+            // 
+            // logToHistoryListActivity33
+            // 
+            this.logToHistoryListActivity33.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity33.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity33.HistoryDescription = "Telemarketing_Oferta";
+            this.logToHistoryListActivity33.HistoryOutcome = "";
+            this.logToHistoryListActivity33.Name = "logToHistoryListActivity33";
+            this.logToHistoryListActivity33.OtherData = "";
+            this.logToHistoryListActivity33.UserId = -1;
+            // 
+            // logERROR_WefyfikacjaInit
+            // 
+            this.logERROR_WefyfikacjaInit.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logERROR_WefyfikacjaInit.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logERROR_WefyfikacjaInit.HistoryDescription = "WeryfikacjaInit";
+            this.logERROR_WefyfikacjaInit.HistoryOutcome = "ERR";
+            this.logERROR_WefyfikacjaInit.Name = "logERROR_WefyfikacjaInit";
+            this.logERROR_WefyfikacjaInit.OtherData = "";
+            this.logERROR_WefyfikacjaInit.UserId = -1;
+            // 
+            // logToHistoryListActivity57
+            // 
+            this.logToHistoryListActivity57.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity57.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind54.Name = "Workflow1";
+            activitybind54.Path = "logErrorMessage_HistoryDescription";
+            activitybind55.Name = "Workflow1";
+            activitybind55.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity57.Name = "logToHistoryListActivity57";
+            this.logToHistoryListActivity57.OtherData = "";
+            this.logToHistoryListActivity57.UserId = -1;
+            this.logToHistoryListActivity57.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind55)));
+            this.logToHistoryListActivity57.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind54)));
+            // 
+            // ErrorHandler_Weryfikacja
+            // 
+            this.ErrorHandler_Weryfikacja.Name = "ErrorHandler_Weryfikacja";
+            this.ErrorHandler_Weryfikacja.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // setStateActivity2
+            // 
+            this.setStateActivity2.Name = "setStateActivity2";
+            this.setStateActivity2.TargetStateName = "Odrzucenie";
+            // 
+            // StatusRozmowa_Stracony
+            // 
+            this.StatusRozmowa_Stracony.Name = "StatusRozmowa_Stracony";
+            this.StatusRozmowa_Stracony.ExecuteCode += new System.EventHandler(this.StatusRozmowa_Stracony_ExecuteCode);
+            // 
+            // logToHistoryListActivity31
+            // 
+            this.logToHistoryListActivity31.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity31.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity31.HistoryDescription = "Weryfikacja_Odrzucenie";
+            this.logToHistoryListActivity31.HistoryOutcome = "";
+            this.logToHistoryListActivity31.Name = "logToHistoryListActivity31";
+            this.logToHistoryListActivity31.OtherData = "";
+            this.logToHistoryListActivity31.UserId = -1;
+            // 
+            // setStateActivity4
+            // 
+            this.setStateActivity4.Name = "setStateActivity4";
+            this.setStateActivity4.TargetStateName = "Telemarketing";
+            // 
+            // StatusRozmowa_Telefon
+            // 
+            this.StatusRozmowa_Telefon.Name = "StatusRozmowa_Telefon";
+            this.StatusRozmowa_Telefon.ExecuteCode += new System.EventHandler(this.StatusRozmowa_Telefon_ExecuteCode);
+            // 
+            // logToHistoryListActivity30
+            // 
+            this.logToHistoryListActivity30.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity30.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity30.HistoryDescription = "Weryfikacja_Telemarketing";
+            this.logToHistoryListActivity30.HistoryOutcome = "";
+            this.logToHistoryListActivity30.Name = "logToHistoryListActivity30";
+            this.logToHistoryListActivity30.OtherData = "";
+            this.logToHistoryListActivity30.UserId = -1;
+            // 
+            // setStateActivity3
+            // 
+            this.setStateActivity3.Name = "setStateActivity3";
+            this.setStateActivity3.TargetStateName = "Oferta";
+            // 
+            // StatusRozmowa_Oferta
+            // 
+            this.StatusRozmowa_Oferta.Name = "StatusRozmowa_Oferta";
+            this.StatusRozmowa_Oferta.ExecuteCode += new System.EventHandler(this.StatusRozmowa_Oferta_ExecuteCode);
+            // 
+            // logToHistoryListActivity29
+            // 
+            this.logToHistoryListActivity29.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity29.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity29.HistoryDescription = "Weryfikacja_Oferta";
+            this.logToHistoryListActivity29.HistoryOutcome = "";
+            this.logToHistoryListActivity29.Name = "logToHistoryListActivity29";
+            this.logToHistoryListActivity29.OtherData = "";
+            this.logToHistoryListActivity29.UserId = -1;
+            // 
+            // logERROR_NavigatorInit
+            // 
+            this.logERROR_NavigatorInit.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logERROR_NavigatorInit.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logERROR_NavigatorInit.HistoryDescription = "NavigatorInit";
+            this.logERROR_NavigatorInit.HistoryOutcome = "ERR";
+            this.logERROR_NavigatorInit.Name = "logERROR_NavigatorInit";
+            this.logERROR_NavigatorInit.OtherData = "";
+            this.logERROR_NavigatorInit.UserId = -1;
+            // 
+            // Navigator_Routing
+            // 
+            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Telefon);
+            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Oferta);
+            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Wniosek);
+            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Umowa);
+            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Uruchomiony);
+            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Stracony);
+            this.Navigator_Routing.Activities.Add(this.faultHandlersActivity7);
+            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Rozliczenie);
+            this.Navigator_Routing.Activities.Add(this.Status_Lead_Else);
+            this.Navigator_Routing.Name = "Navigator_Routing";
+            // 
+            // E
+            // 
+            this.E.Activities.Add(this.ifWeryfikacja);
+            this.E.Activities.Add(this.ifTelemarketing);
+            this.E.Activities.Add(this.ifOferta);
+            this.E.Activities.Add(this.ifOdrzucenie);
+            this.E.Activities.Add(this.ifAkceptacjaOferty);
+            this.E.Activities.Add(this.ifKorektaOferty);
+            this.E.Activities.Add(this.ifWniosek);
+            this.E.Activities.Add(this.ifAkceptacjaWniosku);
+            this.E.Activities.Add(this.ifKorektaWniosku);
+            this.E.Activities.Add(this.ifUmowa);
+            this.E.Activities.Add(this.ifAkceptacjaUmowy);
+            this.E.Activities.Add(this.ifUruchomienie);
+            this.E.Activities.Add(this.ifDokumentacja);
+            this.E.Activities.Add(this.ifRozliczenie);
+            this.E.Activities.Add(this.Else2);
+            this.E.Name = "E";
+            // 
             // faultHandlerActivity2
             // 
             this.faultHandlerActivity2.Activities.Add(this.logToHistoryListActivity4);
             this.faultHandlerActivity2.FaultType = typeof(System.SystemException);
             this.faultHandlerActivity2.Name = "faultHandlerActivity2";
             // 
+            // faultHandlerActivity15
+            // 
+            this.faultHandlerActivity15.Activities.Add(this.codeActivity10);
+            this.faultHandlerActivity15.Activities.Add(this.logToHistoryListActivity67);
+            this.faultHandlerActivity15.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity15.Name = "faultHandlerActivity15";
+            // 
             // Dokumentacja_Rozliczenie
             // 
+            this.Dokumentacja_Rozliczenie.Activities.Add(this.logToHistoryListActivity54);
             this.Dokumentacja_Rozliczenie.Activities.Add(this.setStateActivity21);
-            codecondition5.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsDokumentacja_Rozliczenie);
-            this.Dokumentacja_Rozliczenie.Condition = codecondition5;
+            codecondition27.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsDokumentacja_Rozliczenie);
+            this.Dokumentacja_Rozliczenie.Condition = codecondition27;
             this.Dokumentacja_Rozliczenie.Name = "Dokumentacja_Rozliczenie";
+            // 
+            // faultHandlerActivity14
+            // 
+            this.faultHandlerActivity14.Activities.Add(this.codeActivity9);
+            this.faultHandlerActivity14.Activities.Add(this.logToHistoryListActivity66);
+            this.faultHandlerActivity14.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity14.Name = "faultHandlerActivity14";
             // 
             // Uruchomienie_Dokumentacja
             // 
+            this.Uruchomienie_Dokumentacja.Activities.Add(this.logToHistoryListActivity51);
             this.Uruchomienie_Dokumentacja.Activities.Add(this.ifElseActivity10);
             this.Uruchomienie_Dokumentacja.Activities.Add(this.setStateActivity22);
-            codecondition6.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsUruchomienie_Dokumentacja);
-            this.Uruchomienie_Dokumentacja.Condition = codecondition6;
+            codecondition28.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsUruchomienie_Dokumentacja);
+            this.Uruchomienie_Dokumentacja.Condition = codecondition28;
             this.Uruchomienie_Dokumentacja.Name = "Uruchomienie_Dokumentacja";
+            // 
+            // faultHandlerActivity13
+            // 
+            this.faultHandlerActivity13.Activities.Add(this.codeActivity8);
+            this.faultHandlerActivity13.Activities.Add(this.logToHistoryListActivity65);
+            this.faultHandlerActivity13.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity13.Name = "faultHandlerActivity13";
             // 
             // AkceptacjaUmowy_Telemarketing
             // 
+            this.AkceptacjaUmowy_Telemarketing.Activities.Add(this.logToHistoryListActivity49);
             this.AkceptacjaUmowy_Telemarketing.Activities.Add(this.Komunikat_UmowaNiezaakceptowana);
             this.AkceptacjaUmowy_Telemarketing.Activities.Add(this.StatusUmowa_Telefon);
             this.AkceptacjaUmowy_Telemarketing.Activities.Add(this.setStateActivity18);
-            codecondition7.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaUmowy_Telemarketing);
-            this.AkceptacjaUmowy_Telemarketing.Condition = codecondition7;
+            codecondition29.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaUmowy_Telemarketing);
+            this.AkceptacjaUmowy_Telemarketing.Condition = codecondition29;
             this.AkceptacjaUmowy_Telemarketing.Name = "AkceptacjaUmowy_Telemarketing";
             // 
             // AkceptacjaUmowy_Odrzucenie
             // 
+            this.AkceptacjaUmowy_Odrzucenie.Activities.Add(this.logToHistoryListActivity48);
             this.AkceptacjaUmowy_Odrzucenie.Activities.Add(this.Komunikat_UmowaStracona);
             this.AkceptacjaUmowy_Odrzucenie.Activities.Add(this.StatusUmowa_Stracony);
             this.AkceptacjaUmowy_Odrzucenie.Activities.Add(this.setStateActivity24);
-            codecondition8.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaUmowy_Odrzucenie);
-            this.AkceptacjaUmowy_Odrzucenie.Condition = codecondition8;
+            codecondition30.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaUmowy_Odrzucenie);
+            this.AkceptacjaUmowy_Odrzucenie.Condition = codecondition30;
             this.AkceptacjaUmowy_Odrzucenie.Name = "AkceptacjaUmowy_Odrzucenie";
             // 
             // AkceptacjaUmowy_Uruchomienie
             // 
+            this.AkceptacjaUmowy_Uruchomienie.Activities.Add(this.logToHistoryListActivity47);
             this.AkceptacjaUmowy_Uruchomienie.Activities.Add(this.Komunikat_UmowaUruchomiona);
             this.AkceptacjaUmowy_Uruchomienie.Activities.Add(this.ifElseActivity4);
             this.AkceptacjaUmowy_Uruchomienie.Activities.Add(this.StatusUmowa_Uruchomienie);
             this.AkceptacjaUmowy_Uruchomienie.Activities.Add(this.setStateActivity20);
-            codecondition9.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaUmowy_Uruchomienie);
-            this.AkceptacjaUmowy_Uruchomienie.Condition = codecondition9;
+            codecondition31.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaUmowy_Uruchomienie);
+            this.AkceptacjaUmowy_Uruchomienie.Condition = codecondition31;
             this.AkceptacjaUmowy_Uruchomienie.Name = "AkceptacjaUmowy_Uruchomienie";
+            // 
+            // faultHandlerActivity12
+            // 
+            this.faultHandlerActivity12.Activities.Add(this.codeActivity7);
+            this.faultHandlerActivity12.Activities.Add(this.logToHistoryListActivity64);
+            this.faultHandlerActivity12.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity12.Name = "faultHandlerActivity12";
             // 
             // Umowa_AkceptacjaUmowy
             // 
+            this.Umowa_AkceptacjaUmowy.Activities.Add(this.logToHistoryListActivity45);
             this.Umowa_AkceptacjaUmowy.Activities.Add(this.setStateActivity19);
-            codecondition10.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsUmowa_AkceptacjaUmowy);
-            this.Umowa_AkceptacjaUmowy.Condition = codecondition10;
+            codecondition32.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsUmowa_AkceptacjaUmowy);
+            this.Umowa_AkceptacjaUmowy.Condition = codecondition32;
             this.Umowa_AkceptacjaUmowy.Name = "Umowa_AkceptacjaUmowy";
+            // 
+            // faultHandlerActivity11
+            // 
+            this.faultHandlerActivity11.Activities.Add(this.codeActivity6);
+            this.faultHandlerActivity11.Activities.Add(this.logToHistoryListActivity63);
+            this.faultHandlerActivity11.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity11.Name = "faultHandlerActivity11";
             // 
             // KorektaWniosku_AkceptacjaWniosku
             // 
+            this.KorektaWniosku_AkceptacjaWniosku.Activities.Add(this.logToHistoryListActivity43);
             this.KorektaWniosku_AkceptacjaWniosku.Activities.Add(this.setStateActivity17);
-            codecondition11.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsWniosek_AkceptacjaWniosku);
-            this.KorektaWniosku_AkceptacjaWniosku.Condition = codecondition11;
+            codecondition33.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsWniosek_AkceptacjaWniosku);
+            this.KorektaWniosku_AkceptacjaWniosku.Condition = codecondition33;
             this.KorektaWniosku_AkceptacjaWniosku.Name = "KorektaWniosku_AkceptacjaWniosku";
+            // 
+            // faultHandlerActivity10
+            // 
+            this.faultHandlerActivity10.Activities.Add(this.codeActivity5);
+            this.faultHandlerActivity10.Activities.Add(this.logToHistoryListActivity62);
+            this.faultHandlerActivity10.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity10.Name = "faultHandlerActivity10";
             // 
             // AkceptacjaWniosku_Odrzucenie
             // 
+            this.AkceptacjaWniosku_Odrzucenie.Activities.Add(this.logToHistoryListActivity41);
             this.AkceptacjaWniosku_Odrzucenie.Activities.Add(this.Komunikat_WniosekOdrzucony);
             this.AkceptacjaWniosku_Odrzucenie.Activities.Add(this.StatusWniosek_Stracony);
             this.AkceptacjaWniosku_Odrzucenie.Activities.Add(this.setStateActivity16);
-            codecondition12.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaWniosku_Odrzucenie);
-            this.AkceptacjaWniosku_Odrzucenie.Condition = codecondition12;
+            codecondition34.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaWniosku_Odrzucenie);
+            this.AkceptacjaWniosku_Odrzucenie.Condition = codecondition34;
             this.AkceptacjaWniosku_Odrzucenie.Name = "AkceptacjaWniosku_Odrzucenie";
             // 
             // AkceptacjaWniosku_KorektaWniosku
             // 
+            this.AkceptacjaWniosku_KorektaWniosku.Activities.Add(this.logToHistoryListActivity40);
             this.AkceptacjaWniosku_KorektaWniosku.Activities.Add(this.setStateActivity15);
-            codecondition13.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaWniosku_KorektaWniosku);
-            this.AkceptacjaWniosku_KorektaWniosku.Condition = codecondition13;
+            codecondition35.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaWniosku_KorektaWniosku);
+            this.AkceptacjaWniosku_KorektaWniosku.Condition = codecondition35;
             this.AkceptacjaWniosku_KorektaWniosku.Name = "AkceptacjaWniosku_KorektaWniosku";
             // 
             // AkceptacjaWniosku_Umowa
             // 
+            this.AkceptacjaWniosku_Umowa.Activities.Add(this.logToHistoryListActivity39);
             this.AkceptacjaWniosku_Umowa.Activities.Add(this.Komunikat_AkceptacjaWniosku);
             this.AkceptacjaWniosku_Umowa.Activities.Add(this.ifElseActivity3);
             this.AkceptacjaWniosku_Umowa.Activities.Add(this.StatusWniosek_Umowa);
             this.AkceptacjaWniosku_Umowa.Activities.Add(this.setStateActivity14);
-            codecondition14.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaWniosku_Umowa);
-            this.AkceptacjaWniosku_Umowa.Condition = codecondition14;
+            codecondition36.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaWniosku_Umowa);
+            this.AkceptacjaWniosku_Umowa.Condition = codecondition36;
             this.AkceptacjaWniosku_Umowa.Name = "AkceptacjaWniosku_Umowa";
+            // 
+            // faultHandlerActivity9
+            // 
+            this.faultHandlerActivity9.Activities.Add(this.codeActivity4);
+            this.faultHandlerActivity9.Activities.Add(this.logToHistoryListActivity61);
+            this.faultHandlerActivity9.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity9.Name = "faultHandlerActivity9";
             // 
             // Wniosek_AkceptacjaWniosku
             // 
+            this.Wniosek_AkceptacjaWniosku.Activities.Add(this.logToHistoryListActivity27);
             this.Wniosek_AkceptacjaWniosku.Activities.Add(this.setStateActivity13);
-            codecondition15.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsWniosek_AkceptacjaWniosku);
-            this.Wniosek_AkceptacjaWniosku.Condition = codecondition15;
+            codecondition37.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsWniosek_AkceptacjaWniosku);
+            this.Wniosek_AkceptacjaWniosku.Condition = codecondition37;
             this.Wniosek_AkceptacjaWniosku.Name = "Wniosek_AkceptacjaWniosku";
+            // 
+            // faultHandlerActivity8
+            // 
+            this.faultHandlerActivity8.Activities.Add(this.codeActivity3);
+            this.faultHandlerActivity8.Activities.Add(this.logToHistoryListActivity60);
+            this.faultHandlerActivity8.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity8.Name = "faultHandlerActivity8";
             // 
             // KorektaOferty_AkceptacjaOferty
             // 
+            this.KorektaOferty_AkceptacjaOferty.Activities.Add(this.logToHistoryListActivity37);
             this.KorektaOferty_AkceptacjaOferty.Activities.Add(this.setStateActivity8);
-            codecondition16.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsOferta_AkceptacjaOferty);
-            this.KorektaOferty_AkceptacjaOferty.Condition = codecondition16;
+            codecondition38.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsOferta_AkceptacjaOferty);
+            this.KorektaOferty_AkceptacjaOferty.Condition = codecondition38;
             this.KorektaOferty_AkceptacjaOferty.Name = "KorektaOferty_AkceptacjaOferty";
+            // 
+            // faultHandlerActivity1
+            // 
+            this.faultHandlerActivity1.Activities.Add(this.ErrorHandler);
+            this.faultHandlerActivity1.Activities.Add(this.logErrorMessage);
+            this.faultHandlerActivity1.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity1.Name = "faultHandlerActivity1";
             // 
             // AkceptacjaOferty_Telemarketing1
             // 
+            this.AkceptacjaOferty_Telemarketing1.Activities.Add(this.logToHistoryListActivity24);
             this.AkceptacjaOferty_Telemarketing1.Activities.Add(this.StatusOferta_Telefon);
             this.AkceptacjaOferty_Telemarketing1.Activities.Add(this.setStateActivity7);
-            codecondition17.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaOferty_Telemarketing);
-            this.AkceptacjaOferty_Telemarketing1.Condition = codecondition17;
+            codecondition39.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaOferty_Telemarketing);
+            this.AkceptacjaOferty_Telemarketing1.Condition = codecondition39;
             this.AkceptacjaOferty_Telemarketing1.Name = "AkceptacjaOferty_Telemarketing1";
             // 
             // AkceptacjaOferty_KorektaOferty
             // 
+            this.AkceptacjaOferty_KorektaOferty.Activities.Add(this.logToHistoryListActivity23);
             this.AkceptacjaOferty_KorektaOferty.Activities.Add(this.setStateActivity6);
-            codecondition18.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaOferty_KorektaOferty);
-            this.AkceptacjaOferty_KorektaOferty.Condition = codecondition18;
+            codecondition40.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaOferty_KorektaOferty);
+            this.AkceptacjaOferty_KorektaOferty.Condition = codecondition40;
             this.AkceptacjaOferty_KorektaOferty.Name = "AkceptacjaOferty_KorektaOferty";
             // 
             // AkceptacjaOferty_Odrzucenie
             // 
+            this.AkceptacjaOferty_Odrzucenie.Activities.Add(this.logToHistoryListActivity22);
             this.AkceptacjaOferty_Odrzucenie.Activities.Add(this.Komunikat_OfertaNiezaakceptowana);
             this.AkceptacjaOferty_Odrzucenie.Activities.Add(this.StatusOferta_Stracony);
             this.AkceptacjaOferty_Odrzucenie.Activities.Add(this.setStateActivity12);
-            codecondition19.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaOferty_Odrzucenie);
-            this.AkceptacjaOferty_Odrzucenie.Condition = codecondition19;
+            codecondition41.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaOferty_Odrzucenie);
+            this.AkceptacjaOferty_Odrzucenie.Condition = codecondition41;
             this.AkceptacjaOferty_Odrzucenie.Name = "AkceptacjaOferty_Odrzucenie";
             // 
             // AkceptacjaOferty_Wniosek
             // 
+            this.AkceptacjaOferty_Wniosek.Activities.Add(this.logToHistoryListActivity21);
             this.AkceptacjaOferty_Wniosek.Activities.Add(this.Komunikat_AkceptacjaOferty);
             this.AkceptacjaOferty_Wniosek.Activities.Add(this.ifElseActivity2);
             this.AkceptacjaOferty_Wniosek.Activities.Add(this.StatusOferta_Wniosek);
             this.AkceptacjaOferty_Wniosek.Activities.Add(this.setStateActivity11);
-            codecondition20.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaOferty_Wniosek);
-            this.AkceptacjaOferty_Wniosek.Condition = codecondition20;
+            codecondition42.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsAkceptacjaOferty_Wniosek);
+            this.AkceptacjaOferty_Wniosek.Condition = codecondition42;
             this.AkceptacjaOferty_Wniosek.Name = "AkceptacjaOferty_Wniosek";
             // 
             // Odrzucenie_MailSendAllowed
             // 
             this.Odrzucenie_MailSendAllowed.Activities.Add(this.sendEmail_Stracony);
             this.Odrzucenie_MailSendAllowed.Activities.Add(this.logToHistoryListActivity17);
-            codecondition21.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsOdrzucenie_MailSendAllowed);
-            this.Odrzucenie_MailSendAllowed.Condition = codecondition21;
+            codecondition43.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsOdrzucenie_MailSendAllowed);
+            this.Odrzucenie_MailSendAllowed.Condition = codecondition43;
             this.Odrzucenie_MailSendAllowed.Name = "Odrzucenie_MailSendAllowed";
+            // 
+            // faultHandlerActivity7
+            // 
+            this.faultHandlerActivity7.Activities.Add(this.codeActivity2);
+            this.faultHandlerActivity7.Activities.Add(this.logToHistoryListActivity59);
+            this.faultHandlerActivity7.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity7.Name = "faultHandlerActivity7";
             // 
             // Oferta_AkceptacjaOferty
             // 
             this.Oferta_AkceptacjaOferty.Activities.Add(this.setStateActivity5);
-            codecondition22.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsOferta_AkceptacjaOferty);
-            this.Oferta_AkceptacjaOferty.Condition = codecondition22;
+            codecondition44.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsOferta_AkceptacjaOferty);
+            this.Oferta_AkceptacjaOferty.Condition = codecondition44;
             this.Oferta_AkceptacjaOferty.Name = "Oferta_AkceptacjaOferty";
+            // 
+            // faultHandlerActivity6
+            // 
+            this.faultHandlerActivity6.Activities.Add(this.codeActivity1);
+            this.faultHandlerActivity6.Activities.Add(this.logToHistoryListActivity58);
+            this.faultHandlerActivity6.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity6.Name = "faultHandlerActivity6";
             // 
             // Telemarketing_Odrzucenie
             // 
+            this.Telemarketing_Odrzucenie.Activities.Add(this.logToHistoryListActivity34);
             this.Telemarketing_Odrzucenie.Activities.Add(this.StatusTelefon_Stracony);
             this.Telemarketing_Odrzucenie.Activities.Add(this.setStateActivity10);
-            codecondition23.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsTelemarketing_Odrzucenie);
-            this.Telemarketing_Odrzucenie.Condition = codecondition23;
+            codecondition45.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsTelemarketing_Odrzucenie);
+            this.Telemarketing_Odrzucenie.Condition = codecondition45;
             this.Telemarketing_Odrzucenie.Name = "Telemarketing_Odrzucenie";
             // 
             // Telemarketing_Oferta
             // 
+            this.Telemarketing_Oferta.Activities.Add(this.logToHistoryListActivity33);
             this.Telemarketing_Oferta.Activities.Add(this.StatusTelefon_Oferta);
             this.Telemarketing_Oferta.Activities.Add(this.setStateActivity9);
-            codecondition24.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsTelemarketing_Oferta);
-            this.Telemarketing_Oferta.Condition = codecondition24;
+            codecondition46.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsTelemarketing_Oferta);
+            this.Telemarketing_Oferta.Condition = codecondition46;
             this.Telemarketing_Oferta.Name = "Telemarketing_Oferta";
             // 
             // faultHandlerActivity4
@@ -1091,8 +2087,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // faultHandlerActivity5
             // 
-            this.faultHandlerActivity5.Activities.Add(this.logERROR_WefyfikacjaEvent);
-            this.faultHandlerActivity5.Enabled = false;
+            this.faultHandlerActivity5.Activities.Add(this.ErrorHandler_Weryfikacja);
+            this.faultHandlerActivity5.Activities.Add(this.logToHistoryListActivity57);
             this.faultHandlerActivity5.FaultType = typeof(System.SystemException);
             this.faultHandlerActivity5.Name = "faultHandlerActivity5";
             // 
@@ -1102,26 +2098,29 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // Weryfikacja_Odrzucenie
             // 
+            this.Weryfikacja_Odrzucenie.Activities.Add(this.logToHistoryListActivity31);
             this.Weryfikacja_Odrzucenie.Activities.Add(this.StatusRozmowa_Stracony);
             this.Weryfikacja_Odrzucenie.Activities.Add(this.setStateActivity2);
-            codecondition25.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsWeryfikacja_Odrzucenie);
-            this.Weryfikacja_Odrzucenie.Condition = codecondition25;
+            codecondition47.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsWeryfikacja_Odrzucenie);
+            this.Weryfikacja_Odrzucenie.Condition = codecondition47;
             this.Weryfikacja_Odrzucenie.Name = "Weryfikacja_Odrzucenie";
             // 
             // Weryfikacja_Telemarketing
             // 
+            this.Weryfikacja_Telemarketing.Activities.Add(this.logToHistoryListActivity30);
             this.Weryfikacja_Telemarketing.Activities.Add(this.StatusRozmowa_Telefon);
             this.Weryfikacja_Telemarketing.Activities.Add(this.setStateActivity4);
-            codecondition26.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsWeryfikacja_Telemarketing);
-            this.Weryfikacja_Telemarketing.Condition = codecondition26;
+            codecondition48.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsWeryfikacja_Telemarketing);
+            this.Weryfikacja_Telemarketing.Condition = codecondition48;
             this.Weryfikacja_Telemarketing.Name = "Weryfikacja_Telemarketing";
             // 
             // Weryfikacja_Oferta
             // 
+            this.Weryfikacja_Oferta.Activities.Add(this.logToHistoryListActivity29);
             this.Weryfikacja_Oferta.Activities.Add(this.StatusRozmowa_Oferta);
             this.Weryfikacja_Oferta.Activities.Add(this.setStateActivity3);
-            codecondition27.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsWeryfikacja_Oferta);
-            this.Weryfikacja_Oferta.Condition = codecondition27;
+            codecondition49.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsWeryfikacja_Oferta);
+            this.Weryfikacja_Oferta.Condition = codecondition49;
             this.Weryfikacja_Oferta.Name = "Weryfikacja_Oferta";
             // 
             // faultHandlerActivity3
@@ -1131,65 +2130,17 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.faultHandlerActivity3.FaultType = typeof(System.SystemException);
             this.faultHandlerActivity3.Name = "faultHandlerActivity3";
             // 
-            // Status_Lead_Else
+            // Else
             // 
-            this.Status_Lead_Else.Activities.Add(this.setStateActivity27);
-            codecondition28.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_ElseIf);
-            this.Status_Lead_Else.Condition = codecondition28;
-            this.Status_Lead_Else.Name = "Status_Lead_Else";
+            this.Else.Activities.Add(this.Navigator_Routing);
+            this.Else.Name = "Else";
             // 
-            // StatusLeadu_Rozliczenie
+            // ifEtapNotNull
             // 
-            this.StatusLeadu_Rozliczenie.Activities.Add(this.setStateActivity23);
-            codecondition29.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Rozliczenie);
-            this.StatusLeadu_Rozliczenie.Condition = codecondition29;
-            this.StatusLeadu_Rozliczenie.Name = "StatusLeadu_Rozliczenie";
-            // 
-            // faultHandlersActivity7
-            // 
-            this.faultHandlersActivity7.Name = "faultHandlersActivity7";
-            // 
-            // StatusLeadu_Stracony
-            // 
-            this.StatusLeadu_Stracony.Activities.Add(this.Navigator_Stracony);
-            codecondition30.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Stracony);
-            this.StatusLeadu_Stracony.Condition = codecondition30;
-            this.StatusLeadu_Stracony.Name = "StatusLeadu_Stracony";
-            // 
-            // StatusLeadu_Uruchomiony
-            // 
-            this.StatusLeadu_Uruchomiony.Activities.Add(this.Navigator_Uruchomienie);
-            codecondition31.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Uruchomiony);
-            this.StatusLeadu_Uruchomiony.Condition = codecondition31;
-            this.StatusLeadu_Uruchomiony.Name = "StatusLeadu_Uruchomiony";
-            // 
-            // StatusLeadu_Umowa
-            // 
-            this.StatusLeadu_Umowa.Activities.Add(this.Navigator_Umowa);
-            codecondition32.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Umowa);
-            this.StatusLeadu_Umowa.Condition = codecondition32;
-            this.StatusLeadu_Umowa.Name = "StatusLeadu_Umowa";
-            // 
-            // StatusLeadu_Wniosek
-            // 
-            this.StatusLeadu_Wniosek.Activities.Add(this.Navigator_Wniosek);
-            codecondition33.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Wniosek);
-            this.StatusLeadu_Wniosek.Condition = codecondition33;
-            this.StatusLeadu_Wniosek.Name = "StatusLeadu_Wniosek";
-            // 
-            // StatusLeadu_Oferta
-            // 
-            this.StatusLeadu_Oferta.Activities.Add(this.Navigator_Oferta);
-            codecondition34.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Oferta);
-            this.StatusLeadu_Oferta.Condition = codecondition34;
-            this.StatusLeadu_Oferta.Name = "StatusLeadu_Oferta";
-            // 
-            // StatusLeadu_Telefon
-            // 
-            this.StatusLeadu_Telefon.Activities.Add(this.Navigator_Telemarketing);
-            codecondition35.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsStatusLeadu_Telefon);
-            this.StatusLeadu_Telefon.Condition = codecondition35;
-            this.StatusLeadu_Telefon.Name = "StatusLeadu_Telefon";
+            this.ifEtapNotNull.Activities.Add(this.E);
+            codecondition50.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.isEtapNotNull);
+            this.ifEtapNotNull.Condition = codecondition50;
+            this.ifEtapNotNull.Name = "ifEtapNotNull";
             // 
             // faultHandlersActivity2
             // 
@@ -1206,13 +2157,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity3.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity3.Enabled = false;
             this.logToHistoryListActivity3.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind31.Name = "Workflow1";
-            activitybind31.Path = "logRozliczenie_DodajDoRozliczen";
+            activitybind56.Name = "Workflow1";
+            activitybind56.Path = "logRozliczenie_DodajDoRozliczen";
             this.logToHistoryListActivity3.HistoryOutcome = "";
             this.logToHistoryListActivity3.Name = "logToHistoryListActivity3";
             this.logToHistoryListActivity3.OtherData = "";
             this.logToHistoryListActivity3.UserId = -1;
-            this.logToHistoryListActivity3.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind31)));
+            this.logToHistoryListActivity3.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind56)));
             // 
             // nRozliczenie_DodajDoRozliczen
             // 
@@ -1242,10 +2193,25 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity11.OtherData = "";
             this.logToHistoryListActivity11.UserId = -1;
             // 
+            // faultHandlersActivity18
+            // 
+            this.faultHandlersActivity18.Activities.Add(this.faultHandlerActivity15);
+            this.faultHandlersActivity18.Name = "faultHandlersActivity18";
+            // 
             // ifElseActivity11
             // 
             this.ifElseActivity11.Activities.Add(this.Dokumentacja_Rozliczenie);
             this.ifElseActivity11.Name = "ifElseActivity11";
+            // 
+            // logToHistoryListActivity53
+            // 
+            this.logToHistoryListActivity53.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity53.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity53.HistoryDescription = "Dokumentacja_OnChange";
+            this.logToHistoryListActivity53.HistoryOutcome = "";
+            this.logToHistoryListActivity53.Name = "logToHistoryListActivity53";
+            this.logToHistoryListActivity53.OtherData = "";
+            this.logToHistoryListActivity53.UserId = -1;
             // 
             // onWorkflowItemChanged11
             // 
@@ -1284,10 +2250,25 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.SetCT_Dokumentacja.Name = "SetCT_Dokumentacja";
             this.SetCT_Dokumentacja.ExecuteCode += new System.EventHandler(this.SetCT_Dokumentacja_ExecuteCode);
             // 
+            // faultHandlersActivity17
+            // 
+            this.faultHandlersActivity17.Activities.Add(this.faultHandlerActivity14);
+            this.faultHandlersActivity17.Name = "faultHandlersActivity17";
+            // 
             // ifElseActivity123
             // 
             this.ifElseActivity123.Activities.Add(this.Uruchomienie_Dokumentacja);
             this.ifElseActivity123.Name = "ifElseActivity123";
+            // 
+            // logToHistoryListActivity50
+            // 
+            this.logToHistoryListActivity50.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity50.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity50.HistoryDescription = "Uruchomienie_OnChange";
+            this.logToHistoryListActivity50.HistoryOutcome = "";
+            this.logToHistoryListActivity50.Name = "logToHistoryListActivity50";
+            this.logToHistoryListActivity50.OtherData = "";
+            this.logToHistoryListActivity50.UserId = -1;
             // 
             // onWorkflowItemChanged12
             // 
@@ -1326,12 +2307,27 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.SetCT_Uruchomienie.Name = "SetCT_Uruchomienie";
             this.SetCT_Uruchomienie.ExecuteCode += new System.EventHandler(this.SetCT_Uruchomienie_ExecuteCode);
             // 
+            // faultHandlersActivity16
+            // 
+            this.faultHandlersActivity16.Activities.Add(this.faultHandlerActivity13);
+            this.faultHandlersActivity16.Name = "faultHandlersActivity16";
+            // 
             // TestAkceptacjaUmowy
             // 
             this.TestAkceptacjaUmowy.Activities.Add(this.AkceptacjaUmowy_Uruchomienie);
             this.TestAkceptacjaUmowy.Activities.Add(this.AkceptacjaUmowy_Odrzucenie);
             this.TestAkceptacjaUmowy.Activities.Add(this.AkceptacjaUmowy_Telemarketing);
             this.TestAkceptacjaUmowy.Name = "TestAkceptacjaUmowy";
+            // 
+            // logToHistoryListActivity46
+            // 
+            this.logToHistoryListActivity46.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity46.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity46.HistoryDescription = "AkceptacjaUmowy_OnChange";
+            this.logToHistoryListActivity46.HistoryOutcome = "";
+            this.logToHistoryListActivity46.Name = "logToHistoryListActivity46";
+            this.logToHistoryListActivity46.OtherData = "";
+            this.logToHistoryListActivity46.UserId = -1;
             // 
             // onWorkflowItemChanged10
             // 
@@ -1370,10 +2366,25 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.SetCT_AkceptacjaUmowy.Name = "SetCT_AkceptacjaUmowy";
             this.SetCT_AkceptacjaUmowy.ExecuteCode += new System.EventHandler(this.SetCT_AkceptacjaUmowy_ExecuteCode);
             // 
+            // faultHandlersActivity15
+            // 
+            this.faultHandlersActivity15.Activities.Add(this.faultHandlerActivity12);
+            this.faultHandlersActivity15.Name = "faultHandlersActivity15";
+            // 
             // ifElseActivity9
             // 
             this.ifElseActivity9.Activities.Add(this.Umowa_AkceptacjaUmowy);
             this.ifElseActivity9.Name = "ifElseActivity9";
+            // 
+            // logToHistoryListActivity44
+            // 
+            this.logToHistoryListActivity44.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity44.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity44.HistoryDescription = "Umowa_OnChange";
+            this.logToHistoryListActivity44.HistoryOutcome = "";
+            this.logToHistoryListActivity44.Name = "logToHistoryListActivity44";
+            this.logToHistoryListActivity44.OtherData = "";
+            this.logToHistoryListActivity44.UserId = -1;
             // 
             // onWorkflowItemChanged9
             // 
@@ -1412,10 +2423,25 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.SetCT_Umowa.Name = "SetCT_Umowa";
             this.SetCT_Umowa.ExecuteCode += new System.EventHandler(this.SetCT_Umowa_ExecuteCode);
             // 
+            // faultHandlersActivity14
+            // 
+            this.faultHandlersActivity14.Activities.Add(this.faultHandlerActivity11);
+            this.faultHandlersActivity14.Name = "faultHandlersActivity14";
+            // 
             // ifElseActivity8
             // 
             this.ifElseActivity8.Activities.Add(this.KorektaWniosku_AkceptacjaWniosku);
             this.ifElseActivity8.Name = "ifElseActivity8";
+            // 
+            // logToHistoryListActivity42
+            // 
+            this.logToHistoryListActivity42.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity42.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity42.HistoryDescription = "KorektaWniosku_OnChange";
+            this.logToHistoryListActivity42.HistoryOutcome = "";
+            this.logToHistoryListActivity42.Name = "logToHistoryListActivity42";
+            this.logToHistoryListActivity42.OtherData = "";
+            this.logToHistoryListActivity42.UserId = -1;
             // 
             // onWorkflowItemChanged8
             // 
@@ -1454,12 +2480,27 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.SetCT_Wniosek1.Name = "SetCT_Wniosek1";
             this.SetCT_Wniosek1.ExecuteCode += new System.EventHandler(this.SetCT_Wniosek_ExecuteCode);
             // 
+            // faultHandlersActivity13
+            // 
+            this.faultHandlersActivity13.Activities.Add(this.faultHandlerActivity10);
+            this.faultHandlersActivity13.Name = "faultHandlersActivity13";
+            // 
             // ifElseActivity7
             // 
             this.ifElseActivity7.Activities.Add(this.AkceptacjaWniosku_Umowa);
             this.ifElseActivity7.Activities.Add(this.AkceptacjaWniosku_KorektaWniosku);
             this.ifElseActivity7.Activities.Add(this.AkceptacjaWniosku_Odrzucenie);
             this.ifElseActivity7.Name = "ifElseActivity7";
+            // 
+            // logToHistoryListActivity38
+            // 
+            this.logToHistoryListActivity38.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity38.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity38.HistoryDescription = "AkceptacjaWniosku_OnChange";
+            this.logToHistoryListActivity38.HistoryOutcome = "";
+            this.logToHistoryListActivity38.Name = "logToHistoryListActivity38";
+            this.logToHistoryListActivity38.OtherData = "";
+            this.logToHistoryListActivity38.UserId = -1;
             // 
             // onWorkflowItemChanged7
             // 
@@ -1498,10 +2539,25 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.SetCT_AkceptacjaWniosku.Name = "SetCT_AkceptacjaWniosku";
             this.SetCT_AkceptacjaWniosku.ExecuteCode += new System.EventHandler(this.SetCT_AkceptacjaWniosku_ExecuteCode);
             // 
+            // faultHandlersActivity12
+            // 
+            this.faultHandlersActivity12.Activities.Add(this.faultHandlerActivity9);
+            this.faultHandlersActivity12.Name = "faultHandlersActivity12";
+            // 
             // ifElseActivity6
             // 
             this.ifElseActivity6.Activities.Add(this.Wniosek_AkceptacjaWniosku);
             this.ifElseActivity6.Name = "ifElseActivity6";
+            // 
+            // logToHistoryListActivity26
+            // 
+            this.logToHistoryListActivity26.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity26.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity26.HistoryDescription = "Wniosek_OnChange";
+            this.logToHistoryListActivity26.HistoryOutcome = "";
+            this.logToHistoryListActivity26.Name = "logToHistoryListActivity26";
+            this.logToHistoryListActivity26.OtherData = "";
+            this.logToHistoryListActivity26.UserId = -1;
             // 
             // onWorkflowItemChanged6
             // 
@@ -1545,10 +2601,25 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.SetCT_Wniosek.Name = "SetCT_Wniosek";
             this.SetCT_Wniosek.ExecuteCode += new System.EventHandler(this.SetCT_Wniosek_ExecuteCode);
             // 
+            // faultHandlersActivity11
+            // 
+            this.faultHandlersActivity11.Activities.Add(this.faultHandlerActivity8);
+            this.faultHandlersActivity11.Name = "faultHandlersActivity11";
+            // 
             // ifElseActivity5
             // 
             this.ifElseActivity5.Activities.Add(this.KorektaOferty_AkceptacjaOferty);
             this.ifElseActivity5.Name = "ifElseActivity5";
+            // 
+            // logToHistoryListActivity36
+            // 
+            this.logToHistoryListActivity36.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity36.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity36.HistoryDescription = "KorektaOferty_OnChange";
+            this.logToHistoryListActivity36.HistoryOutcome = "";
+            this.logToHistoryListActivity36.Name = "logToHistoryListActivity36";
+            this.logToHistoryListActivity36.OtherData = "";
+            this.logToHistoryListActivity36.UserId = -1;
             // 
             // onWorkflowItemChanged5
             // 
@@ -1587,6 +2658,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.SetCT_Oferta1.Name = "SetCT_Oferta1";
             this.SetCT_Oferta1.ExecuteCode += new System.EventHandler(this.SetCT_Oferta_ExecuteCode);
             // 
+            // faultHandlersActivity8
+            // 
+            this.faultHandlersActivity8.Activities.Add(this.faultHandlerActivity1);
+            this.faultHandlersActivity8.Name = "faultHandlersActivity8";
+            // 
             // AkceptacjaOferty_Telemarketing
             // 
             this.AkceptacjaOferty_Telemarketing.Activities.Add(this.AkceptacjaOferty_Wniosek);
@@ -1594,6 +2670,16 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.AkceptacjaOferty_Telemarketing.Activities.Add(this.AkceptacjaOferty_KorektaOferty);
             this.AkceptacjaOferty_Telemarketing.Activities.Add(this.AkceptacjaOferty_Telemarketing1);
             this.AkceptacjaOferty_Telemarketing.Name = "AkceptacjaOferty_Telemarketing";
+            // 
+            // logToHistoryListActivity25
+            // 
+            this.logToHistoryListActivity25.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity25.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity25.HistoryDescription = "AkceptacjaOferty_OnChange";
+            this.logToHistoryListActivity25.HistoryOutcome = "";
+            this.logToHistoryListActivity25.Name = "logToHistoryListActivity25";
+            this.logToHistoryListActivity25.OtherData = "";
+            this.logToHistoryListActivity25.UserId = -1;
             // 
             // onWorkflowItemChanged4
             // 
@@ -1663,10 +2749,25 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.setState_Odrzucony.Name = "setState_Odrzucony";
             this.setState_Odrzucony.State = 16;
             // 
+            // faultHandlersActivity10
+            // 
+            this.faultHandlersActivity10.Activities.Add(this.faultHandlerActivity7);
+            this.faultHandlersActivity10.Name = "faultHandlersActivity10";
+            // 
             // Oferta_Routing
             // 
             this.Oferta_Routing.Activities.Add(this.Oferta_AkceptacjaOferty);
             this.Oferta_Routing.Name = "Oferta_Routing";
+            // 
+            // logToHistoryListActivity35
+            // 
+            this.logToHistoryListActivity35.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity35.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity35.HistoryDescription = "Oferta_OnChange";
+            this.logToHistoryListActivity35.HistoryOutcome = "";
+            this.logToHistoryListActivity35.Name = "logToHistoryListActivity35";
+            this.logToHistoryListActivity35.OtherData = "";
+            this.logToHistoryListActivity35.UserId = -1;
             // 
             // onWorkflowItemChanged2
             // 
@@ -1705,11 +2806,26 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.SetCT_Oferta.Name = "SetCT_Oferta";
             this.SetCT_Oferta.ExecuteCode += new System.EventHandler(this.SetCT_Oferta_ExecuteCode);
             // 
+            // faultHandlersActivity9
+            // 
+            this.faultHandlersActivity9.Activities.Add(this.faultHandlerActivity6);
+            this.faultHandlersActivity9.Name = "faultHandlersActivity9";
+            // 
             // Telemarketing_Routing
             // 
             this.Telemarketing_Routing.Activities.Add(this.Telemarketing_Oferta);
             this.Telemarketing_Routing.Activities.Add(this.Telemarketing_Odrzucenie);
             this.Telemarketing_Routing.Name = "Telemarketing_Routing";
+            // 
+            // logToHistoryListActivity32
+            // 
+            this.logToHistoryListActivity32.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity32.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity32.HistoryDescription = "Telemarketing_OnChange";
+            this.logToHistoryListActivity32.HistoryOutcome = "";
+            this.logToHistoryListActivity32.Name = "logToHistoryListActivity32";
+            this.logToHistoryListActivity32.OtherData = "";
+            this.logToHistoryListActivity32.UserId = -1;
             // 
             // onWorkflowItemChanged3
             // 
@@ -1797,6 +2913,16 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Weryfikacja_Routing.Activities.Add(this.faultHandlersActivity6);
             this.Weryfikacja_Routing.Name = "Weryfikacja_Routing";
             // 
+            // logToHistoryListActivity28
+            // 
+            this.logToHistoryListActivity28.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity28.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            this.logToHistoryListActivity28.HistoryDescription = "Weryfikacja_OnChange";
+            this.logToHistoryListActivity28.HistoryOutcome = "";
+            this.logToHistoryListActivity28.Name = "logToHistoryListActivity28";
+            this.logToHistoryListActivity28.OtherData = "";
+            this.logToHistoryListActivity28.UserId = -1;
+            // 
             // onWorkflowItemChanged13
             // 
             this.onWorkflowItemChanged13.AfterProperties = null;
@@ -1809,18 +2935,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.faultHandlersActivity3.Activities.Add(this.faultHandlerActivity3);
             this.faultHandlersActivity3.Name = "faultHandlersActivity3";
             // 
-            // Navigator_Routing
+            // TestEtap
             // 
-            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Telefon);
-            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Oferta);
-            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Wniosek);
-            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Umowa);
-            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Uruchomiony);
-            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Stracony);
-            this.Navigator_Routing.Activities.Add(this.faultHandlersActivity7);
-            this.Navigator_Routing.Activities.Add(this.StatusLeadu_Rozliczenie);
-            this.Navigator_Routing.Activities.Add(this.Status_Lead_Else);
-            this.Navigator_Routing.Name = "Navigator_Routing";
+            this.TestEtap.Activities.Add(this.ifEtapNotNull);
+            this.TestEtap.Activities.Add(this.Else);
+            this.TestEtap.Name = "TestEtap";
             // 
             // logRouter
             // 
@@ -1868,9 +2987,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.onWorkflowActivated1.CorrelationToken = correlationtoken31;
             this.onWorkflowActivated1.EventName = "OnWorkflowActivated";
             this.onWorkflowActivated1.Name = "onWorkflowActivated1";
-            activitybind32.Name = "Workflow1";
-            activitybind32.Path = "workflowProperties";
-            this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind32)));
+            activitybind57.Name = "Workflow1";
+            activitybind57.Path = "workflowProperties";
+            this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind57)));
             // 
             // stateInitializationActivity12
             // 
@@ -1886,7 +3005,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // Dokumentacja_OnChange
             // 
             this.Dokumentacja_OnChange.Activities.Add(this.onWorkflowItemChanged11);
+            this.Dokumentacja_OnChange.Activities.Add(this.logToHistoryListActivity53);
             this.Dokumentacja_OnChange.Activities.Add(this.ifElseActivity11);
+            this.Dokumentacja_OnChange.Activities.Add(this.faultHandlersActivity18);
             this.Dokumentacja_OnChange.Name = "Dokumentacja_OnChange";
             // 
             // stateInitializationActivity10
@@ -1900,7 +3021,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // Uruchomienie_OnChange
             // 
             this.Uruchomienie_OnChange.Activities.Add(this.onWorkflowItemChanged12);
+            this.Uruchomienie_OnChange.Activities.Add(this.logToHistoryListActivity50);
             this.Uruchomienie_OnChange.Activities.Add(this.ifElseActivity123);
+            this.Uruchomienie_OnChange.Activities.Add(this.faultHandlersActivity17);
             this.Uruchomienie_OnChange.Name = "Uruchomienie_OnChange";
             // 
             // stateInitializationActivity11
@@ -1914,7 +3037,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // AkceptacjaUmowy_OnChange
             // 
             this.AkceptacjaUmowy_OnChange.Activities.Add(this.onWorkflowItemChanged10);
+            this.AkceptacjaUmowy_OnChange.Activities.Add(this.logToHistoryListActivity46);
             this.AkceptacjaUmowy_OnChange.Activities.Add(this.TestAkceptacjaUmowy);
+            this.AkceptacjaUmowy_OnChange.Activities.Add(this.faultHandlersActivity16);
             this.AkceptacjaUmowy_OnChange.Name = "AkceptacjaUmowy_OnChange";
             // 
             // stateInitializationActivity14
@@ -1928,7 +3053,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // Umowa_OnChange
             // 
             this.Umowa_OnChange.Activities.Add(this.onWorkflowItemChanged9);
+            this.Umowa_OnChange.Activities.Add(this.logToHistoryListActivity44);
             this.Umowa_OnChange.Activities.Add(this.ifElseActivity9);
+            this.Umowa_OnChange.Activities.Add(this.faultHandlersActivity15);
             this.Umowa_OnChange.Name = "Umowa_OnChange";
             // 
             // stateInitializationActivity9
@@ -1942,7 +3069,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // KorektaWniosku_OnChange
             // 
             this.KorektaWniosku_OnChange.Activities.Add(this.onWorkflowItemChanged8);
+            this.KorektaWniosku_OnChange.Activities.Add(this.logToHistoryListActivity42);
             this.KorektaWniosku_OnChange.Activities.Add(this.ifElseActivity8);
+            this.KorektaWniosku_OnChange.Activities.Add(this.faultHandlersActivity14);
             this.KorektaWniosku_OnChange.Name = "KorektaWniosku_OnChange";
             // 
             // stateInitializationActivity13
@@ -1956,7 +3085,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // AkceptacjaWniosku_OnChange
             // 
             this.AkceptacjaWniosku_OnChange.Activities.Add(this.onWorkflowItemChanged7);
+            this.AkceptacjaWniosku_OnChange.Activities.Add(this.logToHistoryListActivity38);
             this.AkceptacjaWniosku_OnChange.Activities.Add(this.ifElseActivity7);
+            this.AkceptacjaWniosku_OnChange.Activities.Add(this.faultHandlersActivity13);
             this.AkceptacjaWniosku_OnChange.Name = "AkceptacjaWniosku_OnChange";
             // 
             // stateInitializationActivity8
@@ -1970,7 +3101,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // Wniosek_OnChange
             // 
             this.Wniosek_OnChange.Activities.Add(this.onWorkflowItemChanged6);
+            this.Wniosek_OnChange.Activities.Add(this.logToHistoryListActivity26);
             this.Wniosek_OnChange.Activities.Add(this.ifElseActivity6);
+            this.Wniosek_OnChange.Activities.Add(this.faultHandlersActivity12);
             this.Wniosek_OnChange.Name = "Wniosek_OnChange";
             // 
             // stateInitializationActivity7
@@ -1985,7 +3118,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // KorektaOferty_OnChange
             // 
             this.KorektaOferty_OnChange.Activities.Add(this.onWorkflowItemChanged5);
+            this.KorektaOferty_OnChange.Activities.Add(this.logToHistoryListActivity36);
             this.KorektaOferty_OnChange.Activities.Add(this.ifElseActivity5);
+            this.KorektaOferty_OnChange.Activities.Add(this.faultHandlersActivity11);
             this.KorektaOferty_OnChange.Name = "KorektaOferty_OnChange";
             // 
             // stateInitializationActivity6
@@ -1999,7 +3134,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // AkceptacjaOferty_OnChange
             // 
             this.AkceptacjaOferty_OnChange.Activities.Add(this.onWorkflowItemChanged4);
+            this.AkceptacjaOferty_OnChange.Activities.Add(this.logToHistoryListActivity25);
             this.AkceptacjaOferty_OnChange.Activities.Add(this.AkceptacjaOferty_Telemarketing);
+            this.AkceptacjaOferty_OnChange.Activities.Add(this.faultHandlersActivity8);
             this.AkceptacjaOferty_OnChange.Name = "AkceptacjaOferty_OnChange";
             // 
             // stateInitializationActivity5
@@ -2022,7 +3159,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // Oferta_OnChange
             // 
             this.Oferta_OnChange.Activities.Add(this.onWorkflowItemChanged2);
+            this.Oferta_OnChange.Activities.Add(this.logToHistoryListActivity35);
             this.Oferta_OnChange.Activities.Add(this.Oferta_Routing);
+            this.Oferta_OnChange.Activities.Add(this.faultHandlersActivity10);
             this.Oferta_OnChange.Name = "Oferta_OnChange";
             // 
             // stateInitializationActivity4
@@ -2036,7 +3175,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // Telemarketing_OnChange
             // 
             this.Telemarketing_OnChange.Activities.Add(this.onWorkflowItemChanged3);
+            this.Telemarketing_OnChange.Activities.Add(this.logToHistoryListActivity32);
             this.Telemarketing_OnChange.Activities.Add(this.Telemarketing_Routing);
+            this.Telemarketing_OnChange.Activities.Add(this.faultHandlersActivity9);
             this.Telemarketing_OnChange.Name = "Telemarketing_OnChange";
             // 
             // stateInitializationActivity3
@@ -2059,6 +3200,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // Weryfikacja_OnChange
             // 
             this.Weryfikacja_OnChange.Activities.Add(this.onWorkflowItemChanged13);
+            this.Weryfikacja_OnChange.Activities.Add(this.logToHistoryListActivity28);
             this.Weryfikacja_OnChange.Activities.Add(this.Weryfikacja_Routing);
             this.Weryfikacja_OnChange.Activities.Add(this.faultHandlersActivity5);
             this.Weryfikacja_OnChange.Name = "Weryfikacja_OnChange";
@@ -2066,7 +3208,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // stateInitializationActivity15
             // 
             this.stateInitializationActivity15.Activities.Add(this.logRouter);
-            this.stateInitializationActivity15.Activities.Add(this.Navigator_Routing);
+            this.stateInitializationActivity15.Activities.Add(this.TestEtap);
             this.stateInitializationActivity15.Activities.Add(this.faultHandlersActivity3);
             this.stateInitializationActivity15.Name = "stateInitializationActivity15";
             // 
@@ -2204,6 +3346,240 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         }
 
         #endregion
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity57;
+
+        private CodeActivity ErrorHandler_Weryfikacja;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity67;
+
+        private CodeActivity codeActivity10;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity66;
+
+        private CodeActivity codeActivity9;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity65;
+
+        private CodeActivity codeActivity8;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity64;
+
+        private CodeActivity codeActivity7;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity63;
+
+        private CodeActivity codeActivity6;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity62;
+
+        private CodeActivity codeActivity5;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity61;
+
+        private CodeActivity codeActivity4;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity60;
+
+        private CodeActivity codeActivity3;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity59;
+
+        private CodeActivity codeActivity2;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity58;
+
+        private CodeActivity codeActivity1;
+
+        private FaultHandlerActivity faultHandlerActivity15;
+
+        private FaultHandlerActivity faultHandlerActivity14;
+
+        private FaultHandlerActivity faultHandlerActivity13;
+
+        private FaultHandlerActivity faultHandlerActivity12;
+
+        private FaultHandlerActivity faultHandlerActivity11;
+
+        private FaultHandlerActivity faultHandlerActivity10;
+
+        private FaultHandlerActivity faultHandlerActivity9;
+
+        private FaultHandlerActivity faultHandlerActivity8;
+
+        private FaultHandlerActivity faultHandlerActivity7;
+
+        private FaultHandlerActivity faultHandlerActivity6;
+
+        private FaultHandlersActivity faultHandlersActivity18;
+
+        private FaultHandlersActivity faultHandlersActivity17;
+
+        private FaultHandlersActivity faultHandlersActivity16;
+
+        private FaultHandlersActivity faultHandlersActivity15;
+
+        private FaultHandlersActivity faultHandlersActivity14;
+
+        private FaultHandlersActivity faultHandlersActivity13;
+
+        private FaultHandlersActivity faultHandlersActivity12;
+
+        private FaultHandlersActivity faultHandlersActivity11;
+
+        private FaultHandlersActivity faultHandlersActivity10;
+
+        private FaultHandlersActivity faultHandlersActivity9;
+
+        private SetStateActivity setStateActivity29;
+
+        private SetStateActivity setStateActivity42;
+
+        private SetStateActivity setStateActivity41;
+
+        private SetStateActivity setStateActivity40;
+
+        private SetStateActivity setStateActivity39;
+
+        private SetStateActivity setStateActivity38;
+
+        private SetStateActivity setStateActivity37;
+
+        private SetStateActivity setStateActivity36;
+
+        private SetStateActivity setStateActivity35;
+
+        private SetStateActivity setStateActivity34;
+
+        private SetStateActivity setStateActivity33;
+
+        private SetStateActivity setStateActivity32;
+
+        private SetStateActivity setStateActivity31;
+
+        private SetStateActivity setStateActivity30;
+
+        private SetStateActivity setStateActivity28;
+
+        private IfElseBranchActivity ifTelemarketing;
+
+        private IfElseBranchActivity ifWeryfikacja;
+
+        private IfElseActivity E;
+
+        private IfElseBranchActivity ifOferta;
+
+        private IfElseBranchActivity ifOdrzucenie;
+
+        private IfElseBranchActivity ifAkceptacjaOferty;
+
+        private IfElseBranchActivity ifKorektaOferty;
+
+        private IfElseBranchActivity ifWniosek;
+
+        private IfElseBranchActivity ifAkceptacjaWniosku;
+
+        private IfElseBranchActivity ifKorektaWniosku;
+
+        private IfElseBranchActivity ifUmowa;
+
+        private IfElseBranchActivity ifAkceptacjaUmowy;
+
+        private IfElseBranchActivity ifUruchomienie;
+
+        private IfElseBranchActivity ifDokumentacja;
+
+        private IfElseBranchActivity ifRozliczenie;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logNavigator;
+
+        private IfElseBranchActivity Else2;
+
+        private IfElseBranchActivity Else;
+
+        private IfElseBranchActivity ifEtapNotNull;
+
+        private IfElseActivity TestEtap;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity52;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity55;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity56;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity54;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity51;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity49;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity48;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity47;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity45;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity43;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity41;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity40;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity39;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity37;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity34;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity33;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity31;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity30;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity29;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity53;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity50;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity46;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity44;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity42;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity38;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity36;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity35;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity32;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity28;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity27;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity24;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity23;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity22;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity21;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity26;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity25;
+
+        private CodeActivity ErrorHandler;
+
+        private FaultHandlerActivity faultHandlerActivity1;
+
+        private FaultHandlersActivity faultHandlersActivity8;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logErrorMessage;
 
         private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow1;
 
@@ -2553,8 +3929,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logERROR_WefyfikacjaInit;
 
-        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logERROR_WefyfikacjaEvent;
-
         private SetStateActivity setStateActivity2;
 
         private CodeActivity StatusRozmowa_Stracony;
@@ -2704,6 +4078,49 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         private StateActivity Navigator;
 
         private StateActivity Start;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
