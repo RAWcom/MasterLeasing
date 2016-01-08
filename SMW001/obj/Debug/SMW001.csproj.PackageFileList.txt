@@ -1,0 +1,1 @@
+bin\Debug\SMW001.wsp

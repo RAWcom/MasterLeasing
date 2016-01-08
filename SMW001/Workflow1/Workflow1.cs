@@ -19,10 +19,13 @@ using System.Net.Mail;
 using System.Collections.Specialized;
 using Microsoft.SharePoint.Utilities;
 
-namespace masterleasing.Workflows.KontraktSMW.Workflow1
+namespace SMW001.Workflow1
 {
     public sealed partial class Workflow1 : StateMachineWorkflowActivity
     {
+
+        public Guid workflowId = default(System.Guid);
+        public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
 
         public String logNavigator_HistoryOutcome = default(System.String);
         private SPListItem item;
@@ -45,8 +48,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             InitializeComponent();
         }
 
-        public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
-
         public String logRozliczenie_DodajDoRozliczen = default(System.String);
 
         private void codeSetup_ExecuteCode(object sender, EventArgs e)
@@ -59,7 +60,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             }
             catch (Exception ex)
             {
-                ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, workflowProperties.WebUrl);
+                //ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, workflowProperties.WebUrl);
             }
         }
 
@@ -385,7 +386,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             }
             catch (Exception ex)
             {
-                ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, workflowProperties.WebUrl);
+                //ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, workflowProperties.WebUrl);
             }
         }
 
@@ -445,7 +446,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             }
             catch (Exception ex)
             {
-                ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, workflowProperties.WebUrl);
+                //ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, workflowProperties.WebUrl);
             }
 
 
@@ -608,7 +609,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             }
             catch (Exception ex)
             {
-                ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, workflowProperties.WebUrl);
+                //ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, workflowProperties.WebUrl);
             }
 
 
@@ -1069,7 +1070,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
                 logErrorMessage_HistoryDescription = fha.Fault.Message;
                 logErrorMessage_HistoryOutcome = fha.Fault.StackTrace;
 
-                ElasticEmail.EmailGenerator.ReportErrorFromWorkflow(workflowProperties, fha.Fault.Message, fha.Fault.StackTrace);
+                //ElasticEmail.EmailGenerator.ReportErrorFromWorkflow(workflowProperties, fha.Fault.Message, fha.Fault.StackTrace);
             }
 
         }
@@ -1158,11 +1159,14 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             e.Result = Check_CurrentEtap(EtapProcesu.Rozliczenie);
         }
 
-
-
         private void SetNavigatorMessage(object sender, EventArgs e)
         {
-            logNavigator_HistoryOutcome = item["_ETAP"].ToString();
+            logNavigator_HistoryOutcome = Get_Text(item, "_ETAP");
+        }
+
+        private string Get_Text(SPListItem item, string col)
+        {
+            return item[col] != null ? item[col].ToString() : string.Empty;
         }
 
         private void onWorkflowActivated1_Invoked(object sender, ExternalDataEventArgs e)
@@ -1196,5 +1200,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
     }
 
 }
+
 
 

@@ -4,16 +4,15 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{494BCEE3-3727-43B6-BDCF-DAE5C66C8F75}</ProjectGuid>
+    <ProjectGuid>{D317CC55-AB17-4859-BBDD-A034AF840E79}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>masterleasing.Workflows.KontraktSMW</RootNamespace>
-    <AssemblyName>masterleasing.Workflows.KontraktSMW</AssemblyName>
+    <RootNamespace>SMW001</RootNamespace>
+    <AssemblyName>SMW001</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SandboxedSolution>False</SandboxedSolution>
-    <ActiveDeploymentConfiguration>Default</ActiveDeploymentConfiguration>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,9 +55,7 @@
     <Reference Include="System.Workflow.Runtime" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ElasticTestMail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Workflow1\ElasticEmail.cs" />
     <Compile Include="Workflow1\Workflow1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -69,19 +66,19 @@
   <ItemGroup>
     <None Include="key.snk" />
     <None Include="Workflow1\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{46ede7de-4e44-4de0-9fe6-32eae30eaf1b}</SharePointProjectItemId>
+      <SharePointProjectItemId>{cbcb0396-f2bc-47a9-a6ea-9f5fb026b2ed}</SharePointProjectItemId>
     </None>
     <None Include="Workflow1\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Package\Package.package">
-      <PackageId>{04106b25-d125-4841-8a9e-f42b0a07435c}</PackageId>
+      <PackageId>{c3f9e14c-1ae7-4e1a-bd51-6179a86067cc}</PackageId>
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
     <None Include="Features\Feature1\Feature1.feature">
-      <FeatureId>{bc757e4e-c34e-4faa-9123-b192198788c6}</FeatureId>
+      <FeatureId>{85e20cbe-2035-4ef2-b7eb-72dc23fdfff8}</FeatureId>
     </None>
     <None Include="Features\Feature1\Feature1.Template.xml">
       <DependentUpon>Feature1.feature</DependentUpon>
@@ -90,7 +87,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Workflow1\Workflow1.layout">
       <DependentUpon>Workflow1.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
