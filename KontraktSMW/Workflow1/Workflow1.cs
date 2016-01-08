@@ -18,6 +18,7 @@ using System.Text;
 using System.Net.Mail;
 using System.Collections.Specialized;
 using Microsoft.SharePoint.Utilities;
+using System.Diagnostics;
 
 namespace masterleasing.Workflows.KontraktSMW.Workflow1
 {
@@ -25,7 +26,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
     {
 
         public String logNavigator_HistoryOutcome = default(System.String);
-        private SPListItem item;
 
         const string _LEAD_ = "Lead";
         const string _ROZMOWA_ = "Rozmowa";
@@ -51,16 +51,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private void codeSetup_ExecuteCode(object sender, EventArgs e)
         {
-            try
-            {
-                item["colNumerKontraktu"] = String.Format("K.{0}", item.ID.ToString());
-                item["Title"] = ".";
-                item.Update();
-            }
-            catch (Exception ex)
-            {
-                ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, workflowProperties.WebUrl);
-            }
+
+            workflowProperties.Item["colNumerKontraktu"] = String.Format("K.{0}", workflowProperties.ItemId.ToString());
+            workflowProperties.Item["Title"] = ".";
+            workflowProperties.Item.Update();
+
         }
 
         #region Warunki logiczne Navigatora
@@ -238,9 +233,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private bool NavigatorCodeConditionResult(string strStatusColumnName, string strStatus)
         {
-            if (item[strStatusColumnName] != null)
+            if (workflowProperties.Item[strStatusColumnName] != null)
             {
-                if (item[strStatusColumnName].ToString() == strStatus)
+                if (workflowProperties.Item[strStatusColumnName].ToString() == strStatus)
                 {
                     return true;
                 }
@@ -251,14 +246,14 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private bool CodeConditionResult(string strCommandColumnName, string strAction)
         {
-            if (item[strCommandColumnName] != null)
+            if (workflowProperties.Item[strCommandColumnName] != null)
             {
-                if (item[strCommandColumnName].ToString() == strAction)
+                if (workflowProperties.Item[strCommandColumnName].ToString() == strAction)
                 {
                     try
                     {
-                        item[strCommandColumnName] = string.Empty;
-                        item.Update();
+                        workflowProperties.Item[strCommandColumnName] = string.Empty;
+                        workflowProperties.Item.Update();
                     }
                     catch (Exception)
                     { }
@@ -276,7 +271,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private void Set_Etap(EtapProcesu etap)
         {
-            item["_ETAP"] = etap.ToString();
+            workflowProperties.Item["_ETAP"] = etap.ToString();
         }
 
         private void SetCT_Weryfikacja_ExecuteCode(object sender, EventArgs e)
@@ -360,27 +355,27 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             try
             {
 
-                item["ContentType"] = strContentType;
+                workflowProperties.Item["ContentType"] = strContentType;
 
-                item["colStatusLeadu"] = strStatusLeadu;
+                workflowProperties.Item["colStatusLeadu"] = strStatusLeadu;
 
 
                 if (clearPowodOdrzucenia == true)
                 {
-                    item["colPowodOdrzucenia"] = string.Empty;
+                    workflowProperties.Item["colPowodOdrzucenia"] = string.Empty;
                 }
 
                 if (!string.IsNullOrEmpty(strCommandColumnName))
                 {
-                    if (item[strCommandColumnName] != null)
+                    if (workflowProperties.Item[strCommandColumnName] != null)
                     {
                         //wyczyść pole komendy
-                        item[strCommandColumnName] = string.Empty; ;
+                        workflowProperties.Item[strCommandColumnName] = string.Empty; ;
                     }
                 }
 
 
-                item.Update();
+                workflowProperties.Item.Update();
 
             }
             catch (Exception ex)
@@ -404,7 +399,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         {
             try
             {
-                int kontraktID = item.ID;
+                int kontraktID = workflowProperties.ItemId;
                 const string _tabKontraktyAktywnosci_ = "tabKontrakty_Aktywnosci";
 
                 using (SPSite site = new SPSite(workflowProperties.SiteId))
@@ -545,7 +540,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         {
             try
             {
-                int kontraktID = item.ID;
+                int kontraktID = workflowProperties.ItemId;
 
                 using (SPSite site = new SPSite(workflowProperties.SiteId))
                 {
@@ -569,12 +564,12 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
                                 //dodaj nowy rekord
                                 SPListItem newItem = list.AddItem();
                                 newItem["colLinkDoKontraktu"] = kontraktID;
-                                newItem["colWartoscKontraktuPLN"] = item["colWartoscKontraktuPLN"];
-                                //item["colProwizja"] = item["colProwizja"];
-                                newItem["colNumerUmowy_Kontrakt"] = item["colNumerUmowy_Kontrakt"];
-                                newItem["colDataUruchomienia_Kontrakt"] = item["colDataUruchomienia_Kontrakt"];
-                                newItem["colDataZakonczenia_Kontrakt"] = item["colDataZakonczenia_Kontrakt"];
-                                newItem["colUstalenia"] = item["colUstalenia"];
+                                newItem["colWartoscKontraktuPLN"] = workflowProperties.Item["colWartoscKontraktuPLN"];
+                                //item["colProwizja"] = workflowProperties.Item["colProwizja"];
+                                newItem["colNumerUmowy_Kontrakt"] = workflowProperties.Item["colNumerUmowy_Kontrakt"];
+                                newItem["colDataUruchomienia_Kontrakt"] = workflowProperties.Item["colDataUruchomienia_Kontrakt"];
+                                newItem["colDataZakonczenia_Kontrakt"] = workflowProperties.Item["colDataZakonczenia_Kontrakt"];
+                                newItem["colUstalenia"] = workflowProperties.Item["colUstalenia"];
                                 newItem.Update();
 
                                 logRozliczenie_DodajDoRozliczen = "Dodano nowy rekord w kartotece rozliczeń prowizji";
@@ -589,12 +584,12 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
                                 SPListItem newItem = items[0];
 
                                 newItem["colLinkDoKontraktu"] = kontraktID;
-                                newItem["colWartoscKontraktuPLN"] = item["colWartoscKontraktuPLN"];
-                                //newItem["colProwizja"] = item["colProwizja"];
-                                newItem["colNumerUmowy_Kontrakt"] = item["colNumerUmowy_Kontrakt"];
-                                newItem["colDataUruchomienia_Kontrakt"] = item["colDataUruchomienia_Kontrakt"];
-                                newItem["colDataZakonczenia_Kontrakt"] = item["colDataZakonczenia_Kontrakt"];
-                                newItem["colUstalenia"] = item["colUstalenia"];
+                                newItem["colWartoscKontraktuPLN"] = workflowProperties.Item["colWartoscKontraktuPLN"];
+                                //newItem["colProwizja"] = workflowProperties.Item["colProwizja"];
+                                newItem["colNumerUmowy_Kontrakt"] = workflowProperties.Item["colNumerUmowy_Kontrakt"];
+                                newItem["colDataUruchomienia_Kontrakt"] = workflowProperties.Item["colDataUruchomienia_Kontrakt"];
+                                newItem["colDataZakonczenia_Kontrakt"] = workflowProperties.Item["colDataZakonczenia_Kontrakt"];
+                                newItem["colUstalenia"] = workflowProperties.Item["colUstalenia"];
                                 newItem.Update();
 
                                 logRozliczenie_DodajDoRozliczen = "Zaktualizowano rekord w kartotece rozliczeń prowizji";
@@ -717,47 +712,47 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         private void Komunikat_AkceptacjaOferty_ExecuteCode(object sender, EventArgs e)
         {
             //KomunikatDlaAgenta(
-            //    string.Format("Kontrakt #{0}: oferta zaakceptowana przez Klienta", item.ID.ToString()), "");
+            //    string.Format("Kontrakt #{0}: oferta zaakceptowana przez Klienta", workflowProperties.ItemId.ToString()), "");
         }
 
         private void Komunikat_AkceptacjaWniosku_ExecuteCode(object sender, EventArgs e)
         {
             //KomunikatDlaAgenta(
-            //    string.Format("Kontrakt #{0}: wniosek zaakceptowany przez Bank", item.ID.ToString()), "");
+            //    string.Format("Kontrakt #{0}: wniosek zaakceptowany przez Bank", workflowProperties.ItemId.ToString()), "");
         }
 
         private void Komunikat_WniosekOdrzucony_ExecuteCode(object sender, EventArgs e)
         {
             //KomunikatDlaAgenta(
-            //    string.Format("Kontrakt #{0}: wniosek odrzucony przez Bank", item.ID.ToString()), "");
+            //    string.Format("Kontrakt #{0}: wniosek odrzucony przez Bank", workflowProperties.ItemId.ToString()), "");
 
         }
 
         private void Komunikat_OfertaNiezaakceptowana_ExecuteCode(object sender, EventArgs e)
         {
             //KomunikatDlaAgenta(
-            //    string.Format("Kontrakt #{0}: oferta odrzucona przez Klienta", item.ID.ToString()), "");
+            //    string.Format("Kontrakt #{0}: oferta odrzucona przez Klienta", workflowProperties.ItemId.ToString()), "");
 
         }
 
         private void Komunikat_UmowaUruchomiona_ExecuteCode(object sender, EventArgs e)
         {
             //KomunikatDlaAgenta(
-            //    string.Format("Kontrakt #{0}: umowa uruchomiona", item.ID.ToString()), "");
+            //    string.Format("Kontrakt #{0}: umowa uruchomiona", workflowProperties.ItemId.ToString()), "");
 
         }
 
         private void Komunikat_UmowaStracona_ExecuteCode(object sender, EventArgs e)
         {
             //KomunikatDlaAgenta(
-            //     string.Format("Kontrakt #{0}: umowa stracona", item.ID.ToString()), "");
+            //     string.Format("Kontrakt #{0}: umowa stracona", workflowProperties.ItemId.ToString()), "");
 
         }
 
         private void Komunikat_UmowaNiezaakceptowana_ExecuteCode(object sender, EventArgs e)
         {
             //KomunikatDlaAgenta(
-            //     string.Format("Kontrakt #{0}: umowa niezaakceptowana przez Klienta", item.ID.ToString()), "Klient przekazany do Telemarketingu");
+            //     string.Format("Kontrakt #{0}: umowa niezaakceptowana przez Klienta", workflowProperties.ItemId.ToString()), "Klient przekazany do Telemarketingu");
 
         }
 
@@ -785,43 +780,43 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
             try
             {
-                if (item["colDataZgloszenia"] != null)
+                if (workflowProperties.Item["colDataZgloszenia"] != null)
                 {
-                    datDataZgloszenia = Convert.ToDateTime(item["colDataZgloszenia"]);
+                    datDataZgloszenia = Convert.ToDateTime(workflowProperties.Item["colDataZgloszenia"]);
                 }
 
-                if (item["colKlient"] != null)
+                if (workflowProperties.Item["colKlient"] != null)
                 {
-                    strKlient = item["colKlient"].ToString();
+                    strKlient = workflowProperties.Item["colKlient"].ToString();
                 }
 
 
                 try
                 {
-                    if (item["colWartoscKontraktuPLN"] != null)
+                    if (workflowProperties.Item["colWartoscKontraktuPLN"] != null)
                     {
-                        strWartoscPLN = item["colWartoscKontraktuPLN"].ToString();
+                        strWartoscPLN = workflowProperties.Item["colWartoscKontraktuPLN"].ToString();
                     }
                 }
                 catch (Exception)
                 { }
 
 
-                if (item["colCelFinansowania"] != null)
+                if (workflowProperties.Item["colCelFinansowania"] != null)
                 {
-                    strCelFinansowania = (string)item["colCelFinansowania"];
+                    strCelFinansowania = (string)workflowProperties.Item["colCelFinansowania"];
                 }
 
 
-                if (item["colUstalenia"] != null)
+                if (workflowProperties.Item["colUstalenia"] != null)
                 {
-                    strUstalenia = item["colUstalenia"].ToString();
+                    strUstalenia = workflowProperties.Item["colUstalenia"].ToString();
                 }
 
 
-                if (item["colStatusLeadu"] != null)
+                if (workflowProperties.Item["colStatusLeadu"] != null)
                 {
-                    strStatusLeadu = item["colStatusLeadu"].ToString();
+                    strStatusLeadu = workflowProperties.Item["colStatusLeadu"].ToString();
                 }
 
             }
@@ -836,9 +831,9 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             int partnerID = 0;
             string emailAgenta = string.Empty;
 
-            if (item["colPartner.OsobaKontaktowa"] != null)
+            if (workflowProperties.Item["colPartner.OsobaKontaktowa"] != null)
             {
-                string idValue = item["colPartner.OsobaKontaktowa"].ToString();
+                string idValue = workflowProperties.Item["colPartner.OsobaKontaktowa"].ToString();
                 int partial = idValue.LastIndexOf(";");
                 string idPure = idValue.Substring(0, partial);
 
@@ -1069,6 +1064,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
                 logErrorMessage_HistoryDescription = fha.Fault.Message;
                 logErrorMessage_HistoryOutcome = fha.Fault.StackTrace;
 
+                Debug.WriteLine("*** ERROR ***");
+                Debug.WriteLine(fha.Fault.Message);
+                Debug.WriteLine(fha.Fault.StackTrace);
+
                 ElasticEmail.EmailGenerator.ReportErrorFromWorkflow(workflowProperties, fha.Fault.Message, fha.Fault.StackTrace);
             }
 
@@ -1076,14 +1075,14 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private void isEtapNotNull(object sender, ConditionalEventArgs e)
         {
-            if (item["_ETAP"] != null
-                && !string.IsNullOrEmpty(item["_ETAP"].ToString())) e.Result = true;
+            if (workflowProperties.Item["_ETAP"] != null
+                && !string.IsNullOrEmpty(workflowProperties.Item["_ETAP"].ToString())) e.Result = true;
         }
 
 
         private bool Check_CurrentEtap(EtapProcesu etap)
         {
-            string e = item["_ETAP"] != null ? item["_ETAP"].ToString() : string.Empty;
+            string e = workflowProperties.Item["_ETAP"] != null ? workflowProperties.Item["_ETAP"].ToString() : string.Empty;
             if (etap.ToString().Equals(e)) return true;
             else return false;
         }
@@ -1162,17 +1161,12 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private void SetNavigatorMessage(object sender, EventArgs e)
         {
-            logNavigator_HistoryOutcome = item["_ETAP"].ToString();
-        }
-
-        private void onWorkflowActivated1_Invoked(object sender, ExternalDataEventArgs e)
-        {
-            item = workflowProperties.Item;
+            logNavigator_HistoryOutcome = workflowProperties.Item["_ETAP"].ToString();
         }
 
         private void Update_Item_ExecuteCode(object sender, EventArgs e)
         {
-            item = workflowProperties.Item;
+
         }
 
     }

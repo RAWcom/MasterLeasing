@@ -109,6 +109,38 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             System.Workflow.ComponentModel.ActivityBind activitybind53 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.ComponentModel.ActivityBind activitybind54 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.ComponentModel.ActivityBind activitybind55 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind56 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind57 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind58 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind59 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind60 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind61 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind62 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind63 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind64 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind65 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind66 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind67 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind68 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind69 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind70 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind71 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind72 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind73 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind74 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind75 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind76 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind77 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind78 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind79 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind80 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind81 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind82 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind83 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind84 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind85 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind86 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind87 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.Activities.CodeCondition codecondition27 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition28 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition29 = new System.Workflow.Activities.CodeCondition();
@@ -133,9 +165,21 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             System.Workflow.Activities.CodeCondition codecondition48 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition49 = new System.Workflow.Activities.CodeCondition();
             System.Workflow.Activities.CodeCondition codecondition50 = new System.Workflow.Activities.CodeCondition();
-            System.Workflow.ComponentModel.ActivityBind activitybind56 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.ComponentModel.ActivityBind activitybind88 = new System.Workflow.ComponentModel.ActivityBind();
             System.Workflow.Runtime.CorrelationToken correlationtoken3 = new System.Workflow.Runtime.CorrelationToken();
-            System.Workflow.ComponentModel.ActivityBind activitybind57 = new System.Workflow.ComponentModel.ActivityBind();
+            System.Workflow.Runtime.CorrelationToken correlationtoken4 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken5 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken6 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken7 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken8 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken9 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken10 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken11 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken12 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken13 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken14 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.Runtime.CorrelationToken correlationtoken15 = new System.Workflow.Runtime.CorrelationToken();
+            System.Workflow.ComponentModel.ActivityBind activitybind89 = new System.Workflow.ComponentModel.ActivityBind();
             this.logToHistoryListActivity20 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.sendEmail_Uruchomiony = new Microsoft.SharePoint.WorkflowActions.SendEmail();
             this.logToHistoryListActivity52 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -200,17 +244,22 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.ifTelemarketing = new System.Workflow.Activities.IfElseBranchActivity();
             this.ifWeryfikacja = new System.Workflow.Activities.IfElseBranchActivity();
             this.logToHistoryListActivity4 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity26 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity67 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.codeActivity10 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity81 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.setStateActivity21 = new System.Workflow.Activities.SetStateActivity();
             this.logToHistoryListActivity54 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity97 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity25 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity66 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.codeActivity9 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity80 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.setStateActivity22 = new System.Workflow.Activities.SetStateActivity();
             this.ifElseActivity10 = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity51 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity96 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity24 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity65 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.codeActivity8 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity79 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -227,16 +276,22 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.ifElseActivity4 = new System.Workflow.Activities.IfElseActivity();
             this.Komunikat_UmowaUruchomiona = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity47 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity95 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity23 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity64 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.codeActivity7 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity78 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.setStateActivity19 = new System.Workflow.Activities.SetStateActivity();
             this.logToHistoryListActivity45 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity94 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity22 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity63 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.codeActivity6 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity77 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.setStateActivity17 = new System.Workflow.Activities.SetStateActivity();
             this.logToHistoryListActivity43 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity93 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity21 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity62 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.codeActivity5 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity76 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -251,16 +306,22 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.ifElseActivity3 = new System.Workflow.Activities.IfElseActivity();
             this.Komunikat_AkceptacjaWniosku = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity39 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity92 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity20 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity61 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.codeActivity4 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity75 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.setStateActivity13 = new System.Workflow.Activities.SetStateActivity();
             this.logToHistoryListActivity27 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity91 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity19 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity60 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.codeActivity3 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity74 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.setStateActivity8 = new System.Workflow.Activities.SetStateActivity();
             this.logToHistoryListActivity37 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity90 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity18 = new System.Workflow.Activities.CodeActivity();
             this.logErrorMessage = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.ErrorHandler = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity73 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -278,12 +339,18 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.ifElseActivity2 = new System.Workflow.Activities.IfElseActivity();
             this.Komunikat_AkceptacjaOferty = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity21 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity89 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity17 = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity88 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity16 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity17 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.sendEmail_Stracony = new Microsoft.SharePoint.WorkflowActions.SendEmail();
             this.logToHistoryListActivity59 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.codeActivity2 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity72 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.setStateActivity5 = new System.Workflow.Activities.SetStateActivity();
+            this.logToHistoryListActivity87 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity15 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity58 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.codeActivity1 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity71 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -293,7 +360,10 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.setStateActivity9 = new System.Workflow.Activities.SetStateActivity();
             this.StatusTelefon_Oferta = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity33 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
-            this.logERROR_WefyfikacjaInit = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity86 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity14 = new System.Workflow.Activities.CodeActivity();
+            this.logToHistoryListActivity85 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity13 = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity57 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.ErrorHandler_Weryfikacja = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity70 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -306,54 +376,69 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.setStateActivity3 = new System.Workflow.Activities.SetStateActivity();
             this.StatusRozmowa_Oferta = new System.Workflow.Activities.CodeActivity();
             this.logToHistoryListActivity29 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
-            this.logERROR_NavigatorInit = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity84 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity12 = new System.Workflow.Activities.CodeActivity();
             this.Navigator_Routing = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity69 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.Navigator_Routing_ver2 = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity68 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.logToHistoryListActivity83 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+            this.codeActivity11 = new System.Workflow.Activities.CodeActivity();
             this.faultHandlerActivity2 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity15 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity12 = new System.Workflow.Activities.IfElseBranchActivity();
             this.Dokumentacja_Rozliczenie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity28 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity14 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity11 = new System.Workflow.Activities.IfElseBranchActivity();
             this.Uruchomienie_Dokumentacja = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity27 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity13 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity10 = new System.Workflow.Activities.IfElseBranchActivity();
             this.AkceptacjaUmowy_Telemarketing = new System.Workflow.Activities.IfElseBranchActivity();
             this.AkceptacjaUmowy_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
             this.AkceptacjaUmowy_Uruchomienie = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity26 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity12 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity9 = new System.Workflow.Activities.IfElseBranchActivity();
             this.Umowa_AkceptacjaUmowy = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity25 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity11 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity8 = new System.Workflow.Activities.IfElseBranchActivity();
             this.KorektaWniosku_AkceptacjaWniosku = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity24 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity10 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity7 = new System.Workflow.Activities.IfElseBranchActivity();
             this.AkceptacjaWniosku_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
             this.AkceptacjaWniosku_KorektaWniosku = new System.Workflow.Activities.IfElseBranchActivity();
             this.AkceptacjaWniosku_Umowa = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity23 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity9 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity6 = new System.Workflow.Activities.IfElseBranchActivity();
             this.Wniosek_AkceptacjaWniosku = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity22 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity8 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity5 = new System.Workflow.Activities.IfElseBranchActivity();
             this.KorektaOferty_AkceptacjaOferty = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity21 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity1 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity4 = new System.Workflow.Activities.IfElseBranchActivity();
             this.AkceptacjaOferty_Telemarketing1 = new System.Workflow.Activities.IfElseBranchActivity();
             this.AkceptacjaOferty_KorektaOferty = new System.Workflow.Activities.IfElseBranchActivity();
             this.AkceptacjaOferty_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
             this.AkceptacjaOferty_Wniosek = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity20 = new System.Workflow.ComponentModel.FaultHandlerActivity();
+            this.faultHandlerActivity19 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.Odrzucenie_MailSendAllowed = new System.Workflow.Activities.IfElseBranchActivity();
             this.faultHandlerActivity7 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity3 = new System.Workflow.Activities.IfElseBranchActivity();
             this.Oferta_AkceptacjaOferty = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity18 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity6 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity2 = new System.Workflow.Activities.IfElseBranchActivity();
             this.Telemarketing_Odrzucenie = new System.Workflow.Activities.IfElseBranchActivity();
             this.Telemarketing_Oferta = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity17 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity4 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlerActivity5 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.ifElseBranchActivity1 = new System.Workflow.Activities.IfElseBranchActivity();
@@ -364,6 +449,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.faultHandlerActivity3 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.Else = new System.Workflow.Activities.IfElseBranchActivity();
             this.ifEtapNotNull = new System.Workflow.Activities.IfElseBranchActivity();
+            this.faultHandlerActivity16 = new System.Workflow.ComponentModel.FaultHandlerActivity();
             this.faultHandlersActivity2 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.setStateActivity25 = new System.Workflow.Activities.SetStateActivity();
             this.logToHistoryListActivity3 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -375,6 +461,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.ifElseActivity11 = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity53 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged11 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.faultHandlersActivity29 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow12 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Dokumentacja = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity9 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Dokumentacja = new System.Workflow.Activities.CodeActivity();
@@ -382,6 +470,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.ifElseActivity123 = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity50 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged12 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.faultHandlersActivity28 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow11 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Uruchomienie = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity10 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Uruchomienie = new System.Workflow.Activities.CodeActivity();
@@ -389,6 +479,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.TestAkceptacjaUmowy = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity46 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged10 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.faultHandlersActivity27 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow10 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_AkceptacjaUmowy = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity13 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_AkceptacjaUmowy = new System.Workflow.Activities.CodeActivity();
@@ -397,14 +489,17 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity44 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.Update_Item = new System.Workflow.Activities.CodeActivity();
             this.onWorkflowItemChanged9 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.faultHandlersActivity26 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow9 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Umowa = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity8 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Umowa = new System.Workflow.Activities.CodeActivity();
-            this.logToHistoryListActivity82 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.faultHandlersActivity14 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.ifElseActivity8 = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity42 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged8 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.faultHandlersActivity30 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow8 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_KorektaWniosku = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity12 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Wniosek1 = new System.Workflow.Activities.CodeActivity();
@@ -412,6 +507,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.ifElseActivity7 = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity38 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged7 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.faultHandlersActivity25 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow7 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_AkceptacjaWniosku = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity7 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_AkceptacjaWniosku = new System.Workflow.Activities.CodeActivity();
@@ -419,6 +516,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.ifElseActivity6 = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity26 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged6 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.faultHandlersActivity24 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow6 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.codeDodajDoRozliczen = new System.Workflow.Activities.CodeActivity();
             this.setState_Wniosek = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity6 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -427,6 +526,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.ifElseActivity5 = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity36 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged5 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.faultHandlersActivity23 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow5 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_KorektaOferty = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logKorektaOferty = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Oferta1 = new System.Workflow.Activities.CodeActivity();
@@ -434,9 +535,12 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.AkceptacjaOferty_Telemarketing = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity25 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged4 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.faultHandlersActivity22 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow4 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_AkceptacjaOferty = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity5 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_AkceptacjaOferty = new System.Workflow.Activities.CodeActivity();
+            this.faultHandlersActivity21 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.setStateActivity26 = new System.Workflow.Activities.SetStateActivity();
             this.ifElseActivity1 = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity2 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -446,6 +550,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Oferta_Routing = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity35 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged2 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.faultHandlersActivity20 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow3 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Oferta = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity15 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Oferta = new System.Workflow.Activities.CodeActivity();
@@ -453,10 +559,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Telemarketing_Routing = new System.Workflow.Activities.IfElseActivity();
             this.logToHistoryListActivity32 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.onWorkflowItemChanged3 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
+            this.faultHandlersActivity19 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow2 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.setState_Telemarketing = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.logToHistoryListActivity16 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.SetCT_Telemarketing = new System.Workflow.Activities.CodeActivity();
             this.faultHandlersActivity4 = new System.Workflow.ComponentModel.FaultHandlersActivity();
+            this.initializeWorkflow1 = new Microsoft.SharePoint.WorkflowActions.InitializeWorkflow();
             this.logToHistoryListActivity14 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.setState_Weryfikacja = new Microsoft.SharePoint.WorkflowActions.SetState();
             this.SetCT_Weryfikacja = new System.Workflow.Activities.CodeActivity();
@@ -466,7 +575,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.onWorkflowItemChanged13 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
             this.faultHandlersActivity3 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.TestEtap = new System.Workflow.Activities.IfElseActivity();
-            this.terminateActivity1 = new System.Workflow.ComponentModel.TerminateActivity();
             this.logRouter = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
             this.faultHandlersActivity1 = new System.Workflow.ComponentModel.FaultHandlersActivity();
             this.setStateActivity1 = new System.Workflow.Activities.SetStateActivity();
@@ -1028,25 +1136,34 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.logToHistoryListActivity4.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity4.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            this.logToHistoryListActivity4.HistoryDescription = "SetCT_Rozliczenie_ExecuteCode";
-            this.logToHistoryListActivity4.HistoryOutcome = "ERR";
+            activitybind26.Name = "Workflow1";
+            activitybind26.Path = "logErrorMessage_HistoryDescription";
+            activitybind27.Name = "Workflow1";
+            activitybind27.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity4.Name = "logToHistoryListActivity4";
             this.logToHistoryListActivity4.OtherData = "";
             this.logToHistoryListActivity4.UserId = -1;
+            this.logToHistoryListActivity4.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind26)));
+            this.logToHistoryListActivity4.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind27)));
+            // 
+            // codeActivity26
+            // 
+            this.codeActivity26.Name = "codeActivity26";
+            this.codeActivity26.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
             // 
             // logToHistoryListActivity67
             // 
             this.logToHistoryListActivity67.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity67.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind26.Name = "Workflow1";
-            activitybind26.Path = "logErrorMessage_HistoryDescription";
-            activitybind27.Name = "Workflow1";
-            activitybind27.Path = "logErrorMessage_HistoryOutcome";
+            activitybind28.Name = "Workflow1";
+            activitybind28.Path = "logErrorMessage_HistoryDescription";
+            activitybind29.Name = "Workflow1";
+            activitybind29.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity67.Name = "logToHistoryListActivity67";
             this.logToHistoryListActivity67.OtherData = "";
             this.logToHistoryListActivity67.UserId = -1;
-            this.logToHistoryListActivity67.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind26)));
-            this.logToHistoryListActivity67.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind27)));
+            this.logToHistoryListActivity67.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind28)));
+            this.logToHistoryListActivity67.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind29)));
             // 
             // codeActivity10
             // 
@@ -1078,19 +1195,38 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity54.OtherData = "";
             this.logToHistoryListActivity54.UserId = -1;
             // 
+            // logToHistoryListActivity97
+            // 
+            this.logToHistoryListActivity97.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity97.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind30.Name = "Workflow1";
+            activitybind30.Path = "logErrorMessage_HistoryDescription";
+            activitybind31.Name = "Workflow1";
+            activitybind31.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity97.Name = "logToHistoryListActivity97";
+            this.logToHistoryListActivity97.OtherData = "";
+            this.logToHistoryListActivity97.UserId = -1;
+            this.logToHistoryListActivity97.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind30)));
+            this.logToHistoryListActivity97.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind31)));
+            // 
+            // codeActivity25
+            // 
+            this.codeActivity25.Name = "codeActivity25";
+            this.codeActivity25.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
             // logToHistoryListActivity66
             // 
             this.logToHistoryListActivity66.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity66.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind28.Name = "Workflow1";
-            activitybind28.Path = "logErrorMessage_HistoryDescription";
-            activitybind29.Name = "Workflow1";
-            activitybind29.Path = "logErrorMessage_HistoryOutcome";
+            activitybind32.Name = "Workflow1";
+            activitybind32.Path = "logErrorMessage_HistoryDescription";
+            activitybind33.Name = "Workflow1";
+            activitybind33.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity66.Name = "logToHistoryListActivity66";
             this.logToHistoryListActivity66.OtherData = "";
             this.logToHistoryListActivity66.UserId = -1;
-            this.logToHistoryListActivity66.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind28)));
-            this.logToHistoryListActivity66.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind29)));
+            this.logToHistoryListActivity66.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind32)));
+            this.logToHistoryListActivity66.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind33)));
             // 
             // codeActivity9
             // 
@@ -1127,19 +1263,38 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity51.OtherData = "";
             this.logToHistoryListActivity51.UserId = -1;
             // 
+            // logToHistoryListActivity96
+            // 
+            this.logToHistoryListActivity96.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity96.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind34.Name = "Workflow1";
+            activitybind34.Path = "logErrorMessage_HistoryDescription";
+            activitybind35.Name = "Workflow1";
+            activitybind35.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity96.Name = "logToHistoryListActivity96";
+            this.logToHistoryListActivity96.OtherData = "";
+            this.logToHistoryListActivity96.UserId = -1;
+            this.logToHistoryListActivity96.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind34)));
+            this.logToHistoryListActivity96.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind35)));
+            // 
+            // codeActivity24
+            // 
+            this.codeActivity24.Name = "codeActivity24";
+            this.codeActivity24.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
             // logToHistoryListActivity65
             // 
             this.logToHistoryListActivity65.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity65.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind30.Name = "Workflow1";
-            activitybind30.Path = "logErrorMessage_HistoryDescription";
-            activitybind31.Name = "Workflow1";
-            activitybind31.Path = "logErrorMessage_HistoryOutcome";
+            activitybind36.Name = "Workflow1";
+            activitybind36.Path = "logErrorMessage_HistoryDescription";
+            activitybind37.Name = "Workflow1";
+            activitybind37.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity65.Name = "logToHistoryListActivity65";
             this.logToHistoryListActivity65.OtherData = "";
             this.logToHistoryListActivity65.UserId = -1;
-            this.logToHistoryListActivity65.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind30)));
-            this.logToHistoryListActivity65.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind31)));
+            this.logToHistoryListActivity65.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind36)));
+            this.logToHistoryListActivity65.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind37)));
             // 
             // codeActivity8
             // 
@@ -1239,19 +1394,38 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity47.OtherData = "";
             this.logToHistoryListActivity47.UserId = -1;
             // 
+            // logToHistoryListActivity95
+            // 
+            this.logToHistoryListActivity95.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity95.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind38.Name = "Workflow1";
+            activitybind38.Path = "logErrorMessage_HistoryDescription";
+            activitybind39.Name = "Workflow1";
+            activitybind39.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity95.Name = "logToHistoryListActivity95";
+            this.logToHistoryListActivity95.OtherData = "";
+            this.logToHistoryListActivity95.UserId = -1;
+            this.logToHistoryListActivity95.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind38)));
+            this.logToHistoryListActivity95.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind39)));
+            // 
+            // codeActivity23
+            // 
+            this.codeActivity23.Name = "codeActivity23";
+            this.codeActivity23.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
             // logToHistoryListActivity64
             // 
             this.logToHistoryListActivity64.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity64.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind32.Name = "Workflow1";
-            activitybind32.Path = "logErrorMessage_HistoryDescription";
-            activitybind33.Name = "Workflow1";
-            activitybind33.Path = "logErrorMessage_HistoryOutcome";
+            activitybind40.Name = "Workflow1";
+            activitybind40.Path = "logErrorMessage_HistoryDescription";
+            activitybind41.Name = "Workflow1";
+            activitybind41.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity64.Name = "logToHistoryListActivity64";
             this.logToHistoryListActivity64.OtherData = "";
             this.logToHistoryListActivity64.UserId = -1;
-            this.logToHistoryListActivity64.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind32)));
-            this.logToHistoryListActivity64.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind33)));
+            this.logToHistoryListActivity64.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind40)));
+            this.logToHistoryListActivity64.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind41)));
             // 
             // codeActivity7
             // 
@@ -1283,19 +1457,38 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity45.OtherData = "";
             this.logToHistoryListActivity45.UserId = -1;
             // 
+            // logToHistoryListActivity94
+            // 
+            this.logToHistoryListActivity94.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity94.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind42.Name = "Workflow1";
+            activitybind42.Path = "logErrorMessage_HistoryDescription";
+            activitybind43.Name = "Workflow1";
+            activitybind43.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity94.Name = "logToHistoryListActivity94";
+            this.logToHistoryListActivity94.OtherData = "";
+            this.logToHistoryListActivity94.UserId = -1;
+            this.logToHistoryListActivity94.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind42)));
+            this.logToHistoryListActivity94.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind43)));
+            // 
+            // codeActivity22
+            // 
+            this.codeActivity22.Name = "codeActivity22";
+            this.codeActivity22.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
             // logToHistoryListActivity63
             // 
             this.logToHistoryListActivity63.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity63.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind34.Name = "Workflow1";
-            activitybind34.Path = "logErrorMessage_HistoryDescription";
-            activitybind35.Name = "Workflow1";
-            activitybind35.Path = "logErrorMessage_HistoryOutcome";
+            activitybind44.Name = "Workflow1";
+            activitybind44.Path = "logErrorMessage_HistoryDescription";
+            activitybind45.Name = "Workflow1";
+            activitybind45.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity63.Name = "logToHistoryListActivity63";
             this.logToHistoryListActivity63.OtherData = "";
             this.logToHistoryListActivity63.UserId = -1;
-            this.logToHistoryListActivity63.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind34)));
-            this.logToHistoryListActivity63.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind35)));
+            this.logToHistoryListActivity63.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind44)));
+            this.logToHistoryListActivity63.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind45)));
             // 
             // codeActivity6
             // 
@@ -1327,19 +1520,38 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity43.OtherData = "";
             this.logToHistoryListActivity43.UserId = -1;
             // 
+            // logToHistoryListActivity93
+            // 
+            this.logToHistoryListActivity93.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity93.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind46.Name = "Workflow1";
+            activitybind46.Path = "logErrorMessage_HistoryDescription";
+            activitybind47.Name = "Workflow1";
+            activitybind47.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity93.Name = "logToHistoryListActivity93";
+            this.logToHistoryListActivity93.OtherData = "";
+            this.logToHistoryListActivity93.UserId = -1;
+            this.logToHistoryListActivity93.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind46)));
+            this.logToHistoryListActivity93.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind47)));
+            // 
+            // codeActivity21
+            // 
+            this.codeActivity21.Name = "codeActivity21";
+            this.codeActivity21.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
             // logToHistoryListActivity62
             // 
             this.logToHistoryListActivity62.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity62.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind36.Name = "Workflow1";
-            activitybind36.Path = "logErrorMessage_HistoryDescription";
-            activitybind37.Name = "Workflow1";
-            activitybind37.Path = "logErrorMessage_HistoryOutcome";
+            activitybind48.Name = "Workflow1";
+            activitybind48.Path = "logErrorMessage_HistoryDescription";
+            activitybind49.Name = "Workflow1";
+            activitybind49.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity62.Name = "logToHistoryListActivity62";
             this.logToHistoryListActivity62.OtherData = "";
             this.logToHistoryListActivity62.UserId = -1;
-            this.logToHistoryListActivity62.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind36)));
-            this.logToHistoryListActivity62.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind37)));
+            this.logToHistoryListActivity62.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind48)));
+            this.logToHistoryListActivity62.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind49)));
             // 
             // codeActivity5
             // 
@@ -1428,19 +1640,38 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity39.OtherData = "";
             this.logToHistoryListActivity39.UserId = -1;
             // 
+            // logToHistoryListActivity92
+            // 
+            this.logToHistoryListActivity92.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity92.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind50.Name = "Workflow1";
+            activitybind50.Path = "logErrorMessage_HistoryDescription";
+            activitybind51.Name = "Workflow1";
+            activitybind51.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity92.Name = "logToHistoryListActivity92";
+            this.logToHistoryListActivity92.OtherData = "";
+            this.logToHistoryListActivity92.UserId = -1;
+            this.logToHistoryListActivity92.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind50)));
+            this.logToHistoryListActivity92.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind51)));
+            // 
+            // codeActivity20
+            // 
+            this.codeActivity20.Name = "codeActivity20";
+            this.codeActivity20.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
             // logToHistoryListActivity61
             // 
             this.logToHistoryListActivity61.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity61.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind38.Name = "Workflow1";
-            activitybind38.Path = "logErrorMessage_HistoryDescription";
-            activitybind39.Name = "Workflow1";
-            activitybind39.Path = "logErrorMessage_HistoryOutcome";
+            activitybind52.Name = "Workflow1";
+            activitybind52.Path = "logErrorMessage_HistoryDescription";
+            activitybind53.Name = "Workflow1";
+            activitybind53.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity61.Name = "logToHistoryListActivity61";
             this.logToHistoryListActivity61.OtherData = "";
             this.logToHistoryListActivity61.UserId = -1;
-            this.logToHistoryListActivity61.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind38)));
-            this.logToHistoryListActivity61.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind39)));
+            this.logToHistoryListActivity61.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind52)));
+            this.logToHistoryListActivity61.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind53)));
             // 
             // codeActivity4
             // 
@@ -1472,19 +1703,38 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity27.OtherData = "";
             this.logToHistoryListActivity27.UserId = -1;
             // 
+            // logToHistoryListActivity91
+            // 
+            this.logToHistoryListActivity91.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity91.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind54.Name = "Workflow1";
+            activitybind54.Path = "logErrorMessage_HistoryDescription";
+            activitybind55.Name = "Workflow1";
+            activitybind55.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity91.Name = "logToHistoryListActivity91";
+            this.logToHistoryListActivity91.OtherData = "";
+            this.logToHistoryListActivity91.UserId = -1;
+            this.logToHistoryListActivity91.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind54)));
+            this.logToHistoryListActivity91.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind55)));
+            // 
+            // codeActivity19
+            // 
+            this.codeActivity19.Name = "codeActivity19";
+            this.codeActivity19.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
             // logToHistoryListActivity60
             // 
             this.logToHistoryListActivity60.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity60.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind40.Name = "Workflow1";
-            activitybind40.Path = "logErrorMessage_HistoryDescription";
-            activitybind41.Name = "Workflow1";
-            activitybind41.Path = "logErrorMessage_HistoryOutcome";
+            activitybind56.Name = "Workflow1";
+            activitybind56.Path = "logErrorMessage_HistoryDescription";
+            activitybind57.Name = "Workflow1";
+            activitybind57.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity60.Name = "logToHistoryListActivity60";
             this.logToHistoryListActivity60.OtherData = "";
             this.logToHistoryListActivity60.UserId = -1;
-            this.logToHistoryListActivity60.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind40)));
-            this.logToHistoryListActivity60.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind41)));
+            this.logToHistoryListActivity60.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind56)));
+            this.logToHistoryListActivity60.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind57)));
             // 
             // codeActivity3
             // 
@@ -1516,19 +1766,38 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity37.OtherData = "";
             this.logToHistoryListActivity37.UserId = -1;
             // 
+            // logToHistoryListActivity90
+            // 
+            this.logToHistoryListActivity90.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity90.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind58.Name = "Workflow1";
+            activitybind58.Path = "logErrorMessage_HistoryDescription";
+            activitybind59.Name = "Workflow1";
+            activitybind59.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity90.Name = "logToHistoryListActivity90";
+            this.logToHistoryListActivity90.OtherData = "";
+            this.logToHistoryListActivity90.UserId = -1;
+            this.logToHistoryListActivity90.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind58)));
+            this.logToHistoryListActivity90.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind59)));
+            // 
+            // codeActivity18
+            // 
+            this.codeActivity18.Name = "codeActivity18";
+            this.codeActivity18.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
             // logErrorMessage
             // 
             this.logErrorMessage.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logErrorMessage.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind42.Name = "Workflow1";
-            activitybind42.Path = "logErrorMessage_HistoryDescription";
-            activitybind43.Name = "Workflow1";
-            activitybind43.Path = "logErrorMessage_HistoryOutcome";
+            activitybind60.Name = "Workflow1";
+            activitybind60.Path = "logErrorMessage_HistoryDescription";
+            activitybind61.Name = "Workflow1";
+            activitybind61.Path = "logErrorMessage_HistoryOutcome";
             this.logErrorMessage.Name = "logErrorMessage";
             this.logErrorMessage.OtherData = "";
             this.logErrorMessage.UserId = -1;
-            this.logErrorMessage.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind42)));
-            this.logErrorMessage.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind43)));
+            this.logErrorMessage.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind60)));
+            this.logErrorMessage.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind61)));
             // 
             // ErrorHandler
             // 
@@ -1637,6 +1906,44 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity21.OtherData = "";
             this.logToHistoryListActivity21.UserId = -1;
             // 
+            // logToHistoryListActivity89
+            // 
+            this.logToHistoryListActivity89.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity89.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind62.Name = "Workflow1";
+            activitybind62.Path = "logErrorMessage_HistoryDescription";
+            activitybind63.Name = "Workflow1";
+            activitybind63.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity89.Name = "logToHistoryListActivity89";
+            this.logToHistoryListActivity89.OtherData = "";
+            this.logToHistoryListActivity89.UserId = -1;
+            this.logToHistoryListActivity89.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind62)));
+            this.logToHistoryListActivity89.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind63)));
+            // 
+            // codeActivity17
+            // 
+            this.codeActivity17.Name = "codeActivity17";
+            this.codeActivity17.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // logToHistoryListActivity88
+            // 
+            this.logToHistoryListActivity88.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity88.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind64.Name = "Workflow1";
+            activitybind64.Path = "logErrorMessage_HistoryDescription";
+            activitybind65.Name = "Workflow1";
+            activitybind65.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity88.Name = "logToHistoryListActivity88";
+            this.logToHistoryListActivity88.OtherData = "";
+            this.logToHistoryListActivity88.UserId = -1;
+            this.logToHistoryListActivity88.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind64)));
+            this.logToHistoryListActivity88.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind65)));
+            // 
+            // codeActivity16
+            // 
+            this.codeActivity16.Name = "codeActivity16";
+            this.codeActivity16.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
             // logToHistoryListActivity17
             // 
             this.logToHistoryListActivity17.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
@@ -1649,43 +1956,43 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // sendEmail_Stracony
             // 
-            activitybind44.Name = "Workflow1";
-            activitybind44.Path = "Mail_BCC";
-            activitybind45.Name = "Workflow1";
-            activitybind45.Path = "Mail_Body";
-            activitybind46.Name = "Workflow1";
-            activitybind46.Path = "Mail_CC";
+            activitybind66.Name = "Workflow1";
+            activitybind66.Path = "Mail_BCC";
+            activitybind67.Name = "Workflow1";
+            activitybind67.Path = "Mail_Body";
+            activitybind68.Name = "Workflow1";
+            activitybind68.Path = "Mail_CC";
             this.sendEmail_Stracony.CorrelationToken = correlationtoken2;
-            activitybind47.Name = "Workflow1";
-            activitybind47.Path = "Mail_From";
+            activitybind69.Name = "Workflow1";
+            activitybind69.Path = "Mail_From";
             this.sendEmail_Stracony.Headers = null;
             this.sendEmail_Stracony.IncludeStatus = false;
             this.sendEmail_Stracony.Name = "sendEmail_Stracony";
-            activitybind48.Name = "Workflow1";
-            activitybind48.Path = "Mail_Subject";
-            activitybind49.Name = "Workflow1";
-            activitybind49.Path = "Mail_To";
+            activitybind70.Name = "Workflow1";
+            activitybind70.Path = "Mail_Subject";
+            activitybind71.Name = "Workflow1";
+            activitybind71.Path = "Mail_To";
             this.sendEmail_Stracony.MethodInvoking += new System.EventHandler(this.sendEmail_Stracony_MethodInvoking);
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.ToProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind49)));
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.SubjectProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind48)));
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BodyProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind45)));
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BCCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind44)));
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.CCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind46)));
-            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.FromProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind47)));
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.ToProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind71)));
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.SubjectProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind70)));
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BodyProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind67)));
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BCCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind66)));
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.CCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind68)));
+            this.sendEmail_Stracony.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.FromProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind69)));
             // 
             // logToHistoryListActivity59
             // 
             this.logToHistoryListActivity59.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity59.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind50.Name = "Workflow1";
-            activitybind50.Path = "logErrorMessage_HistoryDescription";
-            activitybind51.Name = "Workflow1";
-            activitybind51.Path = "logErrorMessage_HistoryOutcome";
+            activitybind72.Name = "Workflow1";
+            activitybind72.Path = "logErrorMessage_HistoryDescription";
+            activitybind73.Name = "Workflow1";
+            activitybind73.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity59.Name = "logToHistoryListActivity59";
             this.logToHistoryListActivity59.OtherData = "";
             this.logToHistoryListActivity59.UserId = -1;
-            this.logToHistoryListActivity59.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind50)));
-            this.logToHistoryListActivity59.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind51)));
+            this.logToHistoryListActivity59.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind72)));
+            this.logToHistoryListActivity59.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind73)));
             // 
             // codeActivity2
             // 
@@ -1707,19 +2014,38 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.setStateActivity5.Name = "setStateActivity5";
             this.setStateActivity5.TargetStateName = "AkceptacjaOferty";
             // 
+            // logToHistoryListActivity87
+            // 
+            this.logToHistoryListActivity87.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity87.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind74.Name = "Workflow1";
+            activitybind74.Path = "logErrorMessage_HistoryDescription";
+            activitybind75.Name = "Workflow1";
+            activitybind75.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity87.Name = "logToHistoryListActivity87";
+            this.logToHistoryListActivity87.OtherData = "";
+            this.logToHistoryListActivity87.UserId = -1;
+            this.logToHistoryListActivity87.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind74)));
+            this.logToHistoryListActivity87.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind75)));
+            // 
+            // codeActivity15
+            // 
+            this.codeActivity15.Name = "codeActivity15";
+            this.codeActivity15.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
             // logToHistoryListActivity58
             // 
             this.logToHistoryListActivity58.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity58.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind52.Name = "Workflow1";
-            activitybind52.Path = "logErrorMessage_HistoryDescription";
-            activitybind53.Name = "Workflow1";
-            activitybind53.Path = "logErrorMessage_HistoryOutcome";
+            activitybind76.Name = "Workflow1";
+            activitybind76.Path = "logErrorMessage_HistoryDescription";
+            activitybind77.Name = "Workflow1";
+            activitybind77.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity58.Name = "logToHistoryListActivity58";
             this.logToHistoryListActivity58.OtherData = "";
             this.logToHistoryListActivity58.UserId = -1;
-            this.logToHistoryListActivity58.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind52)));
-            this.logToHistoryListActivity58.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind53)));
+            this.logToHistoryListActivity58.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind76)));
+            this.logToHistoryListActivity58.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind77)));
             // 
             // codeActivity1
             // 
@@ -1776,29 +2102,57 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity33.OtherData = "";
             this.logToHistoryListActivity33.UserId = -1;
             // 
-            // logERROR_WefyfikacjaInit
+            // logToHistoryListActivity86
             // 
-            this.logERROR_WefyfikacjaInit.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-            this.logERROR_WefyfikacjaInit.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            this.logERROR_WefyfikacjaInit.HistoryDescription = "WeryfikacjaInit";
-            this.logERROR_WefyfikacjaInit.HistoryOutcome = "ERR";
-            this.logERROR_WefyfikacjaInit.Name = "logERROR_WefyfikacjaInit";
-            this.logERROR_WefyfikacjaInit.OtherData = "";
-            this.logERROR_WefyfikacjaInit.UserId = -1;
+            this.logToHistoryListActivity86.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity86.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind78.Name = "Workflow1";
+            activitybind78.Path = "logErrorMessage_HistoryDescription";
+            activitybind79.Name = "Workflow1";
+            activitybind79.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity86.Name = "logToHistoryListActivity86";
+            this.logToHistoryListActivity86.OtherData = "";
+            this.logToHistoryListActivity86.UserId = -1;
+            this.logToHistoryListActivity86.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind78)));
+            this.logToHistoryListActivity86.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind79)));
+            // 
+            // codeActivity14
+            // 
+            this.codeActivity14.Name = "codeActivity14";
+            this.codeActivity14.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
+            // logToHistoryListActivity85
+            // 
+            this.logToHistoryListActivity85.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity85.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind80.Name = "Workflow1";
+            activitybind80.Path = "logErrorMessage_HistoryDescription";
+            activitybind81.Name = "Workflow1";
+            activitybind81.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity85.Name = "logToHistoryListActivity85";
+            this.logToHistoryListActivity85.OtherData = "";
+            this.logToHistoryListActivity85.UserId = -1;
+            this.logToHistoryListActivity85.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind80)));
+            this.logToHistoryListActivity85.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind81)));
+            // 
+            // codeActivity13
+            // 
+            this.codeActivity13.Name = "codeActivity13";
+            this.codeActivity13.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
             // 
             // logToHistoryListActivity57
             // 
             this.logToHistoryListActivity57.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity57.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind54.Name = "Workflow1";
-            activitybind54.Path = "logErrorMessage_HistoryDescription";
-            activitybind55.Name = "Workflow1";
-            activitybind55.Path = "logErrorMessage_HistoryOutcome";
+            activitybind82.Name = "Workflow1";
+            activitybind82.Path = "logErrorMessage_HistoryDescription";
+            activitybind83.Name = "Workflow1";
+            activitybind83.Path = "logErrorMessage_HistoryOutcome";
             this.logToHistoryListActivity57.Name = "logToHistoryListActivity57";
             this.logToHistoryListActivity57.OtherData = "";
             this.logToHistoryListActivity57.UserId = -1;
-            this.logToHistoryListActivity57.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind55)));
-            this.logToHistoryListActivity57.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind54)));
+            this.logToHistoryListActivity57.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind83)));
+            this.logToHistoryListActivity57.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind82)));
             // 
             // ErrorHandler_Weryfikacja
             // 
@@ -1875,15 +2229,24 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity29.OtherData = "";
             this.logToHistoryListActivity29.UserId = -1;
             // 
-            // logERROR_NavigatorInit
+            // logToHistoryListActivity84
             // 
-            this.logERROR_NavigatorInit.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-            this.logERROR_NavigatorInit.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            this.logERROR_NavigatorInit.HistoryDescription = "NavigatorInit";
-            this.logERROR_NavigatorInit.HistoryOutcome = "ERR";
-            this.logERROR_NavigatorInit.Name = "logERROR_NavigatorInit";
-            this.logERROR_NavigatorInit.OtherData = "";
-            this.logERROR_NavigatorInit.UserId = -1;
+            this.logToHistoryListActivity84.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity84.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind84.Name = "Workflow1";
+            activitybind84.Path = "logErrorMessage_HistoryDescription";
+            activitybind85.Name = "Workflow1";
+            activitybind85.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity84.Name = "logToHistoryListActivity84";
+            this.logToHistoryListActivity84.OtherData = "";
+            this.logToHistoryListActivity84.UserId = -1;
+            this.logToHistoryListActivity84.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind84)));
+            this.logToHistoryListActivity84.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind85)));
+            // 
+            // codeActivity12
+            // 
+            this.codeActivity12.Name = "codeActivity12";
+            this.codeActivity12.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
             // 
             // Navigator_Routing
             // 
@@ -1937,8 +2300,28 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity68.OtherData = "";
             this.logToHistoryListActivity68.UserId = -1;
             // 
+            // logToHistoryListActivity83
+            // 
+            this.logToHistoryListActivity83.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+            this.logToHistoryListActivity83.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+            activitybind86.Name = "Workflow1";
+            activitybind86.Path = "logErrorMessage_HistoryDescription";
+            activitybind87.Name = "Workflow1";
+            activitybind87.Path = "logErrorMessage_HistoryOutcome";
+            this.logToHistoryListActivity83.Name = "logToHistoryListActivity83";
+            this.logToHistoryListActivity83.OtherData = "";
+            this.logToHistoryListActivity83.UserId = -1;
+            this.logToHistoryListActivity83.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind86)));
+            this.logToHistoryListActivity83.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind87)));
+            // 
+            // codeActivity11
+            // 
+            this.codeActivity11.Name = "codeActivity11";
+            this.codeActivity11.ExecuteCode += new System.EventHandler(this.ErrorHandler_ExecuteCode);
+            // 
             // faultHandlerActivity2
             // 
+            this.faultHandlerActivity2.Activities.Add(this.codeActivity26);
             this.faultHandlerActivity2.Activities.Add(this.logToHistoryListActivity4);
             this.faultHandlerActivity2.FaultType = typeof(System.SystemException);
             this.faultHandlerActivity2.Name = "faultHandlerActivity2";
@@ -1963,6 +2346,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Dokumentacja_Rozliczenie.Condition = codecondition27;
             this.Dokumentacja_Rozliczenie.Name = "Dokumentacja_Rozliczenie";
             // 
+            // faultHandlerActivity28
+            // 
+            this.faultHandlerActivity28.Activities.Add(this.codeActivity25);
+            this.faultHandlerActivity28.Activities.Add(this.logToHistoryListActivity97);
+            this.faultHandlerActivity28.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity28.Name = "faultHandlerActivity28";
+            // 
             // faultHandlerActivity14
             // 
             this.faultHandlerActivity14.Activities.Add(this.codeActivity9);
@@ -1983,6 +2373,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             codecondition28.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsUruchomienie_Dokumentacja);
             this.Uruchomienie_Dokumentacja.Condition = codecondition28;
             this.Uruchomienie_Dokumentacja.Name = "Uruchomienie_Dokumentacja";
+            // 
+            // faultHandlerActivity27
+            // 
+            this.faultHandlerActivity27.Activities.Add(this.codeActivity24);
+            this.faultHandlerActivity27.Activities.Add(this.logToHistoryListActivity96);
+            this.faultHandlerActivity27.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity27.Name = "faultHandlerActivity27";
             // 
             // faultHandlerActivity13
             // 
@@ -2027,6 +2424,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.AkceptacjaUmowy_Uruchomienie.Condition = codecondition31;
             this.AkceptacjaUmowy_Uruchomienie.Name = "AkceptacjaUmowy_Uruchomienie";
             // 
+            // faultHandlerActivity26
+            // 
+            this.faultHandlerActivity26.Activities.Add(this.codeActivity23);
+            this.faultHandlerActivity26.Activities.Add(this.logToHistoryListActivity95);
+            this.faultHandlerActivity26.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity26.Name = "faultHandlerActivity26";
+            // 
             // faultHandlerActivity12
             // 
             this.faultHandlerActivity12.Activities.Add(this.codeActivity7);
@@ -2047,6 +2451,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Umowa_AkceptacjaUmowy.Condition = codecondition32;
             this.Umowa_AkceptacjaUmowy.Name = "Umowa_AkceptacjaUmowy";
             // 
+            // faultHandlerActivity25
+            // 
+            this.faultHandlerActivity25.Activities.Add(this.codeActivity22);
+            this.faultHandlerActivity25.Activities.Add(this.logToHistoryListActivity94);
+            this.faultHandlerActivity25.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity25.Name = "faultHandlerActivity25";
+            // 
             // faultHandlerActivity11
             // 
             this.faultHandlerActivity11.Activities.Add(this.codeActivity6);
@@ -2066,6 +2477,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             codecondition33.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsWniosek_AkceptacjaWniosku);
             this.KorektaWniosku_AkceptacjaWniosku.Condition = codecondition33;
             this.KorektaWniosku_AkceptacjaWniosku.Name = "KorektaWniosku_AkceptacjaWniosku";
+            // 
+            // faultHandlerActivity24
+            // 
+            this.faultHandlerActivity24.Activities.Add(this.codeActivity21);
+            this.faultHandlerActivity24.Activities.Add(this.logToHistoryListActivity93);
+            this.faultHandlerActivity24.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity24.Name = "faultHandlerActivity24";
             // 
             // faultHandlerActivity10
             // 
@@ -2108,6 +2526,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.AkceptacjaWniosku_Umowa.Condition = codecondition36;
             this.AkceptacjaWniosku_Umowa.Name = "AkceptacjaWniosku_Umowa";
             // 
+            // faultHandlerActivity23
+            // 
+            this.faultHandlerActivity23.Activities.Add(this.codeActivity20);
+            this.faultHandlerActivity23.Activities.Add(this.logToHistoryListActivity92);
+            this.faultHandlerActivity23.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity23.Name = "faultHandlerActivity23";
+            // 
             // faultHandlerActivity9
             // 
             this.faultHandlerActivity9.Activities.Add(this.codeActivity4);
@@ -2128,6 +2553,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Wniosek_AkceptacjaWniosku.Condition = codecondition37;
             this.Wniosek_AkceptacjaWniosku.Name = "Wniosek_AkceptacjaWniosku";
             // 
+            // faultHandlerActivity22
+            // 
+            this.faultHandlerActivity22.Activities.Add(this.codeActivity19);
+            this.faultHandlerActivity22.Activities.Add(this.logToHistoryListActivity91);
+            this.faultHandlerActivity22.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity22.Name = "faultHandlerActivity22";
+            // 
             // faultHandlerActivity8
             // 
             this.faultHandlerActivity8.Activities.Add(this.codeActivity3);
@@ -2147,6 +2579,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             codecondition38.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsOferta_AkceptacjaOferty);
             this.KorektaOferty_AkceptacjaOferty.Condition = codecondition38;
             this.KorektaOferty_AkceptacjaOferty.Name = "KorektaOferty_AkceptacjaOferty";
+            // 
+            // faultHandlerActivity21
+            // 
+            this.faultHandlerActivity21.Activities.Add(this.codeActivity18);
+            this.faultHandlerActivity21.Activities.Add(this.logToHistoryListActivity90);
+            this.faultHandlerActivity21.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity21.Name = "faultHandlerActivity21";
             // 
             // faultHandlerActivity1
             // 
@@ -2198,6 +2637,20 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.AkceptacjaOferty_Wniosek.Condition = codecondition42;
             this.AkceptacjaOferty_Wniosek.Name = "AkceptacjaOferty_Wniosek";
             // 
+            // faultHandlerActivity20
+            // 
+            this.faultHandlerActivity20.Activities.Add(this.codeActivity17);
+            this.faultHandlerActivity20.Activities.Add(this.logToHistoryListActivity89);
+            this.faultHandlerActivity20.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity20.Name = "faultHandlerActivity20";
+            // 
+            // faultHandlerActivity19
+            // 
+            this.faultHandlerActivity19.Activities.Add(this.codeActivity16);
+            this.faultHandlerActivity19.Activities.Add(this.logToHistoryListActivity88);
+            this.faultHandlerActivity19.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity19.Name = "faultHandlerActivity19";
+            // 
             // Odrzucenie_MailSendAllowed
             // 
             this.Odrzucenie_MailSendAllowed.Activities.Add(this.sendEmail_Stracony);
@@ -2224,6 +2677,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             codecondition44.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.IsOferta_AkceptacjaOferty);
             this.Oferta_AkceptacjaOferty.Condition = codecondition44;
             this.Oferta_AkceptacjaOferty.Name = "Oferta_AkceptacjaOferty";
+            // 
+            // faultHandlerActivity18
+            // 
+            this.faultHandlerActivity18.Activities.Add(this.codeActivity15);
+            this.faultHandlerActivity18.Activities.Add(this.logToHistoryListActivity87);
+            this.faultHandlerActivity18.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity18.Name = "faultHandlerActivity18";
             // 
             // faultHandlerActivity6
             // 
@@ -2255,10 +2715,17 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.Telemarketing_Oferta.Condition = codecondition46;
             this.Telemarketing_Oferta.Name = "Telemarketing_Oferta";
             // 
+            // faultHandlerActivity17
+            // 
+            this.faultHandlerActivity17.Activities.Add(this.codeActivity14);
+            this.faultHandlerActivity17.Activities.Add(this.logToHistoryListActivity86);
+            this.faultHandlerActivity17.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity17.Name = "faultHandlerActivity17";
+            // 
             // faultHandlerActivity4
             // 
-            this.faultHandlerActivity4.Activities.Add(this.logERROR_WefyfikacjaInit);
-            this.faultHandlerActivity4.Enabled = false;
+            this.faultHandlerActivity4.Activities.Add(this.codeActivity13);
+            this.faultHandlerActivity4.Activities.Add(this.logToHistoryListActivity85);
             this.faultHandlerActivity4.FaultType = typeof(System.SystemException);
             this.faultHandlerActivity4.Name = "faultHandlerActivity4";
             // 
@@ -2307,8 +2774,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // faultHandlerActivity3
             // 
-            this.faultHandlerActivity3.Activities.Add(this.logERROR_NavigatorInit);
-            this.faultHandlerActivity3.Enabled = false;
+            this.faultHandlerActivity3.Activities.Add(this.codeActivity12);
+            this.faultHandlerActivity3.Activities.Add(this.logToHistoryListActivity84);
             this.faultHandlerActivity3.FaultType = typeof(System.SystemException);
             this.faultHandlerActivity3.Name = "faultHandlerActivity3";
             // 
@@ -2326,6 +2793,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.ifEtapNotNull.Condition = codecondition50;
             this.ifEtapNotNull.Name = "ifEtapNotNull";
             // 
+            // faultHandlerActivity16
+            // 
+            this.faultHandlerActivity16.Activities.Add(this.codeActivity11);
+            this.faultHandlerActivity16.Activities.Add(this.logToHistoryListActivity83);
+            this.faultHandlerActivity16.FaultType = typeof(System.SystemException);
+            this.faultHandlerActivity16.Name = "faultHandlerActivity16";
+            // 
             // faultHandlersActivity2
             // 
             this.faultHandlersActivity2.Activities.Add(this.faultHandlerActivity2);
@@ -2341,13 +2815,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.logToHistoryListActivity3.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
             this.logToHistoryListActivity3.Enabled = false;
             this.logToHistoryListActivity3.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            activitybind56.Name = "Workflow1";
-            activitybind56.Path = "logRozliczenie_DodajDoRozliczen";
+            activitybind88.Name = "Workflow1";
+            activitybind88.Path = "logRozliczenie_DodajDoRozliczen";
             this.logToHistoryListActivity3.HistoryOutcome = "";
             this.logToHistoryListActivity3.Name = "logToHistoryListActivity3";
             this.logToHistoryListActivity3.OtherData = "";
             this.logToHistoryListActivity3.UserId = -1;
-            this.logToHistoryListActivity3.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind56)));
+            this.logToHistoryListActivity3.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind88)));
             // 
             // nRozliczenie_DodajDoRozliczen
             // 
@@ -2400,9 +2874,20 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged11.AfterProperties = null;
             this.onWorkflowItemChanged11.BeforeProperties = null;
-            this.onWorkflowItemChanged11.CorrelationToken = correlationtoken2;
+            correlationtoken3.Name = "wtDokumentacja";
+            correlationtoken3.OwnerActivityName = "Dokumentacja";
+            this.onWorkflowItemChanged11.CorrelationToken = correlationtoken3;
             this.onWorkflowItemChanged11.Name = "onWorkflowItemChanged11";
-            this.onWorkflowItemChanged11.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
+            // 
+            // faultHandlersActivity29
+            // 
+            this.faultHandlersActivity29.Activities.Add(this.faultHandlerActivity28);
+            this.faultHandlersActivity29.Name = "faultHandlersActivity29";
+            // 
+            // initializeWorkflow12
+            // 
+            this.initializeWorkflow12.CorrelationToken = correlationtoken3;
+            this.initializeWorkflow12.Name = "initializeWorkflow12";
             // 
             // setState_Dokumentacja
             // 
@@ -2450,9 +2935,20 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged12.AfterProperties = null;
             this.onWorkflowItemChanged12.BeforeProperties = null;
-            this.onWorkflowItemChanged12.CorrelationToken = correlationtoken2;
+            correlationtoken4.Name = "wtUruchomienie";
+            correlationtoken4.OwnerActivityName = "Uruchomienie";
+            this.onWorkflowItemChanged12.CorrelationToken = correlationtoken4;
             this.onWorkflowItemChanged12.Name = "onWorkflowItemChanged12";
-            this.onWorkflowItemChanged12.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
+            // 
+            // faultHandlersActivity28
+            // 
+            this.faultHandlersActivity28.Activities.Add(this.faultHandlerActivity27);
+            this.faultHandlersActivity28.Name = "faultHandlersActivity28";
+            // 
+            // initializeWorkflow11
+            // 
+            this.initializeWorkflow11.CorrelationToken = correlationtoken4;
+            this.initializeWorkflow11.Name = "initializeWorkflow11";
             // 
             // setState_Uruchomienie
             // 
@@ -2502,9 +2998,20 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged10.AfterProperties = null;
             this.onWorkflowItemChanged10.BeforeProperties = null;
-            this.onWorkflowItemChanged10.CorrelationToken = correlationtoken2;
+            correlationtoken5.Name = "wtAkceptacjaUmowy";
+            correlationtoken5.OwnerActivityName = "AkceptacjaUmowy";
+            this.onWorkflowItemChanged10.CorrelationToken = correlationtoken5;
             this.onWorkflowItemChanged10.Name = "onWorkflowItemChanged10";
-            this.onWorkflowItemChanged10.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
+            // 
+            // faultHandlersActivity27
+            // 
+            this.faultHandlersActivity27.Activities.Add(this.faultHandlerActivity26);
+            this.faultHandlersActivity27.Name = "faultHandlersActivity27";
+            // 
+            // initializeWorkflow10
+            // 
+            this.initializeWorkflow10.CorrelationToken = correlationtoken5;
+            this.initializeWorkflow10.Name = "initializeWorkflow10";
             // 
             // setState_AkceptacjaUmowy
             // 
@@ -2557,20 +3064,30 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged9.AfterProperties = null;
             this.onWorkflowItemChanged9.BeforeProperties = null;
-            this.onWorkflowItemChanged9.CorrelationToken = correlationtoken2;
+            correlationtoken6.Name = "wtUmowa";
+            correlationtoken6.OwnerActivityName = "Umowa";
+            this.onWorkflowItemChanged9.CorrelationToken = correlationtoken6;
             this.onWorkflowItemChanged9.Name = "onWorkflowItemChanged9";
+            // 
+            // faultHandlersActivity26
+            // 
+            this.faultHandlersActivity26.Activities.Add(this.faultHandlerActivity25);
+            this.faultHandlersActivity26.Name = "faultHandlersActivity26";
+            // 
+            // initializeWorkflow9
+            // 
+            this.initializeWorkflow9.CorrelationToken = correlationtoken6;
+            this.initializeWorkflow9.Name = "initializeWorkflow9";
             // 
             // setState_Umowa
             // 
             this.setState_Umowa.CorrelationToken = correlationtoken2;
-            this.setState_Umowa.Enabled = false;
             this.setState_Umowa.Name = "setState_Umowa";
             this.setState_Umowa.State = 23;
             // 
             // logToHistoryListActivity8
             // 
             this.logToHistoryListActivity8.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-            this.logToHistoryListActivity8.Enabled = false;
             this.logToHistoryListActivity8.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
             this.logToHistoryListActivity8.HistoryDescription = "::Umowa";
             this.logToHistoryListActivity8.HistoryOutcome = "";
@@ -2580,19 +3097,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // SetCT_Umowa
             // 
-            this.SetCT_Umowa.Enabled = false;
             this.SetCT_Umowa.Name = "SetCT_Umowa";
             this.SetCT_Umowa.ExecuteCode += new System.EventHandler(this.SetCT_Umowa_ExecuteCode);
-            // 
-            // logToHistoryListActivity82
-            // 
-            this.logToHistoryListActivity82.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-            this.logToHistoryListActivity82.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-            this.logToHistoryListActivity82.HistoryDescription = "AAAAAAAAAAAAAA";
-            this.logToHistoryListActivity82.HistoryOutcome = "";
-            this.logToHistoryListActivity82.Name = "logToHistoryListActivity82";
-            this.logToHistoryListActivity82.OtherData = "";
-            this.logToHistoryListActivity82.UserId = -1;
             // 
             // faultHandlersActivity14
             // 
@@ -2619,9 +3125,20 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged8.AfterProperties = null;
             this.onWorkflowItemChanged8.BeforeProperties = null;
-            this.onWorkflowItemChanged8.CorrelationToken = correlationtoken2;
+            correlationtoken7.Name = "wtKorektaWniosku";
+            correlationtoken7.OwnerActivityName = "KorektaWniosku";
+            this.onWorkflowItemChanged8.CorrelationToken = correlationtoken7;
             this.onWorkflowItemChanged8.Name = "onWorkflowItemChanged8";
-            this.onWorkflowItemChanged8.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
+            // 
+            // faultHandlersActivity30
+            // 
+            this.faultHandlersActivity30.Activities.Add(this.faultHandlerActivity24);
+            this.faultHandlersActivity30.Name = "faultHandlersActivity30";
+            // 
+            // initializeWorkflow8
+            // 
+            this.initializeWorkflow8.CorrelationToken = correlationtoken7;
+            this.initializeWorkflow8.Name = "initializeWorkflow8";
             // 
             // setState_KorektaWniosku
             // 
@@ -2671,9 +3188,20 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged7.AfterProperties = null;
             this.onWorkflowItemChanged7.BeforeProperties = null;
-            this.onWorkflowItemChanged7.CorrelationToken = correlationtoken2;
+            correlationtoken8.Name = "wtAkceptacjaWniosku";
+            correlationtoken8.OwnerActivityName = "AkceptacjaWniosku";
+            this.onWorkflowItemChanged7.CorrelationToken = correlationtoken8;
             this.onWorkflowItemChanged7.Name = "onWorkflowItemChanged7";
-            this.onWorkflowItemChanged7.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
+            // 
+            // faultHandlersActivity25
+            // 
+            this.faultHandlersActivity25.Activities.Add(this.faultHandlerActivity23);
+            this.faultHandlersActivity25.Name = "faultHandlersActivity25";
+            // 
+            // initializeWorkflow7
+            // 
+            this.initializeWorkflow7.CorrelationToken = correlationtoken8;
+            this.initializeWorkflow7.Name = "initializeWorkflow7";
             // 
             // setState_AkceptacjaWniosku
             // 
@@ -2721,9 +3249,20 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged6.AfterProperties = null;
             this.onWorkflowItemChanged6.BeforeProperties = null;
-            this.onWorkflowItemChanged6.CorrelationToken = correlationtoken2;
+            correlationtoken9.Name = "wtWniosek";
+            correlationtoken9.OwnerActivityName = "Wniosek";
+            this.onWorkflowItemChanged6.CorrelationToken = correlationtoken9;
             this.onWorkflowItemChanged6.Name = "onWorkflowItemChanged6";
-            this.onWorkflowItemChanged6.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
+            // 
+            // faultHandlersActivity24
+            // 
+            this.faultHandlersActivity24.Activities.Add(this.faultHandlerActivity22);
+            this.faultHandlersActivity24.Name = "faultHandlersActivity24";
+            // 
+            // initializeWorkflow6
+            // 
+            this.initializeWorkflow6.CorrelationToken = correlationtoken9;
+            this.initializeWorkflow6.Name = "initializeWorkflow6";
             // 
             // codeDodajDoRozliczen
             // 
@@ -2776,9 +3315,20 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged5.AfterProperties = null;
             this.onWorkflowItemChanged5.BeforeProperties = null;
-            this.onWorkflowItemChanged5.CorrelationToken = correlationtoken2;
+            correlationtoken10.Name = "wtKorektaOferty";
+            correlationtoken10.OwnerActivityName = "KorektaOferty";
+            this.onWorkflowItemChanged5.CorrelationToken = correlationtoken10;
             this.onWorkflowItemChanged5.Name = "onWorkflowItemChanged5";
-            this.onWorkflowItemChanged5.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
+            // 
+            // faultHandlersActivity23
+            // 
+            this.faultHandlersActivity23.Activities.Add(this.faultHandlerActivity21);
+            this.faultHandlersActivity23.Name = "faultHandlersActivity23";
+            // 
+            // initializeWorkflow5
+            // 
+            this.initializeWorkflow5.CorrelationToken = correlationtoken10;
+            this.initializeWorkflow5.Name = "initializeWorkflow5";
             // 
             // setState_KorektaOferty
             // 
@@ -2829,9 +3379,20 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged4.AfterProperties = null;
             this.onWorkflowItemChanged4.BeforeProperties = null;
-            this.onWorkflowItemChanged4.CorrelationToken = correlationtoken2;
+            correlationtoken11.Name = "wtAkceptacjaOferty";
+            correlationtoken11.OwnerActivityName = "AkceptacjaOferty";
+            this.onWorkflowItemChanged4.CorrelationToken = correlationtoken11;
             this.onWorkflowItemChanged4.Name = "onWorkflowItemChanged4";
-            this.onWorkflowItemChanged4.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
+            // 
+            // faultHandlersActivity22
+            // 
+            this.faultHandlersActivity22.Activities.Add(this.faultHandlerActivity20);
+            this.faultHandlersActivity22.Name = "faultHandlersActivity22";
+            // 
+            // initializeWorkflow4
+            // 
+            this.initializeWorkflow4.CorrelationToken = correlationtoken11;
+            this.initializeWorkflow4.Name = "initializeWorkflow4";
             // 
             // setState_AkceptacjaOferty
             // 
@@ -2853,6 +3414,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.SetCT_AkceptacjaOferty.Name = "SetCT_AkceptacjaOferty";
             this.SetCT_AkceptacjaOferty.ExecuteCode += new System.EventHandler(this.SetCT_AkceptacjaOferty_ExecuteCode);
+            // 
+            // faultHandlersActivity21
+            // 
+            this.faultHandlersActivity21.Activities.Add(this.faultHandlerActivity19);
+            this.faultHandlersActivity21.Name = "faultHandlersActivity21";
             // 
             // setStateActivity26
             // 
@@ -2910,9 +3476,20 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged2.AfterProperties = null;
             this.onWorkflowItemChanged2.BeforeProperties = null;
-            this.onWorkflowItemChanged2.CorrelationToken = correlationtoken2;
+            correlationtoken12.Name = "wtOferta";
+            correlationtoken12.OwnerActivityName = "Oferta";
+            this.onWorkflowItemChanged2.CorrelationToken = correlationtoken12;
             this.onWorkflowItemChanged2.Name = "onWorkflowItemChanged2";
-            this.onWorkflowItemChanged2.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
+            // 
+            // faultHandlersActivity20
+            // 
+            this.faultHandlersActivity20.Activities.Add(this.faultHandlerActivity18);
+            this.faultHandlersActivity20.Name = "faultHandlersActivity20";
+            // 
+            // initializeWorkflow3
+            // 
+            this.initializeWorkflow3.CorrelationToken = correlationtoken12;
+            this.initializeWorkflow3.Name = "initializeWorkflow3";
             // 
             // setState_Oferta
             // 
@@ -2961,9 +3538,20 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged3.AfterProperties = null;
             this.onWorkflowItemChanged3.BeforeProperties = null;
-            this.onWorkflowItemChanged3.CorrelationToken = correlationtoken2;
+            correlationtoken13.Name = "wtTelemarketing";
+            correlationtoken13.OwnerActivityName = "Telemarketing";
+            this.onWorkflowItemChanged3.CorrelationToken = correlationtoken13;
             this.onWorkflowItemChanged3.Name = "onWorkflowItemChanged3";
-            this.onWorkflowItemChanged3.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
+            // 
+            // faultHandlersActivity19
+            // 
+            this.faultHandlersActivity19.Activities.Add(this.faultHandlerActivity17);
+            this.faultHandlersActivity19.Name = "faultHandlersActivity19";
+            // 
+            // initializeWorkflow2
+            // 
+            this.initializeWorkflow2.CorrelationToken = correlationtoken13;
+            this.initializeWorkflow2.Name = "initializeWorkflow2";
             // 
             // setState_Telemarketing
             // 
@@ -2990,6 +3578,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.faultHandlersActivity4.Activities.Add(this.faultHandlerActivity4);
             this.faultHandlersActivity4.Name = "faultHandlersActivity4";
+            // 
+            // initializeWorkflow1
+            // 
+            correlationtoken14.Name = "wtWeryfikacja";
+            correlationtoken14.OwnerActivityName = "Weryfikacja";
+            this.initializeWorkflow1.CorrelationToken = correlationtoken14;
+            this.initializeWorkflow1.Name = "initializeWorkflow1";
             // 
             // logToHistoryListActivity14
             // 
@@ -3040,9 +3635,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             this.onWorkflowItemChanged13.AfterProperties = null;
             this.onWorkflowItemChanged13.BeforeProperties = null;
-            this.onWorkflowItemChanged13.CorrelationToken = correlationtoken2;
+            this.onWorkflowItemChanged13.CorrelationToken = correlationtoken14;
             this.onWorkflowItemChanged13.Name = "onWorkflowItemChanged13";
-            this.onWorkflowItemChanged13.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
             // 
             // faultHandlersActivity3
             // 
@@ -3054,10 +3648,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.TestEtap.Activities.Add(this.ifEtapNotNull);
             this.TestEtap.Activities.Add(this.Else);
             this.TestEtap.Name = "TestEtap";
-            // 
-            // terminateActivity1
-            // 
-            this.terminateActivity1.Name = "terminateActivity1";
             // 
             // logRouter
             // 
@@ -3071,12 +3661,13 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // faultHandlersActivity1
             // 
+            this.faultHandlersActivity1.Activities.Add(this.faultHandlerActivity16);
             this.faultHandlersActivity1.Name = "faultHandlersActivity1";
             // 
             // setStateActivity1
             // 
             this.setStateActivity1.Name = "setStateActivity1";
-            this.setStateActivity1.TargetStateName = "End";
+            this.setStateActivity1.TargetStateName = "Navigator";
             // 
             // codeSetup
             // 
@@ -3095,15 +3686,14 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // onWorkflowActivated2
             // 
-            correlationtoken3.Name = "myToken";
-            correlationtoken3.OwnerActivityName = "Workflow1";
-            this.onWorkflowActivated2.CorrelationToken = correlationtoken3;
+            correlationtoken15.Name = "myToken";
+            correlationtoken15.OwnerActivityName = "Workflow1";
+            this.onWorkflowActivated2.CorrelationToken = correlationtoken15;
             this.onWorkflowActivated2.EventName = "OnWorkflowActivated";
             this.onWorkflowActivated2.Name = "onWorkflowActivated2";
-            activitybind57.Name = "Workflow1";
-            activitybind57.Path = "workflowProperties";
-            this.onWorkflowActivated2.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
-            this.onWorkflowActivated2.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind57)));
+            activitybind89.Name = "Workflow1";
+            activitybind89.Path = "workflowProperties";
+            this.onWorkflowActivated2.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind89)));
             // 
             // stateInitializationActivity12
             // 
@@ -3129,6 +3719,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity10.Activities.Add(this.SetCT_Dokumentacja);
             this.stateInitializationActivity10.Activities.Add(this.logToHistoryListActivity9);
             this.stateInitializationActivity10.Activities.Add(this.setState_Dokumentacja);
+            this.stateInitializationActivity10.Activities.Add(this.initializeWorkflow12);
+            this.stateInitializationActivity10.Activities.Add(this.faultHandlersActivity29);
             this.stateInitializationActivity10.Name = "stateInitializationActivity10";
             // 
             // Uruchomienie_OnChange
@@ -3144,6 +3736,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity11.Activities.Add(this.SetCT_Uruchomienie);
             this.stateInitializationActivity11.Activities.Add(this.logToHistoryListActivity10);
             this.stateInitializationActivity11.Activities.Add(this.setState_Uruchomienie);
+            this.stateInitializationActivity11.Activities.Add(this.initializeWorkflow11);
+            this.stateInitializationActivity11.Activities.Add(this.faultHandlersActivity28);
             this.stateInitializationActivity11.Name = "stateInitializationActivity11";
             // 
             // AkceptacjaUmowy_OnChange
@@ -3159,6 +3753,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity14.Activities.Add(this.SetCT_AkceptacjaUmowy);
             this.stateInitializationActivity14.Activities.Add(this.logToHistoryListActivity13);
             this.stateInitializationActivity14.Activities.Add(this.setState_AkceptacjaUmowy);
+            this.stateInitializationActivity14.Activities.Add(this.initializeWorkflow10);
+            this.stateInitializationActivity14.Activities.Add(this.faultHandlersActivity27);
             this.stateInitializationActivity14.Name = "stateInitializationActivity14";
             // 
             // Umowa_OnChange
@@ -3172,10 +3768,11 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // 
             // stateInitializationActivity9
             // 
-            this.stateInitializationActivity9.Activities.Add(this.logToHistoryListActivity82);
             this.stateInitializationActivity9.Activities.Add(this.SetCT_Umowa);
             this.stateInitializationActivity9.Activities.Add(this.logToHistoryListActivity8);
             this.stateInitializationActivity9.Activities.Add(this.setState_Umowa);
+            this.stateInitializationActivity9.Activities.Add(this.initializeWorkflow9);
+            this.stateInitializationActivity9.Activities.Add(this.faultHandlersActivity26);
             this.stateInitializationActivity9.Name = "stateInitializationActivity9";
             // 
             // KorektaWniosku_OnChange
@@ -3191,6 +3788,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity13.Activities.Add(this.SetCT_Wniosek1);
             this.stateInitializationActivity13.Activities.Add(this.logToHistoryListActivity12);
             this.stateInitializationActivity13.Activities.Add(this.setState_KorektaWniosku);
+            this.stateInitializationActivity13.Activities.Add(this.initializeWorkflow8);
+            this.stateInitializationActivity13.Activities.Add(this.faultHandlersActivity30);
             this.stateInitializationActivity13.Name = "stateInitializationActivity13";
             // 
             // AkceptacjaWniosku_OnChange
@@ -3206,6 +3805,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity8.Activities.Add(this.SetCT_AkceptacjaWniosku);
             this.stateInitializationActivity8.Activities.Add(this.logToHistoryListActivity7);
             this.stateInitializationActivity8.Activities.Add(this.setState_AkceptacjaWniosku);
+            this.stateInitializationActivity8.Activities.Add(this.initializeWorkflow7);
+            this.stateInitializationActivity8.Activities.Add(this.faultHandlersActivity25);
             this.stateInitializationActivity8.Name = "stateInitializationActivity8";
             // 
             // Wniosek_OnChange
@@ -3222,6 +3823,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity7.Activities.Add(this.logToHistoryListActivity6);
             this.stateInitializationActivity7.Activities.Add(this.setState_Wniosek);
             this.stateInitializationActivity7.Activities.Add(this.codeDodajDoRozliczen);
+            this.stateInitializationActivity7.Activities.Add(this.initializeWorkflow6);
+            this.stateInitializationActivity7.Activities.Add(this.faultHandlersActivity24);
             this.stateInitializationActivity7.Name = "stateInitializationActivity7";
             // 
             // KorektaOferty_OnChange
@@ -3237,6 +3840,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity6.Activities.Add(this.SetCT_Oferta1);
             this.stateInitializationActivity6.Activities.Add(this.logKorektaOferty);
             this.stateInitializationActivity6.Activities.Add(this.setState_KorektaOferty);
+            this.stateInitializationActivity6.Activities.Add(this.initializeWorkflow5);
+            this.stateInitializationActivity6.Activities.Add(this.faultHandlersActivity23);
             this.stateInitializationActivity6.Name = "stateInitializationActivity6";
             // 
             // AkceptacjaOferty_OnChange
@@ -3252,6 +3857,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity5.Activities.Add(this.SetCT_AkceptacjaOferty);
             this.stateInitializationActivity5.Activities.Add(this.logToHistoryListActivity5);
             this.stateInitializationActivity5.Activities.Add(this.setState_AkceptacjaOferty);
+            this.stateInitializationActivity5.Activities.Add(this.initializeWorkflow4);
+            this.stateInitializationActivity5.Activities.Add(this.faultHandlersActivity22);
             this.stateInitializationActivity5.Name = "stateInitializationActivity5";
             // 
             // stateInitializationActivity2
@@ -3261,6 +3868,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity2.Activities.Add(this.logToHistoryListActivity2);
             this.stateInitializationActivity2.Activities.Add(this.ifElseActivity1);
             this.stateInitializationActivity2.Activities.Add(this.setStateActivity26);
+            this.stateInitializationActivity2.Activities.Add(this.faultHandlersActivity21);
             this.stateInitializationActivity2.Name = "stateInitializationActivity2";
             // 
             // Oferta_OnChange
@@ -3276,6 +3884,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity4.Activities.Add(this.SetCT_Oferta);
             this.stateInitializationActivity4.Activities.Add(this.logToHistoryListActivity15);
             this.stateInitializationActivity4.Activities.Add(this.setState_Oferta);
+            this.stateInitializationActivity4.Activities.Add(this.initializeWorkflow3);
+            this.stateInitializationActivity4.Activities.Add(this.faultHandlersActivity20);
             this.stateInitializationActivity4.Name = "stateInitializationActivity4";
             // 
             // Telemarketing_OnChange
@@ -3291,6 +3901,8 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity3.Activities.Add(this.SetCT_Telemarketing);
             this.stateInitializationActivity3.Activities.Add(this.logToHistoryListActivity16);
             this.stateInitializationActivity3.Activities.Add(this.setState_Telemarketing);
+            this.stateInitializationActivity3.Activities.Add(this.initializeWorkflow2);
+            this.stateInitializationActivity3.Activities.Add(this.faultHandlersActivity19);
             this.stateInitializationActivity3.Name = "stateInitializationActivity3";
             // 
             // stateInitializationActivity1
@@ -3298,6 +3910,7 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             this.stateInitializationActivity1.Activities.Add(this.SetCT_Weryfikacja);
             this.stateInitializationActivity1.Activities.Add(this.setState_Weryfikacja);
             this.stateInitializationActivity1.Activities.Add(this.logToHistoryListActivity14);
+            this.stateInitializationActivity1.Activities.Add(this.initializeWorkflow1);
             this.stateInitializationActivity1.Activities.Add(this.faultHandlersActivity4);
             this.stateInitializationActivity1.Name = "stateInitializationActivity1";
             // 
@@ -3312,7 +3925,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
             // stateInitializationActivity15
             // 
             this.stateInitializationActivity15.Activities.Add(this.logRouter);
-            this.stateInitializationActivity15.Activities.Add(this.terminateActivity1);
             this.stateInitializationActivity15.Activities.Add(this.TestEtap);
             this.stateInitializationActivity15.Activities.Add(this.faultHandlersActivity3);
             this.stateInitializationActivity15.Name = "stateInitializationActivity15";
@@ -3451,9 +4063,153 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         #endregion
 
-        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity82;
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity87;
 
-        private TerminateActivity terminateActivity1;
+        private CodeActivity codeActivity15;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity86;
+
+        private CodeActivity codeActivity14;
+
+        private FaultHandlerActivity faultHandlerActivity18;
+
+        private FaultHandlerActivity faultHandlerActivity17;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity90;
+
+        private CodeActivity codeActivity18;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity89;
+
+        private CodeActivity codeActivity17;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity88;
+
+        private CodeActivity codeActivity16;
+
+        private FaultHandlerActivity faultHandlerActivity21;
+
+        private FaultHandlerActivity faultHandlerActivity20;
+
+        private FaultHandlerActivity faultHandlerActivity19;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity93;
+
+        private CodeActivity codeActivity21;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity92;
+
+        private CodeActivity codeActivity20;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity91;
+
+        private CodeActivity codeActivity19;
+
+        private FaultHandlerActivity faultHandlerActivity24;
+
+        private FaultHandlerActivity faultHandlerActivity23;
+
+        private FaultHandlerActivity faultHandlerActivity22;
+
+        private FaultHandlersActivity faultHandlersActivity30;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity4;
+
+        private CodeActivity codeActivity26;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity97;
+
+        private CodeActivity codeActivity25;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity96;
+
+        private CodeActivity codeActivity24;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity95;
+
+        private CodeActivity codeActivity23;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity94;
+
+        private CodeActivity codeActivity22;
+
+        private FaultHandlerActivity faultHandlerActivity2;
+
+        private FaultHandlerActivity faultHandlerActivity28;
+
+        private FaultHandlerActivity faultHandlerActivity27;
+
+        private FaultHandlerActivity faultHandlerActivity26;
+
+        private FaultHandlerActivity faultHandlerActivity25;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow1;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow2;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow3;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow4;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow5;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow7;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow6;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow8;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow10;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow9;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow11;
+
+        private Microsoft.SharePoint.WorkflowActions.InitializeWorkflow initializeWorkflow12;
+
+        private FaultHandlersActivity faultHandlersActivity29;
+
+        private FaultHandlersActivity faultHandlersActivity28;
+
+        private FaultHandlersActivity faultHandlersActivity27;
+
+        private FaultHandlersActivity faultHandlersActivity26;
+
+        private FaultHandlersActivity faultHandlersActivity25;
+
+        private FaultHandlersActivity faultHandlersActivity24;
+
+        private FaultHandlersActivity faultHandlersActivity23;
+
+        private FaultHandlersActivity faultHandlersActivity22;
+
+        private FaultHandlersActivity faultHandlersActivity21;
+
+        private FaultHandlersActivity faultHandlersActivity20;
+
+        private FaultHandlersActivity faultHandlersActivity19;
+
+        private SetStateActivity setStateActivity1;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity84;
+
+        private CodeActivity codeActivity12;
+
+        private FaultHandlerActivity faultHandlerActivity3;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity85;
+
+        private CodeActivity codeActivity13;
+
+        private FaultHandlerActivity faultHandlerActivity4;
+
+        private FaultHandlersActivity faultHandlersActivity4;
+
+        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity83;
+
+        private CodeActivity codeActivity11;
+
+        private FaultHandlerActivity faultHandlerActivity16;
 
         private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated2;
 
@@ -3933,8 +4689,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private StateActivity Wniosek;
 
-        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity4;
-
         private SetStateActivity setStateActivity21;
 
         private SetStateActivity setStateActivity22;
@@ -3958,8 +4712,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         private CodeActivity Komunikat_UmowaUruchomiona;
 
         private SetStateActivity setStateActivity19;
-
-        private FaultHandlerActivity faultHandlerActivity2;
 
         private IfElseBranchActivity Dokumentacja_Rozliczenie;
 
@@ -4067,8 +4819,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private CodeActivity StatusTelefon_Oferta;
 
-        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logERROR_WefyfikacjaInit;
-
         private SetStateActivity setStateActivity2;
 
         private CodeActivity StatusRozmowa_Stracony;
@@ -4080,8 +4830,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         private SetStateActivity setStateActivity3;
 
         private CodeActivity StatusRozmowa_Oferta;
-
-        private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logERROR_NavigatorInit;
 
         private SetStateActivity setStateActivity27;
 
@@ -4103,8 +4851,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private IfElseBranchActivity Telemarketing_Oferta;
 
-        private FaultHandlerActivity faultHandlerActivity4;
-
         private FaultHandlerActivity faultHandlerActivity5;
 
         private FaultHandlersActivity faultHandlersActivity6;
@@ -4114,8 +4860,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         private IfElseBranchActivity Weryfikacja_Telemarketing;
 
         private IfElseBranchActivity Weryfikacja_Oferta;
-
-        private FaultHandlerActivity faultHandlerActivity3;
 
         private FaultHandlersActivity faultHandlersActivity7;
 
@@ -4159,8 +4903,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
 
         private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity16;
 
-        private FaultHandlersActivity faultHandlersActivity4;
-
         private CodeActivity SetCT_Weryfikacja;
 
         private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity14;
@@ -4180,8 +4922,6 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logRouter;
 
         private FaultHandlersActivity faultHandlersActivity1;
-
-        private SetStateActivity setStateActivity1;
 
         private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logZainicjowany;
 
@@ -4214,6 +4954,38 @@ namespace masterleasing.Workflows.KontraktSMW.Workflow1
         private StateActivity Navigator;
 
         private StateActivity Start;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

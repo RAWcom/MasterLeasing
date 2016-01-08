@@ -1,0 +1,5 @@
+C:\_GitHub\MasterLeasing\SMW001\bin\Release\SMW001.dll
+C:\_GitHub\MasterLeasing\SMW001\bin\Release\SMW001.pdb
+C:\_GitHub\MasterLeasing\SMW001\obj\Release\SMW001.dll
+C:\_GitHub\MasterLeasing\SMW001\obj\Release\SMW001.pdb
+C:\_GitHub\MasterLeasing\SMW001\obj\Release\SMW001.csprojResolveAssemblyReference.cache

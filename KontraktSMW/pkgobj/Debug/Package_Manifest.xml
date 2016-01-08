@@ -4,6 +4,7 @@
     <Assembly Location="masterleasing.Workflows.KontraktSMW.dll" DeploymentTarget="GlobalAssemblyCache" />
   </Assemblies>
   <FeatureManifests>
-    <FeatureManifest Location="KontraktSMW_Feature1\Feature.xml" />
+    <FeatureManifest Location="MasterLeasing.KontraktSMW_Feature1\Feature.xml" />
+    <FeatureManifest Location="MasterLeasing.KontraktSMW_Feature2\Feature.xml" />
   </FeatureManifests>
 </Solution>

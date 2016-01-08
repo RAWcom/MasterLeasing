@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="MasterLeasing.KontraktSMW" Id="4643fe50-5f1b-4d85-8047-8ab61edef695" Scope="Site">
+  <ElementManifests>
+    <ElementManifest Location="Workflow2\Elements.xml" />
+    <ElementManifest Location="Workflow1\Elements.xml" />
+  </ElementManifests>
+</Feature>

@@ -65,13 +65,25 @@
     <Compile Include="Workflow1\Workflow1.designer.cs">
       <DependentUpon>Workflow1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Workflow2\Workflow2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Workflow2\Workflow2.Designer.cs">
+      <DependentUpon>Workflow2.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{b95ffa61-d708-4adf-a298-f4f2393d901e}</FeatureId>
+    </None>
     <None Include="key.snk" />
     <None Include="Workflow1\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{46ede7de-4e44-4de0-9fe6-32eae30eaf1b}</SharePointProjectItemId>
     </None>
     <None Include="Workflow1\Elements.xml" />
+    <None Include="Workflow2\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6cb57c27-ac97-4bff-a173-d8a818ac7e99}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Package\Package.package">
@@ -80,18 +92,18 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
-    <None Include="Features\Feature1\Feature1.feature">
-      <FeatureId>{bc757e4e-c34e-4faa-9123-b192198788c6}</FeatureId>
-    </None>
-    <None Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Workflow1\Workflow1.layout">
       <DependentUpon>Workflow1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
+    <Content Include="Workflow2\Elements.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />

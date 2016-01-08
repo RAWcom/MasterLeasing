@@ -24,6 +24,20 @@
           <StartOnCreate>true</StartOnCreate>
           <StartOnChange>false</StartOnChange>
         </ProjectItemStore>
+        <ProjectItemStore Id="{6cb57c27-ac97-4bff-a173-d8a818ac7e99}">
+          <DisplayName>MasterLeasing.KontraktSMW - Workflow2</DisplayName>
+          <HistoryList>Workflow History</HistoryList>
+          <HistoryListGuid>{e6d092aa-9b24-43d2-9280-71b447069b0b}</HistoryListGuid>
+          <TaskList>Tasks</TaskList>
+          <TaskListGuid>{b09885f9-237c-4cfd-835d-74596d64a5b8}</TaskListGuid>
+          <AutoAssociate>true</AutoAssociate>
+          <ManualStart>true</ManualStart>
+          <ListURL>http://spf2010/sites/ML/Lists/tabKontrakty/Kartoteka.aspx</ListURL>
+          <TargetList>tabKontrakty</TargetList>
+          <TargetListGuid>{289a7a60-eb7c-4d50-a60d-d60221a2d7a2}</TargetListGuid>
+          <StartOnCreate>true</StartOnCreate>
+          <StartOnChange>false</StartOnChange>
+        </ProjectItemStore>
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>

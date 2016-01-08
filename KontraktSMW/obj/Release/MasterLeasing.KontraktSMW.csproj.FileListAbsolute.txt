@@ -1,0 +1,5 @@
+C:\_GitHub\MasterLeasing\KontraktSMW\bin\Release\masterleasing.Workflows.KontraktSMW.dll
+C:\_GitHub\MasterLeasing\KontraktSMW\bin\Release\masterleasing.Workflows.KontraktSMW.pdb
+C:\_GitHub\MasterLeasing\KontraktSMW\obj\Release\MasterLeasing.KontraktSMW.csprojResolveAssemblyReference.cache
+C:\_GitHub\MasterLeasing\KontraktSMW\obj\Release\masterleasing.Workflows.KontraktSMW.dll
+C:\_GitHub\MasterLeasing\KontraktSMW\obj\Release\masterleasing.Workflows.KontraktSMW.pdb

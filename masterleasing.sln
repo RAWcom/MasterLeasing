@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KontraktSMW", "KontraktSMW\KontraktSMW.csproj", "{494BCEE3-3727-43B6-BDCF-DAE5C66C8F75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterLeasing.KontraktSMW", "KontraktSMW\MasterLeasing.KontraktSMW.csproj", "{494BCEE3-3727-43B6-BDCF-DAE5C66C8F75}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D08FFD0F-CCDD-497E-AED6-64D4278C7348} = {D08FFD0F-CCDD-497E-AED6-64D4278C7348}
+		{D317CC55-AB17-4859-BBDD-A034AF840E79} = {D317CC55-AB17-4859-BBDD-A034AF840E79}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatusWnioskowSW", "StatusWnioskowSW\StatusWnioskowSW.csproj", "{1D6BC4D8-45BB-41E8-B1F3-CE45579C85D2}"
 EndProject

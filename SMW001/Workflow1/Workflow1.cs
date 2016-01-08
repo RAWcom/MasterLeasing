@@ -18,6 +18,7 @@ using System.Text;
 using System.Net.Mail;
 using System.Collections.Specialized;
 using Microsoft.SharePoint.Utilities;
+using System.Diagnostics;
 
 namespace SMW001.Workflow1
 {
@@ -52,16 +53,16 @@ namespace SMW001.Workflow1
 
         private void codeSetup_ExecuteCode(object sender, EventArgs e)
         {
-            try
-            {
-                item["colNumerKontraktu"] = String.Format("K.{0}", item.ID.ToString());
-                item["Title"] = ".";
-                item.Update();
-            }
-            catch (Exception ex)
-            {
-                //ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, workflowProperties.WebUrl);
-            }
+            //item = workflowProperties.Item;
+
+            //item["colNumerKontraktu"] = String.Format("K.{0}", item.ID.ToString());
+            //item["Title"] = ".";
+            //item.Update();
+
+            workflowProperties.Item["colNumerKontraktu"] = String.Format("K.{0}", workflowProperties.ItemId.ToString());
+            workflowProperties.Item["Title"] = ".";
+            workflowProperties.Item.Update();
+
         }
 
         #region Warunki logiczne Navigatora
@@ -252,14 +253,32 @@ namespace SMW001.Workflow1
 
         private bool CodeConditionResult(string strCommandColumnName, string strAction)
         {
-            if (item[strCommandColumnName] != null)
+            //if (item[strCommandColumnName] != null)
+            //{
+            //    if (item[strCommandColumnName].ToString() == strAction)
+            //    {
+            //        try
+            //        {
+            //            item[strCommandColumnName] = string.Empty;
+            //            item.Update();
+            //        }
+            //        catch (Exception)
+            //        { }
+
+            //        return true;
+            //    }
+            //}
+
+            //return false;
+
+            if (workflowProperties.Item[strCommandColumnName] != null)
             {
-                if (item[strCommandColumnName].ToString() == strAction)
+                if (workflowProperties.Item[strCommandColumnName].ToString() == strAction)
                 {
                     try
                     {
-                        item[strCommandColumnName] = string.Empty;
-                        item.Update();
+                        workflowProperties.Item[strCommandColumnName] = string.Empty;
+                        workflowProperties.Item.Update();
                     }
                     catch (Exception)
                     { }
@@ -277,7 +296,8 @@ namespace SMW001.Workflow1
 
         private void Set_Etap(EtapProcesu etap)
         {
-            item["_ETAP"] = etap.ToString();
+            //item["_ETAP"] = etap.ToString();
+            workflowProperties.Item["_ETAP"] = etap.ToString();
         }
 
         private void SetCT_Weryfikacja_ExecuteCode(object sender, EventArgs e)
@@ -358,36 +378,52 @@ namespace SMW001.Workflow1
 
         private void AdjustFormSettings(string strContentType, string strStatusLeadu, string strCommandColumnName, bool clearPowodOdrzucenia)
         {
-            try
+
+
+            //item["ContentType"] = strContentType;
+
+            //item["colStatusLeadu"] = strStatusLeadu;
+
+
+            //if (clearPowodOdrzucenia == true)
+            //{
+            //    item["colPowodOdrzucenia"] = string.Empty;
+            //}
+
+            //if (!string.IsNullOrEmpty(strCommandColumnName))
+            //{
+            //    if (item[strCommandColumnName] != null)
+            //    {
+            //        //wyczyść pole komendy
+            //        item[strCommandColumnName] = string.Empty; ;
+            //    }
+            //}
+
+
+            //item.Update();
+
+            workflowProperties.Item["ContentType"] = strContentType;
+
+            workflowProperties.Item["colStatusLeadu"] = strStatusLeadu;
+
+
+            if (clearPowodOdrzucenia == true)
             {
-
-                item["ContentType"] = strContentType;
-
-                item["colStatusLeadu"] = strStatusLeadu;
-
-
-                if (clearPowodOdrzucenia == true)
-                {
-                    item["colPowodOdrzucenia"] = string.Empty;
-                }
-
-                if (!string.IsNullOrEmpty(strCommandColumnName))
-                {
-                    if (item[strCommandColumnName] != null)
-                    {
-                        //wyczyść pole komendy
-                        item[strCommandColumnName] = string.Empty; ;
-                    }
-                }
-
-
-                item.Update();
-
+                workflowProperties.Item["colPowodOdrzucenia"] = string.Empty;
             }
-            catch (Exception ex)
+
+            if (!string.IsNullOrEmpty(strCommandColumnName))
             {
-                //ElasticEmailSendMailApp.ElasticTestMail.ReportError(ex, workflowProperties.WebUrl);
+                if (workflowProperties.Item[strCommandColumnName] != null)
+                {
+                    //wyczyść pole komendy
+                    workflowProperties.Item[strCommandColumnName] = string.Empty; ;
+                }
             }
+
+
+            workflowProperties.Item.Update();
+
         }
 
         #endregion
@@ -1070,6 +1106,10 @@ namespace SMW001.Workflow1
                 logErrorMessage_HistoryDescription = fha.Fault.Message;
                 logErrorMessage_HistoryOutcome = fha.Fault.StackTrace;
 
+                Debug.WriteLine("*** ERROR ***");
+                Debug.WriteLine(fha.Fault.Message);
+                Debug.WriteLine(fha.Fault.StackTrace);
+
                 //ElasticEmail.EmailGenerator.ReportErrorFromWorkflow(workflowProperties, fha.Fault.Message, fha.Fault.StackTrace);
             }
 
@@ -1171,12 +1211,33 @@ namespace SMW001.Workflow1
 
         private void onWorkflowActivated1_Invoked(object sender, ExternalDataEventArgs e)
         {
-            item = workflowProperties.Item;
+
         }
 
         private void Update_Item_ExecuteCode(object sender, EventArgs e)
         {
             item = workflowProperties.Item;
+        }
+
+        private void codeActivity2_ExecuteCode(object sender, EventArgs e)
+        {
+            FaultHandlerActivity fha = ((Activity)sender).Parent as FaultHandlerActivity;
+            if (fha != null)
+            {
+                logErrorMessage_HistoryDescription = fha.Fault.Message;
+                logErrorMessage_HistoryOutcome = fha.Fault.StackTrace;
+
+                Debug.WriteLine("*** ERROR ***");
+                Debug.WriteLine(fha.Fault.Message);
+                Debug.WriteLine(fha.Fault.StackTrace);
+            }
+        }
+
+        public String logTEST_HistoryOutcome = default(System.String);
+
+        private void logTEST_MethodInvoking(object sender, EventArgs e)
+        {
+            logTEST_HistoryOutcome = workflowProperties.Item["colKlient"].ToString();
         }
 
     }
