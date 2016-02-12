@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Workflow2\Elements.xml" />
+    <Content Include="Zmiany.20160112.txt" />
     <Content Include="Zmiany.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

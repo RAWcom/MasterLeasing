@@ -228,6 +228,7 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
             this.onWorkflowActivated1.Name = "onWorkflowActivated1";
             activitybind9.Name = "Workflow2";
             activitybind9.Path = "workflowProperties";
+            this.onWorkflowActivated1.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.onWorkflowActivated1_Invoked);
             this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind9)));
             // 
             // Workflow2
@@ -286,6 +287,8 @@ namespace masterleasing.Reports.StatusWnioskowSW.Workflow2
         private CodeActivity codeGetAgentDetails;
 
         private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated1;
+
+
 
 
 
