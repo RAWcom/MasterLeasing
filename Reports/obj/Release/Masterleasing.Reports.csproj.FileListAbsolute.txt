@@ -2,3 +2,4 @@ C:\_GitHub\MasterLeasing\Reports\bin\Release\masterleasing.Reports.dll
 C:\_GitHub\MasterLeasing\Reports\bin\Release\masterleasing.Reports.pdb
 C:\_GitHub\MasterLeasing\Reports\obj\Release\masterleasing.Reports.dll
 C:\_GitHub\MasterLeasing\Reports\obj\Release\masterleasing.Reports.pdb
+C:\_GitHub\MasterLeasing\Reports\obj\Release\MasterLeasing.Reports.csprojResolveAssemblyReference.cache
