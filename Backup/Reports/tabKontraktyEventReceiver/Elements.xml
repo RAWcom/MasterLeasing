@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Receivers ListUrl="Lists/tabKontrakty">
+      <Receiver>
+        <Name>tabKontraktyEventReceiverItemUpdated</Name>
+        <Type>ItemUpdated</Type>
+        <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
+        <Class>masterleasing.Reports.tabKontraktyEventReceiver.tabKontraktyEventReceiver</Class>
+        <SequenceNumber>10000</SequenceNumber>
+      </Receiver>
+</Receivers>
+</Elements>

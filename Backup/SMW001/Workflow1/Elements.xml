@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Customize the text in square brackets. 
+Remove brackets when filling in, e.g.
+Name="[NAME]" ==> Name="MyWorkflow" -->
+
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Workflow
+     Name="SMW001 - Workflow1"
+     Description="My SharePoint Workflow"
+     Id="80111851-a9ef-4e96-a509-0b06a8565e79"
+     CodeBesideClass="SMW001.Workflow1.Workflow1"
+     CodeBesideAssembly="$assemblyname$">
+    <Categories/>
+    <MetaData>
+      <AssociationCategories>List</AssociationCategories>
+      <!-- Tags to specify InfoPath forms for the workflow; delete tags for forms that you do not have -->
+      <!--<Association_FormURN>[URN FOR ASSOCIATION FORM]</Association_FormURN>
+       <Instantiation_FormURN>[URN FOR INSTANTIATION FORM]</Instantiation_FormURN>
+      <Task0_FormURN>[URN FOR TASK (type 0) FORM]</Task0_FormURN>
+      <Task1_FormURN>[URN FOR TASK (type 1) FORM]</Task1_FormURN>-->
+      <!-- Modification forms: create a unique guid for each modification form -->
+      <!--<Modification_[UNIQUE GUID]_FormURN>[URN FOR MODIFICATION FORM]</Modification_[UNIQUE GUID]_FormURN>
+      <Modification_[UNIQUE GUID]_Name>[NAME OF MODIFICATION TO BE DISPLAYED AS A LINK ON WORKFLOW STATUS PAGE</Modification_[UNIQUE GUID]_Name>
+      -->
+      <StatusPageUrl>_layouts/WrkStat.aspx</StatusPageUrl>
+      <ExtendedStatusColumnValues>
+        <StatusColumnValue>Weryfikacja</StatusColumnValue>
+        <StatusColumnValue>Odrzucony</StatusColumnValue>
+        <StatusColumnValue>Telemarketing</StatusColumnValue>
+        <StatusColumnValue>Oferta</StatusColumnValue>
+        <StatusColumnValue>Akceptacja oferty</StatusColumnValue>
+        <StatusColumnValue>Korekta oferty</StatusColumnValue>
+        <StatusColumnValue>Wniosek</StatusColumnValue>
+        <StatusColumnValue>Akceptacja wniosku</StatusColumnValue>
+        <StatusColumnValue>Umowa</StatusColumnValue>
+        <StatusColumnValue>Dokumentacja</StatusColumnValue>
+        <StatusColumnValue>Uruchomienie</StatusColumnValue>
+        <StatusColumnValue>Rozliczenie</StatusColumnValue>
+        <StatusColumnValue>Korekta wniosku</StatusColumnValue>
+        <StatusColumnValue>Akceptacja umowy</StatusColumnValue>
+      </ExtendedStatusColumnValues>
+    </MetaData>
+  </Workflow>
+</Elements>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" Id="7fecf14d-1100-4ebe-83f6-6ebc214d0cb3" solutionId="7fecf14d-1100-4ebe-83f6-6ebc214d0cb3" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" name="masterleasing.Reports.StatusWnioskowSW">
+    <features>
+        <featureReference itemId="25645795-46a9-4ca4-8284-b202e03fcf84" />
+    </features>
+</package>

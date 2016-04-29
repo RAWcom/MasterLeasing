@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="7fecf14d-1100-4ebe-83f6-6ebc214d0cb3" SharePointProductVersion="14.0">
   <Assemblies>
     <Assembly Location="masterleasing.Reports.StatusWnioskowSW.dll" DeploymentTarget="GlobalAssemblyCache" />
